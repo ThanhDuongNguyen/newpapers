@@ -8,7 +8,7 @@ const app = express();
 app.use(express.urlencoded({
   extended: true
 }));
-
+ 
 app.engine('hbs', exphbs({
   layoutsDir: 'views/_layouts',
   defaultLayout: 'main',
@@ -23,7 +23,7 @@ app.engine('hbs', exphbs({
 app.set('view engine', 'hbs');
 
 app.use('/public', express.static('public'));
-
+app.use('/Category', require('./routers/category.router'));
 
 app.get('/', function (req, res) {
   res.render('home');
