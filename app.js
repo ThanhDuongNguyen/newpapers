@@ -1,51 +1,38 @@
-const express = require('express');
-const exphbs = require('express-handlebars');
-require('express-async-errors');
-const numeral = require('numeral');
-
+// Khai bao
+const express = require("express");
+const exphbs = require("express-handlebars");
 const app = express();
 
-app.use(express.urlencoded({
-  extended: true
-}));
- 
-app.engine('hbs', exphbs({
-  layoutsDir: 'views/_layouts',
-  defaultLayout: 'main',
-  partialsDir: 'views/_partials',
-  extname: '.hbs',
-  helpers: {
-    format_number: function (value) {
-      return numeral(value).format('0,0');
-    }
-  }
-}));
-app.set('view engine', 'hbs');
+// Set app engine
+app.engine(
+  "hbs",
+  exphbs({
+    layoutsDir: "views/_layouts",
+    defaultLayout: "main",
+    extname: ".hbs",
+  })
+);
+app.set("view engine", "hbs");
 
+// public folder
 app.use('/public', express.static('public'));
-app.use('/Category', require('./routers/category.router'));
 
-app.get('/', function (req, res) {
-  res.render('home');
-})
+app.use("/news", require("./routers/detail.router"));
 
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 
-// app.use('/products', require('./routes/_product.route'));
+// index
+app.get("/", function (req, res) {
+  res.render("home");
+});
 
-app.get('/err', function (req, res) {
-  throw new Error('beng beng');
-})
-
+// Error
 app.use(function (req, res) {
-  res.render('404', { layout: false });
-})
+  res.render("404", { layout: false });
+});
 
-app.use(function (err, req, res, next) {
-  console.error(err.stack);
-  res.status(500).render('500', { layout: false });
-})
-
-const PORT = 3000;
-app.listen(PORT, function () {
-  console.log(`Server is running at http://localhost:${PORT}`);
-})
+app.listen(3000);

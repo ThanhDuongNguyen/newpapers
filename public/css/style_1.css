@@ -3,6 +3,8 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+
 a,
 a:hover {
   color: #f5bc04;
@@ -504,25 +506,40 @@ a:hover {
   padding: 5px 0;
 }
 .fh5co_tagg {
-  background: #f1f1f1;
+  border: 1px solid #888;
+
+  background: none;
+
   padding: 10px 15px;
+
   color: #222;
+
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
   -ms-transition: all 0.5s ease;
   transition: all 0.5s ease;
+
   margin-right: 8px;
   margin-top: 5px;
   margin-bottom: 5px;
+
   display: inline-block;
+
+  border-radius: 28px;
 }
+
 .fh5co_tagg:hover,
 .fh5co_tagg:focus {
-  background: #f5bc04;
+  border: 1px solid #f5bc04;
+  
+  background: #f5bc04 !important;
   color: #fff;
+
   text-decoration: none;
 }
+
+
 .fh5co_most_trading {
   height: 60px;
   width: 100%;
@@ -991,9 +1008,18 @@ a:hover {
   color: white;
   font-weight: 300;
 }
-.single #fh5co-title-box .page-title h2 {
+
+
+.single #fh5co-title-box {
   font-size: 72px;
 }
+
+.most_fh5co_treding_font.text-dark:hover{
+  color: #f5bc04 !important;
+  text-decoration: none;
+}
+
+
 #fh5co-title-box .page-title > span {
   display: block;
   color: rgba(255, 255, 255, 0.5);
