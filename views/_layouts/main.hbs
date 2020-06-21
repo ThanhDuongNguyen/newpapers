@@ -5,17 +5,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>News Paper</title>
+  {{!-- Media query --}}
   <link href="../../public/css/media_query.css" rel="stylesheet" type="text/css" />
-  <link href="../../public/css/bootstrap.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  {{!-- Font awesome --}}
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <link href="../../public/css/animate.css" rel="stylesheet" type="text/css" />
+  {{!-- Animate CSS --}}
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.css" rel="stylesheet" type="text/css" />
+  {{!-- Font --}}
   <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+  {{!-- Owl carousel --}}
   <link href="../../public/css/owl.carousel.css" rel="stylesheet" type="text/css" />
   <link href="../../public/css/owl.theme.default.css" rel="stylesheet" type="text/css" />
+  {{!-- Default CSS --}}
   <link rel="stylesheet" href="../../public/css/detail.css">
-  <!-- Bootstrap CSS -->
   <link href="../../public/css/style_1.css" rel="stylesheet" type="text/css" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <!-- Modernizr JS -->
   <script src="../../public/js/modernizr-3.5.0.min.js"></script>
 </head>
@@ -127,7 +132,8 @@
   <div class="container-fluid fh5co_footer_bg pb-3">
     <div class="container animate-box">
       <div class="row">
-        <div class="col-12 spdp_right py-5"><img src="../../public/images/white_logo.png" alt="img" class="footer_logo" /></div>
+        <div class="col-12 spdp_right py-5"><img src="../../public/images/white_logo.png" alt="img"
+            class="footer_logo" /></div>
         <div class="clearfix"></div>
         <div class="col-12 col-md-4 col-lg-3">
           <div class="footer_main_title py-3"> About</div>
@@ -176,7 +182,8 @@
         </div>
         <div class="col-12 col-md-12 col-lg-4 ">
           <div class="footer_main_title py-3"> Last Modified Posts</div>
-          <a href="#" class="footer_img_post_6"><img src="../../public/images/allef-vinicius-108153.jpg" alt="img" /></a>
+          <a href="#" class="footer_img_post_6"><img src="../../public/images/allef-vinicius-108153.jpg"
+              alt="img" /></a>
           <a href="#" class="footer_img_post_6"><img src="../../public/images/32-450x260.jpg" alt="img" /></a>
           <a href="#" class="footer_img_post_6"><img src="../../public/images/download (1).jpg" alt="img" /></a>
           <a href="#" class="footer_img_post_6"><img src="../../public/images/science-578x362.jpg" alt="img" /></a>
@@ -189,14 +196,10 @@
       </div>
       <div class="row justify-content-center pt-2 pb-4">
         <div class="col-12 col-md-8 col-lg-7 ">
-          <div class="input-group">
-            <span class="input-group-addon fh5co_footer_text_box" id="basic-addon1"><i
-                class="fa fa-envelope"></i></span>
-            <input type="text" class="form-control fh5co_footer_text_box" placeholder="Enter your email..."
-              aria-describedby="basic-addon1">
-            <a href="#" class="input-group-addon fh5co_footer_subcribe" id="basic-addon12"> <i
-                class="fa fa-paper-plane-o"></i>&nbsp;&nbsp;Subscribe</a>
-          </div>
+          <form method="POST" class="form-subscribe d-flex">
+            <input type="text" class="form-control subscribe-input" placeholder="Enter your email..." aria-describedby="basic-addon1">
+            <button type="submit"> <i class="fa fa-paper-plane-o"></i>&nbsp;&nbsp;Subscribe</button>
+          </form>
         </div>
       </div>
     </div>
@@ -205,7 +208,8 @@
   <div class="container-fluid fh5co_footer_right_reserved">
     <div class="container">
       <div class="row  ">
-        <div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2020, All rights reserved. Design by <a href="/About">Team 6 Web2</a>. </div>
+        <div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2020, All rights reserved. Design by <a
+            href="/About">Team 6 Web2</a>. </div>
         <div class="col-12 col-md-6 spdp_right py-4">
           <a href="#" class="footer_last_part_menu">Home</a>
           <a href="Contact_us.html" class="footer_last_part_menu">About</a>
