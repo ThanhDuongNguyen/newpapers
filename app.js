@@ -1,6 +1,8 @@
 // Khai bao
 const express = require("express");
 const exphbs = require("express-handlebars");
+const path = require("path");
+
 const app = express();
 
 // Set app engine
@@ -25,9 +27,35 @@ app.use(
   })
 );
 
+// Login
+app.get("/Login", function(req, res){
+  res.sendFile(path.join(__dirname+'/Login.html'));
+})
+
+// Sign Up
+app.get("/SignUp", function(req, res){
+  res.sendFile(path.join(__dirname+'/SignUp.html'));
+})
+
+
+// Success
+app.use("/Success",function (req, res) {
+  res.sendFile(path.join(__dirname+'/Success.html'));
+});
+
+// Warning
+app.use("/Warning",function (req, res) {
+  res.sendFile(path.join(__dirname+'/Warning.html'));
+});
+
+// Upload Complete
+app.use("/UploadComplete",function (req, res) {
+  res.sendFile(path.join(__dirname+'/UploadComplete.html'));
+});
+
 // Error
 app.use(function (req, res) {
-  res.render("404", { layout: false });
+  res.sendFile(path.join(__dirname+'/Error.html'));
 });
 
 app.listen(3000);

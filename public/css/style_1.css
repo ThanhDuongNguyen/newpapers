@@ -5,9 +5,12 @@
 }
 
 
-a,
 a:hover {
-  color: #f5bc04;
+  color: #f5bc04 !important;
+
+  transition: all 0.5s ease;
+
+  text-decoration: none !important;
 }
 .fh5co_header_bg {
   background: #222;
@@ -682,26 +685,45 @@ a:hover {
 }
 .fh5co_footer_text_box {
   background: none !important;
-  border-bottom: 2px solid #fff !important;
-  border-top: 0px solid #fff !important;
-  border-top: 0px solid #fff !important;
-  border-top: 0px solid #fff !important;
-  box-shadow: none !important;
-  color: #fff !important;
+  border-bottom: 2px solid #fff ;
+  box-shadow: none;
+  color: #fff;
 }
-.fh5co_footer_text_box:focus {
-  border-color: #f5bc04;
+
+.form-subscribe button{
+  background-color: #f5bc04;
+
+  color: #f1f1f1;
+
+  border: none;
+  border-radius: 2px;
+
+  width: 25%;
+
+  padding: 6px 12px;
+  margin-left: 5px;
 }
-.fh5co_footer_subcribe {
-  background: #f5bc04 !important;
-  border-bottom: 2px solid #fff !important;
-  border-top: 0px solid #fff !important;
-  border-top: 0px solid #fff !important;
-  border-top: 0px solid #fff !important;
-  box-shadow: none !important;
-  color: #fff !important;
-  display: -webkit-box !important;
+
+.form-subscribe button:hover{
+  cursor: pointer;
+
+  background-color: #00CC99;
+
+  transition: all 0.5s ease;
 }
+
+.form-control.subscribe-input{
+  background: none !important;
+
+  color: #f1f1f1 !important;
+}
+
+.form-control.subscribe-input:focus{
+  border-color: #00CC99;
+
+  box-shadow: 0 0 0 0.2rem #36e9bc80;
+}
+
 .fh5co_footer_right_reserved {
   background: #000 !important;
   color: #fff !important;
