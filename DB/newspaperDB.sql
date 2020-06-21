@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 10, 2020 lúc 12:24 PM
+-- Thời gian đã tạo: Th6 21, 2020 lúc 07:01 AM
 -- Phiên bản máy phục vụ: 10.4.11-MariaDB
 -- Phiên bản PHP: 7.4.4
 
@@ -114,7 +114,15 @@ INSERT INTO `newspapers` (`IDPage`, `Title`, `TinyContent`, `Content`, `CatID`, 
 (1, 'Tiếp tục miễn giảm thuế sử dụng đất nông nghiệp đến 2025', '<h1>Chiều 10/6, các đại biểu Quốc hội biểu quyết thông qua Nghị quyết kéo dài thời hạn miễn thuế sử ', '<h3>Sau khi biểu quyết, Nghị quyết kéo dài thời hạn miễn thuế sử dụng đất nông nghiệp được thông qua', 2, 0, 'Đã được duyệt', 0, 0, '2020-01-06 15:09:01', 0),
 (2, '<h1> Doanh nghiệp Hải sản Việt Nam kiên định với Cam kết chống khai thác IUU</h1>', '<h1>Sau 2 năm EU cảnh báo thẻ vàng đối với hải sản khai thác của Việt Nam, xuất khẩu hải sản của Việ', '<h1>Nhận thức rõ ảnh hưởng của thẻ vàng IUU đối với XK hải sản Việt Nam sang thị trường EU và uy tín', 3, 0, 'Bị từ chối', 0, 0, '2020-05-06 17:09:01', 0),
 (3, '<h1>Gói thầu 300.000 tấn gạo G2G của Philippines: Mới chỉ đạt 189.000 tấn,/h1>', '<h3>Philippines đã chính thức mở gói thầu 300.000 tấn gạo loại 25% tấm theo phương thức hợp đồng Chí', '<h4>Sáng ngày 8/6, tại Manila, Công ty Philippine International Trading Corporation (PITC) đại diện ', 5, 0, 'Chưa được duyệt', 0, 0, '2020-05-14 17:10:57', 0),
-(4, '<h1>Doanh nghiệp than khó tiếp cận vốn</h1>\r\n', '<h2>Dịch Covid-19 ở nước ta đã tạm lắng, các doanh nghiệp (DN) đã bắt tay vào khôi phục sản xuất, ki', '<h3>Nguồn vốn hiện tại vẫn luôn là điều mà nhiều DN vừa và nhỏ quan tâm sau mùa dịch Covid-19. Trong', 6, 0, 'Đã được duyệt & chờ xuất bản', 0, 0, '0000-00-00 00:00:00', 0);
+(4, '<h1>Doanh nghiệp than khó tiếp cận vốn</h1>\r\n', '<h2>Dịch Covid-19 ở nước ta đã tạm lắng, các doanh nghiệp (DN) đã bắt tay vào khôi phục sản xuất, ki', '<h3>Nguồn vốn hiện tại vẫn luôn là điều mà nhiều DN vừa và nhỏ quan tâm sau mùa dịch Covid-19. Trong', 6, 0, 'Đã được duyệt & chờ xuất bản', 0, 0, '0000-00-00 00:00:00', 0),
+(5, 'Top Trending Test 100 view', '', '', 2, 0, '', 0, 100, '2020-06-19 11:00:33', 0),
+(6, 'Top Trending Test 90 View', '', '', 2, 0, '', 0, 90, '2020-06-19 11:00:33', 0),
+(7, 'Top Trending Test 100 view', '', '', 2, 0, '', 0, 100, '2020-06-19 11:00:33', 0),
+(8, 'Top Trending Test 90 View', '', '', 2, 0, '', 0, 90, '2020-06-19 11:00:33', 0),
+(9, 'Top Trending 120 view', '', '', 2, 0, '', 0, 120, '2020-06-20 11:08:56', 0),
+(10, 'Top Trending Test 120 view', '', '', 2, 0, '', 0, 120, '2020-06-18 11:08:56', 0),
+(11, 'Top Trending 120 view', '', '', 2, 0, '', 0, 120, '2020-06-20 11:08:56', 0),
+(12, 'Top Trending Test 120 view', '', '', 2, 0, '', 0, 120, '2020-06-18 11:08:56', 0);
 
 -- --------------------------------------------------------
 
@@ -195,6 +203,22 @@ INSERT INTO `users` (`IDUser`, `Name`, `Email`, `DOB`, `Password`, `PermisstionI
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`CatID`);
+
+--
+-- Chỉ mục cho bảng `newspapers`
+--
+ALTER TABLE `newspapers`
+  ADD PRIMARY KEY (`IDPage`);
+
+--
+-- AUTO_INCREMENT cho các bảng đã đổ
+--
+
+--
+-- AUTO_INCREMENT cho bảng `newspapers`
+--
+ALTER TABLE `newspapers`
+  MODIFY `IDPage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
