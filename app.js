@@ -14,6 +14,12 @@ app.engine(
 );
 app.set("view engine", "hbs");
 
+app.get('/index', function(req,res)
+{
+  res.sendFile(__dirname + '/index.html');
+}
+)
+
 // public folder
 app.use('/public', express.static('public'));
 app.use("/news", require("./routers/detail.router"));
@@ -31,3 +37,5 @@ app.use(function (req, res) {
 });
 
 app.listen(3000);
+
+
