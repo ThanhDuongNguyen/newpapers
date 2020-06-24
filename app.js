@@ -16,16 +16,11 @@ app.engine(
 );
 app.set("view engine", "hbs");
 
-app.get('/index', function(req,res)
-{
-  res.sendFile(__dirname + '/index.html');
-}
-)
-
 // public folder
 app.use('/public', express.static('public'));
 app.use("/news", require("./routers/detail.router"));
 app.use("/", require("./routers/home.router"));
+app.use("/Account", require("./routers/account.router"));
 
 app.use(
   express.urlencoded({
@@ -33,35 +28,25 @@ app.use(
   })
 );
 
-// Login
-app.get("/Login", function(req, res){
-  res.sendFile(path.join(__dirname+'/Login.html'));
-})
-
-// Sign Up
-app.get("/SignUp", function(req, res){
-  res.sendFile(path.join(__dirname+'/SignUp.html'));
-})
-
 
 // Success
 app.use("/Success",function (req, res) {
-  res.sendFile(path.join(__dirname+'/Success.html'));
+  res.render("viewMessage/Success", {layout: false});
 });
 
 // Warning
 app.use("/Warning",function (req, res) {
-  res.sendFile(path.join(__dirname+'/Warning.html'));
+  res.render("viewMessage/Warning", {layout: false});
 });
 
 // Upload Complete
-app.use("/UploadComplete",function (req, res) {
-  res.sendFile(path.join(__dirname+'/UploadComplete.html'));
+app.use("/UploadCompleted",function (req, res) {
+  res.render("viewMessage/UploadCompleted", {layout: false});
 });
 
 // Error
 app.use(function (req, res) {
-  res.sendFile(path.join(__dirname+'/Error.html'));
+  res.render("viewMessage/Error", {layout: false});
 });
 
 app.listen(3000);

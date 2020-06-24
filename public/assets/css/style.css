@@ -1,0 +1,23 @@
+.login-facebook{
+  background-color: #3b5998;
+
+  border-radius: 6px;
+}
+
+.btn-login-facebook, .btn-login-google{
+  color: aliceblue;
+}
+
+.login-google{
+  background-color: #dd4b39;
+
+  border-radius: 6px;
+}
+
+.login-facebook:hover .btn-login-facebook,
+.login-google:hover .btn-login-google{
+  background-color: #00CC99;
+  color: aliceblue;
+
+  transition: all 0.5s ease-in-out;
+}
