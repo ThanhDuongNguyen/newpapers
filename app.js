@@ -21,12 +21,11 @@ app.use('/public', express.static('public'));
 app.use("/news", require("./routers/detail.router"));
 app.use("/", require("./routers/home.router"));
 app.use("/Account", require("./routers/account.router"));
+app.use('/Category', require("./routers/category.router"));
 
-app.use(
   express.urlencoded({
     extended: true,
-  })
-);
+  });
 
 
 // Success
