@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>News Paper</title>
+  <title>24 NEWS</title>
   {{!-- Media query --}}
   <link href="../../public/css/media_query.css" rel="stylesheet" type="text/css" />
   {{!-- Font awesome --}}
@@ -107,13 +107,14 @@
             <a class="nav-link" href="#">Hot News</a>
             <div class="sub-menu">
               <div class="sub-menu-content">
+                {{#each this.listHotnews}}
                 <div class="sub-menu-item">
                   <a href="#">
                     <img src="../../public/images/39-324x235.jpg" alt="Image" class="w-100 h-100">
                   </a>
                   <div class="sub-menu-item-content">
                     <a href="#">
-                      <h5>Donec metus orci, malesuada et lectus vitae</h5>
+                      {{{Title}}}
                     </a>
                     <span class="content-option">
                       <a href="#">Seafood</a>
@@ -122,66 +123,22 @@
                     </span>
                   </div>
                 </div>
-                <div class="sub-menu-item">
-                  <a href="#">
-                    <img src="../../public/images/39-324x235.jpg" alt="Image" class="w-100 h-100">
-                  </a>
-                  <div class="sub-menu-item-content">
-                    <a href="#">
-                      <h5>Donec metus orci, malesuada et lectus vitae</h5>
-                    </a>
-                    <span class="content-option">
-                      <a href="#">Seafood</a>
-                      <span>-</span>
-                      <span>Feb 18</span>
-                    </span>
-                  </div>
-                </div>
-                <div class="sub-menu-item">
-                  <a href="#">
-                    <img src="../../public/images/39-324x235.jpg" alt="Image" class="w-100 h-100">
-                  </a>
-                  <div class="sub-menu-item-content">
-                    <a href="#">
-                      <h5>Donec metus orci, malesuada et lectus vitae</h5>
-                    </a>
-                    <span class="content-option">
-                      <a href="#">Seafood</a>
-                      <span>-</span>
-                      <span>Feb 18</span>
-                    </span>
-                  </div>
-                </div>
-                <div class="sub-menu-item">
-                  <a href="#">
-                    <img src="../../public/images/39-324x235.jpg" alt="Image" class="w-100 h-100">
-                  </a>
-                  <div class="sub-menu-item-content">
-                    <a href="#">
-                      <h5>Donec metus orci, malesuada et lectus vitae</h5>
-                    </a>
-                    <span class="content-option">
-                      <a href="#">Seafood</a>
-                      <span>-</span>
-                      <span>Feb 18</span>
-                    </span>
-                  </div>
-                </div>
+                {{/each}}
               </div>
             </div>
           </li>
-
           <li class="nav-item">
             <a class="nav-link" href="#">Seafood News</a>
             <div class="sub-menu">
               <div class="sub-menu-content">
+                {{#each this.listSeafood}}
                 <div class="sub-menu-item">
                   <a href="#">
                     <img src="../../public/images/39-324x235.jpg" alt="Image" class="w-100 h-100">
                   </a>
                   <div class="sub-menu-item-content">
                     <a href="#">
-                      <h5>Donec metus orci, malesuada et lectus vitae</h5>
+                      {{{Title}}}
                     </a>
                     <span class="content-option">
                       <a href="#">Seafood</a>
@@ -190,66 +147,22 @@
                     </span>
                   </div>
                 </div>
-                <div class="sub-menu-item">
-                  <a href="#">
-                    <img src="../../public/images/39-324x235.jpg" alt="Image" class="w-100 h-100">
-                  </a>
-                  <div class="sub-menu-item-content">
-                    <a href="#">
-                      <h5>Donec metus orci, malesuada et lectus vitae</h5>
-                    </a>
-                    <span class="content-option">
-                      <a href="#">Seafood</a>
-                      <span>-</span>
-                      <span>Feb 18</span>
-                    </span>
-                  </div>
-                </div>
-                <div class="sub-menu-item">
-                  <a href="#">
-                    <img src="../../public/images/39-324x235.jpg" alt="Image" class="w-100 h-100">
-                  </a>
-                  <div class="sub-menu-item-content">
-                    <a href="#">
-                      <h5>Donec metus orci, malesuada et lectus vitae</h5>
-                    </a>
-                    <span class="content-option">
-                      <a href="#">Seafood</a>
-                      <span>-</span>
-                      <span>Feb 18</span>
-                    </span>
-                  </div>
-                </div>
-                <div class="sub-menu-item">
-                  <a href="#">
-                    <img src="../../public/images/39-324x235.jpg" alt="Image" class="w-100 h-100">
-                  </a>
-                  <div class="sub-menu-item-content">
-                    <a href="#">
-                      <h5>Donec metus orci, malesuada et lectus vitae</h5>
-                    </a>
-                    <span class="content-option">
-                      <a href="#">Seafood</a>
-                      <span>-</span>
-                      <span>Feb 18</span>
-                    </span>
-                  </div>
-                </div>
+                {{/each}}
               </div>
             </div>
           </li>
-
           <li class="nav-item">
             <a class="nav-link" href="#">Agricultural News</a>
             <div class="sub-menu">
               <div class="sub-menu-content">
+                {{#each this.listAgricultural}}
                 <div class="sub-menu-item">
                   <a href="#">
                     <img src="../../public/images/39-324x235.jpg" alt="Image" class="w-100 h-100">
                   </a>
                   <div class="sub-menu-item-content">
                     <a href="#">
-                      <h5>Donec metus orci, malesuada et lectus vitae</h5>
+                      {{{Title}}}
                     </a>
                     <span class="content-option">
                       <a href="#">Seafood</a>
@@ -258,51 +171,7 @@
                     </span>
                   </div>
                 </div>
-                <div class="sub-menu-item">
-                  <a href="#">
-                    <img src="../../public/images/39-324x235.jpg" alt="Image" class="w-100 h-100">
-                  </a>
-                  <div class="sub-menu-item-content">
-                    <a href="#">
-                      <h5>Donec metus orci, malesuada et lectus vitae</h5>
-                    </a>
-                    <span class="content-option">
-                      <a href="#">Seafood</a>
-                      <span>-</span>
-                      <span>Feb 18</span>
-                    </span>
-                  </div>
-                </div>
-                <div class="sub-menu-item">
-                  <a href="#">
-                    <img src="../../public/images/39-324x235.jpg" alt="Image" class="w-100 h-100">
-                  </a>
-                  <div class="sub-menu-item-content">
-                    <a href="#">
-                      <h5>Donec metus orci, malesuada et lectus vitae</h5>
-                    </a>
-                    <span class="content-option">
-                      <a href="#">Seafood</a>
-                      <span>-</span>
-                      <span>Feb 18</span>
-                    </span>
-                  </div>
-                </div>
-                <div class="sub-menu-item">
-                  <a href="#">
-                    <img src="../../public/images/39-324x235.jpg" alt="Image" class="w-100 h-100">
-                  </a>
-                  <div class="sub-menu-item-content">
-                    <a href="#">
-                      <h5>Donec metus orci, malesuada et lectus vitae</h5>
-                    </a>
-                    <span class="content-option">
-                      <a href="#">Seafood</a>
-                      <span>-</span>
-                      <span>Feb 18</span>
-                    </span>
-                  </div>
-                </div>
+                {{/each}}
               </div>
             </div>
           </li>
@@ -313,7 +182,7 @@
               Dropdown
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/About">About Us</a>
+              <a class="dropdown-item" href="#">About Us</a>
               <a class="dropdown-item" href="/Contact">Contact Us</a>
             </div>
           </li>
