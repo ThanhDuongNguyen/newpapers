@@ -1,11 +1,17 @@
 const express = require('express');
 const catergoryModel = require('../models/category.model');
+//const categoryModel = require('../models/category.model');
 var router = express.Router();
 
 router.get("/", async function(req, res){
-    const list = await catergoryModel.all();
+    
+    const list = await catergoryModel.all()
+    const tag = await catergoryModel.alls();
+    const popular = await catergoryModel.allpopular();
     res.render('viewCategory/list', {
         categories: list, 
+        tags: tag,
+        populars: popular,
         empty: list.length === 0
     });
 })
@@ -13,8 +19,12 @@ router.get("/", async function(req, res){
 router.get('/:id', async function(req, res){
     const id = +req.params.id || -1;
     const list = await catergoryModel.newspaperbyCat(id);
+    const tag = await catergoryModel.tagsby(id);
+    const popular = await catergoryModel.mostpopular(id)
     res.render('viewCategory/list', {
-        listNewspaper: list
+        listNewspaper: list,
+        tags: tag,
+        populars: popular
     })
 } )
 

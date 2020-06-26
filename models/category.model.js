@@ -3,9 +3,16 @@ const  db = require ('../utils/db');
 
 const TBL_CATEGORIES = 'categories';
 const TBL_NEWSPAPER = 'newspapers';
+const TBL_TAG = 'tags';
 module.exports = {
     all: function (){
         return db.load(`select * from ${TBL_CATEGORIES}`);
+    },
+    alls: function(){
+        return db.load(`select * from ${TBL_TAG}`);
+    },
+    allpopular: function () {
+      return db.load(`select * from ${TBL_NEWSPAPER} ORDER BY View DESC`);  
     },
     single: function (id) {
         return db.load(`select * from ${TBL_CATEGORIES} where CatID = ${id}`);
@@ -13,6 +20,13 @@ module.exports = {
     newspaperbyCat: function (id){
         return db.load(`select * from ${TBL_NEWSPAPER} where CatID = ${id}`);
     },
+    tagsby: function (id){
+        return db.load(`select * from ${TBL_TAG} where IDPage = ${id}`);
+    },
+    mostpopular: function(id){
+        return db.load(`select * from ${TBL_NEWSPAPER} where CatID = ${id} ORDER BY View DESC `);
+    },
+   
     add: function (entity) {
         return db.add(TBL_CATEGORIES, entity);
     },
