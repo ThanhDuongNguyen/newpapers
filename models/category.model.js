@@ -1,9 +1,13 @@
 const  db = require ('../utils/db');
-// const { delete } = require('../routers/category.router');
 
 const TBL_CATEGORIES = 'categories';
 const TBL_NEWSPAPER = 'newspapers';
+<<<<<<< HEAD
 const TBL_TAG = 'tags';
+=======
+const TOP_NEWS_NUM = 5;
+
+>>>>>>> 73cb407564f04f9b2ddebb4a173e9ab7e35f6931
 module.exports = {
     all: function (){
         return db.load(`select * from ${TBL_CATEGORIES}`);
@@ -18,7 +22,7 @@ module.exports = {
         return db.load(`select * from ${TBL_CATEGORIES} where CatID = ${id}`);
     },
     newspaperbyCat: function (id){
-        return db.load(`select * from ${TBL_NEWSPAPER} where CatID = ${id}`);
+        return db.load(`select * from ${TBL_NEWSPAPER} where CatID = ${id} limit ${TOP_NEWS_NUM}`);
     },
     tagsby: function (id){
         return db.load(`select * from ${TBL_TAG} where IDPage = ${id}`);

@@ -644,7 +644,7 @@ a:hover {
   border: 1px solid #f5bc04;
 
   background: #f5bc04 !important;
-  color: #fff;
+  color: #fff !important;
 
   text-decoration: none;
 }
