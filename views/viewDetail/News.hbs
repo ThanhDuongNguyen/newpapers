@@ -46,7 +46,7 @@
           </span>
           {{#each this.listTags}}
           <div class="recommend-tag">
-            <a href="#" class="fh5co_tagg">
+            <a href="/Tags/{{IDTags}}" class="fh5co_tagg">
               {{TagName}}
             </a>
           </div>
@@ -122,7 +122,7 @@
           {{/each}}
         </ul>
       </div>
-
+      {{!--  --}}
       <!-- Popular Posts -->
       <div class="p-b-30">
         <h3 class="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4">
@@ -174,7 +174,7 @@
 
         <div>
           {{#each this.AllTags}}
-          <a href="#" class="fh5co_tagg">
+          <a href="/Tags/{{IDTags}}" class="fh5co_tagg">
             {{TagName}}
           </a>
           {{/each}}

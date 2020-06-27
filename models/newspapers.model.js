@@ -11,7 +11,7 @@ module.exports = {
   single: function (id) {
     return db.load(`select * from ${TBL_NEWSPAPER} where IDPage = ${id}`);
   },
-
+// 
   tagsInNews: async function (id) {
     const tagParent = await db.load(
       `select IDParents from ${TBL_TAGS} where IDTags = ${id}`

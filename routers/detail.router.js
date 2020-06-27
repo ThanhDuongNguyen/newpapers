@@ -21,7 +21,7 @@ router.get("/:id", async function (req, res) {
     AllTags = await newspaperModel.allTags(),
   ]);
 
-
+// 
   res.render("viewDetail/News", {
     News: News,
     listTags: arrayTags,

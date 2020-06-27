@@ -2,7 +2,7 @@ const express = require("express");
 const homeModel = require("../models/home.model");
 
 var router = express.Router();
-
+// 
 router.get("/", async function (req, res) {
   const listSeafood = await homeModel.menu(3);
   const listAgricultural = await homeModel.menu(2);
