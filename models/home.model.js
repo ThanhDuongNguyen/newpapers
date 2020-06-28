@@ -2,7 +2,7 @@ const db = require('../utils/db');
 
 const TBL_NEWSPAPER = 'newspapers';
 const TOP_NEWS_NUM = 5;
-
+// 
 module.exports = {
   all: function () {
     return db.load(`select * from ${TBL_NEWSPAPER}`);
