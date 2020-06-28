@@ -3,8 +3,9 @@
     <div class="col-md-10 col-lg-8">
       <!-- Blog Detail -->
       <div class="blog-detail">
+        {{#each this.News}}
         <h3 class="mt-2">
-          Nulla non interdum metus non laoreet nisi tellus eget aliquam lorem pellentesque
+          {{{Title}}}
         </h3>
 
         <div class="mt-3 mb-3">
@@ -16,60 +17,40 @@
             <span class="most_fh5co_treding_font_123">-</span>
 
             <span class="most_fh5co_treding_font_123">
-              Feb 18
+              {{Day}}
             </span>
           </span>
 
           <span class="most_fh5co_treding_font_123">
-            5239 Views
+            {{View}}
           </span>
 
           <a href="#" class="most_fh5co_treding_font_123">
-            0 Comment
+            {{CommentCount}}
           </a>
         </div>
 
         <div class="mb-2">
-          <img src="../../public/images/10-1-1-875x500.jpg" alt="IMG" class="w-100 h-100">
+          <img src="../../public/images/{{ImgAvatar}}" alt="IMG" class="w-100 h-100">
         </div>
 
         <p class="text-justify">
-          Praesent vel mi bibendum, finibus leo ac, condimentum arcu. Pellentesque sem ex, tristique sit amet suscipit
-          in, mattis imperdiet enim. Integer tempus justo nec velit fringilla, eget eleifend neque blandit. Sed tempor
-          magna sed congue auctor. Mauris eu turpis eget tortor ultricies elementum. Phasellus vel placerat orci, a
-          venenatis justo. Phasellus faucibus venenatis nisl vitae vestibulum. Praesent id nibh arcu. Vivamus sagittis
-          accumsan felis, quis vulputate
+          {{Content}}
         </p>
-        <p class="text-justify">
-          Praesent vel mi bibendum, finibus leo ac, condimentum arcu. Pellentesque sem ex, tristique sit amet suscipit
-          in, mattis imperdiet enim. Integer tempus justo nec velit fringilla, eget eleifend neque blandit. Sed tempor
-          magna sed congue auctor. Mauris eu turpis eget tortor ultricies elementum. Phasellus vel placerat orci, a
-          venenatis justo. Phasellus faucibus venenatis nisl vitae vestibulum. Praesent id nibh arcu. Vivamus sagittis
-          accumsan felis, quis vulputate
-        </p>
-        <p class="text-justify">
-          Praesent vel mi bibendum, finibus leo ac, condimentum arcu. Pellentesque sem ex, tristique sit amet suscipit
-          in, mattis imperdiet enim. Integer tempus justo nec velit fringilla, eget eleifend neque blandit. Sed tempor
-          magna sed congue auctor. Mauris eu turpis eget tortor ultricies elementum. Phasellus vel placerat orci, a
-          venenatis justo. Phasellus faucibus venenatis nisl vitae vestibulum. Praesent id nibh arcu. Vivamus sagittis
-          accumsan felis, quis vulputate
-        </p>
+        {{/each}}
 
         <!-- Tag -->
         <div class="d-flex align-items-center">
           <span class="mr-3">
             Tags:
           </span>
-
+          {{#each this.listTags}}
           <div class="recommend-tag">
-            <a href="#" class="fh5co_tagg">
-              Streetstyle
-            </a>
-
-            <a href="#" class="fh5co_tagg">
-              Crafts
+            <a href="/Tags/{{IDTags}}" class="fh5co_tagg">
+              {{TagName}}
             </a>
           </div>
+          {{/each}}
         </div>
 
         <!-- Share -->
@@ -111,9 +92,9 @@
           <textarea name="msg" placeholder="Comment..." name="txtContent"></textarea>
 
           <div class="user-comment">
-            <input type="text" name="name" placeholder="Name*" name="txtName">
+            <input type="text" name="name" placeholder="Name*" name="Name">
 
-            <input type="text" name="email" placeholder="Email*" name="txtEmail">
+            <input type="text" name="email" placeholder="Email*" name="Email">
           </div>
 
           <button class="btn btn-success mt-2 mb-2" type="submit">
@@ -132,38 +113,16 @@
         </h3>
 
         <ul class="menu-category">
+          {{#each this.listCat}}
           <li class="menu-category-item">
-            <a href="#" class="d-block">
-              Fashion
+            <a href="/Category/{{CatID}}" class="d-block">
+              {{CatName}}
             </a>
           </li>
-
-          <li class="menu-category-item">
-            <a href="#" class="d-block">
-              Beauty
-            </a>
-          </li>
-
-          <li class="menu-category-item">
-            <a href="#" class="d-block">
-              Street Style
-            </a>
-          </li>
-
-          <li class="menu-category-item">
-            <a href="#" class="d-block">
-              Life Style
-            </a>
-          </li>
-
-          <li class="menu-category-item">
-            <a href="#" class="d-block">
-              DIY &amp; Crafts
-            </a>
-          </li>
+          {{/each}}
         </ul>
       </div>
-
+      {{!--  --}}
       <!-- Popular Posts -->
       <div class="p-b-30">
         <h3 class="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4">
@@ -171,10 +130,11 @@
         </h3>
 
         <ul class="p-t-35">
+          {{#each this.listNewsByCat}}
           <li class="row pb-3">
-            <div class="col-sm-4 align-self-center">
+            <div class="col-sm-4">
               <a href="#" class="d-block">
-                <img src="../../public/images/download (2).jpg" alt="IMG" class="w-100 h-100">
+                <img src="../../public/images/{{ImgAvatar}}" alt="IMG" class="w-100 h-100">
               </a>
             </div>
 
@@ -182,13 +142,13 @@
               <div class="paddding">
                 <a href="blog-detail-02.html" class="most_fh5co_treding_font text-dark">
                   <h6>
-                    Donec metus orci, malesuada et lectus vitae
+                    {{Title}}
                   </h6>
                 </a>
 
                 <span class="cl8 txt-center p-b-24">
                   <a href="#" class="most_fh5co_treding_font_123">
-                    Music
+                    {{Tags}}
                   </a>
 
                   <span class="most_fh5co_treding_font_123">
@@ -196,77 +156,13 @@
                   </span>
 
                   <span class="most_fh5co_treding_font_123">
-                    Feb 18
+                    {{Day}}
                   </span>
                 </span>
               </div>
             </div>
           </li>
-
-          <li class="row pb-3">
-            <div class="col-sm-4 align-self-center">
-              <a href="#" class="d-block">
-                <img src="../../public/images/download (2).jpg" alt="IMG" class="w-100 h-100">
-              </a>
-            </div>
-
-            <div class="col-sm-8">
-              <div class="paddding">
-                <a href="blog-detail-02.html" class="most_fh5co_treding_font text-dark">
-                  <h6>
-                    Donec metus orci, malesuada et lectus vitae
-                  </h6>
-                </a>
-
-                <span class="cl8 txt-center p-b-24">
-                  <a href="#" class="most_fh5co_treding_font_123">
-                    Music
-                  </a>
-
-                  <span class="most_fh5co_treding_font_123">
-                    -
-                  </span>
-
-                  <span class="most_fh5co_treding_font_123">
-                    Feb 18
-                  </span>
-                </span>
-              </div>
-            </div>
-          </li>
-
-          <li class="row pb-3">
-            <div class="col-sm-4 align-self-center">
-              <a href="#" class="d-block">
-                <img src="../../public/images/download (2).jpg" alt="IMG" class="w-100 h-100">
-              </a>
-            </div>
-
-            <div class="col-sm-8">
-              <div class="paddding">
-                <a href="blog-detail-02.html" class="most_fh5co_treding_font text-dark">
-                  <h6>
-                    Donec metus orci, malesuada et lectus vitae
-                  </h6>
-                </a>
-
-                <span class="cl8 txt-center p-b-24">
-                  <a href="#" class="most_fh5co_treding_font_123">
-                    Music
-                  </a>
-
-                  <span class="most_fh5co_treding_font_123">
-                    -
-                  </span>
-
-                  <span class="most_fh5co_treding_font_123">
-                    Feb 18
-                  </span>
-                </span>
-              </div>
-            </div>
-          </li>
-
+          {{/each}}
         </ul>
       </div>
 
@@ -277,37 +173,11 @@
         </h3>
 
         <div>
-          <a href="#" class="fh5co_tagg">
-            Fashion
+          {{#each this.AllTags}}
+          <a href="/Tags/{{IDTags}}" class="fh5co_tagg">
+            {{TagName}}
           </a>
-
-          <a href="#" class="fh5co_tagg">
-            Lifestyle
-          </a>
-
-          <a href="#" class="fh5co_tagg">
-            Denim
-          </a>
-
-          <a href="#" class="fh5co_tagg">
-            Streetstyle
-          </a>
-
-          <a href="#" class="fh5co_tagg">
-            Crafts
-          </a>
-
-          <a href="#" class="fh5co_tagg">
-            Magazine
-          </a>
-
-          <a href="#" class="fh5co_tagg">
-            News
-          </a>
-
-          <a href="#" class="fh5co_tagg">
-            Blogs
-          </a>
+          {{/each}}
         </div>
       </div>
     </div>

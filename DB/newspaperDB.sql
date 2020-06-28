@@ -101,7 +101,8 @@ CREATE TABLE `newspapers` (
   `View` int(11) NOT NULL,
   `Day` datetime NOT NULL,
   `Premium` tinyint(1) NOT NULL,
-  `ImgAvatar` text COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '32-450x260.jpg'
+  `ImgAvatar` text COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '32-450x260.jpg',
+  `Tags` int(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -254,7 +255,8 @@ ALTER TABLE `comments`
 -- Chỉ mục cho bảng `newspapers`
 --
 ALTER TABLE `newspapers`
-  ADD PRIMARY KEY (`IDPage`);
+  ADD PRIMARY KEY (`IDPage`),
+  ADD KEY `fk_News_Tags` (`Tags`) USING BTREE;
 
 --
 -- Chỉ mục cho bảng `permission`

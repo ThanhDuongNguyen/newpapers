@@ -102,19 +102,19 @@
       </button>
 
       <div class="collapse navbar-collapse position-relative" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto ">
+        <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <a class="nav-link" href="#">Hot News</a>
-            <div class="sub-menu">
+            <div class="sub-menu ">
               <div class="sub-menu-content">
                 {{#each this.listHotnews}}
                 <div class="sub-menu-item">
                   <a href="#">
-                    <img src="../../public/images/39-324x235.jpg" alt="Image" class="w-100 h-100">
+                    <img src="../../public/images/39-324x235.jpg" alt="Image">
                   </a>
                   <div class="sub-menu-item-content">
                     <a href="#">
-                      {{{Title}}}
+                      {{Title}}
                     </a>
                     <span class="content-option">
                       <a href="#">Seafood</a>
@@ -128,13 +128,13 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Seafood News</a>
+            <a class="nav-link" href="/Category/3">Seafood News</a>
             <div class="sub-menu">
               <div class="sub-menu-content">
                 {{#each this.listSeafood}}
                 <div class="sub-menu-item">
                   <a href="#">
-                    <img src="../../public/images/39-324x235.jpg" alt="Image" class="w-100 h-100">
+                    <img src="../../public/images/39-324x235.jpg" alt="Image">
                   </a>
                   <div class="sub-menu-item-content">
                     <a href="#">
@@ -152,13 +152,13 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Agricultural News</a>
+            <a class="nav-link" href="/Category/2">Agricultural News</a>
             <div class="sub-menu">
               <div class="sub-menu-content">
                 {{#each this.listAgricultural}}
                 <div class="sub-menu-item">
                   <a href="#">
-                    <img src="../../public/images/39-324x235.jpg" alt="Image" class="w-100 h-100">
+                    <img src="../../public/images/39-324x235.jpg" alt="Image">
                   </a>
                   <div class="sub-menu-item-content">
                     <a href="#">
@@ -182,8 +182,8 @@
               Dropdown
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">About Us</a>
-              <a class="dropdown-item" href="/Contact">Contact Us</a>
+              <a class="dropdown-item" href="/Account/About_us">About Us</a>
+              <a class="dropdown-item" href="/Account/Contact_us">Contact Us</a>
             </div>
           </li>
         </ul>
@@ -199,7 +199,7 @@
 
   {{!-- Body --}}
   {{{body}}}
-
+  
   {{!-- Footer --}}
   {{!-- Top Footer --}}
   <div class="container-fluid fh5co_footer_bg pb-3">
