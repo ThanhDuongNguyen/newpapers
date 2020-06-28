@@ -10,10 +10,10 @@ router.get("/", async function (req, res) {
   const listAgricultural = await homeModel.menu(idAgriculturalCat);
   const listHotnews= await homeModel.hotnewsmenu();
   const list = await homeModel.topNewsInWeek();
-  console.log(list);
-  console.log(listSeafood);
-  console.log(listAgricultural);
-  console.log(listHotnews);
+  // console.log(list);
+  // console.log(listSeafood);
+  // console.log(listAgricultural);
+  // console.log(listHotnews);
   res.render("home", {
     top1: list[0],
     topElse: list.slice(1, list.lenght),

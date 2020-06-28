@@ -1,9 +1,16 @@
 // Khai bao
 const express = require("express");
 const exphbs = require("express-handlebars");
+const hbs_sections = require('express-handlebars-sections');
 const path = require("path");
 
 const app = express();
+
+
+app.use(express.urlencoded({
+  extended: true,
+}));
+
 
 // Set app engine
 app.engine(
@@ -12,8 +19,12 @@ app.engine(
     layoutsDir: "views/_layouts",
     defaultLayout: "main",
     extname: ".hbs",
+    helpers: {
+      section: hbs_sections()
+    }
   })
 );
+
 app.set("view engine", "hbs");
 
 // public folder
@@ -22,10 +33,7 @@ app.use("/news", require("./routers/detail.router"));
 app.use("/", require("./routers/home.router"));
 app.use("/Account", require("./routers/account.router"));
 app.use('/Category', require("./routers/category.router"));
-
-  express.urlencoded({
-    extended: true,
-  });
+app.use('/writer', require("./routers/writer.router"));
 
 
 // Success

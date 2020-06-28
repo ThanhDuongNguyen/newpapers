@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>24 NEWS</title>
+  {{!-- Font awesome --}}
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  {{!-- Font --}}
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+  {{!-- Default CSS --}}
+  <link rel="stylesheet" href="../../public/css/detail.css">
+  <link href="../../public/css/style_1.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="../../public/css/tags.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body>
+  {{!-- Header --}}
+  {{!-- Topbar --}}
+  <div class="container-fluid fh5co_header_bg">
+    <div class="container h-100 d-flex justify-content-between pt-3 pb-3">
+      <div class="left-topbar">
+      </div>
+
+      <div class="right-topbar">
+        <a href="/Account/SignUp" class="topbar-item">
+          Subscribe
+        </a>
+
+        <a href="/Account/Login" class="topbar-item">
+          Login
+        </a>
+      </div>
+    </div>
+  </div>
+  {{!-- Logo --}}
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-3 fh5co_padding_menu">
+          <img src="../../public/images/logo.png" alt="img" class="fh5co_logo_width">
+        </div>
+      </div>
+    </div>
+  </div>
+  {{!-- Body --}}
+  <form method="post" action="/writer/new">
+    <div class="card">
+      <div class="card-header">
+        <h3>Tạo bài viết mới</h3>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="txtTitle">Tiêu đề bài viết</label>
+          <input type="text" class="form-control" id="txtTitle" name="Title" autofocus>
+        </div>
+        <div class="form-group">
+          <label for="txtTinyContent">Tóm tắt bài viết</label>
+          <textarea class="form-control" rows="3" id="txtTinyContent" name="TinyContent"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="txtCat">Chuyên mục</label>
+          <select class="form-control" id="txtCatID" name="CatID">
+            {{#each this.listCat}}
+            <option value="{{CatID}}">{{CatName}}</option>
+            {{/each}}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="txtTag">Thẻ cho bài viết</label>
+          <div class="tags-input form-control" data-name="TagsList"></div>
+        </div>
+        <div class="form-group">
+          <label for="linkAvatarImage">Link ảnh đại diện bài viết</label>
+          <input type="text" class="form-control" id="linkAvatarImage" name="ImgAvatar">
+        </div>
+        <label for="">Bài viết dành cho đọc giả</label>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="Premium" value="0" checked>Đọc giả bình thường
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="Premium" value="1">Đọc giả Premium
+          </label>
+        </div>
+        <div class="form-group">
+          <label for=""></label>
+          <textarea name="Content" id="txtFullDes" class="form-control" cols="30" rows="10"></textarea>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button type="submit" class="btn btn-lg btn-success btn-block">
+          <i class="fa fa-check" aria-hidden="true"></i>
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
+
+
+  {{!-- Footer --}}
+  <div class="container-fluid fh5co_footer_right_reserved">
+    <div class="container">
+      <div class="row  ">
+        <div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2020, All rights reserved. Design by <a
+            href="/About">Team 6 Web2</a>. </div>
+        <div class="col-12 col-md-6 spdp_right py-4">
+          <a href="#" class="footer_last_part_menu">Home</a>
+          <a href="Contact_us.html" class="footer_last_part_menu">About</a>
+          <a href="Contact_us.html" class="footer_last_part_menu">Contact</a>
+          <a href="blog.html" class="footer_last_part_menu">Latest News</a></div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="../../public/js/main.js"></script>
+
+
+  {{!-- Script Bootstrap --}}
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script src="../../public/js/tags.js"></script>
+  <script>
+    tinymce.init({
+      selector: '#txtFullDes',
+      height: 450,
+      plugins: 'paste image link autolink lists table media',
+      menubar: false,
+      toolbar: [
+        'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | forecolor backcolor | table link image media',
+      ],
+    });
+  </script>
+
+</body>
+
+</html>
