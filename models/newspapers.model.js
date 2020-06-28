@@ -1,7 +1,7 @@
 const db = require("../utils/db");
 
 const TBL_NEWSPAPER = "newspapers";
-const TBL_TAGS = "Tags";
+const TBL_TAGS = "tags";
 
 module.exports = {
   all: function () {
@@ -26,7 +26,9 @@ module.exports = {
   allTags: function () {
     return db.load(`select * from ${TBL_TAGS} limit 8`);
   },
-
+  allpopular: function(){
+    return db.load(`select * from ${TBL_NEWSPAPER} ORDER BY View DESC limit 5`);
+  },
   add: function (entity) {
     return db.add(TBL_NEWSPAPER, entity);
   },

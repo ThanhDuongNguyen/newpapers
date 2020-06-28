@@ -1,7 +1,7 @@
 
 const express = require('express');
 const catergoryModel = require('../models/category.model');
-
+const newspaperModel = require('../models/newspapers.model');
 const homeModel = require("../models/home.model");
 
 var router = express.Router();
@@ -9,8 +9,12 @@ var router = express.Router();
 
 router.get("/", async function (req, res) {
   const list = await catergoryModel.all();
+  const tag = await newspaperModel.allTags();
+  const popular = await newspaperModel.allpopular();
   res.render('viewCategory/list', {
-    categories: list,
+    listNewspaper: list,
+    listTag: tag,
+    listPopular: popular,
     empty: list.length === 0
 
   });

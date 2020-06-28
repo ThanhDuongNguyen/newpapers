@@ -4,7 +4,7 @@ moment().format();
 var router = express.Router();
 
 const categoryModel = require("../models/category.model");
-const newspaperModel = require("../models/newspaper.model");
+const newspaperModel = require("../models/newspapers.model");
 const tagModel = require("../models/tag.model");
 
 router.get("/new", async function (req, res) {
@@ -33,7 +33,10 @@ router.post('/new', async function (req, res) {
         }
         await tagModel.add(newspaperTag);
     }
-    res.render('viewWriter/new');
+    res.render('viewWriter/new',{
+        layout: false,
+        listCat: await categoryModel.all()
+    });
 })
 
 
