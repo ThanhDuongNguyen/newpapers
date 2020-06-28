@@ -1,28 +1,37 @@
 const express = require('express');
 const catergoryModel = require('../models/category.model');
+const homeModel = require("../models/home.model");
+
 var router = express.Router();
 
-router.get("/", async function(req, res){
+router.get("/", async function (req, res) {
     const list = await catergoryModel.all();
     res.render('viewCategory/list', {
-        categories: list, 
+        categories: list,
         empty: list.length === 0
     });
 })
 
-router.get('/:id', async function(req, res){
+router.get('/:id', async function (req, res) {
+    var idSeafoodCat = 3;
+    var idAgriculturalCat = 2;
+    const listSeafood = await homeModel.menu(idSeafoodCat);
+    const listAgricultural = await homeModel.menu(idAgriculturalCat);
+    const listHotnews = await homeModel.hotnewsmenu();
     const id = +req.params.id || -1;
     const list = await catergoryModel.newspaperbyCat(id);
     res.render('viewCategory/list', {
-        listNewspaper: list
+        listNewspaper: list,
+        listSeafood: listSeafood,
+        listAgricultural: listAgricultural,
+        listHotnews: listHotnews,
     })
-} )
-
-router.get('/add', function(req, res){
+})
+router.get('/add', function (req, res) {
     res.render('viewCategoty/add');
 })
 
-router.post('/add', async function (req, res){
+router.post('/add', async function (req, res) {
     await categoryModel.add(req.body);
     res.render('viewCategory/add');
 })
@@ -34,12 +43,12 @@ router.post('/add', async function (req, res){
 //     const category = rows[0];
 //     res.render('viewCategory/edit', { category });
 // })
-router.post('/del', async function (req, res){
+router.post('/del', async function (req, res) {
     await categoryModel.del(req.body.CatID);
     res.redirect('/admin/catergories');
 })
 router.post('/update', async function (req, res) {
     await categoryModel.patch(req.body);
     res.redirect('/admin/categories');
-  })
+})
 module.exports = router;
