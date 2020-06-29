@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Lunar - Free Bootstrap Modal and Popups</title>
+  <title>24 News Login</title>
   <!-- Required meta tags  -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -24,16 +24,16 @@
 
 <body style="background-image: url('../public/assets/img/GearVN_giản dị_10.jpg');">
   <!-- Modal -->
-  <div class="modal fade" id="demoModal" tabindex="-1" role="dialog" aria-labelledby="demoModal" aria-hidden="true">
+  <div class="modal fade" id="demoModal" aria-labelledby="demoModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
         <div class="container-fluid">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <a href="/" type="button" class="close" aria-label="Close">
+            <span class="btnClose" aria-hidden="true">&times;</span>
+          </a>
           <div class="row">
             <div class="col-md-6 bg-img rounded-left m-h-60 d-none d-sm-block" style="
-                  background-image: url('https://images.unsplash.com/photo-1538943963832-856b555cd29b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80');
+                  background-image: url('../../../public/assets/img/1.jpg');
                   background-size: cover;
                 "></div>
             <div class="col-md-6 py-5 px-sm-5 my-auto">
@@ -41,18 +41,32 @@
               <p class="text-muted">
                 We'll never share your email with anyone else.
               </p>
-              <form>
+              {{!-- Show error --}}
+              {{#if err}}
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <button type="button" class="closeAlert" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+                {{err}}
+              </div>
+              {{/if}}
+              {{!-- End Show Error --}}
+
+              {{!-- Form Login --}}
+
+              <form method="POST" id="frmLogin" onsubmit="return validationLogin">
                 <div class="form-group">
-                  <label for="txtusername">Username</label>
-                  <input type="text" class="form-control" id="txtUsername" name="Name" placeholder="Enter Username" />
+                  <label>Email</label>
+                  <input type="email" class="form-control" name="Email" placeholder="Enter Email" />
                 </div>
 
                 <div class="form-group">
-                  <label for="txtPass">Password</label>
-                  <input type="text" class="form-control" id="txtPass" name="Password" placeholder="Enter Password" />
+                  <label>Password</label>
+                  <input type="password" class="form-control" name="Password"
+                    placeholder="Enter Password" />
                 </div>
 
-                <div class="form-group mb-4">
+                <div class="form-group mb-4 mt-4">
                   <div class="d-flex justify-content-between">
                     <div class="login-facebook">
                       <button class="btn btn-login-facebook">
@@ -73,11 +87,11 @@
                   </div>
                 </div>
 
-                <button type="submit" class="btn btn-cstm-dark btn-block btn-cta" data-dismiss="modal"
-                  aria-label="Close">
-                  Subscribe
+                <button type="submit" class="btn btn-cstm-dark btn-block btn-cta">
+                  Login
                 </button>
               </form>
+              {{!-- End Form Login --}}
             </div>
           </div>
         </div>
@@ -90,7 +104,9 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   <script src="../../public/assets/js/lunar.js"></script>
-  <script src="../../public/assets/js/demo.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+
+  <script src="../public/assets/js/validation.js"></script>
 </body>
 
 </html>

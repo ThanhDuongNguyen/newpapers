@@ -20,30 +20,11 @@ router.get("/", async function (req, res) {
   });
 });
 
-router.get("/:id", async function (req, res) {
-  const id = +req.params.id || -1;
-
-  const [list, total] = await Promise.all([
-    (listSeafood = await homeModel.menu(3)),
-    (listAgricultural = await homeModel.menu(2)),
-    (listHotnews = await homeModel.hotnewsmenu()),
-    (listNews = await catergoryModel.newspaperbyCat(id)),
-  ]);
-});
-
 router.get('/:id', async function (req, res) {
-  var idSeafoodCat = 3;
-  var idAgriculturalCat = 2;
-  const listSeafood = await homeModel.menu(idSeafoodCat);
-  const listAgricultural = await homeModel.menu(idAgriculturalCat);
-  const listHotnews = await homeModel.hotnewsmenu();
   const id = +req.params.id || -1;
   const list = await catergoryModel.newspaperbyCat(id);
   res.render('viewCategory/list', {
     listNewspaper: list,
-    listSeafood: listSeafood,
-    listAgricultural: listAgricultural,
-    listHotnews: listHotnews,
   })
 })
 

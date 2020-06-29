@@ -37,13 +37,30 @@
       </div>
 
       <div class="right-topbar">
+        <form action="/Account/Logout" id="frmLogout" method="POST"></form>
+        {{#if lcIsAuthenticated}}
+        <div class="dropdown pl-2">
+          <button class="btn dropdown-toggle" style="background: none; color: #ccc" type="button"
+            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            {{lcAuthUser.Name}}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/Account/Profile">Profile</a>
+            <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Sign Out</a>
+          </div>
+        </div>
+
+        {{else}}
+
         <a href="/Account/SignUp" class="topbar-item">
           Subscribe
         </a>
 
-        <a href="/Account/Login" class="topbar-item">
+        <a href="/Account/SignIn" class="topbar-item">
           Login
         </a>
+        {{/if}}
       </div>
     </div>
   </div>
@@ -107,10 +124,10 @@
             <a class="nav-link" href="#">Hot News</a>
             <div class="sub-menu ">
               <div class="sub-menu-content">
-                {{#each this.listHotnews}}
+                {{#each lcHotnews}}
                 <div class="sub-menu-item">
                   <a href="#">
-                    <img src="../../public/images/39-324x235.jpg" alt="Image">
+                    <img src="../../public/images/39-324x235.jpg" alt="Image" class="w-100 h-100">
                   </a>
                   <div class="sub-menu-item-content">
                     <a href="#">
@@ -131,10 +148,10 @@
             <a class="nav-link" href="/Category/3">Seafood News</a>
             <div class="sub-menu">
               <div class="sub-menu-content">
-                {{#each this.listSeafood}}
+                {{#each lcAgricultural}}
                 <div class="sub-menu-item">
                   <a href="#">
-                    <img src="../../public/images/39-324x235.jpg" alt="Image">
+                    <img src="../../public/images/39-324x235.jpg" alt="Image" class="w-100 h-100">
                   </a>
                   <div class="sub-menu-item-content">
                     <a href="#">
@@ -155,14 +172,14 @@
             <a class="nav-link" href="/Category/2">Agricultural News</a>
             <div class="sub-menu">
               <div class="sub-menu-content">
-                {{#each this.listAgricultural}}
+                {{#each lcHotnews}}
                 <div class="sub-menu-item">
                   <a href="#">
-                    <img src="../../public/images/39-324x235.jpg" alt="Image">
+                    <img src="../../public/images/39-324x235.jpg" alt="Image" class="w-100 h-100">
                   </a>
                   <div class="sub-menu-item-content">
                     <a href="#">
-                      {{{Title}}}
+                      {{Title}}
                     </a>
                     <span class="content-option">
                       <a href="#">Seafood</a>
@@ -199,7 +216,7 @@
 
   {{!-- Body --}}
   {{{body}}}
-  
+
   {{!-- Footer --}}
   {{!-- Top Footer --}}
   <div class="container-fluid fh5co_footer_bg pb-3">
