@@ -66,7 +66,7 @@ router.post("/SignUp", async function(req, res)
   console.log(entity);
 
   await userModel.add(entity);
-  res.render("viewMessage/Success");
+  res.render("viewMessage/Success", {layout: false});
 })
 
 
