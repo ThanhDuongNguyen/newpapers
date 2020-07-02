@@ -2,7 +2,7 @@ const express = require("express");
 const newspaperModel = require("../models/newspapers.model");
 const homeModel = require("../models/home.model");
 const categoryModel = require("../models/category.model");
-const { tagsInNews } = require("../models/newspapers.model");
+
 
 var router = express.Router();
 

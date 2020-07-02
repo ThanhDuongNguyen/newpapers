@@ -5,7 +5,7 @@ const TBL_TAGS = "tags";
 
 module.exports = {
   all: function () {
-    return db.load(`select * from ${TBL_NEWSPAPER}`);
+    return db.load(`select * from ${TBL_NEWSPAPER} limit 6`);
   },
 
   single: function (id) {

@@ -8,7 +8,7 @@ var router = express.Router();
 
 
 router.get("/", async function (req, res) {
-  const list = await catergoryModel.all();
+  const list = await newspaperModel.all();
   const tag = await newspaperModel.allTags();
   const popular = await newspaperModel.allpopular();
   res.render('viewCategory/list', {
@@ -20,13 +20,7 @@ router.get("/", async function (req, res) {
   });
 });
 
-router.get('/:id', async function (req, res) {
-  const id = +req.params.id || -1;
-  const list = await catergoryModel.newspaperbyCat(id);
-  res.render('viewCategory/list', {
-    listNewspaper: list,
-  })
-})
+
 
 router.get('/add', function (req, res) {
   res.render('viewCategoty/add');
