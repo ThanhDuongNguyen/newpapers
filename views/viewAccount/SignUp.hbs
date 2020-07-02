@@ -37,6 +37,15 @@
             </div>
             <div class="col-md-6 py-3 px-sm-5 ">
               <h2 class="mb-4">Sign Up</h2>
+              {{!-- Message Error --}}
+              {{#if err}}
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <button type="button" class="closeAlert" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+                {{err}}
+              </div>
+              {{/if}}
               {{!-- Form Sign up --}}
               <form method="POST" id="frmSignUp" onsubmit="return validationSignUp">
                 <div class="form-group">

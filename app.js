@@ -1,14 +1,12 @@
-// Khai bao
+// require package and module
 const express = require("express");
-
 
 const app = express();
 
-
+// require middleware
 require("./middleware/session.middleware")(app);
 require("./middleware/view.middleware")(app);
 require("./middleware/locals.middleware")(app);
-
 
 app.use(express.urlencoded({
   extended: true
@@ -17,7 +15,7 @@ app.use(express.urlencoded({
 // public folder
 app.use('/public', express.static('public'));
 
-// Khai bao router
+// require routers
 app.use("/news", require("./routers/detail.router"));
 app.use("/", require("./routers/home.router"));
 app.use("/Account", require("./routers/account.router"));

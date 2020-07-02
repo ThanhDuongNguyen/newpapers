@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2020 at 07:11 PM
+-- Generation Time: Jul 02, 2020 at 05:09 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -20,6 +20,72 @@ SET time_zone = "+00:00";
 --
 -- Database: `newspaper`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assignedbtv`
+--
+
+CREATE TABLE `assignedbtv` (
+  `IDUser` int(11) NOT NULL,
+  `CatID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `assignedbtv`
+--
+
+INSERT INTO `assignedbtv` (`IDUser`, `CatID`) VALUES
+(1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `ParentCatID` int(11) DEFAULT NULL,
+  `CatID` int(50) NOT NULL,
+  `CatName` text COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`ParentCatID`, `CatID`, `CatName`) VALUES
+(NULL, 1, 'Kinh Doanh'),
+(1, 2, 'Nông sản'),
+(1, 3, 'Hải Sản'),
+(1, 4, 'Khoáng Sản'),
+(2, 5, 'Gạo'),
+(3, 6, 'Cá'),
+(4, 7, 'Than'),
+(4, 8, 'Dầu'),
+(1, 9, 'Thủy Sản'),
+(1, 10, 'Chăn Nuôi');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `IDPage` int(20) NOT NULL,
+  `IDUser` int(20) NOT NULL,
+  `Comment` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`IDPage`, `IDUser`, `Comment`, `Time`) VALUES
+(1, 2, '', '2020-06-10 10:22:18');
 
 -- --------------------------------------------------------
 
@@ -64,9 +130,136 @@ INSERT INTO `newspapers` (`IDPage`, `Title`, `TinyContent`, `Content`, `CatID`, 
 (38, 'Khai thác khoáng sản, đồi núi tan hoang', 'Đã hết hạn khai thác, dừng hoạt động từ nhiều năm nay nhưng hàng loạt mỏ khoáng sản trên địa bàn tỉn', '<p>Huyện Quỳ Hợp, tỉnh Nghệ An v&agrave;o những giai đoạn cao điểm c&oacute; tới h&agrave;ng trăm điểm khai th&aacute;c đ&aacute;, quặng. Tuy nhi&ecirc;n, hiện nay, do chi ph&iacute; sản xuất cao, đầu ra gặp kh&oacute; khăn n&ecirc;n h&agrave;ng loạt doanh nghiệp đ&oacute;ng cửa mỏ, ngừng hoạt động nhưng kh&ocirc;ng phục hồi m&ocirc;i trường.</p>\r\n<p>Hệ quả, tại c&aacute;c x&atilde; Ch&acirc;u Quang, Ch&acirc;u Lộc, Ch&acirc;u Th&agrave;nh, Ch&acirc;u Hồng..., đồi n&uacute;i bị c&agrave;y xới tan hoang, nham nhở. B&aacute;o động nhất l&agrave; một số mỏ khai th&aacute;c đ&aacute; hết hạn, ngừng hoạt động dẫn đến t&igrave;nh trạng c&aacute;c ngọn n&uacute;i bị đục kho&eacute;t gần hết phần ch&acirc;n, c&aacute;c khối đ&aacute; lớn c&oacute; nguy cơ đổ sập xuống ph&iacute;a dưới đe dọa sự an to&agrave;n của người d&acirc;n. Chị Vi Thị Hoa, ngụ x&atilde; Ch&acirc;u Quang, cho biết: \"Họ ngừng hoạt động rồi nhưng mỗi lần đi qua khu vực c&oacute; mỏ đ&aacute;, t&ocirc;i vẫn cứ sợ. Nhiều tảng đ&aacute; lớn ở tr&ecirc;n n&uacute;i kh&ocirc;ng biết lăn xuống l&uacute;c n&agrave;o\".</p>\r\n<p>Tại x&atilde; Tri Lễ, huyện miền n&uacute;i Quế Phong, tỉnh Nghệ An, trước đ&acirc;y c&oacute; 4 doanh nghiệp được cấp ph&eacute;p khai th&aacute;c quặng sắt gồm: C&ocirc;ng ty TNHH X&acirc;y lắp tổng hợp miền Trung, C&ocirc;ng ty CP L&acirc;m Lệ Phong, C&ocirc;ng ty CP Đầu tư x&acirc;y dựng - Ph&aacute;t triển n&ocirc;ng th&ocirc;n 171 v&agrave; C&ocirc;ng ty TNHH Ngọc S&aacute;ng. Đến nay, c&aacute;c doanh nghiệp n&agrave;y đ&atilde; dừng hoạt động, để lại h&agrave;ng loạt hầm - hố s&acirc;u hoắm v&agrave; những n&uacute;i b&ugrave;n thải, đất thải. Nguy hiểm nhất l&agrave; c&aacute;c mỏ đều ở tr&ecirc;n n&uacute;i cao, do kh&ocirc;ng thực hiện c&ocirc;ng t&aacute;c ho&agrave;n thổ n&ecirc;n trở th&agrave;nh c&aacute;c \"t&uacute;i nước\" đe dọa sự an to&agrave;n của người d&acirc;n khi xảy ra mưa, lũ. &Ocirc;ng Vi Văn Nam, ngụ x&atilde; Tri Lễ, lo lắng: \"Nơi th&igrave; họ đ&agrave;o th&agrave;nh hố s&acirc;u hoắm, nơi th&igrave; đất đ&aacute; chất cao. Lo nhất l&agrave; những h&ocirc;m trời mưa to, nước - đất đ&aacute; ph&iacute;a tr&ecirc;n tr&agrave;n xuống c&oacute; thể cuốn tr&ocirc;i mọi thứ\".</p>\r\n<div class=\"VCSortableInPreviewMode\">\r\n<div><img id=\"img_8606c580-9310-11e7-822c-7ffdcb76f4ad\" title=\"Khai th&aacute;c kho&aacute;ng sản, đồi n&uacute;i tan hoang - Ảnh 1.\" src=\"https://nld.mediacdn.vn/2017/7-chot-7-1504708493515.jpg\" alt=\"Khai th&aacute;c kho&aacute;ng sản, đồi n&uacute;i tan hoang - Ảnh 1.\" width=\"\" height=\"\" data-original=\"https://nld.mediacdn.vn/2017/7-chot-7-1504708493515.jpg\" /></div>\r\n<div class=\"PhotoCMS_Caption\">\r\n<p data-placeholder=\"[nhập ch&uacute; th&iacute;ch]\">Nhiều mỏ ở huyện Quỳ Hợp, tỉnh Nghệ An chưa được cải tạo phục hồi m&ocirc;i trường</p>\r\n</div>\r\n</div>\r\n<p>Ở huyện Diễn Ch&acirc;u, tỉnh Nghệ An c&oacute; 8 mỏ<strong>&nbsp;kho&aacute;ng sản&nbsp;</strong>th&igrave; 6 mỏ đ&atilde; hết ph&eacute;p. Sau khi ngừng hoạt động, hầu hết c&aacute;c doanh nghiệp đ&atilde; kh&ocirc;ng thực hiện c&ocirc;ng t&aacute;c phục hồi m&ocirc;i trường. Điển h&igrave;nh l&agrave; c&aacute;c mỏ đất ở x&atilde; Diễn Đo&agrave;i, sau khi doanh nghiệp r&uacute;t đi để lại cả \"b&atilde;i chiến trường\" nham nhở với h&agrave;ng loạt hố s&acirc;u, g&acirc;y nguy hiểm cho người v&agrave; gia s&uacute;c sống quanh khu vực.</p>\r\n<p>Tại một số địa phương kh&aacute;c của tỉnh Nghệ An như c&aacute;c huyện Tương Dương, Hưng Nguy&ecirc;n, Nam Đ&agrave;n, Nghi Lộc, Nghĩa Đ&agrave;n..., t&igrave;nh trạng doanh nghiệp \"qu&ecirc;n\" ho&agrave;n thổ, phục hồi m&ocirc;i trường cũng diễn ra kh&aacute; phổ biến.</p>\r\n<p>Theo thống k&ecirc; của c&aacute;c cơ quan chức năng tỉnh Nghệ An, địa phương n&agrave;y c&oacute; tr&ecirc;n 140 mỏ kho&aacute;ng sản đ&atilde; hết hạn khai th&aacute;c hoặc ngừng hoạt động, cần phải thực hiện c&aacute;c thủ tục đ&oacute;ng cửa, cải tạo phục hồi m&ocirc;i trường theo quy định. Thế nhưng, hầu hết c&aacute;c chủ mỏ sau khi dừng hoạt động đều \"qu&ecirc;n\" nghĩa vụ phục hồi m&ocirc;i trường.</p>\r\n<p>&Ocirc;ng Nguyễn Quốc L&acirc;m, Trưởng Ph&ograve;ng T&agrave;i nguy&ecirc;n v&agrave; M&ocirc;i trường huyện Quế Phong, cho biết: \"Khi khai th&aacute;c, doanh nghiệp đ&agrave;o cả quả n&uacute;i, giờ họ ngừng hoạt động với &iacute;t tiền k&yacute; quỹ để lại th&igrave; kh&ocirc;ng thể phục hồi m&ocirc;i trường như ban đầu. Giải ph&aacute;p trước mắt m&agrave; huyện c&oacute; thể l&agrave;m l&agrave; xử l&yacute; những điểm n&agrave;o qu&aacute; nguy hiểm, c&oacute; nguy cơ sập, g&acirc;y ảnh hưởng trực tiếp đến đời sống người d&acirc;n\".</p>\r\n<p>Trong khi đ&oacute;, &ocirc;ng L&ecirc; Sỹ H&agrave;o, Trưởng Ph&ograve;ng T&agrave;i nguy&ecirc;n v&agrave; M&ocirc;i trường huyện Quỳ Hợp, khẳng định tr&ecirc;n địa b&agrave;n, một số doanh nghiệp thực hiện chưa tốt việc phục hồi m&ocirc;i trường. Đo&agrave;n kiểm tra của huyện, tỉnh đ&atilde; l&agrave;m việc với một số doanh nghiệp v&agrave; y&ecirc;u cầu phải thực hiện đ&uacute;ng như cam kết. Đơn vị n&agrave;o kh&ocirc;ng chịu thực hiện, nếu c&oacute; nhu cầu xin ph&eacute;p cấp mỏ lại th&igrave; tỉnh sẽ kh&ocirc;ng đồng &yacute;.</p>\r\n<div id=\"ObjectBoxContent_1504708940028\" class=\"VCSortableInPreviewMode alignCenter\" data-back=\"#FFFEC7\" data-border=\"#999\">\r\n<div>\r\n<p><strong>Ch&acirc;y &igrave;, kh&ocirc;ng k&yacute; quỹ</strong></p>\r\n<p>Thời gian qua, c&aacute;c ng&agrave;nh chức năng tỉnh Nghệ An đ&atilde; kiểm tra, xử phạt h&agrave;ng loạt doanh nghiệp khai th&aacute;c kho&aacute;ng sản kh&ocirc;ng phục hồi m&ocirc;i trường. Ngo&agrave;i ra, tỉnh c&ograve;n thường xuy&ecirc;n đ&ocirc;n đốc, y&ecirc;u cầu c&aacute;c doanh nghiệp phải thực hiện k&yacute; quỹ, cải tạo phục hồi m&ocirc;i trường. Tuy nhi&ecirc;n, t&iacute;nh tới th&aacute;ng 4-2017, vẫn c&ograve;n 33 tổ chức/34 điểm mỏ ch&acirc;y &igrave;, kh&ocirc;ng thực hiện k&yacute; quỹ.</p>\r\n</div>\r\n</div>', 4, 'Chưa được duyệt', 200, '2020-06-29 01:49:10', 0, 'https://nld.mediacdn.vn/2017/7-chot-7-1504708493515.jpg', NULL),
 (39, 'Doanh nghiệp khai thác đá kêu cứu', 'Khai khoáng sai chiến lược, phí tài nguyên\r\n“Chảy máu” tài nguyên: Khai thác lậu, trốn đóng thuế', '<p>Một số doanh nghiệp (DN) đang hoạt động phải đối diện nguy cơ ph&aacute; sản khi c&aacute;c loại ph&iacute;, thuế t&agrave;i nguy&ecirc;n tăng l&ecirc;n gấp 3-4 lần theo Th&ocirc;ng tư 44/2017 của Bộ T&agrave;i ch&iacute;nh.</p>\r\n<p><strong>Kh&oacute; đủ đường</strong></p>\r\n<p>Th&aacute;ng 6-2017, Hiệp hội C&aacute;c DN nhỏ v&agrave; vừa tại huyện Quỳ Hợp, tỉnh Nghệ An đ&atilde; c&oacute; đơn gửi Thủ tướng Ch&iacute;nh phủ v&agrave; c&aacute;c bộ, ng&agrave;nh li&ecirc;n quan kiến nghị xem x&eacute;t giải quyết kh&oacute; khăn, vướng mắc khi thực hiện Th&ocirc;ng tư 44/2017 về khung gi&aacute; t&iacute;nh thuế t&agrave;i nguy&ecirc;n kho&aacute;ng sản.</p>\r\n<p>Theo đ&oacute;, nếu thu theo Th&ocirc;ng tư 44 sẽ đẩy mức thuế t&agrave;i nguy&ecirc;n v&agrave; tiền cấp quyền khai th&aacute;c kho&aacute;ng sản l&ecirc;n gấp 3-4 lần. Việc tăng thu thuế với mức cao trong một thời gian ngắn như vậy sẽ khiến nhiều DN đối diện nguy cơ ngừng sản xuất, ph&aacute; sản.</p>\r\n<div class=\"VCSortableInPreviewMode\">\r\n<div><img id=\"img_bef94340-60c5-11e7-b531-d568978fc04f\" title=\"Doanh nghiệp khai th&aacute;c đ&aacute; k&ecirc;u cứu - Ảnh 1.\" src=\"https://nld.mediacdn.vn/2017/11-chot-11-1499178805640.jpg\" alt=\"Doanh nghiệp khai th&aacute;c đ&aacute; k&ecirc;u cứu - Ảnh 1.\" width=\"\" height=\"\" data-original=\"https://nld.mediacdn.vn/2017/11-chot-11-1499178805640.jpg\" /></div>\r\n<div class=\"PhotoCMS_Caption\">\r\n<p data-placeholder=\"[nhập ch&uacute; th&iacute;ch]\">Hoạt động của c&aacute;c doanh nghiệp&nbsp;khai th&aacute;c đ&aacute;&nbsp;gặp kh&oacute; khăn nếu mức thuế tăng l&ecirc;n 3-4 lần</p>\r\n</div>\r\n</div>\r\n<p>&Ocirc;ng Nguyễn Trung Hải - Chủ tịch HĐQT C&ocirc;ng ty CP Kho&aacute;ng sản v&agrave; Thương mại Trung Hải - Nghệ An, cho biết: \"Hiện nay, tr&ecirc;n địa b&agrave;n huyện Quỳ Hợp c&oacute; 36 DN được cấp ph&eacute;p&nbsp;<strong>khai th&aacute;c đ&aacute;</strong>. Do hoạt động kh&oacute; khăn, 26 đơn vị đ&atilde; ngừng hoạt động; trong 10 đơn vị c&ograve;n lại, chỉ một số hoạt động hiệu quả c&ograve;n hầu hết sản xuất cầm chừng. Nếu thuế tăng l&ecirc;n gấp 3-4 lần th&igrave; sẽ c&agrave;ng c&oacute; th&ecirc;m nhiều DN ngừng hoạt động\".</p>\r\n<p>Theo &ocirc;ng Hải, với c&aacute;ch t&iacute;nh thuế mới của Th&ocirc;ng tư 44, c&ocirc;ng ty &ocirc;ng phải đ&oacute;ng th&ecirc;m 21,6 tỉ đồng. Việc phải đ&oacute;ng một khoản tiền lớn như vậy sẽ khiến chi ph&iacute; sản xuất tăng cao, h&agrave;ng l&agrave;m ra kh&ocirc;ng b&aacute;n được, DN c&agrave;ng hoạt động c&agrave;ng thua lỗ.</p>\r\n<p>&Ocirc;ng Chhagan Lal Patel, Gi&aacute;m đốc điều h&agrave;nh C&ocirc;ng ty CP Sản xuất - Thương mại Quang Long (một DN Ấn Độ đang khai th&aacute;c mỏ tại huyện Quỳ Hợp), lo lắng: \"Đ&aacute; xấu, khai th&aacute;c ra b&aacute;n kh&ocirc;ng được, nếu thuế tăng nữa th&igrave; chắc chắn DN sẽ ph&aacute; sản, ch&uacute;ng t&ocirc;i phải bỏ về nước th&ocirc;i\".</p>\r\n<p>Theo c&aacute;c DN khai th&aacute;c đ&aacute; tr&ecirc;n địa b&agrave;n, hiện c&aacute;c nước Trung Quốc, Malaysia đang cạnh tranh thị phần với DN Việt Nam trong việc xuất khẩu đ&aacute; trắng. Nếu thuế tăng, gi&aacute; th&agrave;nh sản phẩm sẽ tăng l&ecirc;n, l&uacute;c đ&oacute; đ&aacute; của Việt Nam kh&oacute; c&oacute; thể xuất ra nước ngo&agrave;i.</p>\r\n<p>\"Đơn gi&aacute; đ&aacute; ốp xuất khẩu hiện khoảng 280.000 đồng/m2, nếu &aacute;p ở mức tăng thấp nhất theo Th&ocirc;ng tư 44 th&igrave; b&igrave;nh qu&acirc;n mỗi m2 phải tăng th&ecirc;m khoảng 30.000 đồng. Gi&aacute; th&agrave;nh sản phẩm tăng cao như vậy th&igrave; kh&ocirc;ng thể cạnh tranh được tr&ecirc;n thị trường quốc tế\" - &ocirc;ng Chu Đức Mạnh, C&ocirc;ng ty CP X&acirc;y dựng v&agrave; Hợp t&aacute;c đầu tư Đất Việt, ph&acirc;n t&iacute;ch.</p>\r\n<p><strong>H&agrave;ng chục ng&agrave;n lao động sẽ mất việc l&agrave;m</strong></p>\r\n<p>Theo thống k&ecirc; của Hiệp hội C&aacute;c DN nhỏ v&agrave; vừa tại huyện Quỳ Hợp, nếu mức thu thuế như Th&ocirc;ng tư 44 được &aacute;p dụng, c&oacute; tới 95% DN tr&ecirc;n địa b&agrave;n rơi v&agrave;o t&igrave;nh cảnh ph&aacute; sản, h&agrave;ng chục ng&agrave;n lao động địa phương đối diện nguy cơ mất việc. &Ocirc;ng Ho&agrave;ng Văn Sơn, Gi&aacute;m đốc C&ocirc;ng ty CP An Sơn, băn khoăn: \"Hơn 90% sản phẩm đ&aacute; của c&ocirc;ng ty đều xuất khẩu, nếu c&aacute;ch t&iacute;nh thuế mới được &aacute;p dụng th&igrave; DN kh&ocirc;ng trụ nổi. Ch&uacute;ng t&ocirc;i ngừng hoạt động th&igrave; hơn 300 c&ocirc;ng nh&acirc;n đang l&agrave;m việc sẽ kh&ocirc;ng biết về đ&acirc;u\".</p>\r\n<p>&Ocirc;ng Nguyễn Th&agrave;nh Trung, Gi&aacute;m đốc C&ocirc;ng ty TNHH Th&agrave;nh Trung, trăn trở: \"Người d&acirc;n Quỳ Hợp l&acirc;u nay sống phụ thuộc v&agrave;o c&aacute;c mỏ đ&aacute;, nh&agrave; m&aacute;y chế biến đ&aacute;. Nếu c&aacute;c DN khai th&aacute;c đ&aacute; gặp kh&oacute;, phải ngừng hoạt động th&igrave; sẽ c&oacute; h&agrave;ng ng&agrave;n người mất việc l&agrave;m, nhiều gia đ&igrave;nh l&acirc;m v&agrave;o cảnh khốn kh&oacute;\".</p>\r\n<p>Theo &ocirc;ng Nguyễn Đ&igrave;nh T&ugrave;ng, Chủ tịch UBND huyện Quỳ Hợp, hiện c&aacute;c DN khai th&aacute;c kho&aacute;ng sản, đặc biệt l&agrave; đ&aacute; trắng, tr&ecirc;n địa b&agrave;n rất kh&oacute; khăn, nhiều đơn vị đ&atilde; phải ngừng hoạt động. Một số DN c&ograve;n nợ đọng thuế kh&oacute; c&oacute; khả năng chi trả, nếu c&ograve;n tăng thuế theo Th&ocirc;ng tư 44 th&igrave; họ sẽ kh&oacute; trụ được. Huyện mong cấp tr&ecirc;n c&oacute; ch&iacute;nh s&aacute;ch hợp l&yacute;, tạo điều kiện cho DN của địa phương ph&aacute;t triển ổn định\".</p>\r\n<div id=\"ObjectBoxContent_1499181063515\" class=\"VCSortableInPreviewMode alignCenter\" data-back=\"#FFFEC7\" data-border=\"#999\">\r\n<div>\r\n<p>Doanh nghiệp đồng loạt kiến nghị</p>\r\n<p>Nghệ An v&agrave; Y&ecirc;n B&aacute;i l&agrave; 2 địa phương c&oacute; trữ lượng đ&aacute; hoa trắng lớn nhất nước. Trước th&ocirc;ng tin mức thu thuế t&agrave;i nguy&ecirc;n kho&aacute;ng sản tăng l&ecirc;n 3-4 lần, Hội Đ&aacute; trắng tỉnh Y&ecirc;n B&aacute;i cũng đ&atilde; c&oacute; c&ocirc;ng văn gửi Ch&iacute;nh phủ v&agrave; c&aacute;c bộ, ng&agrave;nh li&ecirc;n quan kiến nghị xem x&eacute;t lại.</p>\r\n</div>\r\n</div>', 4, 'Chưa được duyệt', 100, '2020-06-29 01:51:35', 1, 'https://nld.mediacdn.vn/2017/11-chot-11-1499178805640.jpg', NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permission`
+--
+
+CREATE TABLE `permission` (
+  `PermissionID` int(20) NOT NULL,
+  `Permission` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `permission`
+--
+
+INSERT INTO `permission` (`PermissionID`, `Permission`) VALUES
+(1, 'Admin'),
+(2, 'Editer'),
+(3, 'Writer'),
+(4, 'Subscriber');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tags`
+--
+
+CREATE TABLE `tags` (
+  `IDNewspaper` int(11) NOT NULL,
+  `TagName` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tags`
+--
+
+INSERT INTO `tags` (`IDNewspaper`, `TagName`) VALUES
+(1, 'Nông Sản'),
+(2, 'Hải sản'),
+(3, 'Gạo'),
+(4, 'Tôm'),
+(5, 'Dưa hấu'),
+(6, 'Cua'),
+(7, 'Đất'),
+(16, '0'),
+(17, '0'),
+(17, '1'),
+(17, '2'),
+(17, '3'),
+(17, '5'),
+(17, '6'),
+(17, '10'),
+(17, '12'),
+(17, '13'),
+(17, '9'),
+(17, '8'),
+(17, '7'),
+(17, '4'),
+(17, '18'),
+(17, '21'),
+(17, '11'),
+(17, '17'),
+(17, '16'),
+(17, '19'),
+(17, '20'),
+(17, '15'),
+(17, '14'),
+(21, 'dm'),
+(21, 'dcm'),
+(21, 'dcmn'),
+(22, 'a'),
+(22, 'a'),
+(23, ''),
+(27, 'NongSan'),
+(28, 'NongSan'),
+(28, 'CayTrong'),
+(29, ''),
+(30, ''),
+(31, 'XuatKhau'),
+(32, 'XangDau'),
+(33, 'Tom'),
+(34, 'Buoi'),
+(35, 'CaTra'),
+(36, 'Bo'),
+(37, 'KhoangSanCat'),
+(38, 'KhaiThac'),
+(39, 'KhaiThacDa');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `IDUser` int(20) NOT NULL,
+  `Name` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `DOB` date NOT NULL,
+  `Password` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `PermisstionID` int(20) NOT NULL DEFAULT 4,
+  `Author` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Duration` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`IDUser`, `Name`, `Email`, `DOB`, `Password`, `PermisstionID`, `Author`, `Duration`) VALUES
+(1, 'huuduc', 'duc@gmail.com', '1999-11-27', '123456', 1, '', '2020-06-26 01:53:00'),
+(2, 'thanhduong', 'duong@gmail.com', '2020-06-18', '', 3, '', '2020-06-26 01:53:00'),
+(3, 'thecong', 'cong@gmail.com', '2020-06-13', '', 2, '', '2020-06-26 01:53:00'),
+(4, 'quangtrung', 'trung@gmail.com', '2020-06-10', '', 4, '', '2020-06-26 01:53:00');
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`CatID`);
+
+--
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD KEY `fk_comment_news` (`IDPage`);
 
 --
 -- Indexes for table `newspapers`
@@ -74,6 +267,19 @@ INSERT INTO `newspapers` (`IDPage`, `Title`, `TinyContent`, `Content`, `CatID`, 
 ALTER TABLE `newspapers`
   ADD PRIMARY KEY (`IDPage`),
   ADD KEY `fk_News_Tags` (`Tags`) USING BTREE;
+
+--
+-- Indexes for table `permission`
+--
+ALTER TABLE `permission`
+  ADD PRIMARY KEY (`PermissionID`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`IDUser`),
+  ADD KEY `fk_user_permission` (`PermisstionID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -84,6 +290,34 @@ ALTER TABLE `newspapers`
 --
 ALTER TABLE `newspapers`
   MODIFY `IDPage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
+--
+-- AUTO_INCREMENT for table `permission`
+--
+ALTER TABLE `permission`
+  MODIFY `PermissionID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `IDUser` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `fk_comment_news` FOREIGN KEY (`IDPage`) REFERENCES `newspapers` (`IDPage`);
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `fk_user_permission` FOREIGN KEY (`PermisstionID`) REFERENCES `permission` (`PermissionID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
