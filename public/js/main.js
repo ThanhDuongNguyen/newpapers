@@ -3,7 +3,7 @@
     'use strict';
 
     var owlCarousel = function(){
-
+        console.log("Vo");
         $('#slider1').owlCarousel({
             loop: false,
             margin: 10,

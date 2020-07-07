@@ -1,6 +1,7 @@
 const db = require('../utils/db');
 
 const TBL_NEWSPAPER = 'newspapers';
+const TOP_NEWS_NUM = 10;
 // 
 module.exports = {
   all: function () {
@@ -26,5 +27,9 @@ module.exports = {
       IDPage: id
     }
     return db.del(TBL_NEWSPAPER, condition);
+  },
+  topMostViews: function(){
+    return db.load(`SELECT * FROM ${TBL_NEWSPAPER} ORDER BY View DESC LIMIT ${TOP_NEWS_NUM}`);
   }
+  
 };

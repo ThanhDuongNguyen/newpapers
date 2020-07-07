@@ -1,5 +1,8 @@
 const express = require("express");
+const moment = require('moment');
 const homeModel = require("../models/home.model");
+const newspaperModel = require("../models/newspaper.model")
+const categoryModel = require("../models/category.model");
 
 var router = express.Router();
 // 
@@ -9,15 +12,22 @@ router.get("/", async function (req, res) {
   const listSeafood = await homeModel.menu(idSeafoodCat);
   const listAgricultural = await homeModel.menu(idAgriculturalCat);
   const listHotnews = await homeModel.hotnewsmenu();
-  const list = await homeModel.topNewsInWeek();
-  // console.log(list);
-  // console.log(listSeafood);
-  // console.log(listAgricultural);
-  // console.log(listHotnews);
+
+  
+  const listTrending = await homeModel.topNewsInWeek();
+  const listMostView = await newspaperModel.topMostViews();
+  moment.locale("vi");
+  for(var i =0;i<listTrending.length; i++){
+    var day = moment(listTrending[i].Day).format('ll');
+    listTrending[i].Day = day;
+  }
+  
   res.render("home", {
-    top1: list[0],
-    topElse: list.slice(1, list.lenght),
-    empty: list.lenght === 0,
+    top1: listTrending[0],
+    topElse: listTrending.slice(1, listTrending.lenght),
+    empty: listTrending.lenght === 0,
+    listMostView: listMostView,
+
     listSeafood: listSeafood,
     listAgricultural: listAgricultural,
     listHotnews: listHotnews,

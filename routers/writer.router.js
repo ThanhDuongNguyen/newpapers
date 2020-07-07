@@ -1,6 +1,5 @@
 const express = require("express");
 const moment = require('moment');
-moment().format();
 var router = express.Router();
 
 const categoryModel = require("../models/category.model");
