@@ -54,11 +54,11 @@
         </div>
         {{else}}
 
-        <a href="/Account/SignUp" class="topbar-item">
+        <a href="/Account/Sign-Up" class="topbar-item">
           Subscribe
         </a>
 
-        <a href="/Account/SignIn" class="topbar-item">
+        <a href="/Account/Sign-In" class="topbar-item">
           Login
         </a>
         {{/if}}
@@ -127,17 +127,17 @@
               <div class="sub-menu-content">
                 {{#each lcHotnews}}
                 <div class="sub-menu-item">
-                  <a href="#">
+                  <a href="/news/{{IDPage}}">
                     <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
                   </a>
                   <div class="sub-menu-item-content">
-                    <a href="#">
+                    <a href="/news/{{IDPage}}">
                       {{Title}}
                     </a>
                     <span class="content-option">
-                      <a href="#">Seafood</a>
+                      <a href="/category/{{CatID}}">{{CatID}}</a>
                       <span>-</span>
-                      <span>Feb 18</span>
+                      <span>{{Day}}</span>
                     </span>
                   </div>
                 </div>
@@ -151,17 +151,17 @@
               <div class="sub-menu-content">
                 {{#each lcAgricultural}}
                 <div class="sub-menu-item">
-                  <a href="#">
+                  <a href="/news/{{IDPage}}">
                     <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
                   </a>
                   <div class="sub-menu-item-content">
-                    <a href="#">
+                    <a href="/news/{{IDPage}}">
                       {{{Title}}}
                     </a>
                     <span class="content-option">
-                      <a href="#">Seafood</a>
+                      <a href="/category/{{CatID}}">{{CatID}}</a>
                       <span>-</span>
-                      <span>Feb 18</span>
+                      <span>{{Day}}</span>
                     </span>
                   </div>
                 </div>
@@ -175,7 +175,7 @@
               <div class="sub-menu-content">
                 {{#each lcHotnews}}
                 <div class="sub-menu-item">
-                  <a href="#">
+                  <a href="/news/{{IDPage}}">
                     <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
                   </a>
                   <div class="sub-menu-item-content">
@@ -183,9 +183,9 @@
                       {{Title}}
                     </a>
                     <span class="content-option">
-                      <a href="#">Seafood</a>
+                      <a href="/category/{{CatID}}">{{CatID}}</a>
                       <span>-</span>
-                      <span>Feb 18</span>
+                      <span>{{Day}}</span>
                     </span>
                   </div>
                 </div>

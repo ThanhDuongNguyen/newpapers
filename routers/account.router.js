@@ -6,11 +6,11 @@ const restrict = require("../middleware/auth.middleware");
 var router = express.Router();
 
 // Login
-router.get("/SignIn", function (req, res) {
+router.get("/Sign-In", function (req, res) {
   res.render("viewAccount/SignIn", { layout: false });
 });
 
-router.post("/SignIn", async function (req, res) {
+router.post("/Sign-In", async function (req, res) {
   const user = await userModel.singleByEmail(req.body.Email);
 
   const pass = user[0].Password;
@@ -41,11 +41,11 @@ router.post("/SignIn", async function (req, res) {
 });
 
 // Sign Up
-router.get("/SignUp", function (req, res) {
+router.get("/Sign-Up", function (req, res) {
   res.render("viewAccount/SignUp", { layout: false });
 });
 
-router.post("/SignUp", async function (req, res) {
+router.post("/Sign-Up", async function (req, res) {
   const user = await userModel.singleByEmail(req.body.Email);
   if (user.length > 0) {
     return res.render("viewAccount/SignUp", {
@@ -64,7 +64,6 @@ router.post("/SignUp", async function (req, res) {
     DOB: req.body.DOB,
   };
 
-  console.log(entity);
 
   await userModel.add(entity);
   res.render("viewMessage/Success", { layout: false });
@@ -72,7 +71,6 @@ router.post("/SignUp", async function (req, res) {
 
 // Profile
 router.get("/Profile", restrict, async function (req, res) {
-  console.log(req.session.authUser);
   res.render("viewAccount/Profile", {
     name: req.session.Name,
   });

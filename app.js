@@ -21,7 +21,9 @@ app.use("/", require("./routers/home.router"));
 app.use("/Account", require("./routers/account.router"));
 app.use('/Category', require("./routers/category.router"));
 app.use('/writer', require("./routers/writer.router"));
-app.use('/Tags', require("./routers/tag.router"));
+app.use('/message', require("./routers/message.router"));
+app.use('/tags', require("./routers/tag.router"));
+
 // Error
 app.use(function (req, res) {
   res.render("viewMessage/Error", {layout: false});
