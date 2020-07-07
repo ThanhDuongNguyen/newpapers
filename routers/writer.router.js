@@ -1,12 +1,14 @@
 const express = require("express");
 const moment = require('moment');
+const classifyMdw = require("../middleware/classify.middleware");
+moment().format();
 var router = express.Router();
 
 const categoryModel = require("../models/category.model");
 const newspaperModel = require("../models/newspapers.model");
 const tagModel = require("../models/tag.model");
 
-router.get("/new", async function (req, res) {
+router.get("/new", classifyMdw.checkWriterClass ,async function (req, res) {
     const list = await categoryModel.all();
     res.render("viewWriter/new", {
         layout: false,
@@ -33,7 +35,7 @@ router.post('/new', async function (req, res) {
         await tagModel.add(newspaperTag);
     }
     res.render('viewWriter/new',{
-        layout: false,
+        // layout: false,
         listCat: await categoryModel.all()
     });
 })

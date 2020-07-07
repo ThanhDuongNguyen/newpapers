@@ -1,55 +1,28 @@
-// Khai bao
+// require package and module
 const express = require("express");
-const exphbs = require("express-handlebars");
-const hbs_sections = require('express-handlebars-sections');
-const path = require("path");
 
 const app = express();
 
+// require middleware
+require("./middleware/session.middleware")(app);
+require("./middleware/view.middleware")(app);
+require("./middleware/locals.middleware")(app);
 
 app.use(express.urlencoded({
-  extended: true,
+  extended: true
 }));
-
-
-// Set app engine
-app.engine(
-  "hbs",
-  exphbs({
-    layoutsDir: "views/_layouts",
-    defaultLayout: "main",
-    extname: ".hbs",
-    helpers: {
-      section: hbs_sections()
-    }
-  })
-);
-
-app.set("view engine", "hbs");
 
 // public folder
 app.use('/public', express.static('public'));
+
+// require routers
 app.use("/news", require("./routers/detail.router"));
 app.use("/", require("./routers/home.router"));
 app.use("/Account", require("./routers/account.router"));
-app.use('/category', require("./routers/category.router"));
+app.use('/Category', require("./routers/category.router"));
 app.use('/writer', require("./routers/writer.router"));
-
-
-// Success
-app.use("/Success",function (req, res) {
-  res.render("viewMessage/Success", {layout: false});
-});
-
-// Warning
-app.use("/Warning",function (req, res) {
-  res.render("viewMessage/Warning", {layout: false});
-});
-
-// Upload Complete
-app.use("/UploadCompleted",function (req, res) {
-  res.render("viewMessage/UploadCompleted", {layout: false});
-});
+app.use('/message', require("./routers/message.router"));
+app.use('/tags', require("./routers/tag.router"));
 
 // Error
 app.use(function (req, res) {
@@ -57,5 +30,3 @@ app.use(function (req, res) {
 });
 
 app.listen(3000);
-
-

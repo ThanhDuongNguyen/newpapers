@@ -39,13 +39,31 @@
       </div>
 
       <div class="right-topbar">
-        <a href="/Account/SignUp" class="topbar-item">
+        <form action="/Account/Logout" id="frmLogout" method="POST"></form>
+        {{#if lcIsAuthenticated}}
+        <div class="dropdown pl-2">
+          <button class="btn dropdown-toggle" style="background: none; color: #ccc" type="button"
+            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            {{lcAuthUser.Name}}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/Account/Profile">Profile</a>
+            <a class="dropdown-item" href="/writer/new">Add new News</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Sign Out</a>
+          </div>
+        </div>
+        {{else}}
+
+        <a href="/Account/Sign-Up" class="topbar-item">
           Subscribe
         </a>
 
-        <a href="/Account/Login" class="topbar-item">
+        <a href="/Account/Sign-In" class="topbar-item">
           Login
         </a>
+        {{/if}}
       </div>
     </div>
   </div>
@@ -109,19 +127,19 @@
             <a class="nav-link" href="#">Hot News</a>
             <div class="sub-menu ">
               <div class="sub-menu-content">
-                {{#each this.listHotnews}}
+                {{#each lcHotnews}}
                 <div class="sub-menu-item">
-                  <a href="#">
-                    <img src="../../public/images/39-324x235.jpg" alt="Image">
+                  <a href="/news/{{IDPage}}">
+                    <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
                   </a>
                   <div class="sub-menu-item-content">
-                    <a href="#">
+                    <a href="/news/{{IDPage}}">
                       {{Title}}
                     </a>
                     <span class="content-option">
-                      <a href="#">Seafood</a>
+                      <a href="/category/{{CatID}}">{{CatID}}</a>
                       <span>-</span>
-                      <span>Feb 18</span>
+                      <span>{{Day}}</span>
                     </span>
                   </div>
                 </div>
@@ -133,19 +151,19 @@
             <a class="nav-link" href="/Category/3">Seafood News</a>
             <div class="sub-menu">
               <div class="sub-menu-content">
-                {{#each this.listSeafood}}
+                {{#each lcAgricultural}}
                 <div class="sub-menu-item">
-                  <a href="#">
-                    <img src="../../public/images/39-324x235.jpg" alt="Image">
+                  <a href="/news/{{IDPage}}">
+                    <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
                   </a>
                   <div class="sub-menu-item-content">
-                    <a href="#">
+                    <a href="/news/{{IDPage}}">
                       {{{Title}}}
                     </a>
                     <span class="content-option">
-                      <a href="#">Seafood</a>
+                      <a href="/category/{{CatID}}">{{CatID}}</a>
                       <span>-</span>
-                      <span>Feb 18</span>
+                      <span>{{Day}}</span>
                     </span>
                   </div>
                 </div>
@@ -157,19 +175,19 @@
             <a class="nav-link" href="/Category/2">Agricultural News</a>
             <div class="sub-menu">
               <div class="sub-menu-content">
-                {{#each this.listAgricultural}}
+                {{#each lcHotnews}}
                 <div class="sub-menu-item">
-                  <a href="#">
-                    <img src="../../public/images/39-324x235.jpg" alt="Image">
+                  <a href="/news/{{IDPage}}">
+                    <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
                   </a>
                   <div class="sub-menu-item-content">
                     <a href="#">
-                      {{{Title}}}
+                      {{Title}}
                     </a>
                     <span class="content-option">
-                      <a href="#">Seafood</a>
+                      <a href="/category/{{CatID}}">{{CatID}}</a>
                       <span>-</span>
-                      <span>Feb 18</span>
+                      <span>{{Day}}</span>
                     </span>
                   </div>
                 </div>
@@ -184,8 +202,8 @@
               Dropdown
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/Account/About_us">About Us</a>
-              <a class="dropdown-item" href="/Account/Contact_us">Contact Us</a>
+              <a class="dropdown-item" href="/About_us">About Us</a>
+              <a class="dropdown-item" href="/Contact_us">Contact Us</a>
             </div>
           </li>
         </ul>
@@ -201,7 +219,7 @@
 
   {{!-- Body --}}
   {{{body}}}
-  
+
   {{!-- Footer --}}
   {{!-- Top Footer --}}
   <div class="container-fluid fh5co_footer_bg pb-3">

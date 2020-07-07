@@ -11,7 +11,7 @@ module.exports = {
     single: function (id) {
         return db.load(`select * from ${TBL_CATEGORIES} where CatID = ${id}`);
     },
-    newspaperbyCat: function (id){
+    newspaperByCat: function (id){
         return db.load(`select * from ${TBL_NEWSPAPER} where CatID = ${id} limit ${TOP_NEWS_NUM}`);
     },
     add: function (entity) {
