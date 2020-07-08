@@ -16,6 +16,10 @@ module.exports = {
   allpopular: function () {
     return db.load(`select * from ${TBL_NEWSPAPER} ORDER BY View DESC limit 5`);
   },
+
+  newsByTitle: function(title){
+    return db.load(`select * from ${TBL_NEWSPAPER} where Title like '${title}'`);
+  },
   
   add: function (entity) {
     return db.add(TBL_NEWSPAPER, entity);

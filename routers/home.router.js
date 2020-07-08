@@ -2,7 +2,6 @@ const express = require("express");
 const moment = require('moment');
 const homeModel = require("../models/home.model");
 const newspaperModel = require("../models/newspapers.model")
-const categoryModel = require("../models/category.model");
 
 var router = express.Router();
 // 
@@ -18,10 +17,9 @@ router.get("/", async function (req, res) {
   
   res.render("home", {
     top1: listTrending[0],
-    topElse: listTrending.slice(1, listTrending.lenght),
-    empty: listTrending.lenght === 0,
+    topElse: listTrending.slice(1, listTrending.length),
+    empty: listTrending.length === 0,
     listMostView: listMostView,
-
   });
 });
 

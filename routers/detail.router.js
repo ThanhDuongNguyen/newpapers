@@ -5,6 +5,7 @@ const tagModel = require("../models/tag.model");
 const restrict = require("../middleware/auth.middleware");
 const commentModel = require("../models/comment.model");
 const userModel = require("../models/user.model");
+const moment = require("moment");
 
 var router = express.Router();
 
@@ -14,26 +15,29 @@ router.get("/:id", async function (req, res) {
 
   const [list, total] = await Promise.all([
     (arrayCat = await categoryModel.all()),
-    (NewsByCat = await categoryModel.newspaperByCat(News[0].CatID)),
+    (newsByCat = await categoryModel.newspaperByCat(News[0].CatID)),
     (allTag = await tagModel.all()),
     (author = await userModel.single(News[0].Author)),
+    (tagsName = await tagModel.tagsByNews(News[0].IDPage)),
+    (comments = await commentModel.commentByNews(News[0].IDPage)),
   ]);
 
-  var arrayTagID = await tagModel.tagsByNews(News[0].IDPage);
+  for (const news of News) {
+    news.Day = moment(news.Day, "YYYY-MM-DD,h:mm:ss a").format('LLL');
+  }
 
-  const TagsName = [];
-  for (const idTag of arrayTagID) {
-    const name = await tagModel.single(idTag.IDTags);
-    TagsName.push(name[0]);
+  for (const comment of comments) {
+    comment.Time = moment(comment.Time, "YYYY-MM-DD,h:mm:ss a").format('LLL');    
   }
 
   res.render("viewDetail/News", {
     News: News,
     listCat: arrayCat,
-    listNewsByCat: NewsByCat,
-    listTags: TagsName,
+    listNewsByCat: newsByCat,
+    listTags: tagsName,
     AllTags: allTag,
     author: author[0],
+    comments
   });
 });
 

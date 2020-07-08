@@ -91,25 +91,28 @@
         </form>
       </div>
       <h3 class="pt-3 pb-3">Commented</h3>
+
       {{!-- View comment --}}
+      {{#each this.comments}}
       <div class="container pb-5">
         <div class="row">
           <div class="col-sm-3 d-flex align-items-center justify-content-center">
-            <img src="../../public/images/download (1).jpg" class="avatar-comment" alt="">
+            <img src="{{Avatar}}" class="avatar-comment" alt="">
           </div>
           <div class="col-sm-9 d-flex justify-content-start comment-content flex-wrap flex-row">
             <div class="pl-2 pt-2 w-100 d-flex justify-content-between">
               <div class="username">
-                huuduc99
+                {{Name}}
               </div>
               <div class="time">
-                12-02-2020
+                {{Time}}
               </div>
             </div>
-            <div class="w-100 pl-2 pt-1">hello</div>
+            <div class="w-100 pl-2 pt-1">{{Comment}}</div>
           </div>
         </div>
       </div>
+      {{/each}}
     </div>
 
     <!-- Sidebar -->

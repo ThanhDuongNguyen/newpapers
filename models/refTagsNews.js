@@ -7,7 +7,7 @@ const TBL_NEWSPAPER = "newspapers";
 
 module.exports = {
   add: function (entity) {
-    return db.add(TBL_TAGS, entity);
+    return db.add(TBL_REFERENCETAGSNEWS, entity);
   },
   all: function () {
     return db.load(`select * from ${TBL_TAGS} ORDER BY RAND() limit 10`);
@@ -15,10 +15,6 @@ module.exports = {
 
   single: function (id) {
     return db.load(`select * from ${TBL_TAGS} where IDTags = ${id}`);
-  },
-
-  singleByTagName: function (TagName) {
-    return db.load(`select IDTags from ${TBL_TAGS} where TagName like '${TagName}'`);
   },
 
   tagsByNews: function (id) {

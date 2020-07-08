@@ -10,31 +10,21 @@ router.get('/:id', async function (req, res) {
   const id = +req.params.id || -1;
   
   const [list, total] = await Promise.all([
-    listIDPage = await tagModel.newsByTag(id),
+    listNews = await tagModel.newsByTag(id),
     listTags = await tagModel.anotherTags(id),
     listPopular = await newspaperModel.allpopular(),
   ]);
 
-  const listNews = [];
-  const author = [];
-
-  for (const idPage of listIDPage) {
-    const news = await newspaperModel.single(idPage.IDPage);
-    listNews.push(news[0]);
-    const listAuthor = await userModel.single(news[0].Author);
-    author.push(listAuthor[0]);
-  }
 
   res.render('viewCategory/list', {
     listNewspaper: listNews,
     listTags: listTags,
     listPopular: listPopular,
-    author: author[0]
   })
 })
 
 router.get('/add', function (req, res) {
-  res.render('viewCategoty/add');
+  res.render('viewCategory/add');
 })
 
 router.post('/add', async function (req, res) {

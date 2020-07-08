@@ -1,40 +1,38 @@
-
-const express = require('express');
-const catergoryModel = require('../models/category.model');
-const newspaperModel = require('../models/newspapers.model');
+const express = require("express");
+const categoryModel = require("../models/category.model");
+const newspaperModel = require("../models/newspapers.model");
+const tagModel = require("../models/tag.model");
+const moment = require("moment");
 
 var router = express.Router();
 
+router.get("/:id", async function (req, res) {
+  const id = +req.params.id || -1;
 
-router.get("/", async function (req, res) {
-  const list = await catergoryModel.all();
-  const tag = await newspaperModel.allTags();
-  const popular = await newspaperModel.allpopular();
-  res.render('viewCategory/list', {
-    listNewspaper: list,
-    listTag: tag,
-    listPopular: popular,
-    empty: list.length === 0
+  const [list, total] = await Promise.all([
+    (listNewsByCat = await categoryModel.newspaperByCat(id)),
+    (listTags = await tagModel.all()),
+  ]);
 
+
+  for (const news of listNewsByCat) {
+    news.Day = moment(news.Day, "YYYY-MM-DD,h:mm:ss a").format("LLL");
+  }
+
+  res.render("viewCategory/list", {
+    listNewspaper: listNewsByCat,
+    listTags,
   });
 });
 
-router.get('/:id', async function (req, res) {
-  const id = +req.params.id || -1;
-  const list = await catergoryModel.newspaperByCat(id);
-  res.render('viewCategory/list', {
-    listNewspaper: list,
-  })
-})
+router.get("/add", function (req, res) {
+  res.render("viewCategory/add");
+});
 
-router.get('/add', function (req, res) {
-  res.render('viewCategoty/add');
-})
-
-router.post('/add', async function (req, res) {
+router.post("/add", async function (req, res) {
   await categoryModel.add(req.body);
-  res.render('viewCategory/add');
-})
+  res.render("viewCategory/add");
+});
 // router.get('/edit/:id', async function (req, res) {
 //     const id = +req.params.id || -1;
 //     const rowws = await categoryModel.single(id);
@@ -43,13 +41,13 @@ router.post('/add', async function (req, res) {
 //     const category = rows[0];
 //     res.render('viewCategory/edit', { category });
 // })
-router.post('/del', async function (req, res) {
+router.post("/del", async function (req, res) {
   await categoryModel.del(req.body.CatID);
-  res.redirect('/admin/catergories');
-})
-router.post('/update', async function (req, res) {
+  res.redirect("/admin/catergories");
+});
+router.post("/update", async function (req, res) {
   await categoryModel.patch(req.body);
-  res.redirect('/admin/categories');
-})
+  res.redirect("/admin/categories");
+});
 
 module.exports = router;

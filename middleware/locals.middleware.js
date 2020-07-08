@@ -1,4 +1,5 @@
 const homeModel = require("../models/home.model");
+const moment = require("moment");
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -12,14 +13,27 @@ module.exports = function (app) {
     next();
   });
 
-  app.use(async function(req, res, next){
+  app.use(async function (req, res, next) {
     const listSeafood = await homeModel.menu(3);
+
+    for (const seafood of listSeafood) {
+      seafood.Day = moment(seafood.Day, "YYYY-MM-DD,h:mm:ss a").format("LLL");
+    }
+
     const listAgricultural = await homeModel.menu(2);
-    const listHotnews= await homeModel.hotnewsmenu();
+
+    for (const agricultural of listAgricultural) {
+      agricultural.Day = moment(agricultural.Day, "YYYY-MM-DD,h:mm:ss a").format("LLL");
+    }
+    const listHotNews = await homeModel.hotnewsmenu();
+
+    for (const hotNews of listHotNews) {
+      hotNews.Day = moment(hotNews.Day, "YYYY-MM-DD,h:mm:ss a").format("LLL");
+    }
 
     res.locals.lcSeafood = listSeafood;
     res.locals.lcAgricultural = listAgricultural;
-    res.locals.lcHotnews = listHotnews;
+    res.locals.lcHotNews = listHotNews;
 
     next();
   });
