@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="../../public/css/detail.css">
   <link href="../../public/css/style_1.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="../../public/css/tags.css">
+  <link rel="stylesheet" href="../../public/assets/css/demo.css">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
@@ -86,68 +87,66 @@
             <a class="nav-link" href="#">Hot News</a>
             <div class="sub-menu ">
               <div class="sub-menu-content">
-                {{#each lcHotnews}}
+                {{#each lcHotNews}}
                 <div class="sub-menu-item">
-                  <a href="#">
-                    <img src="../../public/images/39-324x235.jpg" alt="Image" class="w-100 h-100">
+                  <a href="/news/{{IDPage}}" class="d-block h-50">
+                    <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
                   </a>
-                  <div class="sub-menu-item-content">
-                    <a href="#">
+                  <div class="sub-menu-item-content h-50">
+                    <a href="/news/{{IDPage}}">
                       {{Title}}
                     </a>
-                    <span class="content-option">
-                      <a href="#">Seafood</a>
+                    <p class="content-option">
+                      <a href="/category/{{CatID}}">{{CatID}}</a>
                       <span>-</span>
-                      <span>Feb 18</span>
-                    </span>
+                      <span>{{Day}}</span>
+                    </p>
                   </div>
                 </div>
                 {{/each}}
               </div>
             </div>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="/Category/3">Seafood News</a>
             <div class="sub-menu">
               <div class="sub-menu-content">
-                {{#each lcAgricultural}}
-                <div class="sub-menu-item">
-                  <a href="#">
-                    <img src="../../public/images/39-324x235.jpg" alt="Image" class="w-100 h-100">
+                {{#each lcSeafood}}
+                <div class="sub-menu-item h-100">
+                  <a href="/news/{{IDPage}}" class="d-block h-50">
+                    <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
                   </a>
-                  <div class="sub-menu-item-content">
-                    <a href="#">
+                  <div class="sub-menu-item-content h-50">
+                    <a href="/news/{{IDPage}}">
                       {{{Title}}}
                     </a>
-                    <span class="content-option">
-                      <a href="#">Seafood</a>
-                      <span>-</span>
-                      <span>Feb 18</span>
-                    </span>
+                    <p class="content-option">
+                      <span>{{Day}}</span>
+                    </p>
                   </div>
                 </div>
                 {{/each}}
               </div>
             </div>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="/Category/2">Agricultural News</a>
             <div class="sub-menu">
               <div class="sub-menu-content">
-                {{#each lcHotnews}}
-                <div class="sub-menu-item">
-                  <a href="#">
-                    <img src="../../public/images/39-324x235.jpg" alt="Image" class="w-100 h-100">
+                {{#each lcAgricultural}}
+                <div class="sub-menu-item h-100">
+                  <a href="/news/{{IDPage}}" class="d-block h-50">
+                    <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
                   </a>
-                  <div class="sub-menu-item-content">
+                  <div class="sub-menu-item-content h-50">
                     <a href="#">
                       {{Title}}
                     </a>
-                    <span class="content-option">
-                      <a href="#">Seafood</a>
-                      <span>-</span>
-                      <span>Feb 18</span>
-                    </span>
+                    <p class="content-option">
+                      <span>{{Day}}</span>
+                    </p>
                   </div>
                 </div>
                 {{/each}}
@@ -161,8 +160,8 @@
               Dropdown
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/Account/About_us">About Us</a>
-              <a class="dropdown-item" href="/Account/Contact_us">Contact Us</a>
+              <a class="dropdown-item" href="/About_us">About Us</a>
+              <a class="dropdown-item" href="/Contact_us">Contact Us</a>
             </div>
           </li>
         </ul>
@@ -176,8 +175,20 @@
     </div>
   </nav>
   {{!-- Body --}}
+
   <div class="container">
-    <form method="post" action="/writer/new">
+    {{!-- Show Error --}}
+    {{#if err}}
+    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+      <button type="button" class="closeAlert" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+      {{err}}
+    </div>
+    {{/if}}
+    {{!-- End Show Error --}}
+
+    <form method="post" action="/writer/new" id="frmPostNewNews" onsubmit="return validationPostNewNews">
       <div class="card">
         <div class="card-header">
           <h3>Tạo bài viết mới</h3>
@@ -259,6 +270,11 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
   <script src="../../public/js/tags.js"></script>
+  {{!-- Validation --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+
+  <script src="../public/assets/js/validation.js"></script>
+
   <script>
     tinymce.init({
       selector: '#txtFullDes',

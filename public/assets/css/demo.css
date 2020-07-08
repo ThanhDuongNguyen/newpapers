@@ -136,3 +136,8 @@ h6,
   padding: 0;
   border: none;
 }
+
+.closeAlert:hover{
+  background: rgba(193, 193, 193, 0.842) !important;
+  cursor: pointer;
+}

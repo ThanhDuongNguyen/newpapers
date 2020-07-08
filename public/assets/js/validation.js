@@ -33,3 +33,28 @@ $(function validationLogin() {
     },
   });
 });
+
+
+$(function validationPostNewNews() {
+  $("#frmPostNewNews").validate({
+    onfocusout: false,
+    onkeyup: false,
+    rules: {
+      "Title": {
+        required: true,
+      },
+      "TinyContent":{
+        required: true,
+      },
+      "TagsList":{
+        required: true,
+      },
+      "ImgAvatar":{
+        required: true,
+      },
+      "Content":{
+        required: true
+      }
+    },
+  });
+});

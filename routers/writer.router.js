@@ -23,7 +23,7 @@ router.post("/new", async function (req, res) {
 
   const titleNews = await newspaperModel.newsByTitle(req.body.Title);
   if (titleNews.length > 0) {
-    return res.render("/writer/new", { layout: false });
+    return res.render("viewWriter/new", { layout: false, err: "The article already exists." });
   } else {
     const tagList = req.body.TagsList.split(",");
     newspaper.Status = "Chưa được duyệt";
@@ -70,10 +70,7 @@ router.post("/new", async function (req, res) {
       await refTagNewsModel.add(refTagsNews);
     }
 
-    res.render("viewWriter/new", {
-      // layout: false,
-      listCat: await categoryModel.all(),
-    });
+    res.redirect(`/message/upload-completed?retUrl=${req.originalUrl}`);
   }
 });
 
