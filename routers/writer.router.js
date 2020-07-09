@@ -29,6 +29,8 @@ router.post("/new", async function (req, res) {
     newspaper.Status = "Chưa được duyệt";
     newspaper.View = 0;
     newspaper.Day = moment().format();
+    newspaper.Author = req.session.authUser.IDUser;
+    console.log(newspaper);
     delete newspaper.TagsList;
 
     var tagNames = [];
