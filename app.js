@@ -23,7 +23,7 @@ app.use('/Category', require("./routers/category.router"));
 app.use('/writer', require("./routers/writer.router"));
 app.use('/message', require("./routers/message.router"));
 app.use('/tags', require("./routers/tag.router"));
-
+app.use('/admin', require("./routers/admin.router"));
 // Error
 app.use(function (req, res) {
   res.render("viewMessage/Error", {layout: false});
