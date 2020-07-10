@@ -23,52 +23,44 @@ router.post("/new", async function (req, res) {
 
   const titleNews = await newspaperModel.newsByTitle(req.body.Title);
   if (titleNews.length > 0) {
-    return res.render("viewWriter/new", { layout: false, err: "The article already exists." });
+    return res.render("viewWriter/new", {
+      layout: false,
+      err: "The article already exists.",
+      listCat: await categoryModel.all()
+    });
   } else {
     const tagList = req.body.TagsList.split(",");
     newspaper.Status = "Chưa được duyệt";
     newspaper.View = 0;
     newspaper.Day = moment().format();
     newspaper.Author = req.session.authUser.IDUser;
-    console.log(newspaper);
     delete newspaper.TagsList;
-
-    var tagNames = [];
-
     const rs = await newspaperModel.add(newspaper);
+
+    console.log(tagList);
+
     for (var index = 0; index < tagList.length; ++index) {
-      const newspaperTag = {
-        TagName: tagList[index],
-      };
-
+      //if tag exist get ID, else create and get ID
       const checkTagName = await tagModel.singleByTagName(tagList[index]);
-
-      console.log(checkTagName);
-
+      var TagID = null;
       if (checkTagName.length === 0) {
-        await tagModel.add(newspaperTag);
+        const Tag = {
+          TagName: tagList[index]
+        };
+        const tagResult = await tagModel.add(Tag);
+        console.log(tagResult);
+        TagID = tagResult.insertId;
       }
-
-      tagNames.push(newspaperTag.TagName);
-    } 
-
-    const listRefTagsNews = [];
-
-    for (const tagName of tagNames) {
-      const IDTag = await tagModel.singleByTagName(tagName);
-      const IDPage = await newspaperModel.newsByTitle(req.body.Title);      
+      else {
+        TagID = checkTagName[0].IDTags;
+        console.log(checkTagName);
+      }
+      console.log(TagID);
 
       const refTagsNews = {
-        IDPage: IDPage[0].IDPage,
-        IDTags: IDTag[0].IDTags
+        IDPage: rs.insertId,
+        IDTags: TagID
       }
-
-      listRefTagsNews.push(refTagsNews);
-    }
-
-    console.log(listRefTagsNews);
-    
-    for (const refTagsNews of listRefTagsNews) {
       await refTagNewsModel.add(refTagsNews);
     }
 
