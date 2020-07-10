@@ -2,7 +2,7 @@ const express = require("express");
 const userModel = require("../models/user.model");
 const bcryptjs = require("bcryptjs");
 const restrict = require("../middleware/auth.middleware");
-
+const moment = require("moment");
 var router = express.Router();
 
 // Login
@@ -42,7 +42,10 @@ router.post("/Sign-In", async function (req, res) {
 
 // Sign Up
 router.get("/Sign-Up", function (req, res) {
-  res.render("viewAccount/SignUp", { layout: false });
+  res.render("viewAccount/SignUp", { 
+    layout: false,
+    dateMax: moment().format("YYYY-MM-DD")
+  });
 });
 
 router.post("/Sign-Up", async function (req, res) {
