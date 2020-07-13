@@ -26,7 +26,8 @@ app.use('/tags', require("./routers/tag.router"));
 app.use('/admin', require("./routers/admin.router"));
 // Error
 app.use(function (req, res) {
-  res.render("viewMessage/Error", {layout: false});
+  res.redirect(`/message/error?retUrl=${req.originalUrl}`);
+  // res.render("viewMessage/Error", {layout: false});
 });
 
 app.listen(3000);

@@ -12,7 +12,7 @@ router.get('/:id', async function (req, res) {
   const [list, total] = await Promise.all([
     listNews = await tagModel.newsByTag(id),
     listTags = await tagModel.anotherTags(id),
-    listPopular = await newspaperModel.allpopular(),
+    listPopular = await newspaperModel.allPopular(),
   ]);
 
 

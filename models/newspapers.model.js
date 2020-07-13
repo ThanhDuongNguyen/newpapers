@@ -13,12 +13,16 @@ module.exports = {
     return db.load(`select * from ${TBL_NEWSPAPER} where IDPage = ${id}`);
   },
 
-  allpopular: function () {
+  allPopular: function () {
     return db.load(`select * from ${TBL_NEWSPAPER} ORDER BY View DESC limit 5`);
   },
 
   newsByTitle: function(title){
     return db.load(`select * from ${TBL_NEWSPAPER} where Title like '${title}'`);
+  },
+
+  newsBySearch: function (input){
+    return db.load(`SELECT * FROM ${TBL_NEWSPAPER} WHERE MATCH(Title, TinyContent, Content) AGAINST('${input}')`);
   },
   
   add: function (entity) {
@@ -26,7 +30,7 @@ module.exports = {
   },
   patch: function (entity) {
     const condition = {
-      CatID: entity.IDPage,
+      IDPage: entity.IDPage,
     };
     delete entity.IDPage;
     return db.patch(TBL_NEWSPAPER, entity, condition);

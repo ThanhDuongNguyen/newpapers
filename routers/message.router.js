@@ -32,6 +32,14 @@ router.post("/warning", function(req, res){
   res.redirect(url);
 })
 
+// Error
+router.get("/error", function(req, res){
+  res.render("viewMessage/Error", {layout: false});
+})
 
+router.post("/error", function(req, res){
+  const url = req.query.retUrl || "/";
+  res.redirect(url);
+})
 
 module.exports = router;

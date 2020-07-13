@@ -6,6 +6,26 @@ const moment = require("moment");
 
 var router = express.Router();
 
+router.get("/search", async function (req, res) {
+  console.log(req.query.Search);
+
+  const [list, total] = await Promise.all([
+    (listNews = await newspaperModel.newsBySearch(req.query.Search)),
+    (listTags = await tagModel.all()),
+    (listPopular = await newspaperModel.allPopular()),
+  ]);
+
+  for (const news of listNews) {
+    news.Day = moment(news.Day, "YYYY-MM-DD,h:mm:ss a").format("LLL");
+  }
+
+  res.render("viewCategory/list", {
+    listNewspaper: listNews,
+    listTags,
+    listPopular,
+  });
+});
+
 router.get("/:id", async function (req, res) {
   const id = +req.params.id || -1;
 

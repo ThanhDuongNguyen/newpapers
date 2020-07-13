@@ -13,7 +13,17 @@ router.get("/:id", async function (req, res) {
   const id = +req.params.id || -1;
   const News = await newspaperModel.single(id);
 
+  // const view = ;
+
+  var viewNews = {
+    IDPage: News[0].IDPage,
+    View: News[0].View + 1,
+  };
+
+  console.log(viewNews);
+
   const [list, total] = await Promise.all([
+    await newspaperModel.patch(viewNews),
     (arrayCat = await categoryModel.all()),
     (newsByCat = await categoryModel.newspaperByCat(News[0].CatID)),
     (allTag = await tagModel.all()),
@@ -23,11 +33,11 @@ router.get("/:id", async function (req, res) {
   ]);
 
   for (const news of News) {
-    news.Day = moment(news.Day, "YYYY-MM-DD,h:mm:ss a").format('LLL');
+    news.Day = moment(news.Day, "YYYY-MM-DD,h:mm:ss a").format("LLL");
   }
 
   for (const comment of comments) {
-    comment.Time = moment(comment.Time, "YYYY-MM-DD,h:mm:ss a").format('LLL');    
+    comment.Time = moment(comment.Time, "YYYY-MM-DD,h:mm:ss a").format("LLL");
   }
 
   res.render("viewDetail/News", {
@@ -37,7 +47,7 @@ router.get("/:id", async function (req, res) {
     listTags: tagsName,
     AllTags: allTag,
     author: author[0],
-    comments
+    comments,
   });
 });
 

@@ -75,6 +75,7 @@ router.post("/Sign-Up", async function (req, res) {
 // Profile
 router.get("/Profile", restrict, async function (req, res) {
   res.render("viewAccount/Profile", {
+    layout: false,
     name: req.session.Name,
   });
 });
