@@ -1,7 +1,7 @@
 const db = require("../utils/db");
 
 const TBL_NEWSPAPER = "newspapers";
-const TBL_TAGS = "tags";
+const TBL_CATEGORIES = 'categories';
 const TOP_NEWS_NUM = 10;
 
 module.exports = {
@@ -24,7 +24,15 @@ module.exports = {
   newsBySearch: function (input){
     return db.load(`SELECT * FROM ${TBL_NEWSPAPER} WHERE MATCH(Title, TinyContent, Content) AGAINST('${input}')`);
   },
-  
+
+  newsByAuthor: function (id){
+    return db.load(`SELECT * FROM ${TBL_NEWSPAPER} JOIN ${TBL_CATEGORIES} ON ${TBL_NEWSPAPER}.CatID = ${TBL_CATEGORIES}.CatID WHERE ${TBL_NEWSPAPER}.Author = ${id}`);
+  },
+
+  newsByStatus: function(status, id){
+    return db.load(`select * from ${TBL_NEWSPAPER} JOIN ${TBL_CATEGORIES} ON ${TBL_NEWSPAPER}.CatID = ${TBL_CATEGORIES}.CatID where Status like '${status}' and Author = ${id}`);
+  },
+
   add: function (entity) {
     return db.add(TBL_NEWSPAPER, entity);
   },

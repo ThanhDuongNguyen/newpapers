@@ -35,7 +35,7 @@
         <div class="dropdown pl-2">
           <button class="btn btn-account dropdown-toggle" style="background: none; color: #ccc" type="button"
             id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="{{lcAuthUser.Avatar}}" class="avatar" alt="">
+            <img src="../../public/images-upload/{{lcAuthUser.Avatar}}" class="avatar" alt="">
             {{lcAuthUser.Name}}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -187,19 +187,21 @@
     {{/if}}
     {{!-- End Show Error --}}
 
-    <form method="post" action="/writer/new" id="frmPostNewNews" onsubmit="return validationPostNewNews">
+    <form method="post" action="/news/edit/{{this.IDPage}}" id="frmEditNews" onsubmit="return validationEditNews">
       <div class="card">
         <div class="card-header">
-          <h3>Tạo bài viết mới</h3>
+          <h3>Chỉnh bài viết</h3>
         </div>
         <div class="card-body">
           <div class="form-group">
             <label for="txtTitle">Tiêu đề bài viết</label>
-            <input type="text" class="form-control" id="txtTitle" name="Title" autofocus>
+            <input type="text" class="form-control" id="txtTitle" name="Title" autofocus value="{{this.Title}}">
           </div>
           <div class="form-group">
             <label for="txtTinyContent">Tóm tắt bài viết</label>
-            <textarea class="form-control" rows="3" id="txtTinyContent" name="TinyContent"></textarea>
+            <textarea class="form-control" rows="3" id="txtTinyContent" name="TinyContent">
+              {{this.TinyContent}}
+            </textarea>
           </div>
           <div class="form-group">
             <label for="txtCat">Chuyên mục</label>
@@ -210,27 +212,43 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="txtTag">Thẻ cho bài viết</label>
-            <div class="tags-input form-control" data-name="TagsList"></div>
+            <label>Thẻ cho bài viết</label>
+            <input type="text" value="{{this.strTags}}" name="TagsList" class="form-control">
           </div>
           <div class="form-group">
             <label for="linkAvatarImage">Link ảnh đại diện bài viết</label>
-            <input type="text" class="form-control" id="linkAvatarImage" name="ImgAvatar">
+            <input type="text" class="form-control" id="linkAvatarImage" name="ImgAvatar" value="{{this.ImgAvatar}}">
           </div>
           <label for="">Bài viết dành cho đọc giả</label>
+          {{#if Premium}}
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="Premium" value="0" checked>Đọc giả bình thường
+              <input type="radio" class="form-check-input" name="Premium" value="0">Đọc giả bình thường
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="Premium" value="1">Đọc giả Premium
+              <input type="radio" class="form-check-input" name="Premium" value="1" checked>Đọc giả Premium
             </label>
           </div>
+          {{else}}
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="Premium" value="0">Đọc giả bình thường
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="Premium" value="1" checked>Đọc giả Premium
+            </label>
+          </div>
+          {{/if}}
+
           <div class="form-group">
             <label for=""></label>
-            <textarea name="Content" id="txtFullDes" class="form-control" cols="30" rows="10"></textarea>
+            <textarea name="Content" id="txtFullDes" class="form-control" cols="30" rows="10">
+              {{Content}}
+            </textarea>
           </div>
         </div>
         <div class="card-footer">
@@ -270,7 +288,7 @@
   {{!-- Validation --}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
 
-  <script src="../public/assets/js/validation.js"></script>
+  <script src="../../public/assets/js/validation.js"></script>
 
   <script>
     tinymce.init({

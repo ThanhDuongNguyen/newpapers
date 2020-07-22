@@ -26,12 +26,12 @@ router.get("/", async function (req, res) {
 
 router.get("/About_us", function(req, res)
 {
-  res.render("About_us");
+  res.render("About-Us");
 })
 
 router.get("/Contact_us", function(req, res)
 {
-  res.render("Contact_us");
+  res.render("Contact-Us");
 })
 
 module.exports = router;

@@ -22,7 +22,6 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <!-- Modernizr JS -->
-  <script src="js/modernizr-3.5.0.min.js"></script>
 
 </head>
 
@@ -30,7 +29,7 @@
   {{!-- Header --}}
   {{!-- Topbar --}}
   <div class="container-fluid fh5co_header_bg">
-    <div class="container h-100 d-flex justify-content-between pt-3 pb-3">
+    <div class="container h-100 d-flex justify-content-between align-items-center pt-3 pb-3">
       <div class="left-topbar">
         <div class="d-inline-block fh5co_trading_posotion_relative"><a href="#" class="treding_btn">Trending</a>
         </div>
@@ -42,9 +41,9 @@
         <form action="/Account/Logout" id="frmLogout" method="POST"></form>
         {{#if lcIsAuthenticated}}
         <div class="dropdown pl-2">
-          <button class="btn dropdown-toggle" style="background: none; color: #ccc" type="button"
+          <button class="btn btn-account dropdown-toggle" style="background: none; color: #ccc" type="button"
             id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-user" aria-hidden="true"></i>
+            <img src="../../public/images-upload/{{lcAuthUser.Avatar}}" class="avatar" alt="">
             {{lcAuthUser.Name}}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -313,6 +312,7 @@
 
 
   {{!-- Script --}}
+  <script src="js/modernizr-3.5.0.min.js"></script>
   {{!-- Jquery --}}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   {{!-- Owl carousel JS --}}

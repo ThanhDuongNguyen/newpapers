@@ -5,7 +5,7 @@ const classifyMdw = require("../middleware/classify.middleware");
 const categoryModel = require("../models/category.model");
 const newspaperModel = require("../models/newspapers.model");
 const tagModel = require("../models/tag.model");
-const refTagNewsModel = require("../models/refTagsNews");
+const refTagNewsModel = require("../models/refTagsNews.model");
 
 var router = express.Router();
 

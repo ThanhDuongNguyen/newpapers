@@ -7,7 +7,7 @@ router.get("/", async function (req, res) {
 });
 
 router.get("/category", async function (req, res) {
-  res.render("viewAdmin/listCategory", { layout:false});
+  res.render("viewAdmin/List-Category", { layout:false});
 });
 
 module.exports = router;

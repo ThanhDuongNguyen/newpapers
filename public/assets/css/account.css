@@ -1,0 +1,170 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.login-facebook {
+  background-color: #3b5998;
+
+  border-radius: 6px;
+}
+
+.btn-login-facebook,
+.btn-login-google {
+  color: aliceblue;
+}
+
+.login-google {
+  background-color: #dd4b39;
+
+  border-radius: 6px;
+}
+
+.login-facebook:hover .btn-login-facebook,
+.login-google:hover .btn-login-google {
+  background-color: #00cc99;
+  color: aliceblue;
+
+  transition: all 0.5s ease-in-out;
+}
+
+.btnClose {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card-text {
+  text-align: center;
+  font-size: 13px;
+  color: rgba(128, 128, 128, 0.747);
+}
+
+.form-title {
+  font-size: 15px;
+}
+
+#frmChangePassword .form-group input {
+  font-size: 12px;
+}
+#frmChangePassword button {
+  background-color: #416cd8;
+  border: none;
+}
+#frmChangePassword button:hover {
+  background-color: #3995d5;
+  border: none;
+}
+
+.error {
+  color: #dc3545;
+  border-color: #ebccd1;
+  padding: 1px 6px 1px 6px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  font-size: 14px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.closeAlert {
+  position: absolute;
+  z-index: 1;
+  right: 10px !important;
+  top: 5px !important;
+  height: 2.5rem;
+  width: 2.5rem;
+  background: rgba(193, 193, 193, 0.3) !important;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  padding: 0;
+  border: none;
+}
+
+.closeAlert:hover {
+  background: rgba(193, 193, 193, 0.842) !important;
+  cursor: pointer;
+}
+
+.container-form-change-pass {
+  width: 50%;
+}
+
+.form-change-pass {
+  width: 50%;
+}
+
+/* Responsive */
+
+@media (min-width: 280px) and (max-width: 479px) {
+  .container-form-change-pass {
+    width: 100%;
+  }
+
+  .form-change-pass {
+    width: 94%;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .container-form-change-pass {
+    width: 100%;
+  }
+
+  .form-change-pass {
+    width: 80%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .container-form-change-pass {
+    width: 80%;
+  }
+
+  .form-change-pass {
+    width: 75%;
+  }
+
+  #frmChangePassword .form-group input {
+    font-size: 14px;
+  }
+  .form-title {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1024px) {
+  .container-form-change-pass {
+    width: 80%;
+  }
+
+  .form-change-pass {
+    width: 80%;
+  }
+  #frmChangePassword .form-group input {
+    font-size: 14px;
+  }
+  .form-title {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1025px) {
+  #frmChangePassword .form-group input {
+    font-size: 15px;
+  }
+
+  .form-title {
+    font-size: 16px;
+  }
+}

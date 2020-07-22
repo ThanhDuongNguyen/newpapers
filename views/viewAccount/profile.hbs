@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../../public/assets/css/profile.css">
   <link rel="stylesheet" href="../../public/css/style_1.css">
   {{!-- Bootstrap --}}
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   {{!-- Font --}}
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Poppins|Roboto+Slab|Work+Sans&display=swap"
     rel="stylesheet">
@@ -17,173 +17,344 @@
 </head>
 
 <body>
-  {{!-- Body --}}
-  <div class="container-fluid-override">
-    <div class="sidebar">
-      <!--Sidebar PC-->
-      <div class="sidebar-PC">
-        {{#if lcIsAuthenticated}}
-        <div class="avatar">
-          <img src="{{lcAuthUser.Avatar}}" width="120" height="120" class="rounded-circle mx-auto d-block" />
-        </div>
-        {{/if}}
-        <ul class="side-list">
-          <li class="side-item">
-            <a href="#ContactInformation" class="side-link" name="contact">
-              Information
-            </a>
-          </li>
-          <li class="side-item">
-            <a href="#Skill" class="side-link" name="skill">Skill</a>
-          </li>
-        </ul>
+  {{!-- Top bar--}}
+  <div class="container-fluid border-bottom top-bar-desktop">
+    <div class="container h-100 d-flex justify-content-around align-items-center pt-3 pb-3 flex-wrap">
+      <div class="left-top-bar d-flex align-items-center justify-content-between">
+        <a href="/">
+          <img src="../../public/images/logo.png" class="img-logo" alt="">
+        </a>
       </div>
 
-      <!--Sidebar Mobile-->
-      <div class="sidebar-mobile">
-        <div class="avatar">
-          <a href="index.html">
-            <img src="img/avatar.jpg" class="rounded-circle mx-auto d-block" />
+      <div class="search">
+        <form class="search-form my-2 my-lg-0" method="GET" action="/Category/search">
+          <input class="form-control mr-sm-2 rounded-0" type="text" name="Search" placeholder="Search">
+          <button class="btn my-2 my-sm-0 bg-secondary rounded-0" type="submit">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </button>
+        </form>
+      </div>
+
+      <div class="right-top-bar">
+        <form action="/Account/Logout" id="frmLogout" method="POST"></form>
+        {{#if lcIsAuthenticated}}
+        <div class="dropdown pl-2">
+          <button class="btn btn-account dropdown-toggle text-dark" style="background: none; color: #ccc" type="button"
+            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="../../public/images-upload/{{lcAuthUser.Avatar}}" class="avatar" alt="">
+            {{lcAuthUser.Name}}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/Account/Profile">Profile</a>
+            <a class="dropdown-item" href="/writer/new">Add new News</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Sign Out</a>
+          </div>
+        </div>
+        {{else}}
+
+        <a href="/Account/Sign-Up" class="top-bar-item">
+          Subscribe
+        </a>
+
+        <a href="/Account/Sign-In" class="top-bar-item">
+          Login
+        </a>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+  {{!-- Body content--}}
+  <div class="container-fluid mt-2 h-100">
+    <div class="row mt-5">
+      {{!-- About --}}
+      <div class="col-sm-3">
+        <div class="avatar-user-square w-100 position-relative ">
+          <a href="/account/change-avatar" class="d-block h-100">
+            <div class="overlay">
+              <div class="overlay-content">
+                <i class="fa fa-camera" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="avatar-square">
+              <img src="../public/images-upload/{{lcAuthUser.Avatar}}" width="100%" height="100%" alt="">
+            </div>
           </a>
         </div>
-        <ul class="side-list">
-          <li class="side-item">
-            <a href="#ContactInformation" class="side-link" name="contact">
-              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle"
-                class="svg-inline--fa fa-info-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512">
-                <path fill="currentColor"
-                  d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z">
-                </path>
-              </svg>
-            </a>
-          </li>
-
-          <li class="side-item">
-            <a href="#Skill" class="side-link" name="skill">
-              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="code"
-                class="svg-inline--fa fa-code fa-w-20" role="img" xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 640 512">
-                <path fill="currentColor"
-                  d="M278.9 511.5l-61-17.7c-6.4-1.8-10-8.5-8.2-14.9L346.2 8.7c1.8-6.4 8.5-10 14.9-8.2l61 17.7c6.4 1.8 10 8.5 8.2 14.9L293.8 503.3c-1.9 6.4-8.5 10.1-14.9 8.2zm-114-112.2l43.5-46.4c4.6-4.9 4.3-12.7-.8-17.2L117 256l90.6-79.7c5.1-4.5 5.5-12.3.8-17.2l-43.5-46.4c-4.5-4.8-12.1-5.1-17-.5L3.8 247.2c-5.1 4.7-5.1 12.8 0 17.5l144.1 135.1c4.9 4.6 12.5 4.4 17-.5zm327.2.6l144.1-135.1c5.1-4.7 5.1-12.8 0-17.5L492.1 112.1c-4.8-4.5-12.4-4.3-17 .5L431.6 159c-4.6 4.9-4.3 12.7.8 17.2L523 256l-90.6 79.7c-5.1 4.5-5.5 12.3-.8 17.2l43.5 46.4c4.5 4.9 12.1 5.1 17 .6z">
-                </path>
-              </svg>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <!--Main Content-->
-    <div class="main">
-      <div class="topbar clearfix">
-        <h1><i>{{lcAuthUser.Name}}</i></h1>
-      </div>
-      <div class="mainContent">
-        <div id="contact">
-          <h2 class="header">
-            Information
-          </h2>
-          <label class="container">
-            <label class="mainContent-body">
-              <div class="d-flex justify-content-center">
-                <label class="text-left">
-                  <p class="title"><b>Information</b></p>
-                  <p>
-                    <i class="fa fa-user mr-3" aria-hidden="true"></i>
-                    Name: {{lcAuthUser.Name}}.
-                  </p>
-                  <p>
-                    <i class="fa fa-envelope mr-3" aria-hidden="true"></i>
-                    Email: {{lcAuthUser.Email}}.
-                  </p>
-                  {{#if DOB}}
-                  <p>
-                    <i class="fa fa-calendar mr-3" aria-hidden="true"></i>
-                    DOB: {{DOB}}.
-                  </p>
-                  {{/if}}
-                  <div class="d-flex justify-content-end">
-                    <a href="/account/profile/edit"
-                      class="btn btn-outline-success pt-2 pb-2 pl-3 pr-3 text-right">Edit</a>
-                  </div>
-                </label>
-              </div>
-            </label>
-          </label>
+        <p class="content-title">About</p>
+        <div class="mb-3">
+          <p class="content-text-about">
+            <i class="fa fa-user mr-2" aria-hidden="true"></i>
+            {{lcAuthUser.Name}}
+          </p>
+          {{#if lcAuthUser.Alias}}
+          <p class="content-text-about">
+            <i class="fa fa-pencil-square mr-2" aria-hidden="true"></i>
+            {{lcAuthUser.Alias}}
+          </p>
+          {{/if}}
+          <p class="content-text-about">
+            <i class="fa fa-envelope mr-2" aria-hidden="true"></i>
+            {{lcAuthUser.Email}}
+          </p>
+          <p class="content-text-about">
+            <i class="fa fa-calendar mr-2" aria-hidden="true"></i>
+            {{this.DOB}}
+          </p>
         </div>
-
-        <div id="skill">
-          <h2 class="header">Skill</h2>
-          <label class="container-override">
-            <label class="row">
-              <label class="col-sm">
-                <p class="title">Skill</p>
-                <b>HTML5</b>
-                <span class="progress">
-                  <span class="progress-bar" style="width: 80%;">80%</span>
-                </span>
-                <b>CSS3</b>
-                <span class="progress">
-                  <span class="progress-bar" style="width: 70%;">70%</span>
-                </span>
-                <b>BOOTSTRAP 4</b>
-                <span class="progress">
-                  <span class="progress-bar" style="width: 70%;">70%</span>
-                </span>
-                <b>JQUERY</b>
-                <span class="progress">
-                  <span class="progress-bar" style="width: 65%;">60%</span>
-                </span>
-                <b>MYSQL</b>
-                <span class="progress">
-                  <span class="progress-bar" style="width: 80%;">75%</span>
-                </span>
-                <b>PHP</b>
-                <span class="progress">
-                  <span class="progress-bar" style="width: 60%;">55%</span>
-                </span>
-              </label>
-            </label>
-          </label>
+        <div class="d-flex justify-content-around align-items-center mt-5 flex-row flex-wrap">
+          <a href="/account/profile/change-password" class="rounded border-0 btn-change-pass">Change Password</a>
+          <a href="/account/profile/edit" class="rounded border-0 btn-edit">Edit</a>
         </div>
       </div>
+      {{!-- Main content --}}
+      {{!-- Subscriber --}}
+      {{#if Subscriber}}
+      <div class="col-sm-9">
+        <div class="main-content">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#list">
+                <i class="fa fa-list" aria-hidden="true"></i>
+                List News
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#add">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                Add
+              </a>
+            </li>
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div class="tab-pane container active" id="list">
+              ...
+            </div>
+            <div class="tab-pane container fade" id="add">
+              ...
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/if}}
+      {{!-- Writer --}}
+      {{#if Writer}}
+      <div class="col-sm-9">
+        <div class="main-content">
+          {{!-- Nav tabs --}}
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#published">
+                <i class="fa fa-list" aria-hidden="true"></i>
+                List Published
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#confirmed">
+                <i class="fa fa-list" aria-hidden="true"></i>
+                List Confirmed
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#not-confirmed">
+                <i class="fa fa-list" aria-hidden="true"></i>
+                List Not Confirmed Yet
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#not-accepted">
+                <i class="fa fa-list" aria-hidden="true"></i>
+                List Not Accepted
+              </a>
+            </li>
+
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div class="tab-pane container active" id="published">
+              <a href="/writer/new" class="btn btn-outline-info text-right mt-3">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                Add
+              </a>
+              <table class="table table-striped mt-3">
+                <thead>
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col" class="hidden-item-1">Category</th>
+                    <th scope="col" class="hidden-item-2">Views</th>
+                    <th scope="col" class="hidden-item-3">Day</th>
+                    <th scope="col">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each this.listPublished}}
+                  <tr>
+                    <th scope="row">{{Title}}</th>
+                    <td class="hidden-item-1">{{CatName}}</td>
+                    <td class="hidden-item-2">{{View}}</td>
+                    <td class="hidden-item-3">{{Day}}</td>
+                    <td>
+                      <a href="/news/{{IDPage}}" class="btn btn-success">
+                        <i class="fa fa-eye" aria-hidden="true"></i></a>
+                    </td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+
+            <div class="tab-pane container fade" id="confirmed">
+              <a href="/writer/new" class="btn btn-outline-info text-right mt-3">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                Add
+              </a>
+              <table class="table table-striped mt-3">
+                <thead>
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col" class="hidden-item-1">Category</th>
+                    <th scope="col" class="hidden-item-2">Views</th>
+                    <th scope="col" class="hidden-item-3">Day</th>
+                    <th scope="col">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each this.listConfirmed}}
+                  <tr>
+                    <th scope="row">{{Title}}</th>
+                    <td class="hidden-item-1">{{CatName}}</td>
+                    <td class="hidden-item-2">{{View}}</td>
+                    <td class="hidden-item-3">{{Day}}</td>
+                    <td>
+                      <a href="/news/{{IDPage}}" class="btn btn-success">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+
+            <div class="tab-pane container fade" id="not-confirmed">
+              <a href="/writer/new" class="btn btn-outline-info text-right mt-3">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                Add
+              </a>
+              <table class="table table-striped mt-3">
+                <thead>
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col" class="hidden-item-1">Category</th>
+                    <th scope="col" class="hidden-item-2">Views</th>
+                    <th scope="col" class="hidden-item-3">Day</th>
+                    <th scope="col">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each this.listNotConfirmedYet}}
+                  <tr>
+                    <th scope="row">{{Title}}</th>
+                    <td class="hidden-item-1">{{CatName}}</td>
+                    <td class="hidden-item-2">{{View}}</td>
+                    <td class="hidden-item-3">{{Day}}</td>
+                    <td class="action">
+                      <a href="/news/{{IDPage}}" class="btn btn-success">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                      </a>
+                      <a href="/news/edit/{{IDPage}}" class="btn btn-primary btn-action">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+
+            <div class="tab-pane container fade" id="not-accepted">
+              <a href="/writer/new" class="btn btn-outline-info text-right mt-3">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                Add
+              </a>
+              <table class="table table-striped mt-3">
+                <thead>
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col" class="hidden-item-1">Category</th>
+                    <th scope="col" class="hidden-item-2">Views</th>
+                    <th scope="col" class="hidden-item-3">Day</th>
+                    <th scope="col">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each this.listNotAccepted}}
+                  <tr>
+                    <th scope="row">{{Title}}</th>
+                    <td class="hidden-item-1">{{CatName}}</td>
+                    <td class="hidden-item-2">{{View}}</td>
+                    <td class="hidden-item-3">{{Day}}</td>
+                    <td class="action">
+                      <a href="/news/{{IDPage}}" class="btn btn-success">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                      </a>
+                      <a href="/news/edit/{{IDPage}}" class="btn btn-primary btn-action">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/if}}
+      {{!-- Editor --}}
+      {{#if Editor}}
+      <div class="col-sm-9">
+        <div class="main-content">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#list">
+                <i class="fa fa-list" aria-hidden="true"></i>
+                List News
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#add">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                Add
+              </a>
+            </li>
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div class="tab-pane container active" id="list">
+              ...
+            </div>
+            <div class="tab-pane container fade" id="add">
+              ...
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/if}}
     </div>
+  </div>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-
-    <script type="text/javascript">
-      $(document).ready(function () {
-        //hide divs in mainContent
-        $(".mainContent div").hide();
-
-        //Show first div on mainContent
-        $(".side-list li:first").attr("id", "active");
-        $(".mainContent div:first").fadeIn();
-
-        //Show div when click and hide others
-        $(".side-list li a").click(function (e) {
-          e.preventDefault();
-          if (
-            $(this)
-              .closest("li")
-              .attr("id") == "active"
-          ) {
-            return;
-          } else {
-            $(".mainContent div").hide();
-
-            $(".side-list li").attr("id", "");
-
-            $(this)
-              .parent()
-              .attr("id", "active");
-
-            $("#" + $(this).attr("name")).fadeIn();
-          }
-        });
-      });
-    </script>
-
+  {{!-- Script --}}
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  {{!-- Bootstrap --}}
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  {{!-- Validation --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+  <script src="../public/assets/js/validation.js"></script>
 </body>
 
 </html>
