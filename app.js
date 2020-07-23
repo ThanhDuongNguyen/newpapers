@@ -29,4 +29,6 @@ app.use(function (req, res) {
   res.redirect(`/message/error`);
 });
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000, () => {
+  console.log("app is running")
+});
