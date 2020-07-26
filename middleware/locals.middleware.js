@@ -1,4 +1,5 @@
-const homeModel = require("../models/home.model");
+const newspaperModel = require("../models/newspapers.model");
+const categoryModel = require("../models/category.model");
 const moment = require("moment");
 
 module.exports = function (app) {
@@ -14,18 +15,25 @@ module.exports = function (app) {
   });
 
   app.use(async function (req, res, next) {
-    const listSeafood = await homeModel.menu(3);
+    const [list, total] = await Promise.all([
+      (listHotNews = await newspaperModel.hotNewsMenu()),
+      (listSeafood = await newspaperModel.newspaperByCat(3)),
+      (listAgricultural = await newspaperModel.newspaperByCat(2)),
+      (listChildBusiness = await categoryModel.childCategory(1)),
+      (listChildMineral = await categoryModel.childCategory(4)),
+      allCat = await categoryModel.all(),
+    ]);
 
     for (const seafood of listSeafood) {
       seafood.Day = moment(seafood.Day, "YYYY-MM-DD,h:mm:ss a").format("LLL");
     }
 
-    const listAgricultural = await homeModel.menu(2);
-
     for (const agricultural of listAgricultural) {
-      agricultural.Day = moment(agricultural.Day, "YYYY-MM-DD,h:mm:ss a").format("LLL");
+      agricultural.Day = moment(
+        agricultural.Day,
+        "YYYY-MM-DD,h:mm:ss a"
+      ).format("LLL");
     }
-    const listHotNews = await homeModel.hotnewsmenu();
 
     for (const hotNews of listHotNews) {
       hotNews.Day = moment(hotNews.Day, "YYYY-MM-DD,h:mm:ss a").format("LLL");
@@ -34,6 +42,9 @@ module.exports = function (app) {
     res.locals.lcSeafood = listSeafood;
     res.locals.lcAgricultural = listAgricultural;
     res.locals.lcHotNews = listHotNews;
+    res.locals.lcChildBusiness = listChildBusiness;
+    res.locals.lcChildMineral = listChildMineral;
+    res.locals.lcAllCat = allCat;
 
     next();
   });

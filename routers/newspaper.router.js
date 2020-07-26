@@ -13,6 +13,9 @@ var router = express.Router();
 // Detail
 router.get("/:id", async function (req, res) {
   const id = +req.params.id || -1;
+
+  console.log("id:", id);
+
   const News = await newspaperModel.single(id);
 
   var viewNews = {
@@ -23,12 +26,14 @@ router.get("/:id", async function (req, res) {
   const [list, total] = await Promise.all([
     await newspaperModel.patch(viewNews),
     (arrayCat = await categoryModel.all()),
-    (newsByCat = await categoryModel.newspaperByCat(News[0].CatID)),
+    (newsByCat = await newspaperModel.newspaperByCat(News[0].CatID)),
     (allTag = await tagModel.all()),
     (author = await userModel.single(News[0].Author)),
     (tagsName = await tagModel.tagsByNews(News[0].IDPage)),
     (comments = await commentModel.commentByNews(News[0].IDPage)),
   ]);
+
+  // console.log(comments);
 
   for (const news of News) {
     news.Day = moment(news.Day, "YYYY-MM-DD,h:mm:ss a").format("LLL");
@@ -65,7 +70,7 @@ router.post("/:id", restrict, async function (req, res) {
 // Edit
 router.get("/edit/:id", restrict, async function (req, res) {
   const id = +req.params.id || -1;
-  
+
   const [list, total] = await Promise.all([
     (News = await newspaperModel.single(id)),
     (Tags = await tagModel.tagsByNews(id)),

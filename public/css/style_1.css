@@ -30,31 +30,37 @@ a:hover {
 .treding_btn:hover{
   color: #000 !important;
 }
+.top-bar{
+  background-color: #f5bc04;
+
+  box-shadow: 0px 2px 3px #dee2e6;
+}
+
+.top-bar-logo{
+  width: 130px;
+  height: 68px;
+}
 
 .right-topbar{
   display: flex;
   justify-content: center;
   align-items: center;
+  line-height: 18px;
 }
 
-.topbar-item:first-child{
-  padding: 0px 10px;
-
-  font-size: 16px;
-
-  border-left: 1px solid rgba(128, 128, 128, 0.521);
-  border-right: 1px solid rgba(128, 128, 128, 0.521);
+.right-topbar a:hover{
+  color: #f1f1f1 !important;
 }
-
 
 .topbar-item{
   padding: 0px 10px;
 
-  font-size: 16px;
+  font-size: 17px;
+  color: #161712ab;
+}
 
-  border-right: 1px solid rgba(128, 128, 128, 0.521);
-
-  color: #ccc;
+.border-right{
+  color: #232421ab !important;
 }
 
 .avatar{
@@ -212,6 +218,8 @@ a:hover {
 
   margin-left: 15px;
   margin-right: 15px;
+
+  height: 100%;
 }
 
 .nav-item:hover .sub-menu{
@@ -222,12 +230,17 @@ a:hover {
   color: #000;
 }
 
-.content-option {
-  color: #888;
+.sub-menu-img{
+  height: 65%;
 }
 
-.sub-menu-item-content h5{
-  padding-top: 12px;
+.sub-menu-item-content{
+  height: 33%;
+  margin-top: 2%;
+}
+
+.content-option {
+  color: #888;
 }
 
 .content-option a{
@@ -506,13 +519,7 @@ a:hover {
   color: #777;
   text-decoration: none;
 }
-.fh5co_hover_news_img:hover > .fh5co_news_img {
-  top: -7px;
-  -webkit-box-shadow: inset 0 2px 3px 1px;
-  -moz-box-shadow: inset 0 2px 3px 1px;
-  -o-box-shadow: inset 0 2px 3px 1px;
-  box-shadow: inset 0 2px 3px 1px;
-}
+
 .fh5co_video_news_bg {
   background-image: url(../../../public/images/video-news-bg.jpg);
   background-size: cover;
@@ -533,85 +540,38 @@ a:hover {
   right: 0;
   z-index: 20;
 }
-.fh5co_hover_news_img_video_tag_position_absolute > img {
-  height: 130%;
-  min-width: 100%;
+
+.news-content{
+  width: 100%;
+  height: auto;
 }
-.fh5co_hover_news_img_video_tag_position_absolute_1 {
-  position: absolute;
-  z-index: 22;
-  cursor: pointer;
-  top: 33%;
-  right: 40%;
-  opacity: 0.7;
-  -moz-transition: all all 0.5s ease;
-  -o-transition: all all 0.5s ease;
-  -webkit-transition: all all 0.5s ease;
-  -ms-transition: all all 0.5s ease;
-  transition: all all 0.5s ease;
+
+.link-image{
+  height: 270px;
 }
-.fh5co_hover_news_img_video_tag_position_absolute_1:hover {
-  opacity: 1;
-}
-.fh5co_hover_news_img_video_tag_position_absolute_1_play_button {
-  height: 60px;
-  width: 60px;
-  background-color: #fff;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  border-radius: 50%;
-  display: table;
-  text-align: center;
-  position: relative;
-  z-index: 5;
-}
-.fh5co_hover_news_img_video_tag_position_absolute_1_play_button_1 {
-  position: relative;
-  display: inline-block;
-}
-.fh5co_hover_news_img_video_tag_position_absolute_1_play_button_1:before {
-  position: absolute;
-  content: "";
-  height: 120%;
-  width: 120%;
-  background-color: #f5bc04;
-  z-index: -1;
-  top: -10%;
-  right: -10%;
-  opacity: 0.5;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  border-radius: 50%;
-}
-.fh5co_hover_news_img_video_tag_position_absolute_1_play_button > span {
-  display: table-cell;
-  vertical-align: middle;
-  line-height: 0px !important;
-}
+
 .fh5co_magna {
   font-size: 16px;
   color: #222 !important;
   font-weight: 800;
 }
-.fh5co_mini_time {
+/* .fh5co_mini_time {
   font-size: 14px;
   color: #222;
   display: inline-block;
-}
+} */
 .fh5co_consectetur {
   font-size: 14px;
   color: #777;
 }
-.fh5co_gaming_topikk {
+/* .fh5co_gaming_topikk {
   margin: 0 !important;
   padding-left: 12px;
-}
-.fh5co_gaming_topikk > li {
+} */
+/* .fh5co_gaming_topikk > li {
   color: #777;
   padding: 5px 0;
-}
+} */
 .fh5co_tagg {
   border: 1px solid #888;
 
@@ -646,10 +606,21 @@ a:hover {
   text-decoration: none;
 }
 
+.popular{
+  height: auto;  
+  max-height: 120px;
+}
+
+.popular img{
+  width: 100%;
+  height: 100%;
+}
+
 .fh5co_most_trading {
   height: 60px;
   width: 100%;
 }
+
 .most_fh5co_treding_font_123 {
   font-size: 12px;
   color: #777;
@@ -685,10 +656,18 @@ a:hover {
   font-weight: 800;
 }
 .btn_pagging:hover,
+.Active,
 .btn_pagging:focus {
   background: #222 !important;
-  color: #fff;
+  color: #fff !important;
 }
+
+a.disabled {
+  pointer-events: none !important;
+  cursor: default;
+  color: #777 !important;
+}
+
 .fh5co_footer_bg {
   background: #222;
   color: #fff;
