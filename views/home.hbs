@@ -7,8 +7,7 @@
 					<div class="fh5co_suceefh5co_height_position_absolute"></div>
 					<div class="fh5co_suceefh5co_height_position_absolute_font">
 						<div class="color_fff"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{this.top1.Day}}</div>
-						<div class=""><a href="/news/{{this.top1.IDPage}}"
-								class="fh5co_good_font">{{this.top1.Title}}</a></div>
+						<div class=""><a href="/news/{{this.top1.IDPage}}" class="fh5co_good_font">{{this.top1.Title}}</a></div>
 					</div>
 				</a>
 			</div>
@@ -32,7 +31,6 @@
 			</div>
 		</div>
 	</div>
-<<<<<<< HEAD
 </div>
 
 <div class="container-fluid pt-3">
@@ -50,9 +48,12 @@
 			<div class="carousel-inner">
 				{{#each this.listMostView}}
 				<div class="carousel-item {{#if @first}} active {{/if}}">
-					<img class="d-block w-100 fit-img" src="{{ImgAvatar}}" href="/news/{{IDPage}}">
+					<a href="/news/{{IDPage}}"><img class="d-block w-100 fit-img" src="{{ImgAvatar}}"></a>
 					<div class="carousel-caption d-none d-md-block">
-						<h2 href="/news/{{IDPage}}">{{Title}}</h2>
+						<a class="link" href="/news/{{IDPage}}">
+							<h2>{{Title}}</h2>
+						</a>
+						<h4 class="color_fff"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{Day}}</h4>
 					</div>
 				</div>
 				{{/each}}
@@ -86,7 +87,10 @@
 				<div class="carousel-item {{#if @first}} active {{/if}}">
 					<a href="/news/{{IDPage}}"><img class="d-block w-100 fit-img" src="{{ImgAvatar}}"></a>
 					<div class="carousel-caption d-none d-md-block">
-						<a href="/news/{{IDPage}}"><h2>{{Title}}</h2></a>
+						<a class="link" href="/news/{{IDPage}}">
+							<h2>{{Title}}</h2>
+						</a>
+						<h4 class="color_fff"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{Day}}</h4>
 					</div>
 				</div>
 				{{/each}}
@@ -101,6 +105,41 @@
 			</a>
 		</div>
 	</div>
-=======
->>>>>>> 4441aceb7eb90eff42fa71a31facf044421ff9d9
+</div>
+
+<div class="container-fluid pt-3">
+	<div class="container animate-box" data-animate-effect="fadeIn">
+		<div>
+			<div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Mới nhất mỗi danh mục</div>
+		</div>
+		<div id="carouselTop1NewsEachCat" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				{{#each this.listTop1NewsEachCat}}
+				<li data-target="#carouselTop1NewsEachCat" data-slide-to="{{@index}}: {{this}}" {{#if @first}} class="active"
+					{{/if}}></li>
+				{{/each}}
+			</ol>
+			<div class="carousel-inner">
+				{{#each this.listTop1NewsEachCat}}
+				<div class="carousel-item {{#if @first}} active {{/if}}">
+					<a href="/news/{{IDPage}}"><img class="d-block w-100 fit-img" src="{{ImgAvatar}}"></a>
+					<div class="carousel-caption d-none d-md-block">
+						<a class="link" href="/news/{{IDPage}}">
+							<h2>{{Title}}</h2>
+						</a>
+						<h4 class="color_fff"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{Day}}</h4>
+					</div>
+				</div>
+				{{/each}}
+			</div>
+			<a class="carousel-control-prev" href="#carouselTop1NewsEachCat" role="button" data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="carousel-control-next" href="#carouselTop1NewsEachCat" role="button" data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+	</div>
 </div>
