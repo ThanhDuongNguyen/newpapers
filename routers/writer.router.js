@@ -53,10 +53,7 @@ router.post("/new", async function (req, res) {
       }
       else {
         TagID = checkTagName[0].IDTags;
-        console.log(checkTagName);
       }
-      console.log(TagID);
-
       const refTagsNews = {
         IDPage: rs.insertId,
         IDTags: TagID

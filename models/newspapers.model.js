@@ -43,5 +43,9 @@ module.exports = {
   },
   topMostViews: function(){
     return db.load(`SELECT * FROM ${TBL_NEWSPAPER} ORDER BY View DESC LIMIT ${TOP_NEWS_NUM}`);
+  },
+
+  topMostNews:function(){
+    return db.load(`SELECT * FROM ${TBL_NEWSPAPER} ORDER BY Day DESC LIMIT ${TOP_NEWS_NUM}`);
   }
 };
