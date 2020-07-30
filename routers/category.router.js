@@ -4,7 +4,6 @@ const newspaperModel = require("../models/newspapers.model");
 const tagModel = require("../models/tag.model");
 const moment = require("moment");
 const defaults = require("../config/default.json");
-const { value } = require("numeral");
 
 var router = express.Router();
 
@@ -12,7 +11,7 @@ router.get("/search", async function (req, res) {
   console.log(req.query.Search);
   console.log(req.query.page);
 
-  const page = +req.query.page;
+  var page = +req.query.page;
   if (!page || page < 0) {
     page = 1;
   }

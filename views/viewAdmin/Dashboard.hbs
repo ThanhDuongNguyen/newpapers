@@ -2,285 +2,233 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" type="image/png" sizes="16x16" href="../../public/admin/plugins/images/favicon.png">
-    <title>Ample Admin Template - The Ultimate Multipurpose admin template</title>
-    <!-- Bootstrap Core CSS -->
-    <link href="../../public/admin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Menu CSS -->
-    <link href="../../public/admin/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
-    <!-- toast CSS -->
-    <link href="../../public/admin/plugins/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet">
-    <!-- morris CSS -->
-    <link href="../../public/admin/plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
-    <!-- chartist CSS -->
-    <link href="../../public/admin/plugins/bower_components/chartist-js/dist/chartist.min.css" rel="stylesheet">
-    <link href="../../public/admin/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css"
-        rel="stylesheet">
-    <!-- animation CSS -->
-    <link href="../../public/admin/css/animate.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="../../public/admin/css/style.css" rel="stylesheet">
-    <!-- color CSS -->
-    <link href="../../public/admin/css/colors/default.css" id="theme" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+  {{!-- Font Awesome --}}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  {{!-- Fonts --}}
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  {{!-- Bootstrap CSS --}}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  {{!-- Animated --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css">
+
+  <link rel="stylesheet" href="../../public/assets/css/admin.css">
+
 </head>
 
-<body class="fix-header">
-    <!-- ============================================================== -->
-    <!-- Preloader -->
-    <!-- ============================================================== -->
-    <div class="preloader">
-        <svg class="circular" viewBox="25 25 50 50">
-            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
-        </svg>
-    </div>
-    <!-- ============================================================== -->
-    <!-- Wrapper -->
-    <!-- ============================================================== -->
-    <div id="wrapper">
-        <!-- ============================================================== -->
-        <!-- Topbar header - style you can find in pages.scss -->
-        <!-- ============================================================== -->
-        <nav class="navbar navbar-default navbar-static-top m-b-0">
-            <div class="navbar-header">
-                <div class="top-left-part">
-                    <!-- Logo -->
-                    <a class="logo" href="dashboard.html">
-                        <!-- Logo icon image, you can use font-icon also -->
-                        <b>
-                            <!--This is dark logo icon-->
-                            <img src="../../public/admin/plugins/images/admin-logo.png" alt="home" class="dark-logo" />
-                            <!--This is light logo icon-->
-                            <img src="../../public/admin/plugins/images/admin-logo-dark.png" alt="home"
-                                class="light-logo" />
-                        </b>
-                        <!-- Logo text image you can use text also -->
-                        <span class="hidden-xs">
-                            <!--This is dark logo text-->
-                            <img src="../../public/admin/plugins/images/admin-text.png" alt="home" class="dark-logo" />
-                            <!--This is light logo text-->
-                            <img src="../../public/admin/plugins/images/admin-text-dark.png" alt="home"
-                                class="light-logo" />
-                        </span>
-                    </a>
-                </div>
-                <!-- /Logo -->
-                <ul class="nav navbar-top-links navbar-right pull-right">
-                    <li>
-                        <a class="nav-toggler open-close waves-effect waves-light hidden-md hidden-lg"
-                            href="javascript:void(0)"><i class="fa fa-bars"></i></a>
-                    </li>
-
-                    <li>
-                        <a class="profile-pic" href="#"> <img src="../../public/admin/plugins/images/users/varun.jpg"
-                                alt="user-img" width="36" class="img-circle"><b class="hidden-xs">Steave</b></a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-header -->
-            <!-- /.navbar-top-links -->
-            <!-- /.navbar-static-side -->
-        </nav>
-        <!-- End Top Navigation -->
-        <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <div class="navbar-default sidebar" role="navigation">
-            <div class="sidebar-nav slimscrollsidebar">
-                <div class="sidebar-head">
-                    <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span
-                            class="hide-menu">Navigation</span></h3>
-                </div>
-                <ul class="nav" id="side-menu">
-                    <li style="padding: 70px 0 0;">
-                        <a href="dashboard.html" class="waves-effect"><i class="fa fa-clock-o fa-fw"
-                                aria-hidden="true"></i>Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="profile.html" class="waves-effect"><i class="fa fa-user fa-fw"
-                                aria-hidden="true"></i>Profile</a>
-                    </li>
-                    <li>
-                        <a href="basic-table.html" class="waves-effect"><i class="fa fa-table fa-fw"
-                                aria-hidden="true"></i>Basic Table</a>
-                    </li>
-                    <li>
-                        <a href="fontawesome.html" class="waves-effect"><i class="fa fa-font fa-fw"
-                                aria-hidden="true"></i>Icons</a>
-                    </li>
-                    <li>
-                        <a href="map-google.html" class="waves-effect"><i class="fa fa-globe fa-fw"
-                                aria-hidden="true"></i>Google Map</a>
-                    </li>
-                    <li>
-                        <a href="blank.html" class="waves-effect"><i class="fa fa-columns fa-fw"
-                                aria-hidden="true"></i>Blank Page</a>
-                    </li>
-                    <li>
-                        <a href="404.html" class="waves-effect"><i class="fa fa-info-circle fa-fw"
-                                aria-hidden="true"></i>Error 404</a>
-                    </li>
-
-                </ul>
-                <div class="center p-20">
-                    <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank"
-                        class="btn btn-danger btn-block waves-effect waves-light">Upgrade to Pro</a>
-                </div>
+<body>
+  <div class="container-fluid d-flex justify-content-center mt-3 mb-3">
+    <div class="main">
+      <div class="row h-100">
+        {{!-- Sidebar --}}
+        <div class="col-sm-12 col-lg-2 pl-0 pr-0">
+          <div class="sidebar">
+            {{!-- Logo --}}
+            <div class="logo">
+              <a href="/" class="d-block">
+                <img src="../../public/images/logo.png" alt="Image Logo">
+              </a>
             </div>
 
+            {{!-- Navbar --}}
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <a class="nav-link active" id="dashboard-tab" data-toggle="pill" href="#dashboard" role="tab"
+                aria-controls="dashboard" aria-selected="true">
+                <i class="fa fa-tachometer" aria-hidden="true"></i>
+                Bảng điều khiển
+              </a>
+              <a class="nav-link" id="category-tab" data-toggle="pill" href="#category" role="tab"
+                aria-controls="category" aria-selected="false">
+                <i class="fa fa-list" aria-hidden="true"></i>
+                Danh mục
+              </a>
+              <a class="nav-link" id="newspaper-tab" data-toggle="pill" href="#newspaper" role="tab"
+                aria-controls="category" aria-selected="false">
+                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                Bài viết
+              </a>
+              <a class="nav-link" id="tags-tab" data-toggle="pill" href="#tags" role="tab" aria-controls="tags"
+                aria-selected="false">
+                <i class="fa fa-tags" aria-hidden="true"></i>
+                Thẻ
+              </a>
+              <a class="nav-link" id="users-tab" data-toggle="pill" href="#users" role="tab" aria-controls="users"
+                aria-selected="false">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                Người dùng
+              </a>
+            </div>
+            {{!-- Sign out --}}
+            <form action="/Account/Logout" id="frmLogout" method="POST"></form>
+            <a class="nav-link" href="javascript: $('#frmLogout').submit()">
+              <i class="fa fa-sign-in" aria-hidden="true"></i>
+              Đăng xuất
+            </a>
+
+            {{!-- Ads --}}
+            <div class="position-relative d-flex justify-content-center">
+              <div class="ads">
+                <img src="../../public/images/flamenco-lets-get-out-of-here.png" alt="Image Ads">
+                <p>Upgrade to <span style="font-weight: bold;">Pro</span> now</p>
+                <a href="#" class="btn btn-success mt-2 mb-2">Upgrade</a>
+              </div>
+            </div>
+          </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Left Sidebar -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page Content -->
-        <!-- ============================================================== -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row bg-title">
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Dashboard</h4>
-                    </div>
-                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank"
-                            class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Upgrade
-                            to Pro</a>
-                        <ol class="breadcrumb">
-                            <li><a href="#">Dashboard</a></li>
-                        </ol>
-                    </div>
-                    <!-- /.col-lg-12 -->
+
+        {{!-- Main content --}}
+        <div class="col-sm-12 col-lg-10 main-content">
+          <div class="container">
+            <div class="tab-content" id="v-pills-tabContent">
+              <div class="tab-pane fade show active" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+                {{!-- Top bar --}}
+                <div class="top-bar">
+                  <h4>Dashboard</h4>
+                  <form class="search-form my-2 my-lg-0" method="GET" action="/Category/search">
+                    <input class="form-control mr-sm-2" type="text" name="Search" placeholder="Search">
+                    <button class="btn-search" type="submit">
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                  </form>
                 </div>
-                <div class="row">
-                    <div class="col-md-12 col-lg-12 col-sm-12">
-                        <div class="white-box">
-                            <div class="col-md-3 col-sm-4 col-xs-6 pull-right">
-                                <select class="form-control pull-right row b-none">
-                                    <option>March 2017</option>
-                                    <option>April 2017</option>
-                                    <option>May 2017</option>
-                                    <option>June 2017</option>
-                                    <option>July 2017</option>
-                                </select>
-                            </div>
-                            <h3 class="box-title">Recent sales</h3>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>NAME</th>
-                                            <th>STATUS</th>
-                                            <th>DATE</th>
-                                            <th>PRICE</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td class="txt-oflo">Elite admin</td>
-                                            <td>SALE</td>
-                                            <td class="txt-oflo">April 18, 2017</td>
-                                            <td><span class="text-success">$24</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td class="txt-oflo">Real Homes WP Theme</td>
-                                            <td>EXTENDED</td>
-                                            <td class="txt-oflo">April 19, 2017</td>
-                                            <td><span class="text-info">$1250</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td class="txt-oflo">Ample Admin</td>
-                                            <td>EXTENDED</td>
-                                            <td class="txt-oflo">April 19, 2017</td>
-                                            <td><span class="text-info">$1250</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td class="txt-oflo">Medical Pro WP Theme</td>
-                                            <td>TAX</td>
-                                            <td class="txt-oflo">April 20, 2017</td>
-                                            <td><span class="text-danger">-$24</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td class="txt-oflo">Hosting press html</td>
-                                            <td>SALE</td>
-                                            <td class="txt-oflo">April 21, 2017</td>
-                                            <td><span class="text-success">$24</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td class="txt-oflo">Digital Agency PSD</td>
-                                            <td>SALE</td>
-                                            <td class="txt-oflo">April 23, 2017</td>
-                                            <td><span class="text-danger">-$14</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>7</td>
-                                            <td class="txt-oflo">Helping Hands WP Theme</td>
-                                            <td>MEMBER</td>
-                                            <td class="txt-oflo">April 22, 2017</td>
-                                            <td><span class="text-success">$64</span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+
+                {{!-- Alert --}}
+                <div class="alert alert-danger banner" role="alert">
+                  <div class="banner-left">
+                    <h3>Welcome back Anna!</h3>
+                    <p class="banner-text text-dark mt-4">
+                      You've acquired <span class="parameter">80%</span> of your goal this week.
+                    </p>
+                    <p class="banner-text text-dark mb-3">Keep it up and improve your result!</p>
+                  </div>
+                  <div class="banner-right">
+                    <img src="../../public/images/marginalia-financial-report.png" alt="">
+                  </div>
+                </div>
+
+                {{!-- Chart --}}
+                <div class="chart mb-4">
+                  <div class="card text-left">
+                    <div class="card-body">
+                      <canvas id="myChart"></canvas>
+                    </div>
+                  </div>
+                </div>
+
+                {{!-- Feature --}}
+                <div class="row feature">
+                  <div class="col-xl-3 col-sm-6 mb-3">
+                    <div class="card text-white bg-primary o-hidden h-100">
+                      <div class="card-body">
+                        <div class="card-body-icon">
+                          <i class="fa fa-fw fa-comments"></i>
                         </div>
+                        <div class="mr-5">26 Bình luận!</div>
+                      </div>
                     </div>
+                  </div>
+                  <div class="col-xl-3 col-sm-6 mb-3">
+                    <div class="card text-white bg-warning o-hidden h-100">
+                      <div class="card-body">
+                        <div class="card-body-icon">
+                          <i class="fa fa-fw fa-list"></i>
+                        </div>
+                        <div class="mr-5">11 Bài viết mới!</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-3 col-sm-6 mb-3">
+                    <div class="card text-white bg-success o-hidden h-100">
+                      <div class="card-body">
+                        <div class="card-body-icon">
+                          <i class="fa fa-fw fa-shopping-cart"></i>
+                        </div>
+                        <div class="mr-5">123 Xem tin tức cap cấp!</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-3 col-sm-6 mb-3">
+                    <div class="card text-white bg-danger o-hidden h-100">
+                      <div class="card-body">
+                        <div class="card-body-icon">
+                          <i class="fa fa-fw fa-support"></i>
+                        </div>
+                        <div class="mr-5">13 Đăng ký mới!</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
+              </div>
+
+              <div class="tab-pane fade" id="category" role="tabpanel" aria-labelledby="category-tab">...
+              </div>
+              <div class="tab-pane fade" id="newspaper" role="tabpanel" aria-labelledby="newspaper-tab">...
+              </div>
+              <div class="tab-pane fade" id="tags" role="tabpanel" aria-labelledby="tags-tab">
+                ...
+              </div>
+              <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users-tab">
+                ...
+              </div>
             </div>
-            <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by wrappixel.com </footer>
+          </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Page Content -->
-        <!-- ============================================================== -->
+      </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- End Wrapper -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
-    <script src="../../public/admin/plugins/bower_components/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../../public/admin/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- Menu Plugin JavaScript -->
-    <script src="../../public/admin/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
-    <!--slimscroll JavaScript -->
-    <script src="../../public/admin/js/jquery.slimscroll.js"></script>
-    <!--Wave Effects -->
-    <script src="../../public/admin/js/waves.js"></script>
-    <!--Counter js -->
-    <script src="../../public/admin/plugins/bower_components/waypoints/lib/jquery.waypoints.js"></script>
+  </div>
 
-    <script src="../../public/admin/plugins/bower_components/chartist-js/dist/chartist.min.js"></script>
-    <script
-        src="../../public/admin/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
 
-    <script src="../../public/admin/plugins/bower_components/counterup/jquery.counterup.min.js"></script>
-    <!-- Sparkline chart JavaScript -->
-    <script src="../../public/admin/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="../../public/admin/js/custom.min.js"></script>
-    <script src="../../public/admin/js/dashboard1.js"></script>
-    <script src="../../public/admin/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
+  {{!-- Bootstrap JS --}}
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
+  {{!-- Chart JS --}}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script src="../../public/assets/js/admin.js"></script>
+
+  <script>
+    var ctx = document.getElementById("myChart").getContext("2d");
+
+    var myChart = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: [
+          "Tháng 1",
+          "Tháng 2",
+          "Tháng 3",
+          "Tháng 4",
+          "Tháng 5",
+          "Tháng 6",
+          "Tháng 7",
+          "Tháng 8",
+          "Tháng 9",
+          "Tháng 10",
+          "Tháng 11",
+          "Tháng 12",
+        ],
+        datasets: [
+          {
+            label: "Số lượt xem trong năm", // Name the series
+            data: [500, 50, 2424, 14040, 14141, 4111, 4544, 47, 5555, 6811, 5555, 6811], // Specify the data values array
+            fill: false,
+            borderColor: "#2196f3", // Add custom color border (Line)
+            backgroundColor: "#2196f3", // Add custom color background (Points and Fill)
+            borderWidth: 1 // Specify bar border width
+          }
+        ]
+      },
+      options: {
+        responsive: true, // Instruct chart js to respond nicely.
+        maintainAspectRatio: false // Add to prevent default behaviour of full-width/height
+      }
+    });
+
+  </script>
 </body>
 
 </html>
