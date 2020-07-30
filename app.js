@@ -16,8 +16,8 @@ app.use(express.urlencoded({
 app.use('/public', express.static('public'));
 
 // require routers
-app.use("/news", require("./routers/detail.router"));
 app.use("/", require("./routers/home.router"));
+app.use("/news", require("./routers/newspaper.router"));
 app.use("/Account", require("./routers/account.router"));
 app.use('/Category', require("./routers/category.router"));
 app.use('/writer', require("./routers/writer.router"));
@@ -26,8 +26,9 @@ app.use('/tags', require("./routers/tag.router"));
 app.use('/admin', require("./routers/admin.router"));
 // Error
 app.use(function (req, res) {
-  res.redirect(`/message/error?retUrl=${req.originalUrl}`);
-  // res.render("viewMessage/Error", {layout: false});
+  res.redirect(`/message/error`);
 });
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000, () => {
+  console.log("app is running")
+});

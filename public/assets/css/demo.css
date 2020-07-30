@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -101,14 +101,6 @@ h6,
   color: inherit;
   border-bottom: 1px solid currentColor;
 }
-@media (max-width: 768px) {
-  .frame-window {
-    display: none;
-  }
-  .demo-sidebar {
-    flex: 1;
-  }
-}
 
 .error {
   color: #dc3545;
@@ -119,11 +111,11 @@ h6,
   font-size: 14px;
 }
 
-.form-group{
-    margin-bottom: 24px;
+.form-group {
+  margin-bottom: 24px;
 }
 
-.closeAlert{
+.closeAlert {
   position: absolute;
   z-index: 1;
   right: 10px !important;
@@ -137,7 +129,16 @@ h6,
   border: none;
 }
 
-.closeAlert:hover{
+.closeAlert:hover {
   background: rgba(193, 193, 193, 0.842) !important;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .frame-window {
+    display: none;
+  }
+  .demo-sidebar {
+    flex: 1;
+  }
 }

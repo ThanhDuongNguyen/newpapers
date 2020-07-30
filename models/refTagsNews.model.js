@@ -5,21 +5,12 @@ const TBL_REFERENCETAGSNEWS = "referencetagsnews";
 const TBL_NEWSPAPER = "newspapers";
 
 module.exports = {
-  add: function (entity) {
-    return db.add(TBL_TAGS, entity);
-  },
   all: function () {
     return db.load(`select * from ${TBL_TAGS} ORDER BY RAND() limit 10`);
   },
 
   single: function (id) {
     return db.load(`select * from ${TBL_TAGS} where IDTags = ${id}`);
-  },
-
-  singleByTagName: function (TagName) {
-    return db.load(
-      `select IDTags from ${TBL_TAGS} where TagName like '${TagName}'`
-    );
   },
 
   tagsByNews: function (id) {
@@ -40,16 +31,22 @@ module.exports = {
     );
   },
 
-  pageByTag: function (id, limit, offset) {
-    return db.load(
-      `SELECT *, DateDiff(Now(), ${TBL_NEWSPAPER}.Day) as time FROM ${TBL_REFERENCETAGSNEWS} JOIN ${TBL_NEWSPAPER} ON ${TBL_REFERENCETAGSNEWS}.IDPage = ${TBL_NEWSPAPER}.IDPage WHERE IDTags = ${id} ORDER BY time ASC LIMIT ${limit} OFFSET ${offset}`
-    );
+  add: function (entity) {
+    return db.add(TBL_REFERENCETAGSNEWS, entity);
   },
-
-  countByTag: async function (id) {
-    const row = await db.load(
-      `SELECT count(*) as total FROM ${TBL_REFERENCETAGSNEWS} JOIN ${TBL_NEWSPAPER} ON ${TBL_REFERENCETAGSNEWS}.IDPage = ${TBL_NEWSPAPER}.IDPage WHERE IDTags = ${id}`
-    );
-    return row[0].total;
+  patch: function (entity) {
+    const condition = {
+      IDPage: entity.IDPage,
+      IDTags: entity.IDTags,
+    };
+    delete entity.IDTags, entity.IDPage;
+    return db.patch(TBL_REFERENCETAGSNEWS, entity, condition);
+  },
+  del: function (IDPage, IDTags) {
+    const condition = {
+      IDTags: IDTags,
+      IDPage: IDPage,
+    };
+    return db.del(TBL_REFERENCETAGSNEWS, condition);
   },
 };

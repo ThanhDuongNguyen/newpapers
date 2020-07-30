@@ -4,7 +4,7 @@ var router = express.Router();
 
 // Upload completed
 router.get("/upload-completed", function(req, res){
-  res.render("viewMessage/UploadCompleted", {layout: false});
+  res.render("viewMessage/Upload-Completed", {layout: false});
 })
 
 router.post("/upload-completed", function(req, res){
@@ -24,7 +24,7 @@ router.post("/success", function(req, res){
 
 // Warning
 router.get("/warning", function(req, res){
-  res.render("viewMessage/Success", {layout: false});
+  res.render("viewMessage/Warning", {layout: false});
 })
 
 router.post("/warning", function(req, res){

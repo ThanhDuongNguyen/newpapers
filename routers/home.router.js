@@ -1,12 +1,11 @@
 const express = require("express");
 const moment = require('moment');
-const homeModel = require("../models/home.model");
 const newspaperModel = require("../models/newspapers.model")
 
 var router = express.Router();
 // 
 router.get("/", async function (req, res) {
-  const listTrending = await homeModel.topNewsInWeek();
+  const listTrending = await newspaperModel.topNewsInWeek();
   const listMostView = await newspaperModel.topMostViews();
   const listMostNews = await newspaperModel.topMostNews();
 
@@ -27,14 +26,14 @@ router.get("/", async function (req, res) {
 });
 
 
-router.get("/About_us", function(req, res)
+router.get("/About", function(req, res)
 {
-  res.render("About_us");
+  res.render("About-Us");
 })
 
-router.get("/Contact_us", function(req, res)
+router.get("/Contact", function(req, res)
 {
-  res.render("Contact_us");
+  res.render("Contact-Us");
 })
 
 module.exports = router;

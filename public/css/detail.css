@@ -91,9 +91,9 @@
   width: 40%;
 }
 .expEdit{
-  font-size: 13px;
-  font-weight: 200;
-  color: gray;
+  font-size: 13px !important;
+  font-weight: 200 !important;
+  color: gray !important;
   text-align: center;
 }
 
@@ -119,3 +119,4 @@
 
   color: #555;
 }
+

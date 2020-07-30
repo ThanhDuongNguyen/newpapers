@@ -1,7 +1,7 @@
 const db = require("../utils/db");
 
 const TBL_NEWSPAPER = "newspapers";
-const TBL_TAGS = "tags";
+const TBL_CATEGORIES = "categories";
 const TOP_NEWS_NUM = 10;
 
 module.exports = {
@@ -17,14 +17,59 @@ module.exports = {
     return db.load(`select * from ${TBL_NEWSPAPER} ORDER BY View DESC limit 5`);
   },
 
-  newsByTitle: function(title){
-    return db.load(`select * from ${TBL_NEWSPAPER} where Title like '${title}'`);
+  newsByTitle: function (title) {
+    return db.load(
+      `select * from ${TBL_NEWSPAPER} where Title like '${title}'`
+    );
   },
 
-  newsBySearch: function (input){
-    return db.load(`SELECT * FROM ${TBL_NEWSPAPER} WHERE MATCH(Title, TinyContent, Content) AGAINST('${input}')`);
+  newspaperByCat: function (id) {
+    return db.load(
+      `select *, DateDiff(NOW(), ${TBL_NEWSPAPER}.Day) as time from ${TBL_NEWSPAPER} where CatID = ${id} ORDER BY time ASC limit 4`
+    );
+  },
+
+  newsBySearch: function (input) {
+    return db.load(
+      `SELECT * FROM ${TBL_NEWSPAPER} WHERE MATCH(Title, TinyContent, Content) AGAINST('${input}')`
+    );
+  },
+
+  pageBySearch: function (input, limit, offset) {
+    return db.load(
+      `SELECT * FROM ${TBL_NEWSPAPER} WHERE MATCH(Title, TinyContent, Content) AGAINST('${input}') limit ${limit} offset  ${offset}`
+    );
+  },
+
+  countBySearch: async function (input) {
+    const row = await db.load(
+      `SELECT count(*) as total FROM ${TBL_NEWSPAPER} WHERE MATCH(Title, TinyContent, Content) AGAINST('${input}')`
+    );
+    return row[0].total;
+  },
+
+  newsByAuthor: function (id) {
+    return db.load(
+      `SELECT * FROM ${TBL_NEWSPAPER} JOIN ${TBL_CATEGORIES} ON ${TBL_NEWSPAPER}.CatID = ${TBL_CATEGORIES}.CatID WHERE ${TBL_NEWSPAPER}.Author = ${id}`
+    );
+  },
+
+  newsByStatus: function (status, id) {
+    return db.load(
+      `select * from ${TBL_NEWSPAPER} JOIN ${TBL_CATEGORIES} ON ${TBL_NEWSPAPER}.CatID = ${TBL_CATEGORIES}.CatID where Status like '${status}' and Author = ${id}`
+    );
   },
   
+  hotNewsMenu: function () {
+    return db.load(`select * from ${TBL_NEWSPAPER} ORDER BY View DESC limit 4`);
+  },
+
+  topNewsInWeek: function () {
+    return db.load(
+      `SELECT * FROM ${TBL_NEWSPAPER} WHERE DateDiff(${TBL_NEWSPAPER}.Day, NOW()) <= 7 ORDER BY View DESC LIMIT ${TOP_NEWS_NUM}`
+    );
+  },
+
   add: function (entity) {
     return db.add(TBL_NEWSPAPER, entity);
   },
@@ -41,6 +86,7 @@ module.exports = {
     };
     return db.del(TBL_NEWSPAPER, condition);
   },
+<<<<<<< HEAD
   topMostViews: function(){
     return db.load(`SELECT * FROM ${TBL_NEWSPAPER} ORDER BY View DESC LIMIT ${TOP_NEWS_NUM}`);
   },
@@ -48,4 +94,11 @@ module.exports = {
   topMostNews:function(){
     return db.load(`SELECT * FROM ${TBL_NEWSPAPER} ORDER BY Day DESC LIMIT ${TOP_NEWS_NUM}`);
   }
+=======
+  topMostViews: function () {
+    return db.load(
+      `SELECT * FROM ${TBL_NEWSPAPER} ORDER BY View DESC LIMIT ${TOP_NEWS_NUM}`
+    );
+  },
+>>>>>>> 4441aceb7eb90eff42fa71a31facf044421ff9d9
 };
