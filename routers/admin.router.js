@@ -1,13 +1,10 @@
 const express = require("express");
+const classifyMdw = require("../middleware/classify.middleware");
 
 var router = express.Router();
-// 
-router.get("/", async function (req, res) {
-  res.render("viewAdmin/Dashboard", { layout:false});
-});
 
-router.get("/category", async function (req, res) {
-  res.render("viewAdmin/List-Category", { layout:false});
-});
+router.get("/", classifyMdw.checkAdminClass, async function(req, res){
+  res.render("viewAdmin/Dashboard", {layout: false});
+})
 
 module.exports = router;

@@ -1,13 +1,12 @@
 const express = require("express");
 const userModel = require("../models/user.model");
-const categoryModel = require("../models/category.model");
 const newspaperModel = require("../models/newspapers.model");
 const bcryptjs = require("bcryptjs");
 const restrict = require("../middleware/auth.middleware");
 const moment = require("moment");
 const multer = require("multer");
 const path = require("path");
-const { url } = require("inspector");
+const { add } = require("numeral");
 var router = express.Router();
 
 // Set Storage Engine
@@ -91,13 +90,29 @@ router.post("/Sign-Up", async function (req, res) {
     DOB: req.body.DOB,
   };
 
-  await userModel.add(entity);
+  const addUser = await userModel.add(entity);
+
+  console.log(addUser);
+
+  const newUser = await userModel.single(addUser.insertId);
+
+  delete newUser[0].Password;
+
+  req.session.isAuthenticated = true;
+  req.session.authUser = newUser[0];
+
+
   res.render("viewMessage/Success", { layout: false });
 });
 
 // Profile
 router.get("/Profile", restrict, async function (req, res) {
   const DOB = moment(req.session.authUser.DOB).format("L");
+
+  var listConfirmed = []; 
+  var listNotConfirmedYet = []; 
+  var listNotAccepted = []; 
+  var listPublished = []; 
 
   if (req.session.authUser.PermissionID !== 4) {
     const [list, total] = await Promise.all([
