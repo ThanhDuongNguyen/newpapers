@@ -7,13 +7,11 @@
 				</div>
 				{{!-- News --}}
 				{{#each this.listNewspaper}}
-				<div class="row pb-4">
-					<div class="col-md-5">
-						<div class="fh5co_hover_news_img">
-							<div class="fh5co_news_img"><a href="/news/{{IDPage}}"><img src="{{ImgAvatar}}" class=" w-100 h-100"
-										alt=""></a></div>
-							<div></div>
-						</div>
+				<div class="row pb-4 w-100">
+					<div class="col-md-5 cat-img-size">
+						<a href="/news/{{IDPage}}" class="d-block w-100 h-100">
+							<img src="{{ImgAvatar}}" class="fit-img" alt="Image title">
+						</a>
 					</div>
 					<div class="col-md-7 animate-box fadeInUp animated-fast">
 						<a href="/news/{{IDPage}}" class="fh5co_magna py-2"> {{Title}} </a>
