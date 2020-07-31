@@ -7,6 +7,7 @@ No media query since this is the default in Bootstrap */
         width:100%;
         height: 400px !important;
     }
+
 }
 
 /* // Medium devices (tablets, 768px and up) */
@@ -14,6 +15,10 @@ No media query since this is the default in Bootstrap */
     .carousel-item{
         width:100%;
         height: 400px !important;
+    }
+
+    .cat-img-size{
+        height: 110px;
     }
 }
 
@@ -23,6 +28,12 @@ No media query since this is the default in Bootstrap */
         width:100%;
         height: 400px !important;
     }
+    .menu-img-size{
+        height: 160px;
+    }
+    .cat-img-size{
+        height: 160px;
+    }
 }
 
 /* // Extra large devices (large desktops, 1200px and up) */
@@ -30,6 +41,9 @@ No media query since this is the default in Bootstrap */
     .carousel-item{
         width:100%;
         height: 600px !important;
+    }
+    .cat-img-size{
+        height: 180px;
     }
 }
 
