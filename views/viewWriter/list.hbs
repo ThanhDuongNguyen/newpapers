@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>24 NEWS</title>
+    {{!-- Font awesome --}}
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    {{!-- Font --}}
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    {{!-- Default CSS --}}
+    <link href="../../public/css/style_1.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../../public/css/tags.css">
+    <link rel="stylesheet" href="../../public/assets/css/demo.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body>
+    {{!-- Header --}}
+    {{!-- Topbar --}}
+    <div class="container-fluid fh5co_header_bg">
+        <div class="container h-100 d-flex justify-content-between pt-3 pb-3">
+            <div class="left-topbar">
+                <div class="d-inline-block fh5co_trading_posotion_relative"><a href="#" class="treding_btn">Trending</a>
+                </div>
+                <a href="#" class="color_fff fh5co_mediya_setting">Instagram’s big redesign goes live with
+                    black-and-white
+                    app</a>
+            </div>
+
+            <div class="right-topbar">
+                <form action="/Account/Logout" id="frmLogout" method="POST"></form>
+                {{#if lcIsAuthenticated}}
+                <div class="dropdown pl-2">
+                    <button class="btn btn-account dropdown-toggle" style="background: none; color: #ccc" type="button"
+                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="{{lcAuthUser.Avatar}}" class="avatar" alt="">
+                        {{lcAuthUser.Name}}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="/Account/Profile">Profile</a>
+                        <a class="dropdown-item" href="/writer/new">Add new News</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Sign Out</a>
+                    </div>
+                </div>
+                {{else}}
+
+                <a href="/Account/SignUp" class="topbar-item">
+                    Subscribe
+                </a>
+
+                <a href="/Account/SignIn" class="topbar-item">
+                    Login
+                </a>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    {{!-- Logo --}}
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-3 fh5co_padding_menu">
+                    <img src="../../public/images/logo.png" alt="img" class="fh5co_logo_width">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="col-sm-12">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link" id="home-tab" href="/writer/new" role="tab" aria-controls="home"
+                        aria-selected="true">Tạo bài viết mới</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                        aria-controls="profile" aria-selected="false">Danh sách bài viết </a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col-sm-1">#</th>
+                                    <th scope="col-sm-4">Tiêu đề</th>
+                                    <th scope="col-sm-2">Chuyên mục</th>
+                                    <th scope="col-sm-3">Trạng thái</th>
+                                    <th scope="col-sm-2">Thao tác</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each this.listNew}}
+                                <tr>
+                                    <th scope="row">{{inc @index}}</th>
+                                    <td>{{Title}}</td>
+                                    <td>{{CatName}}</td>
+                                    <td>{{Status}}</td>
+                                    <td>
+                                        {{#if isEdit}}
+                                        <a href="/news/edit/{{IDPage}}" type="button" class="btn btn-secondary">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        </a>
+                                        {{/if}}
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    {{!-- Footer --}}
+    <div class="container-fluid fh5co_footer_right_reserved">
+        <div class="container">
+            <div class="row  ">
+                <div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2020, All rights reserved. Design by <a
+                        href="/About">Team 6 Web2</a>. </div>
+                <div class="col-12 col-md-6 spdp_right py-4">
+                    <a href="#" class="footer_last_part_menu">Home</a>
+                    <a href="Contact_us.html" class="footer_last_part_menu">About</a>
+                    <a href="Contact_us.html" class="footer_last_part_menu">Contact</a>
+                    <a href="blog.html" class="footer_last_part_menu">Latest News</a></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../../public/js/main.js"></script>
+    {{!-- Script Bootstrap --}}
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="../../public/js/tags.js"></script>
+    {{!-- Validation --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+
+    <script src="../public/assets/js/validation.js"></script>
+
+    <script>
+        tinymce.init({
+            selector: '#txtFullDes',
+            height: 450,
+            plugins: 'paste image link autolink lists table media code',
+            menubar: false,
+            toolbar: [
+                'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | forecolor backcolor | table link image media | code',
+            ],
+        });
+    </script>
+
+</body>
+
+</html>

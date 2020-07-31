@@ -8,6 +8,11 @@ module.exports = function (app) {
       layoutsDir: "views/_layouts",
       defaultLayout: "main",
       extname: ".hbs",
+      helpers:{
+        inc: function(value){
+          return parseInt(value) + 1;
+        }
+      }
     })
   );
   app.set("view engine", "hbs");
