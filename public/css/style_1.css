@@ -684,7 +684,7 @@ a.disabled {
 }
 .footer_sub_about {
   color: #c9c8c8;
-  font-size: 14px;
+  font-size: 17px;
 }
 .fh5co_display_table_footer {
   height: 40px;
@@ -724,7 +724,7 @@ a.disabled {
 .footer_menu li > a {
   color: #fff !important;
   padding: 8px 0 !important;
-  display: -webkit-box;
+  display: inline-block;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
@@ -1009,7 +1009,7 @@ a.disabled {
   height: 350px !important;
   width: 100% !important;
   border: 0 !important;
-  frameborder: 0 !important;
+  
 }
 .contact_margin_svnit {
   margin: 20px 0 !important;
@@ -1145,4 +1145,8 @@ a.disabled {
 #fh5co-single-content p,
 #fh5co-single-content ul li {
   font-size: 1.05rem;
+}
+.btnEd{
+  font-size: 15px;
+  
 }

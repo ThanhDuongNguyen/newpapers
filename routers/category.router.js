@@ -12,7 +12,7 @@ router.get("/search", async function (req, res) {
   console.log(req.query.Search);
   console.log(req.query.page);
 
-  const page = +req.query.page;
+  var page = +req.query.page;
   if (!page || page < 0) {
     page = 1;
   }

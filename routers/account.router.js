@@ -99,6 +99,13 @@ router.post("/Sign-Up", async function (req, res) {
 router.get("/Profile", restrict, async function (req, res) {
   const DOB = moment(req.session.authUser.DOB).format("L");
 
+  // console.log(req.session);
+
+  var listConfirmed = []; 
+  var listNotConfirmedYet = []; 
+  var listNotAccepted = []; 
+  var listConfirmed = []; 
+
   if (req.session.authUser.PermissionID !== 4) {
     const [list, total] = await Promise.all([
       (listConfirmed = await newspaperModel.newsByStatus(

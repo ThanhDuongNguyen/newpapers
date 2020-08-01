@@ -6,7 +6,7 @@ const TOP_NEWS_NUM = 5;
 //
 module.exports = {
   all: function () {
-    return db.load(`select * from ${TBL_CATEGORIES}`);
+    return db.load(`select * from ${TBL_CATEGORIES} limit 6`);
   },
   single: function (id) {
     return db.load(`select * from ${TBL_CATEGORIES} where CatID = ${id}`);

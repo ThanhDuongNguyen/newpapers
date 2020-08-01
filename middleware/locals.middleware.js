@@ -21,6 +21,7 @@ module.exports = function (app) {
       (listAgricultural = await newspaperModel.newspaperByCat(2)),
       (listChildBusiness = await categoryModel.childCategory(1)),
       (listChildMineral = await categoryModel.childCategory(4)),
+      (listMostViewfooter = await newspaperModel.topMostViewfooter()),
       allCat = await categoryModel.all(),
     ]);
 
@@ -45,7 +46,7 @@ module.exports = function (app) {
     res.locals.lcChildBusiness = listChildBusiness;
     res.locals.lcChildMineral = listChildMineral;
     res.locals.lcAllCat = allCat;
-
+    res.locals.listMostViewfooter = listMostViewfooter;
     next();
   });
 };

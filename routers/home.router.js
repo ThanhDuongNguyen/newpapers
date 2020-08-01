@@ -7,6 +7,7 @@ var router = express.Router();
 router.get("/", async function (req, res) {
   const listTrending = await newspaperModel.topNewsInWeek();
   const listMostView = await newspaperModel.topMostViews();
+  const listMostViewfooter = await newspaperModel.topMostViewfooter();
   moment.locale("vi");
 
   for(var i =0;i<listTrending.length; i++){
@@ -19,6 +20,7 @@ router.get("/", async function (req, res) {
     topElse: listTrending.slice(1, listTrending.length),
     empty: listTrending.length === 0,
     listMostView: listMostView,
+    listMostViewfooter: listMostViewfooter
   });
 });
 

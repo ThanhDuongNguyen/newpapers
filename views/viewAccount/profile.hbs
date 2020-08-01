@@ -45,20 +45,20 @@
             {{lcAuthUser.Name}}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="/Account/Profile">Profile</a>
-            <a class="dropdown-item" href="/writer/new">Add new News</a>
+            <a class="dropdown-item" href="/Account/Profile">Hồ sơ</a>
+            <a class="dropdown-item" href="/writer/new">Thêm bài viết mới</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Sign Out</a>
+            <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Đăng Xuất</a>
           </div>
         </div>
         {{else}}
 
         <a href="/Account/Sign-Up" class="top-bar-item">
-          Subscribe
+          Đăng Kí
         </a>
 
         <a href="/Account/Sign-In" class="top-bar-item">
-          Login
+          Đăng Nhập
         </a>
         {{/if}}
       </div>
@@ -317,35 +317,48 @@
       {{#if Editor}}
       <div class="col-sm-9">
         <div class="main-content">
-          <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#list">
-                <i class="fa fa-list" aria-hidden="true"></i>
-                List News
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#add">
-                <i class="fa fa-plus" aria-hidden="true"></i>
-                Add
-              </a>
-            </li>
-          </ul>
+          <div class="card-title">
+            <h3>Category</h3>
+          </div>
           <!-- Tab panes -->
           <div class="tab-content">
-            <div class="tab-pane container active" id="list">
-              ...
-            </div>
-            <div class="tab-pane container fade" id="add">
-              ...
-            </div>
+           <table class="table table-striped mt-3">
+                <thead>
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col" class="hidden-item-1">Category</th>
+                    <th scope="col" class="hidden-item-2">Views</th>
+                    <th scope="col" class="hidden-item-3">Day</th>
+                    <th scope="col">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each this.listPublished}}
+                  <tr>
+                    <th scope="row">{{Title}}</th>
+                    <td class="hidden-item-1">{{CatName}}</td>
+                    <td class="hidden-item-2">{{View}}</td>
+                    <td class="hidden-item-3">{{Day}}</td>
+                    <td>
+                      <a href="/news/{{IDPage}}" class="btn btn-success">
+                        <i class="fa fa-eye" aria-hidden="true"></i></a>
+                    </td>
+                    <td>
+                      <a href="" class="btn btn-primary"> fa <i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    </td>
+                    <td>
+                      <a href="" class="btn btn-primary"> fa <i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    </td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
           </div>
         </div>
       </div>
       {{/if}}
     </div>
   </div>
-
   {{!-- Script --}}
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   {{!-- Bootstrap --}}

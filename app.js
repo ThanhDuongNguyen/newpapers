@@ -1,5 +1,6 @@
 // require package and module
 const express = require("express");
+const { request } = require("express");
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use('/writer', require("./routers/writer.router"));
 app.use('/message', require("./routers/message.router"));
 app.use('/tags', require("./routers/tag.router"));
 app.use('/admin', require("./routers/admin.router"));
+app.use('/editor', require("./routers/editor.router"));
 // Error
 app.use(function (req, res) {
   res.redirect(`/message/error`);

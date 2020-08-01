@@ -2,6 +2,7 @@ const db = require("../utils/db");
 
 const TBL_NEWSPAPER = "newspapers";
 const TBL_CATEGORIES = "categories";
+const TBL_EDITOR_CAT = "editor_cat";
 const TOP_NEWS_NUM = 10;
 
 module.exports = {
@@ -69,6 +70,11 @@ module.exports = {
       `SELECT * FROM ${TBL_NEWSPAPER} WHERE DateDiff(${TBL_NEWSPAPER}.Day, NOW()) <= 7 ORDER BY View DESC LIMIT ${TOP_NEWS_NUM}`
     );
   },
+  newByEditor: function (id){
+    return db.load(
+      `SELECT * FROM ${TBL_NEWSPAPER} nb join ${TBL_EDITOR_CAT} ed join ${TBL_CATEGORIES} cat WHERE cat.CatID=ed.CatID AND nb.CatID=ed.CatID AND ed.IDUser= ${id}`
+    );
+  },
 
   add: function (entity) {
     return db.add(TBL_NEWSPAPER, entity);
@@ -91,4 +97,9 @@ module.exports = {
       `SELECT * FROM ${TBL_NEWSPAPER} ORDER BY View DESC LIMIT ${TOP_NEWS_NUM}`
     );
   },
+  topMostViewfooter: function () {
+    return db.load(
+      `SELECT * FROM ${TBL_NEWSPAPER} ORDER BY View DESC LIMIT 5`
+    );
+  }
 };
