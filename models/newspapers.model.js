@@ -4,6 +4,7 @@ const TBL_NEWSPAPER = "newspapers";
 const TBL_CATEGORIES = "categories";
 const TBL_EDITOR_CAT = "editor_cat";
 const TOP_NEWS_NUM = 10;
+const TRENDING_NUM = 5;
 
 module.exports = {
   all: function () {
@@ -66,9 +67,7 @@ module.exports = {
   },
 
   topNewsInWeek: function () {
-    return db.load(
-      `SELECT * FROM ${TBL_NEWSPAPER} WHERE DateDiff(${TBL_NEWSPAPER}.Day, NOW()) <= 7 ORDER BY View DESC LIMIT ${TOP_NEWS_NUM}`
-    );
+    return db.load(`SELECT * FROM ${TBL_NEWSPAPER} WHERE DateDiff(${TBL_NEWSPAPER}.Day, NOW()) <= 7 ORDER BY View DESC LIMIT ${TRENDING_NUM}`);
   },
   newByEditor: function (id){
     return db.load(
@@ -92,14 +91,19 @@ module.exports = {
     };
     return db.del(TBL_NEWSPAPER, condition);
   },
-  topMostViews: function () {
-    return db.load(
-      `SELECT * FROM ${TBL_NEWSPAPER} ORDER BY View DESC LIMIT ${TOP_NEWS_NUM}`
-    );
+  topMostViews: function(){
+    return db.load(`SELECT * FROM ${TBL_NEWSPAPER} ORDER BY View DESC LIMIT ${TOP_NEWS_NUM}`);
   },
   topMostViewfooter: function () {
     return db.load(
       `SELECT * FROM ${TBL_NEWSPAPER} ORDER BY View DESC LIMIT 5`
     );
+    },
+  topMostNews:function(){
+    return db.load(`SELECT * FROM ${TBL_NEWSPAPER} ORDER BY Day DESC LIMIT ${TOP_NEWS_NUM}`);
+  },
+
+  top1NewsEachCat:function(){
+    return db.load(`SELECT ${TBL_NEWSPAPER}.* FROM (SELECT CatID, MAX(Day) AS last_day FROM ${TBL_NEWSPAPER} GROUP BY CatID) AS last_cat INNER JOIN ${TBL_NEWSPAPER} ON ${TBL_NEWSPAPER}.CatID = last_cat.CatID AND ${TBL_NEWSPAPER}.Day = last_cat.last_day`);
   }
 };

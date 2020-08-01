@@ -5,6 +5,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>24 NEWS</title>
+
+  {{!-- Home css --}}
+  <link href="../../public/css/home.css" rel="stylesheet" type="text/css" />
   {{!-- Media query --}}
   <link href="../../public/css/media_query.css" rel="stylesheet" type="text/css" />
   {{!-- Font awesome --}}
@@ -13,9 +16,6 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.css" rel="stylesheet" type="text/css" />
   {{!-- Font --}}
   <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-  {{!-- Owl carousel --}}
-  <link href="../../public/css/owl.carousel.css" rel="stylesheet" type="text/css" />
-  <link href="../../public/css/owl.theme.default.css" rel="stylesheet" type="text/css" />
   {{!-- Default CSS --}}
   <link rel="stylesheet" href="../../public/css/detail.css">
   <link rel="stylesheet" href="../../public/css/style_1.css" type="text/css" />
@@ -48,6 +48,7 @@
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="/Account/Profile">Hồ Sơ</a>
             <a class="dropdown-item" href="/writer/new">Thêm Tin Mới</a>
+            <a class="dropdown-item" href="/admin">Quản lý</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Đăng Xuất</a>
           </div>
@@ -133,8 +134,8 @@
                 {{#each lcHotNews}}
                 <div class="col-sm-3">
                   <div class="h-100">
-                    <a href="/news/{{IDPage}}" class="d-block sub-menu-img">
-                      <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-60">
+                    <a href="/news/{{IDPage}}" class="d-block menu-img-size">
+                      <img src="{{ImgAvatar}}" class="fit-img" alt="Image title">
                     </a>
                     <div class="sub-menu-item-content">
                       <a href="/news/{{IDPage}}">
@@ -160,8 +161,8 @@
                 {{#each lcSeafood}}
                 <div class="col-sm-3">
                   <div class="h-100">
-                    <a href="/news/{{IDPage}}" class="d-block sub-menu-img">
-                      <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-60">
+                    <a href="/news/{{IDPage}}" class="d-block menu-img-size">
+                      <img src="{{ImgAvatar}}" class="fit-img" alt="Image title">
                     </a>
                     <div class="sub-menu-item-content">
                       <a href="/news/{{IDPage}}">
@@ -187,8 +188,8 @@
                 {{#each lcAgricultural}}
                 <div class="col-sm-3">
                   <div class="h-100">
-                    <a href="/news/{{IDPage}}" class="d-block sub-menu-img">
-                      <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-60">
+                    <a href="/news/{{IDPage}}" class="d-block menu-img-size">
+                      <img src="{{ImgAvatar}}" class="fit-img" alt="Image title"">
                     </a>
                     <div class="sub-menu-item-content">
                       <a href="/news/{{IDPage}}">

@@ -4,7 +4,6 @@ const newspaperModel = require("../models/newspapers.model");
 const tagModel = require("../models/tag.model");
 const moment = require("moment");
 const defaults = require("../config/default.json");
-const { value } = require("numeral");
 
 var router = express.Router();
 
