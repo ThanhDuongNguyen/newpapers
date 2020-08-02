@@ -3,42 +3,58 @@ No media query since this is the default in Bootstrap */
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
-  .carousel-item {
-    width: 100%;
-    height: 400px !important;
-  }
+    .carousel-item{
+        width:100%;
+        height: 400px !important;
+    }
+
 }
 
 /* // Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-  .carousel-item {
-    width: 100%;
-    height: 400px !important;
-  }
+    .carousel-item{
+        width:100%;
+        height: 400px !important;
+    }
+
+    .cat-img-size{
+        height: 110px;
+    }
 }
 
 /* // Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-  .carousel-item {
-    width: 100%;
-    height: 400px !important;
-  }
+    .carousel-item{
+        width:100%;
+        height: 400px !important;
+    }
+    .menu-img-size{
+        height: 160px;
+    }
+    .cat-img-size{
+        height: 160px;
+    }
 }
 
 /* // Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-  .carousel-item {
-    width: 100%;
-    height: 600px !important;
-  }
+    .carousel-item{
+        width:100%;
+        height: 600px !important;
+    }
+    .cat-img-size{
+        height: 180px;
+    }
 }
 
-.fit-img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
+.fit-img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
 }
 
 .link{
-	color: #ffffff;
+    color: #fff;
+    font-size: 26px;
+    font-weight: bold;
 }
