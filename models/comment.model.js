@@ -16,6 +16,11 @@ module.exports = {
   commentByNews: function (id){
     return db.load(`SELECT DISTINCT ${TBL_USERS}.Name, ${TBL_USERS}.Avatar, ${TBL_COMMENT}.Comment, ${TBL_COMMENT}.Time FROM ${TBL_COMMENT} JOIN ${TBL_USERS} ON ${TBL_COMMENT}.IDUser = ${TBL_USERS}.IDUser WHERE ${TBL_COMMENT}.IDPage = ${id} limit 4`)
   },
+
+  countAll: async function(){
+    const row = await db.load(`select count(*) as totalComment from ${TBL_COMMENT}`);
+    return row[0].totalComment;
+  },
   
   add: function (entity) {
     return db.add(TBL_COMMENT, entity);

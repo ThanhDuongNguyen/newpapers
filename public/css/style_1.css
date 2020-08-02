@@ -714,7 +714,7 @@ a.disabled {
 .footer_menu li > a {
   color: #fff !important;
   padding: 8px 0 !important;
-  display: inline-block;
+  display: -webkit-box;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
@@ -725,7 +725,7 @@ a.disabled {
 .footer_menu li > a:focus {
   color: #f5bc04 !important;
   padding: 8px 0 !important;
-  display: -webkit-box;
+  display: inline-block;
   margin-left: 5px;
 }
 .footer_post {
@@ -1010,7 +1010,6 @@ a.disabled {
   height: 350px !important;
   width: 100% !important;
   border: 0 !important;
-  
 }
 .contact_margin_svnit {
   margin: 20px 0 !important;
@@ -1147,7 +1146,7 @@ a.disabled {
 #fh5co-single-content ul li {
   font-size: 1.05rem;
 }
+
 .btnEd{
   font-size: 15px;
-  
-}
+} 

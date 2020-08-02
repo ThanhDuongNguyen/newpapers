@@ -101,7 +101,6 @@ router.post("/Sign-Up", async function (req, res) {
   req.session.isAuthenticated = true;
   req.session.authUser = newUser[0];
 
-
   res.render("viewMessage/Success", { layout: false });
 });
 

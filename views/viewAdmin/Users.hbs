@@ -12,14 +12,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
   {{!-- Bootstrap CSS --}}
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  {{!-- Animated --}}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css">
-  {{!-- Data table --}}
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 
   <link rel="stylesheet" href="../../public/assets/css/admin.css">
-  <link rel="stylesheet" href="../../public/css/style_1.css">
   <link rel="stylesheet" href="../../public/assets/css/table.css">
+  <link rel="stylesheet" href="../../public/css/style_1.css">
 
 
 </head>
@@ -43,7 +39,7 @@
             <nav class="w-100">
               <ul class="list">
                 <li class="list-item">
-                  <a href="/admin" class="list-link active">
+                  <a href="/admin" class="list-link">
                     <i class="fa fa-tachometer" aria-hidden="true"></i>
                     Bảng điều khiển
                   </a>
@@ -67,7 +63,7 @@
                   </a>
                 </li>
                 <li class="list-item">
-                  <a href="/admin/users" class="list-link">
+                  <a href="/admin/users" class="list-link active">
                     <i class="fa fa-user" aria-hidden="true"></i>
                     Người dùng
                   </a>
@@ -117,7 +113,7 @@
                 <div class="collapse navbar-collapse position-relative" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                      <a href="/admin" class="nav-link active">
+                      <a href="/admin" class="nav-link">
                         <i class="fa fa-tachometer" aria-hidden="true"></i>
                         Bảng điều khiển
                       </a>
@@ -141,7 +137,7 @@
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a href="/admin/users" class="nav-link">
+                      <a href="/admin/users" class="nav-link active">
                         <i class="fa fa-user" aria-hidden="true"></i>
                         Người dùng
                       </a>
@@ -164,83 +160,96 @@
 
         {{!-- Main content --}}
         <div class="col-sm-12 col-lg-10 main-content">
-          {{!-- Main content PC --}}
           <div class="container">
             {{!-- Top bar --}}
             <div class="top-bar-admin mb-4">
-              <h4>Bảng điều khiển</h4>
+              <h4>Danh Mục</h4>
               <form class="search-form my-2 my-lg-0" method="GET" action="/Category/search">
-                <input class="form-control mr-sm-2" type="text" name="Search" placeholder="Tìm kiếm">
+                <input class="form-control mr-sm-2" type="text" name="Search" placeholder="Search">
                 <button class="btn-search" type="submit">
                   <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
               </form>
             </div>
 
-            {{!-- Alert --}}
-            <div class="alert alert-danger banner" role="alert">
-              <div class="banner-left">
-                <h3>Chào mừng trở lại {{lcAuthUser.Name}}!</h3>
-                <p class="banner-text text-dark mt-4">
-                  Bạn đã đạt được <span class="parameter">80%</span> chỉ tiêu trong tuần.
-                </p>
-                <p class="banner-text text-dark mb-3">Hãy giữ vững kết quả và cải thiện nó.</p>
-              </div>
-              <div class="banner-right">
-                <img src="../../public/images/marginalia-financial-report.png" alt="">
-              </div>
-            </div>
+            <a href="#" type="button" class="btn btn-outline-success mb-3">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+              Thêm mới
+            </a>
 
-            {{!-- Chart --}}
-            <div class="chart mb-4">
-              <div class="card text-left">
-                <div class="card-body">
-                  <canvas id="myChart"></canvas>
+            {{!-- Card --}}
+            <div class="card">
+              <div class="card-header">
+                <h5>Bảng thẻ</h5>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive-vertical shadow-z-1">
+                  <!-- Table starts here -->
+                  <table id="table" class="table table-hover table-mc-light-blue">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Tên</th>
+                        <th>Email</th>
+                        <th>Ngày sinh</th>
+                        <th>Phân quyền</th>
+                        <th>Bút danh</th>
+                        <th>&nbsp;</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {{#each this.listUser}}
+                      <tr>
+                        <th>{{IDUser}}</th>
+                        <td>{{Name}}</td>
+                        <td>{{Email}}</td>
+                        <td>{{DOB}}</td>
+                        <td>{{Permission}}</td>
+                        <td>{{Alias}}</td>
+                        <td class="text-right action action-overview">
+                          <form action="/admin/user/delete?id={{IDUser}}" id="frmDelete" method="POST"></form>
+                          <a href="/admin/users/detail" class="btn btn-success">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                          </a>
+                          <a href="/admin/users/edit" class="btn btn-primary">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                          </a>
+                          <a class="btn btn-danger" href="javascript: $('#frmDelete').submit()">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      {{/each}}
+                    </tbody>
+                  </table>
                 </div>
               </div>
-            </div>
-
-            {{!-- Feature --}}
-            <div class="row feature">
-              <div class="col-xl-3 col-sm-6 mb-3">
-                <div class="card text-white bg-primary o-hidden h-100">
-                  <div class="card-body">
-                    <div class="card-body-icon">
-                      <i class="fa fa-fw fa-comments"></i>
-                    </div>
-                    <div class="title-feature-card">{{this.totalComment}} Bình luận!</div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 mb-3">
-                <div class="card text-white bg-warning o-hidden h-100">
-                  <div class="card-body">
-                    <div class="card-body-icon">
-                      <i class="fa fa-fw fa-list"></i>
-                    </div>
-                    <div class="title-feature-card">{{this.totalNews}} Bài viết mới!</div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 mb-3">
-                <div class="card text-white bg-success o-hidden h-100">
-                  <div class="card-body">
-                    <div class="card-body-icon">
-                      <i class="fa fa-fw fa-shopping-cart"></i>
-                    </div>
-                    <div class="title-feature-card">{{this.totalNewsPremium}} Tin tức cao cấp!</div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 mb-3">
-                <div class="card text-white bg-danger o-hidden h-100">
-                  <div class="card-body">
-                    <div class="card-body-icon">
-                      <i class="fa fa-fw fa-support"></i>
-                    </div>
-                    <div class="title-feature-card">{{this.totalSubscriber}} Đăng ký mới!</div>
-                  </div>
-                </div>
+              <div class="card-footer">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination justify-content-end mb-0">
+                    {{#if prev}}
+                    <li class="page-item">
+                      <a class="page-link" href="/admin/users?page={{prev_value}}">Previous</a>
+                    </li>
+                    {{else}}
+                    <li class="page-item disabled">
+                      <a class="page-link" href="/admin/users?page={{prev_value}}">Previous</a>
+                    </li>
+                    {{/if}}
+                    <li class="page-item m-2">
+                      <span>{{this.page}} / {{this.nPages}}</span>
+                    </li>
+                    {{#if next}}
+                    <li class="page-item">
+                      <a class="page-link" href="/admin/users?page={{next_value}}">Next</a>
+                    </li>
+                    {{else}}
+                    <li class="page-item disabled">
+                      <a class="page-link" href="/admin/users?page={{next_value}}">Next</a>
+                    </li>
+                    {{/if}}
+                  </ul>
+                </nav>
               </div>
             </div>
           </div>
@@ -255,51 +264,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-  {{!-- Chart JS --}}
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-  <script src="../../public/assets/js/admin.js"></script>
-
-  <script type="text/javascript">
-    localStorage.setItem("nViewInYearJson", {{ nViewInYearJson }})
-    var ctx = document.getElementById("myChart").getContext("2d");
-    var lcStorage = localStorage.getItem("nViewInYearJson");
-    console.log("lcStorage", lcStorage);
-    var nNews = lcStorage.split(",");
-    var myChart = new Chart(ctx, {
-      type: "line",
-      data: {
-        labels: [
-          "Tháng 1",
-          "Tháng 2",
-          "Tháng 3",
-          "Tháng 4",
-          "Tháng 5",
-          "Tháng 6",
-          "Tháng 7",
-          "Tháng 8",
-          "Tháng 9",
-          "Tháng 10",
-          "Tháng 11",
-          "Tháng 12",
-        ],
-        datasets: [
-          {
-            label: "Số lượt xem trong năm", // Name the series
-            data: nNews, // Specify the data values array
-            fill: false,
-            borderColor: "#2196f3", // Add custom color border (Line)
-            backgroundColor: "#2196f3", // Add custom color background (Points and Fill)
-            borderWidth: 1 // Specify bar border width
-          }
-        ]
-      },
-      options: {
-        responsive: true, // Instruct chart js to respond nicely.
-        maintainAspectRatio: false // Add to prevent default behaviour of full-width/height
-      }
-    });
-
-  </script>
+  <script src="../../public/assets/js/table.js"></script>
 </body>
 
 </html>

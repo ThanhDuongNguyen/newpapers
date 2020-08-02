@@ -2,6 +2,7 @@ const db = require("../utils/db");
 
 const TBL_NEWSPAPER = "newspapers";
 const TBL_CATEGORIES = "categories";
+const TBL_USERS = "users";
 const TBL_EDITOR_CAT = "editor_cat";
 const TOP_NEWS_NUM = 10;
 const TRENDING_NUM = 5;
@@ -37,9 +38,21 @@ module.exports = {
     );
   },
 
+  newByEditor: function (id){
+    return db.load(
+      `SELECT * FROM ${TBL_NEWSPAPER} nb join ${TBL_EDITOR_CAT} ed join ${TBL_CATEGORIES} cat WHERE cat.CatID=ed.CatID AND nb.CatID=ed.CatID AND ed.IDUser= ${id}`
+    );
+  },
+
   pageBySearch: function (input, limit, offset) {
     return db.load(
       `SELECT * FROM ${TBL_NEWSPAPER} WHERE MATCH(Title, TinyContent, Content) AGAINST('${input}') limit ${limit} offset  ${offset}`
+    );
+  },
+
+  pageAllNews: function (limit, offset) {
+    return db.load(
+      `select * from ${TBL_NEWSPAPER} join ${TBL_CATEGORIES} on ${TBL_NEWSPAPER}.CatID = ${TBL_CATEGORIES}.CatID join ${TBL_USERS} on ${TBL_NEWSPAPER}.Author = ${TBL_USERS}.IDUSer limit ${limit} offset  ${offset}`
     );
   },
 
@@ -49,6 +62,22 @@ module.exports = {
     );
     return row[0].total;
   },
+
+  countByMonth: async function(month){
+    const row = await db.load(`SELECT SUM(View) as totalViewInMonth FROM ${TBL_NEWSPAPER} WHERE month(Day) = ${month}`);
+    return row[0].totalViewInMonth;
+  },
+
+  countAllNews: async function(){
+    const row = await db.load(`select count(*) as totalNews from ${TBL_NEWSPAPER}`);
+    return row[0].totalNews;
+  },
+
+  countPremium: async function(){
+    const row = await db.load(`select count(*) as totalNewsPremium from ${TBL_NEWSPAPER} where Premium = 1`);
+    return row[0].totalNewsPremium;
+  },
+
 
   newsByAuthor: function (id) {
     return db.load(
@@ -69,9 +98,10 @@ module.exports = {
   topNewsInWeek: function () {
     return db.load(`SELECT * FROM ${TBL_NEWSPAPER} WHERE DateDiff(${TBL_NEWSPAPER}.Day, NOW()) <= 7 ORDER BY View DESC LIMIT ${TRENDING_NUM}`);
   },
-  newByEditor: function (id){
+
+  topMostViewFooter: function () {
     return db.load(
-      `SELECT * FROM ${TBL_NEWSPAPER} nb join ${TBL_EDITOR_CAT} ed join ${TBL_CATEGORIES} cat WHERE cat.CatID=ed.CatID AND nb.CatID=ed.CatID AND ed.IDUser= ${id}`
+      `SELECT * FROM ${TBL_NEWSPAPER} ORDER BY View DESC LIMIT 5`
     );
   },
 
@@ -94,11 +124,7 @@ module.exports = {
   topMostViews: function(){
     return db.load(`SELECT * FROM ${TBL_NEWSPAPER} ORDER BY View DESC LIMIT ${TOP_NEWS_NUM}`);
   },
-  topMostViewfooter: function () {
-    return db.load(
-      `SELECT * FROM ${TBL_NEWSPAPER} ORDER BY View DESC LIMIT 5`
-    );
-    },
+
   topMostNews:function(){
     return db.load(`SELECT * FROM ${TBL_NEWSPAPER} ORDER BY Day DESC LIMIT ${TOP_NEWS_NUM}`);
   },

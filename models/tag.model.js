@@ -5,9 +5,6 @@ const TBL_REFERENCETAGSNEWS = "referencetagsnews";
 const TBL_NEWSPAPER = "newspapers";
 
 module.exports = {
-  add: function (entity) {
-    return db.add(TBL_TAGS, entity);
-  },
   all: function () {
     return db.load(`select * from ${TBL_TAGS} ORDER BY RAND() limit 10`);
   },
@@ -46,10 +43,40 @@ module.exports = {
     );
   },
 
+  pageAllTag: function (limit, offset) {
+    return db.load(
+      `select * from ${TBL_TAGS} LIMIT ${limit} OFFSET ${offset}`
+    );
+  },
+
   countByTag: async function (id) {
     const row = await db.load(
       `SELECT count(*) as total FROM ${TBL_REFERENCETAGSNEWS} JOIN ${TBL_NEWSPAPER} ON ${TBL_REFERENCETAGSNEWS}.IDPage = ${TBL_NEWSPAPER}.IDPage WHERE IDTags = ${id}`
     );
     return row[0].total;
+  },
+
+  countAllTag: async function (id) {
+    const row = await db.load(
+      `select count(*) as totalTags from ${TBL_TAGS}`
+    );
+    return row[0].totalTags;
+  },
+
+  add: function (entity) {
+    return db.add(TBL_TAGS, entity);
+  },
+  patch: function (entity) {
+    const condition = {
+      IDComment: entity.IDComment,
+    };
+    delete entity.IDComment;
+    return db.patch(TBL_COMMENT, entity, condition);
+  },
+  del: function (id) {
+    const condition = {
+      IDComment: id,
+    };
+    return db.del(TBL_COMMENT, condition);
   },
 };

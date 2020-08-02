@@ -6,8 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>24 NEWS</title>
 
-  {{!-- Home css --}}
-  <link href="../../public/css/home.css" rel="stylesheet" type="text/css" />
+
   {{!-- Media query --}}
   <link href="../../public/css/media_query.css" rel="stylesheet" type="text/css" />
   {{!-- Font awesome --}}
@@ -21,7 +20,7 @@
   <link rel="stylesheet" href="../../public/css/style_1.css" type="text/css" />
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <!-- Modernizr JS -->
+  {{{_sections.css}}}
 
 </head>
 
@@ -95,7 +94,7 @@
             </a>
           </div>
           <div class="text-center d-inline-block">
-            <a href="https://fb.com/" target="_blank" class="fh5co_display_table">
+            <a href="https://www.facebook.com/ptc719/" target="_blank" class="fh5co_display_table">
               <div class="fh5co_verticle_middle"><i class="fa fa-facebook"></i></div>
             </a>
           </div>
@@ -134,8 +133,8 @@
                 {{#each lcHotNews}}
                 <div class="col-sm-3">
                   <div class="h-100">
-                    <a href="/news/{{IDPage}}" class="d-block menu-img-size">
-                      <img src="{{ImgAvatar}}" class="fit-img" alt="Image title">
+                    <a href="/news/{{IDPage}}" class="d-block sub-menu-img">
+                      <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
                     </a>
                     <div class="sub-menu-item-content">
                       <a href="/news/{{IDPage}}">
@@ -161,8 +160,8 @@
                 {{#each lcSeafood}}
                 <div class="col-sm-3">
                   <div class="h-100">
-                    <a href="/news/{{IDPage}}" class="d-block menu-img-size">
-                      <img src="{{ImgAvatar}}" class="fit-img" alt="Image title">
+                    <a href="/news/{{IDPage}}" class="d-block sub-menu-img">
+                      <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
                     </a>
                     <div class="sub-menu-item-content">
                       <a href="/news/{{IDPage}}">
@@ -188,8 +187,8 @@
                 {{#each lcAgricultural}}
                 <div class="col-sm-3">
                   <div class="h-100">
-                    <a href="/news/{{IDPage}}" class="d-block menu-img-size">
-                      <img src="{{ImgAvatar}}" class="fit-img" alt="Image title"">
+                    <a href="/news/{{IDPage}}" class="d-block sub-menu-img">
+                      <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
                     </a>
                     <div class="sub-menu-item-content">
                       <a href="/news/{{IDPage}}">
@@ -262,19 +261,32 @@
         <div class="col-12 col-md-4 col-lg-4">
           <div class="footer_main_title py-3"> Giới Thiệu</div>
           <div class="footer_sub_about pb-3"> Nhóm số 6 môn Lập trình web 2.
-
-          </div>
-          <div class="footer_sub_about pb-3">
-            <ul class="footer_menu">
-              <li>1760220 - Phạm Quang Trung</li>
-              <li>1760271 - Phan Thế Công</li>
-              <li>1760287 - Nguyễn Hữu Đức</li>
-              <li>1760290 - Nguyễn Thanh Dương</li>
+            <ul class="footer-menu">
+              <ul class="footer_menu">
+                <li>1760220 - Phạm Quang Trung</li>
+                <li>1760271 - Phan Thế Công</li>
+                <li>1760287 - Nguyễn Hữu Đức</li>
+                <li>1760290 - Nguyễn Thanh Dương</li>
+              </ul>
             </ul>
+          </div>
+          <div class="footer_mediya_icon">
+            <div class="text-center d-inline-block"><a class="fh5co_display_table_footer">
+                <div class="fh5co_verticle_middle"><i class="fa fa-linkedin"></i></div>
+              </a></div>
+            <div class="text-center d-inline-block"><a class="fh5co_display_table_footer">
+                <div class="fh5co_verticle_middle"><i class="fa fa-google-plus"></i></div>
+              </a></div>
+            <div class="text-center d-inline-block"><a class="fh5co_display_table_footer">
+                <div class="fh5co_verticle_middle"><i class="fa fa-twitter"></i></div>
+              </a></div>
+            <div class="text-center d-inline-block"><a class="fh5co_display_table_footer">
+                <div class="fh5co_verticle_middle"><i class="fa fa-facebook"></i></div>
+              </a></div>
           </div>
         </div>
         <div class="col-12 col-md-4 col-lg-4">
-          <div class="footer_main_title py-3">Danh Mục</div>
+          <div class="footer_main_title py-3"> Danh mục</div>
           <ul class="footer_menu">
             {{#each lcAllCat}}
             <li><a href="/category/{{CatID}}" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; {{CatName}}</a>
@@ -282,9 +294,9 @@
             {{/each}}
           </ul>
         </div>
-        <div class="col-12 col-md-4 col-lg-4 position_footer_relative">
+        <div class="col-12 col-md-4 col-lg-4">
           <div class="footer_main_title py-3"> Bài viết được xem nhiều nhất</div>
-          {{#each this.listMostViewfooter}}
+          {{#each this.listMostViewFooter}}
           <div class="footer_makes_sub_font">
             <div class="color_fff"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{Day}}</div>
             <div class=""><a href="/news/{{IDPage}}" class="footer_post pb-4">{{Title}}</a></div>
@@ -297,7 +309,7 @@
           <form method="POST" class="form-subscribe d-flex">
             <input type="text" class="form-control subscribe-input" placeholder="Enter your email..."
               aria-describedby="basic-addon1">
-            <button type="submit"> <i class="fa fa-paper-plane-o"></i>&nbsp;&nbsp;Subscribe</button>
+            <button type="submit"> <i class="fa fa-paper-plane-o"></i>&nbsp;&nbsp;Đăng ký</button>
           </form>
         </div>
       </div>
@@ -321,11 +333,7 @@
     {{!-- Script --}}
     <script src="js/modernizr-3.5.0.min.js"></script>
     {{!-- Jquery --}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    {{!-- Owl carousel JS --}}
-    <script src="../../public/js/owl.carousel.min.js"></script>
-    <!-- Waypoints -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
     <!-- Main -->
     <script src="../../public/js/main.js"></script>
     {{!-- Script Bootstrap --}}

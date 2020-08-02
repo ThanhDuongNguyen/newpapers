@@ -1,6 +1,5 @@
 // require package and module
 const express = require("express");
-const { request } = require("express");
 
 const app = express();
 
