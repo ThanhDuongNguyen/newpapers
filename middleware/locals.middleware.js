@@ -1,6 +1,7 @@
 const newspaperModel = require("../models/newspapers.model");
 const categoryModel = require("../models/category.model");
 const moment = require("moment");
+const { footerByCat } = require("../models/category.model");
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -23,6 +24,7 @@ module.exports = function (app) {
       (listChildMineral = await categoryModel.childCategory(4)),
       (listMostViewFooter = await newspaperModel.topMostViewFooter()),
       (allCat = await categoryModel.all()),
+      footerbyCat = await categoryModel.footerByCat(),
     ]);
 
     for (const seafood of listSeafood) {
@@ -47,7 +49,7 @@ module.exports = function (app) {
     res.locals.lcChildMineral = listChildMineral;
     res.locals.lcAllCat = allCat;
     res.locals.listMostViewFooter = listMostViewFooter;
-
+    res.locals.lcFooterCat = footerbyCat;
     next();
   });
 };
