@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+.Premium {
+  color: ORANGE;
+  border: 2px solid ORANGE;
+  border-radius: 5%;
+  background-color: black;
+  padding: 7px;
+}
 a:hover {
   color: #f5bc04 !important;
 

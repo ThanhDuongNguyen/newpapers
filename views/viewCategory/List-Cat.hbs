@@ -43,9 +43,11 @@
 				{{!-- Popular --}}
 				{{!-- Popular --}}
 				{{#each this.listPopular}}
-				<div class="row pb-3 popular">
-					<div class="col-5 align-self-center h-100">
-						<a href="/news/{{IDPage}}" class="d-block"><img src="{{ImgAvatar}}" alt="Image Popular" class="fh5co_most_trading"></a>
+				<div class="row pb-3">
+					<div class="col popular-img-size">
+						<a href="/news/{{IDPage}}" class="d-block w-100 h-100">
+							<img src="{{ImgAvatar}}" class="fit-img" alt="Image title">
+						</a>
 					</div>
 					<div class="col-7 paddding">
 						<a href="/news/{{IDPage}}">

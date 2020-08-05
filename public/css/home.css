@@ -20,6 +20,10 @@ No media query since this is the default in Bootstrap */
     .cat-img-size{
         height: 110px;
     }
+    .popular-img-size{
+        width: 30px;
+        height: 90px;
+    }
 }
 
 /* // Large devices (desktops, 992px and up) */
@@ -34,6 +38,9 @@ No media query since this is the default in Bootstrap */
     .cat-img-size{
         height: 160px;
     }
+    .popular-img-size{
+        height: 110px;
+    }
 }
 
 /* // Extra large devices (large desktops, 1200px and up) */
@@ -44,6 +51,9 @@ No media query since this is the default in Bootstrap */
     }
     .cat-img-size{
         height: 180px;
+    }
+    .popular-img-size{
+        height: 110px;
     }
 }
 
@@ -56,5 +66,13 @@ No media query since this is the default in Bootstrap */
 .link{
     color: #fff;
     font-size: 26px;
+    font-weight: bold;
+}
+
+.font-carousel {
+    font-size: 19px;
+    color: #fff;
+    word-wrap: break-word;
+    text-decoration: none;
     font-weight: bold;
 }
