@@ -21,4 +21,10 @@ router.get("/", restrict, async function (req, res) {
   });
 });
 
+router.get("/rafity", async function(req, res) {
+  res.render("viewEditer/ratify", {
+    layout: false,
+  });
+});
+
 module.exports = router;

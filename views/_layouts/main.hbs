@@ -46,21 +46,21 @@
             {{lcAuthUser.Name}}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="/Account/Profile">Hồ Sơ</a>
-            <a class="dropdown-item" href="/writer/new">Thêm Tin Mới</a>
+            <a class="dropdown-item" href="/Account/Profile">Hồ sơ</a>
+            <a class="dropdown-item" href="/writer/new">Thêm tin mới</a>
             <a class="dropdown-item" href="/admin">Quản lý</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Đăng Xuất</a>
+            <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Đăng xuất</a>
           </div>
         </div>
         {{else}}
 
         <a href="/Account/Sign-Up" class="topbar-item border-right">
-          Đăng Ký
+          Đăng kí
         </a>
 
         <a href="/Account/Sign-In" class="topbar-item">
-          Đăng Nhập
+          Đăng nhập
         </a>
         {{/if}}
       </div>
@@ -270,25 +270,11 @@
 
             </ul>
           </div>
-          <div class="footer_mediya_icon">
-            <div class="text-center d-inline-block"><a class="fh5co_display_table_footer">
-                <div class="fh5co_verticle_middle"><i class="fa fa-linkedin"></i></div>
-              </a></div>
-            <div class="text-center d-inline-block"><a class="fh5co_display_table_footer">
-                <div class="fh5co_verticle_middle"><i class="fa fa-google-plus"></i></div>
-              </a></div>
-            <div class="text-center d-inline-block"><a class="fh5co_display_table_footer">
-                <div class="fh5co_verticle_middle"><i class="fa fa-twitter"></i></div>
-              </a></div>
-            <div class="text-center d-inline-block"><a class="fh5co_display_table_footer">
-                <div class="fh5co_verticle_middle"><i class="fa fa-facebook"></i></div>
-              </a></div>
-          </div>
         </div>
         <div class="col-12 col-md-4 col-lg-4">
           <div class="footer_main_title py-3"> Category</div>
           <ul class="footer_menu">
-            {{#each lcAllCat}}
+            {{#each this.lcFooterCat}}
             <li><a href="/category/{{CatID}}" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; {{CatName}}</a>
             </li>
             {{/each}}
@@ -323,11 +309,7 @@
       <div class="row  ">
         <div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2020, All rights reserved. Design by <a
             href="/About">Team 6 Web2</a>. </div>
-        <div class="col-12 col-md-6 spdp_right py-4">
-          <a href="#" class="footer_last_part_menu">Home</a>
-          <a href="Contact_us.html" class="footer_last_part_menu">About</a>
-          <a href="Contact_us.html" class="footer_last_part_menu">Contact</a>
-          <a href="blog.html" class="footer_last_part_menu">Latest News</a></div>
+        
       </div>
     </div>
   </div>

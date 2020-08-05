@@ -38,7 +38,9 @@ module.exports = {
     return row[0].total;
   },
 
-
+  footerByCat: function(){
+    return db.load(`select * from ${TBL_CATEGORIES} limit 6`);
+  },
   add: function (entity) {
     return db.add(TBL_CATEGORIES, entity);
   },

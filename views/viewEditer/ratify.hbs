@@ -39,20 +39,20 @@
             {{lcAuthUser.Name}}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="/Account/Profile">Profile</a>
-            <a class="dropdown-item" href="/writer/new">Add new News</a>
+            <a class="dropdown-item" href="/Account/Profile">Hồ sơ</a>
+            <a class="dropdown-item" href="/writer/new">Thêm bài viết mới</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Sign Out</a>
+            <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Đăng xuấy</a>
           </div>
         </div>
         {{else}}
 
         <a href="/Account/SignUp" class="topbar-item">
-          Đăng Kí
+          Đăng kí
         </a>
 
         <a href="/Account/SignIn" class="topbar-item">
-          Đăng Nhập
+          Đăng nhập
         </a>
         {{/if}}
       </div>
@@ -72,7 +72,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
     <div class="container">
       <a class="navbar-brand" href="/">
-        Home
+        Trang chủ
       </a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -83,23 +83,25 @@
       <div class="collapse navbar-collapse position-relative" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Hot News</a>
-            <div class="sub-menu ">
-              <div class="sub-menu-content">
+            <a class="nav-link" href="#">Tin Tức Nóng</a>
+            <div class="sub-menu">
+              <div class="row">
                 {{#each lcHotNews}}
-                <div class="sub-menu-item">
-                  <a href="/news/{{IDPage}}" class="d-block h-50">
-                    <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
-                  </a>
-                  <div class="sub-menu-item-content h-50">
-                    <a href="/news/{{IDPage}}">
-                      {{Title}}
+                <div class="col-sm-3">
+                  <div class="h-100">
+                    <a href="/news/{{IDPage}}" class="d-block sub-menu-img">
+                      <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
                     </a>
-                    <p class="content-option">
-                      <a href="/category/{{CatID}}">{{CatID}}</a>
-                      <span>-</span>
-                      <span>{{Day}}</span>
-                    </p>
+                    <div class="sub-menu-item-content">
+                      <a href="/news/{{IDPage}}">
+                        {{Title}}
+                      </a>
+                      <p class="content-option">
+                        <a href="/category/{{CatID}}">{{CatID}}</a>
+                        <span>-</span>
+                        <span>{{Day}}</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
                 {{/each}}
@@ -108,21 +110,25 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/Category/3">Seafood News</a>
+            <a class="nav-link" href="/Category/3">Hải Sản</a>
             <div class="sub-menu">
-              <div class="sub-menu-content">
+              <div class="row">
                 {{#each lcSeafood}}
-                <div class="sub-menu-item h-100">
-                  <a href="/news/{{IDPage}}" class="d-block h-50">
-                    <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
-                  </a>
-                  <div class="sub-menu-item-content h-50">
-                    <a href="/news/{{IDPage}}">
-                      {{{Title}}}
+                <div class="col-sm-3">
+                  <div class="h-100">
+                    <a href="/news/{{IDPage}}" class="d-block sub-menu-img">
+                      <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
                     </a>
-                    <p class="content-option">
-                      <span>{{Day}}</span>
-                    </p>
+                    <div class="sub-menu-item-content">
+                      <a href="/news/{{IDPage}}">
+                        {{Title}}
+                      </a>
+                      <p class="content-option">
+                        <a href="/category/{{CatID}}">{{CatID}}</a>
+                        <span>-</span>
+                        <span>{{Day}}</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
                 {{/each}}
@@ -131,21 +137,25 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/Category/2">Agricultural News</a>
+            <a class="nav-link" href="/Category/2">Nông Sản</a>
             <div class="sub-menu">
-              <div class="sub-menu-content">
+              <div class="row">
                 {{#each lcAgricultural}}
-                <div class="sub-menu-item h-100">
-                  <a href="/news/{{IDPage}}" class="d-block h-50">
-                    <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
-                  </a>
-                  <div class="sub-menu-item-content h-50">
-                    <a href="#">
-                      {{Title}}
+                <div class="col-sm-3">
+                  <div class="h-100">
+                    <a href="/news/{{IDPage}}" class="d-block sub-menu-img">
+                      <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
                     </a>
-                    <p class="content-option">
-                      <span>{{Day}}</span>
-                    </p>
+                    <div class="sub-menu-item-content">
+                      <a href="/news/{{IDPage}}">
+                        {{Title}}
+                      </a>
+                      <p class="content-option">
+                        <a href="/category/{{CatID}}">{{CatID}}</a>
+                        <span>-</span>
+                        <span>{{Day}}</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
                 {{/each}}
@@ -156,20 +166,39 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
-              Dropdown
+              Kinh Doanh
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/About_us">About Us</a>
-              <a class="dropdown-item" href="/Contact_us">Contact Us</a>
+              {{#each lcChildBusiness}}
+              <a class="dropdown-item" href="/category/{{CatID}}">{{CatName}}</a>
+              {{/each}}
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Khoáng Sản
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {{#each lcChildMineral}}
+              <a class="dropdown-item" href="/category/{{CatID}}">{{CatName}}</a>
+              {{/each}}
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Liên Hệ
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/About">Giới Thiệu</a>
+              <a class="dropdown-item" href="/Contact">Liên Hệ</a>
             </div>
           </li>
         </ul>
-        <form class="search-form my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn my-2 my-sm-0" type="submit">
-            <i class="fa fa-search" aria-hidden="true"></i>
-          </button>
-        </form>
+
       </div>
     </div>
   </nav>
@@ -268,39 +297,33 @@
       <div class="row  ">
         <div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2020, All rights reserved. Design by <a
             href="/About">Team 6 Web2</a>. </div>
-        <div class="col-12 col-md-6 spdp_right py-4">
-          <a href="#" class="footer_last_part_menu">Home</a>
-          <a href="Contact_us.html" class="footer_last_part_menu">About</a>
-          <a href="Contact_us.html" class="footer_last_part_menu">Contact</a>
-          <a href="blog.html" class="footer_last_part_menu">Latest News</a></div>
       </div>
     </div>
-  </div>
 
 
-  <script src="../../public/js/main.js"></script>
-  {{!-- Script Bootstrap --}}
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-  <script src="../../public/js/tags.js"></script>
-  {{!-- Validation --}}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script src="../../public/js/main.js"></script>
+    {{!-- Script Bootstrap --}}
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="../../public/js/tags.js"></script>
+    {{!-- Validation --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
 
-  <script src="../../public/assets/js/validation.js"></script>
+    <script src="../../public/assets/js/validation.js"></script>
 
-  <script>
-    tinymce.init({
-      selector: '#txtFullDes',
-      height: 450,
-      plugins: 'paste image link autolink lists table media code',
-      menubar: false,
-      toolbar: [
-        'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | forecolor backcolor | table link image media | code',
-      ],
-    });
-  </script>
+    <script>
+      tinymce.init({
+        selector: '#txtFullDes',
+        height: 450,
+        plugins: 'paste image link autolink lists table media code',
+        menubar: false,
+        toolbar: [
+          'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | forecolor backcolor | table link image media | code',
+        ],
+      });
+    </script>
 
 </body>
 
