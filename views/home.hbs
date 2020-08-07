@@ -14,7 +14,16 @@
 					<div class="fh5co_suceefh5co_height_position_absolute"></div>
 					<div class="fh5co_suceefh5co_height_position_absolute_font">
 						<div class="color_fff"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{this.top1.Day}}</div>
-						<div class=""><a href="/news/{{this.top1.IDPage}}" class="fh5co_good_font">{{this.top1.Title}}</a></div>
+						<div>
+							<a href="/news/{{this.top1.IDPage}}" class="fh5co_good_font">{{this.top1.Title}}
+								{{#if this.top1.Premium}}
+								<a href="/news/{{IDPage}}" class="Premium">
+									<i class="fa fa-star" aria-hidden="true"></i>
+									Premium
+								</a>
+								{{/if}}
+							</a>
+						</div>
 					</div>
 				</a>
 			</div>
@@ -29,7 +38,16 @@
 							<div class="fh5co_suceefh5co_height_position_absolute"></div>
 							<div class="fh5co_suceefh5co_height_position_absolute_font_2">
 								<div class="color_fff"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{Day}}</div>
-								<div class=""><a href="/news/{{IDPage}}" class="fh5co_good_font_2">{{Title}}</a></div>
+								<div>
+									<a href="/news/{{IDPage}}" class="font-carousel">{{Title}}
+										{{#if Premium}}
+										<a href="/news/{{IDPage}}" class="Premium">
+											<i class="fa fa-star" aria-hidden="true"></i>
+											Premium
+										</a>
+										{{/if}}
+									</a>
+								</div>
 							</div>
 						</a>
 					</div>
@@ -48,7 +66,8 @@
 		<div id="carouselMostView" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators">
 				{{#each this.listMostView}}
-				<li data-target="#carouselMostView" data-slide-to="{{@index}}: {{this}}" {{#if @first}} class="active" {{/if}}>
+				<li data-target="#carouselMostView" data-slide-to="{{@index}}" {{#if @first}} class="active"
+					{{/if}}>
 				</li>
 				{{/each}}
 			</ol>
@@ -58,7 +77,14 @@
 					<a href="/news/{{IDPage}}"><img class="d-block w-100 fit-img" src="{{ImgAvatar}}"></a>
 					<div class="carousel-caption d-none d-md-block">
 						<a class="link" href="/news/{{IDPage}}">
-							<h2>{{Title}}</h2>
+							<a href="/news/{{IDPage}}" class="font-carousel">{{Title}}
+								{{#if Premium}}
+								<a href="/news/{{IDPage}}" class="Premium">
+									<i class="fa fa-star" aria-hidden="true"></i>
+									Premium
+								</a>
+								{{/if}}
+							</a>
 						</a>
 						<h4 class="color_fff"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{Day}}</h4>
 					</div>
@@ -85,7 +111,8 @@
 		<div id="carouselMostNews" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators">
 				{{#each this.listMostNews}}
-				<li data-target="#carouselMostNews" data-slide-to="{{@index}}: {{this}}" {{#if @first}} class="active" {{/if}}>
+				<li data-target="#carouselMostNews" data-slide-to="{{@index}}: {{this}}" {{#if @first}} class="active"
+					{{/if}}>
 				</li>
 				{{/each}}
 			</ol>
@@ -95,7 +122,14 @@
 					<a href="/news/{{IDPage}}"><img class="d-block w-100 fit-img" src="{{ImgAvatar}}"></a>
 					<div class="carousel-caption d-none d-md-block">
 						<a class="link" href="/news/{{IDPage}}">
-							<h2>{{Title}}</h2>
+							<a href="/news/{{IDPage}}" class="font-carousel">{{Title}}
+								{{#if Premium}}
+								<a href="/news/{{IDPage}}" class="Premium">
+									<i class="fa fa-star" aria-hidden="true"></i>
+									Premium
+								</a>
+								{{/if}}
+							</a>
 						</a>
 						<h4 class="color_fff"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{Day}}</h4>
 					</div>
@@ -122,8 +156,8 @@
 		<div id="carouselTop1NewsEachCat" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators">
 				{{#each this.listTop1NewsEachCat}}
-				<li data-target="#carouselTop1NewsEachCat" data-slide-to="{{@index}}: {{this}}" {{#if @first}} class="active"
-					{{/if}}></li>
+				<li data-target="#carouselTop1NewsEachCat" data-slide-to="{{@index}}: {{this}}" {{#if @first}}
+					class="active" {{/if}}></li>
 				{{/each}}
 			</ol>
 			<div class="carousel-inner">
@@ -132,7 +166,14 @@
 					<a href="/news/{{IDPage}}"><img class="d-block w-100 fit-img" src="{{ImgAvatar}}"></a>
 					<div class="carousel-caption d-none d-md-block">
 						<a class="link" href="/news/{{IDPage}}">
-							<h2>{{Title}}</h2>
+							<a href="/news/{{IDPage}}" class="font-carousel">{{Title}}
+								{{#if Premium}}
+								<a href="/news/{{IDPage}}" class="Premium">
+									<i class="fa fa-star" aria-hidden="true"></i>
+									Premium
+								</a>
+								{{/if}}
+							</a>
 						</a>
 						<h4 class="color_fff"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{Day}}</h4>
 					</div>
