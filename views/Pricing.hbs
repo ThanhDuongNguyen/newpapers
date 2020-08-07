@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24 News</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="../public/css/pricing.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="pricing py-5">
+        <div class="container">
+            <div class="row">
+                {{#each listPackage}}
+                <div class="col-lg-4">
+                    <div class="card mb-5 mb-lg-0">
+                        <div class="card-body">
+                            <h5 class="card-title text-muted text-uppercase text-center">{{Name}}</h5>
+                            <h6 class="card-price text-center">{{Price}} VNĐ</h6>
+                            <hr>
+                            <ul class="fa-ul">
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Xem các bài viết Premium</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Tải về ấn bản</li>
+                            </ul>
+                            <a href="/checkout/{{PackageID}}" class="btn btn-block btn-primary text-uppercase">Đăng ký</a>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

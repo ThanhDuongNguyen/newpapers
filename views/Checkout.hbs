@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24 News</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="../public/css/pricing.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 order-md-2 mb-4">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Giỏ hàng</span>
+                </h4>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">{{this.package.Name}}</h6>
+                            <small class="text-muted">{{this.package.Name}}</small>
+                        </div>
+                        <span class="text-muted">{{this.package.Price}} VNĐ</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-8 order-md-1">
+                <form class="needs-validation" novalidate="" method="POST">
+                    <h4 class="mb-3">Thanh Toán</h4>
+
+                    <div class="d-block my-3">
+                        <div class="custom-control custom-radio">
+                            <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked=""
+                                required="" value="Credit card">
+                            <label class="custom-control-label" for="credit">Credit card</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required=""
+                                value="Debit card">
+                            <label class="custom-control-label" for="debit">Debit card</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input"
+                                required="" value="PayPal">
+                            <label class="custom-control-label" for="paypal">PayPal</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="cc-name">Tên trên thẻ</label>
+                            <input type="text" class="form-control" id="cc-name" name="NameOnCard" placeholder=""
+                                required="">
+                            <small class="text-muted">Đầy đủ họ tên trên thẻ</small>
+                            {{#if NameErr}}
+                            <div>
+                                Tên trên thẻ không hợp lệ
+                            </div>
+                            {{/if}}
+
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="cc-number">Số thẻ</label>
+                            <input type="text" class="form-control" id="cc-number" name="NumOnCard" placeholder=""
+                                required="">
+                            {{#if NumErr}}
+                            <div>
+                                Số thẻ không hợp lệ
+                            </div>
+                            {{/if}}
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <label for="cc-expiration">Ngày hết hạn</label>
+                            <input type="text" class="form-control" id="cc-expiration" name="Expiration" placeholder=""
+                                required="">
+                            {{#if ExpErr}}
+                            <div>
+                                Ngày hết hạn không hợp lệ
+                            </div>
+                            {{/if}}
+
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="cc-cvv">CVV</label>
+                            <input type="text" class="form-control" id="cc-cvv" name="CVV" placeholder="" required="">
+                            {{#if CVVErr}}
+                            <div>
+                                Mã bảo mật không hợp lệ
+                            </div>
+                            {{/if}}
+
+                        </div>
+                    </div>
+                    <hr class="mb-4">
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Tiếp tục thanh toán</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
