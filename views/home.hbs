@@ -6,18 +6,18 @@
 {{/section}}
 
 <div class="container-fluid paddding mb-5">
-	<div class="row no-gutters mx-0">
-		<div class="col-12 col-md-6 animate-box" data-animate-effect="fadeIn">
-			<div class="fh5co_suceefh5co_height">
+	<div class="row no-gutters">
+		<div class="col-12 col-md-6">
+			<div class="big-box">
 				<a href="/news/{{this.top1.IDPage}}" class="d-block w-100 h-100">
-					<img src="{{this.top1.ImgAvatar}}" alt="img" class="fit-img" ; />
-					<div class="fh5co_suceefh5co_height_position_absolute"></div>
-					<div class="fh5co_suceefh5co_height_position_absolute_font">
+					<img src="{{this.top1.ImgAvatar}}" alt="img" class="fit-img" />
+					<div class="big-box-absolute"></div>
+					<div class="big-box-absolute-font">
 						<div class="color_fff"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{this.top1.Day}}</div>
 						<div>
-							<a href="/news/{{this.top1.IDPage}}" class="fh5co_good_font">{{this.top1.Title}}
+							<a href="/news/{{this.top1.IDPage}}" class="big-box-title">{{this.top1.Title}}
 								{{#if this.top1.Premium}}
-								<a href="/news/{{IDPage}}" class="Premium">
+								<a href="/news/{{this.top1.IDPage}}" class="Premium">
 									<i class="fa fa-star" aria-hidden="true"></i>
 									Premium
 								</a>
@@ -29,31 +29,34 @@
 			</div>
 		</div>
 		<div class="col-12 col-md-6">
-			<div class="row no-gutters h-100">
-				{{#each this.topElse}}
-				<div class="col-md-6 col-6 h-50 animate-box" data-animate-effect="fadeIn">
-					<div class="h-100">
-						<a href="/news/{{IDPage}}" class="d-block w-100 h-100">
-							<img src="{{ImgAvatar}}" alt="img" class="fit-img" />
-							<div class="fh5co_suceefh5co_height_position_absolute"></div>
-							<div class="fh5co_suceefh5co_height_position_absolute_font_2">
-								<div class="color_fff"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{Day}}</div>
-								<div>
-									<a href="/news/{{IDPage}}" class="font-carousel">{{Title}}
-										{{#if Premium}}
-										<a href="/news/{{IDPage}}" class="Premium">
-											<i class="fa fa-star" aria-hidden="true"></i>
-											Premium
+			<div class="big-box">
+				<div class="row no-gutters h-100">
+					{{#each this.topElse}}
+					<div class="col-md-6 col-6 h-50">
+						<div class="h-100">
+							<a href="/news/{{IDPage}}" class="d-block w-100 h-100">
+								<img src="{{ImgAvatar}}" alt="img" class="fit-img" />
+								<div class="big-box-absolute"></div>
+								<div class="small-box-absolute-font">
+									<div class="color_fff"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{Day}}</div>
+									<div>
+										<a href="/news/{{IDPage}}" class="small-box-title">{{Title}}
+											{{#if Premium}}
+											<a href="/news/{{IDPage}}" class="Premium">
+												<i class="fa fa-star" aria-hidden="true"></i>
+												Premium
+											</a>
+											{{/if}}
 										</a>
-										{{/if}}
-									</a>
+									</div>
 								</div>
-							</div>
-						</a>
+							</a>
+						</div>
 					</div>
+					{{/each}}
 				</div>
-				{{/each}}
 			</div>
+
 		</div>
 	</div>
 </div>
@@ -61,21 +64,23 @@
 <div class="container-fluid pt-3">
 	<div class="container animate-box" data-animate-effect="fadeIn">
 		<div>
-			<div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Xem nhiều nhất</div>
+			<div class="heading-news mb-4">Xem nhiều nhất</div>
 		</div>
 		<div id="carouselMostView" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators">
 				{{#each this.listMostView}}
-				<li data-target="#carouselMostView" data-slide-to="{{@index}}" {{#if @first}} class="active"
-					{{/if}}>
+				<li data-target="#carouselMostView" data-slide-to="{{@index}}" {{#if @first}} class="active" {{/if}}>
 				</li>
 				{{/each}}
 			</ol>
 			<div class="carousel-inner">
 				{{#each this.listMostView}}
 				<div class="carousel-item {{#if @first}} active {{/if}}">
-					<a href="/news/{{IDPage}}"><img class="d-block w-100 fit-img" src="{{ImgAvatar}}"></a>
-					<div class="carousel-caption d-none d-md-block">
+					<a href="/news/{{IDPage}}">
+						<img class="d-block w-100 fit-img" src="{{ImgAvatar}}">
+						<div class="big-box-absolute"></div>
+					</a>
+					<div class="carousel-caption d-md-block">
 						<a class="link" href="/news/{{IDPage}}">
 							<a href="/news/{{IDPage}}" class="font-carousel">{{Title}}
 								{{#if Premium}}
@@ -106,21 +111,23 @@
 <div class="container-fluid pt-3">
 	<div class="container animate-box" data-animate-effect="fadeIn">
 		<div>
-			<div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Mới nhất</div>
+			<div class="heading-news mb-4">Mới nhất</div>
 		</div>
 		<div id="carouselMostNews" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators">
 				{{#each this.listMostNews}}
-				<li data-target="#carouselMostNews" data-slide-to="{{@index}}: {{this}}" {{#if @first}} class="active"
-					{{/if}}>
+				<li data-target="#carouselMostNews" data-slide-to="{{@index}}" {{#if @first}} class="active" {{/if}}>
 				</li>
 				{{/each}}
 			</ol>
 			<div class="carousel-inner">
 				{{#each this.listMostNews}}
 				<div class="carousel-item {{#if @first}} active {{/if}}">
-					<a href="/news/{{IDPage}}"><img class="d-block w-100 fit-img" src="{{ImgAvatar}}"></a>
-					<div class="carousel-caption d-none d-md-block">
+					<a href="/news/{{IDPage}}">
+						<img class="d-block w-100 fit-img" src="{{ImgAvatar}}">
+						<div class="big-box-absolute"></div>
+					</a>
+					<div class="carousel-caption d-md-block">
 						<a class="link" href="/news/{{IDPage}}">
 							<a href="/news/{{IDPage}}" class="font-carousel">{{Title}}
 								{{#if Premium}}
@@ -148,23 +155,26 @@
 	</div>
 </div>
 
-<div class="container-fluid pt-3">
+<div class="container-fluid pt-3 mb-3">
 	<div class="container animate-box" data-animate-effect="fadeIn">
 		<div>
-			<div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Mới nhất mỗi danh mục</div>
+			<div class="heading-news mb-4">Mới nhất mỗi danh mục</div>
 		</div>
 		<div id="carouselTop1NewsEachCat" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators">
 				{{#each this.listTop1NewsEachCat}}
-				<li data-target="#carouselTop1NewsEachCat" data-slide-to="{{@index}}: {{this}}" {{#if @first}}
-					class="active" {{/if}}></li>
+				<li data-target="#carouselTop1NewsEachCat" data-slide-to="{{@index}}" {{#if @first}} class="active"
+					{{/if}}></li>
 				{{/each}}
 			</ol>
 			<div class="carousel-inner">
 				{{#each this.listTop1NewsEachCat}}
 				<div class="carousel-item {{#if @first}} active {{/if}}">
-					<a href="/news/{{IDPage}}"><img class="d-block w-100 fit-img" src="{{ImgAvatar}}"></a>
-					<div class="carousel-caption d-none d-md-block">
+					<a href="/news/{{IDPage}}">
+						<img class="d-block w-100 fit-img" src="{{ImgAvatar}}">
+						<div class="big-box-absolute"></div>
+					</a>
+					<div class="carousel-caption d-md-block">
 						<a class="link" href="/news/{{IDPage}}">
 							<a href="/news/{{IDPage}}" class="font-carousel">{{Title}}
 								{{#if Premium}}
