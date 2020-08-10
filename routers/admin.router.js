@@ -415,6 +415,8 @@ router.get("/tags/edit/:id", classifyMdw.checkAdminClass, async function (
 router.post("/tags/update", async function (req, res) {
   const checkTagsExists = await tagModel.tagsByTagName(req.body.TagName);
 
+  console.log("req.body", req.body);
+
   if (checkTagsExists.length > 0) {
     const detailTag = await tagModel.single(req.body.IDTags);
 
@@ -427,6 +429,7 @@ router.post("/tags/update", async function (req, res) {
     const entity = {
       TagName: req.body.TagName,
       IDUser: req.session.authUser.IDUser,
+      IDTags: req.body.IDTags,
     };
 
     await tagModel.patch(entity);
