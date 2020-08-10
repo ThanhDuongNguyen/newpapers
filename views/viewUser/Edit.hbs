@@ -12,8 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
   {{!-- Bootstrap CSS --}}
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  {{!-- Animate --}}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css">
+
   {{!-- Image --}}
   <link rel="stylesheet" href="/public/assets/img/lunar.png" type="image/png" sizes="16x16">
 
@@ -22,13 +21,8 @@
   <link rel="stylesheet" href="/public/css/style_1.css">
   <link rel="stylesheet" href="/public/assets/css/lunar.css">
   <link rel="stylesheet" href="/public/assets/css/demo.css">
-  <script>
-    function saveTagId(id) {
-      return function () {
-        localStorage.setItem('tagIdToDel', id);
-      } 
-    }
-  </script>
+
+
 </head>
 
 <body>
@@ -62,7 +56,7 @@
                   </a>
                 </li>
                 <li class="list-item">
-                  <a href="/admin/tags" class="list-link active">
+                  <a href="/admin/tags" class="list-link">
                     <i class="fa fa-tags" aria-hidden="true"></i>
                     Thẻ
                   </a>
@@ -74,7 +68,7 @@
                   </a>
                 </li>
                 <li class="list-item">
-                  <a href="/admin/users" class="list-link">
+                  <a href="/admin/users" class="list-link active">
                     <i class="fa fa-user" aria-hidden="true"></i>
                     Người dùng
                   </a>
@@ -90,7 +84,6 @@
               </ul>
             </nav>
 
-
             {{!-- Ads --}}
             <div class="position-relative d-flex justify-content-center">
               <div class="ads">
@@ -103,7 +96,7 @@
 
 
           {{!-- Sidebar Mobile --}}
-          <section class="sidebar-mobile">
+          <div class="sidebar-mobile">
             {{!-- Logo --}}
             <div class="logo">
               <a href="/" class="d-block">
@@ -139,7 +132,7 @@
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a href="/admin/tags" class="nav-link active">
+                      <a href="/admin/tags" class="nav-link">
                         <i class="fa fa-tags" aria-hidden="true"></i>
                         Thẻ
                       </a>
@@ -151,7 +144,7 @@
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a href="/admin/users" class="nav-link">
+                      <a href="/admin/users" class="nav-link active">
                         <i class="fa fa-user" aria-hidden="true"></i>
                         Người dùng
                       </a>
@@ -169,102 +162,83 @@
                 </div>
               </div>
             </nav>
-          </section>
+          </div>
         </section>
 
         {{!-- Main content --}}
         <section class="col-sm-12 col-lg-10 main-content">
           <div class="container">
             {{!-- Top bar --}}
-            <div class="top-bar-admin mb-4">
-              <h4>Thẻ</h4>
+            <section class="top-bar-admin mb-4">
+              <h4>Danh Mục</h4>
               <form class="search-form my-2 my-lg-0" method="GET" action="/Category/search">
                 <input class="form-control mr-sm-2" type="text" name="Search" placeholder="Search">
                 <button class="btn-search" type="submit">
                   <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
               </form>
-            </div>
+            </section>
 
-            <a href="/admin/tags/add" type="button" class="btn btn-outline-success mb-3">
+            <a href="#" type="button" class="btn btn-outline-success mb-3">
               <i class="fa fa-plus" aria-hidden="true"></i>
               Thêm mới
             </a>
 
             {{!-- Card --}}
-            <div class="card">
+            <section class="card">
               <div class="card-header">
-                <h5>Bảng Thẻ</h5>
+                <h5>Bảng thẻ</h5>
               </div>
               <div class="card-body">
+                <div class="container">
+                  {{!-- Form edit --}}
+                  <form method="POST" id="frmEditUser">
+                    <div class="form-group">
+                      <label>ID Người dùng</label>
+                      <input type="text" class="form-control" name="IDUser" value="{{IDUser}}" readonly>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12 col-lg-6 pl-0">
+                        <div class="form-group">
+                          <label>Thời gian tài khoản hết hạn</label>
+                          <input type="datetime" class="form-control" name="Time" disabled>
+                        </div>
+                      </div>
+                      <div class="col-sm-12 col-lg-6 pr-0">
+                        <div class="form-group">
+                          <label>Phân quyền</label>
+                          <select class="form-control" name="PermissionID">
+                            {{#each this.allPermission}}
+                            <option {{#if isCurrent}} selected {{/if}} value="{{PermissionID}}">{{Permission}}</option>
+                            {{/each}}
+                          </select>
+                        </div>
+                      </div>
+                    </div>
 
-                <div class="table-responsive-vertical shadow-z-1">
-                  <!-- Table starts here -->
-                  <table id="table" class="table table-hover table-mc-light-blue">
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Tên Thẻ</th>
-                        <th>&nbsp;</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {{#each this.listTags}}
-                      <tr>
-                        <th>{{IDTags}}</th>
-                        <td>{{TagName}}</td>
-                        <td class="text-right action">
-                          <form action="/admin/tags/delete/{{IDTags}}" id="frmDelTag-{{IDTags}}" method="POST"></form>
-                          <a href="/admin/tags/detail/{{IDTags}}" class="btn btn-success">
-                            <i class="fa fa-eye" aria-hidden="true"></i>
-                          </a>
-                          <a href="/admin/tags/edit/{{IDTags}}" class="btn btn-primary">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                          </a>
-                          <button onclick="saveTagId({{IDTags}})" type="button" class="btn btn-danger"
-                            data-toggle="modal" data-target="#warningModal">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      {{/each}}
-                    </tbody>
-                  </table>
+                    <button type="submit" class="btn btn-primary mt-3" formaction="/admin/users/update">
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                      Lưu
+                    </button>
+                    <button type="button" class="btn btn-danger mt-3" data-toggle="modal" data-target="#warningModal">
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                      Xóa
+                    </button>
+                  </form>
+                  {{!-- End form --}}
                 </div>
               </div>
               <div class="card-footer">
-                <nav aria-label="Page navigation example">
-                  <ul class="pagination justify-content-end mb-0">
-                    {{#if prev}}
-                    <li class="page-item">
-                      <a class="page-link" href="/admin/tags?page={{prev_value}}">Previous</a>
-                    </li>
-                    {{else}}
-                    <li class="page-item disabled">
-                      <a class="page-link" href="/admin/tags?page={{prev_value}}">Previous</a>
-                    </li>
-                    {{/if}}
-                    <li class="page-item m-2">
-                      <span>{{this.page}} / {{this.nPages}}</span>
-                    </li>
-                    {{#if next}}
-                    <li class="page-item">
-                      <a class="page-link" href="/admin/tags?page={{next_value}}">Next</a>
-                    </li>
-                    {{else}}
-                    <li class="page-item disabled">
-                      <a class="page-link" href="/admin/tags?page={{next_value}}">Next</a>
-                    </li>
-                    {{/if}}
-                  </ul>
-                </nav>
+                <a href="/admin/users" class="btn btn-outline-success btn-backwards">
+                  <i class="fa fa-backward" aria-hidden="true"></i>
+                  Quay lại trang danh sách
+                </a>
               </div>
-            </div>
+            </section>
           </div>
         </section>
       </div>
     </div>
-
 
 
     <!-- Modal -->
@@ -292,7 +266,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <a href="javascript: $(`#frmDelTag-${localStorage.getItem('tagIdToDel')}`).submit()"
+            <form action="/admin/users/delete/{{IDUser}}" method="POST" id="frmDelUser"></form>
+            <a href="javascript: $('#frmDelUser').submit()"
               class="btn btn-cstm-danger">Tiếp tục</a>
             <a href="/" class="btn btn-cstm-secondary" data-dismiss="modal" aria-label="Close">Hủy</a>
           </div>

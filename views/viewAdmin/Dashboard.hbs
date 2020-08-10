@@ -17,9 +17,9 @@
   {{!-- Data table --}}
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 
-  <link rel="stylesheet" href="../../public/assets/css/admin.css">
-  <link rel="stylesheet" href="../../public/css/style_1.css">
-  <link rel="stylesheet" href="../../public/assets/css/table.css">
+  <link rel="stylesheet" href="/public/assets/css/admin.css">
+  <link rel="stylesheet" href="/public/css/style_1.css">
+  <link rel="stylesheet" href="/public/assets/css/table.css">
 
 
 </head>
@@ -29,13 +29,13 @@
     <div class="main">
       <div class="row h-100">
         {{!-- Sidebar --}}
-        <div class="col-sm-12 col-lg-2 pl-0 pr-0">
+        <section class="col-sm-12 col-lg-2 pl-0 pr-0">
           {{!-- Sidebar PC --}}
           <div class="sidebar-pc">
             {{!-- Logo --}}
             <div class="logo">
               <a href="/" class="d-block">
-                <img src="../../public/images/logo.png" alt="Image Logo">
+                <img src="/public/images/logo.png" alt="Image Logo">
               </a>
             </div>
 
@@ -72,19 +72,21 @@
                     Người dùng
                   </a>
                 </li>
+                <li class="list-item">
+                  {{!-- Sign out --}}
+                  <form action="/Account/Logout" id="frmLogout" method="POST"></form>
+                  <a class="nav-link" href="javascript: $('#frmLogout').submit()">
+                    <i class="fa fa-sign-in" aria-hidden="true"></i>
+                    Đăng xuất
+                  </a>
+                </li>
               </ul>
             </nav>
-            {{!-- Sign out --}}
-            <form action="/Account/Logout" id="frmLogout" method="POST"></form>
-            <a class="nav-link" href="javascript: $('#frmLogout').submit()">
-              <i class="fa fa-sign-in" aria-hidden="true"></i>
-              Đăng xuất
-            </a>
 
             {{!-- Ads --}}
             <div class="position-relative d-flex justify-content-center">
               <div class="ads">
-                <img src="../../public/images/flamenco-lets-get-out-of-here.png" alt="Image Ads">
+                <img src="/public/images/flamenco-lets-get-out-of-here.png" alt="Image Ads">
                 <p>Upgrade to <span style="font-weight: bold;">Pro</span> now</p>
                 <a href="#" class="btn btn-success mt-2 mb-2">Upgrade</a>
               </div>
@@ -97,7 +99,7 @@
             {{!-- Logo --}}
             <div class="logo">
               <a href="/" class="d-block">
-                <img src="../../public/images/logo.png" alt="Image Logo">
+                <img src="/public/images/logo.png" alt="Image Logo">
               </a>
             </div>
 
@@ -160,14 +162,14 @@
               </div>
             </nav>
           </div>
-        </div>
+        </section>
 
         {{!-- Main content --}}
-        <div class="col-sm-12 col-lg-10 main-content">
+        <section class="col-sm-12 col-lg-10 main-content">
           {{!-- Main content PC --}}
           <div class="container">
             {{!-- Top bar --}}
-            <div class="top-bar-admin mb-4">
+            <section class="top-bar-admin mb-4">
               <h4>Bảng điều khiển</h4>
               <form class="search-form my-2 my-lg-0" method="GET" action="/Category/search">
                 <input class="form-control mr-sm-2" type="text" name="Search" placeholder="Tìm kiếm">
@@ -175,10 +177,10 @@
                   <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
               </form>
-            </div>
+            </section>
 
             {{!-- Alert --}}
-            <div class="alert alert-danger banner" role="alert">
+            <section class="alert alert-danger banner" role="alert">
               <div class="banner-left">
                 <h3>Chào mừng trở lại {{lcAuthUser.Name}}!</h3>
                 <p class="banner-text text-dark mt-4">
@@ -187,21 +189,21 @@
                 <p class="banner-text text-dark mb-3">Hãy giữ vững kết quả và cải thiện nó.</p>
               </div>
               <div class="banner-right">
-                <img src="../../public/images/marginalia-financial-report.png" alt="">
+                <img src="/public/images/marginalia-financial-report.png" alt="">
               </div>
-            </div>
+            </section>
 
             {{!-- Chart --}}
-            <div class="chart mb-4">
+            <section class="chart mb-4">
               <div class="card text-left">
                 <div class="card-body">
                   <canvas id="myChart"></canvas>
                 </div>
               </div>
-            </div>
+            </section>
 
             {{!-- Feature --}}
-            <div class="row feature">
+            <section class="row feature">
               <div class="col-xl-3 col-sm-6 mb-3">
                 <div class="card text-white bg-primary o-hidden h-100">
                   <div class="card-body">
@@ -242,9 +244,9 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </section>
           </div>
-        </div>
+        </section>
       </div>
     </div>
   </div>
@@ -257,7 +259,7 @@
 
   {{!-- Chart JS --}}
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-  <script src="../../public/assets/js/admin.js"></script>
+  <script src="/public/assets/js/admin.js"></script>
 
   <script type="text/javascript">
     localStorage.setItem("nViewInYearJson", {{ nViewInYearJson }})

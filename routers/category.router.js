@@ -24,7 +24,7 @@ router.get("/search", async function (req, res) {
       offset
     )),
     (Total = await newspaperModel.countBySearch(req.query.Search)),
-    (listTags = await tagModel.all()),
+    (listTags = await tagModel.allLimit()),
     (listPopular = await newspaperModel.allPopular()),
   ]);
 
@@ -68,7 +68,7 @@ router.get("/:id", async function (req, res) {
       offset
     )),
     (Total = await categoryModel.countByCat(id)),
-    (listTags = await tagModel.all()),
+    (listTags = await tagModel.allLimit()),
     (listPopular = await newspaperModel.allPopular()),
   ]);
 

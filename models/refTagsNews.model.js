@@ -13,6 +13,16 @@ module.exports = {
     return db.load(`select * from ${TBL_TAGS} where IDTags = ${id}`);
   },
 
+  singleByNews: function(id)
+  {
+    return db.load(`select * from ${TBL_REFERENCETAGSNEWS} join ${TBL_TAGS} on ${TBL_REFERENCETAGSNEWS}.IDTags = ${TBL_TAGS}.IDTags where IDPage = ${id}`);
+  },
+
+  singleByTag: function(id)
+  {
+    return db.load(`select * from ${TBL_REFERENCETAGSNEWS} where IDTags = ${id}`);
+  },
+
   tagsByNews: function (id) {
     return db.load(
       `SELECT DISTINCT ${TBL_TAGS}.TagName, ${TBL_TAGS}.IDTags FROM ${TBL_REFERENCETAGSNEWS} JOIN ${TBL_TAGS} ON ${TBL_REFERENCETAGSNEWS}.IDTags = ${TBL_TAGS}.IDTags WHERE IDPage = ${id}`
@@ -42,10 +52,16 @@ module.exports = {
     delete entity.IDTags, entity.IDPage;
     return db.patch(TBL_REFERENCETAGSNEWS, entity, condition);
   },
-  del: function (IDPage, IDTags) {
+  del: function (IDPage) {
+    const condition = {
+      IDPage: IDPage,
+    };
+    return db.del(TBL_REFERENCETAGSNEWS, condition);
+  },
+
+  delByIDTags: function (IDTags) {
     const condition = {
       IDTags: IDTags,
-      IDPage: IDPage,
     };
     return db.del(TBL_REFERENCETAGSNEWS, condition);
   },

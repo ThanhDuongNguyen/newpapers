@@ -32,7 +32,7 @@ router.get("/:id", async function (req, res) {
     popular.Day = moment(popular.Day, "YYYY-MM-DD,h:mm:ss a").format("LLL");
   }
 
-  res.render("viewCategory/List-Tags", {
+  res.render("viewTags/List-Tags", {
     listNewspaper: listNews,
     listTags: listTags,
     listPopular: listPopular,

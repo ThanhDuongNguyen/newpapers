@@ -2,6 +2,8 @@ const db = require("../utils/db");
 
 const TBL_USERS = "users";
 const TBL_PERMISSION = "permission";
+const TBL_NEWSPAPER = "newspapers";
+
 
 //
 module.exports = {
@@ -9,16 +11,29 @@ module.exports = {
     return db.load(`select * from ${TBL_USERS}`);
   },
 
-  single: function (id) {
-    return db.load(`select * from ${TBL_USERS} where IDUser = ${id}`);
+  allPermission: function(){
+    return db.load(`select * from ${TBL_PERMISSION}`);
   },
 
-  singleByEmail: async function (email) {
+  single: function (id) {
+    return db.load(`select * from ${TBL_USERS} join ${TBL_PERMISSION} on ${TBL_USERS}.PermissionID = ${TBL_PERMISSION}.PermissionID where IDUser = ${id}`);
+  },
+
+  singleByIDPage:async function (id) {
+    const row = await db.load(`select ${TBL_USERS}.Name from ${TBL_USERS} join ${TBL_NEWSPAPER} on ${TBL_USERS}.IDUser = ${TBL_NEWSPAPER}.Author where ${TBL_NEWSPAPER}.Author = ${id}`);
+    return row[0];
+  },
+
+  singleByEmail: function (email) {
     return db.load(`select * from ${TBL_USERS} where Email = '${email}'`);
   },
 
   pageAllUser: function(limit, offset){
     return db.load(`select * from ${TBL_USERS} join ${TBL_PERMISSION} on ${TBL_USERS}.PermissionID = ${TBL_PERMISSION}.PermissionID limit ${limit} offset ${offset}`);
+  },
+
+  allEditor: function(){
+    return db.load(`select Name, IDUser from ${TBL_USERS} where PermissionID = 2`);
   },
 
   countSubscriber: async function(){

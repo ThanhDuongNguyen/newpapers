@@ -27,7 +27,7 @@ router.get("/:id", async function (req, res) {
     await newspaperModel.patch(viewNews),
     (arrayCat = await categoryModel.all()),
     (newsByCat = await newspaperModel.newspaperByCat(News[0].CatID)),
-    (allTag = await tagModel.all()),
+    (allTag = await tagModel.allLimit()),
     (author = await userModel.single(News[0].Author)),
     (tagsName = await tagModel.tagsByNews(News[0].IDPage)),
     (comments = await commentModel.commentByNews(News[0].IDPage)),

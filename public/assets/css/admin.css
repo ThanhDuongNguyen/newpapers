@@ -87,6 +87,8 @@ body {
   text-decoration: none;
 
   border-right: 3px solid black;
+
+  transition: all 0.2s !important;
 }
 
 .active {
@@ -251,6 +253,54 @@ body {
 .title-feature-card {
   margin-right: 90px;
 }
+
+/* detail */
+.detail-text{
+  font-size: 16px;
+  font-family: 'Mulish', sans-serif;
+  margin: 8px 0;
+}
+
+.detail-text span{
+  font-weight: bold;
+}
+
+.btn-backwards:hover, .btn-edit:hover{
+  color: #f6f5fb !important;
+}
+
+.card-body img{
+  width: 100%;
+  height: auto;
+}
+
+.detail-text-content{
+  text-align: justify;
+}
+
+/* form edit */
+.form-check{
+  margin-right: 10px;
+}
+
+.show .event-type.error {
+  border-color: #f2545b !important;
+  background-color: #f2545b !important;
+}
+
+label.error {
+  color: #dc3545;
+  border-color: #ebccd1;
+  padding: 1px 6px 1px 6px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  font-size: 14px;
+
+  position: relative;
+  top: 100%;
+}
+
+
 
 @media screen and (min-width: 280px) and (max-width: 320px) {
   .sidebar-pc {

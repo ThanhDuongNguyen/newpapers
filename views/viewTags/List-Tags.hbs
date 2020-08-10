@@ -1,0 +1,83 @@
+<div class="container-fluid pb-4 pt-4 paddding">
+	<div class="container paddding">
+		<div class="row mx-0">
+			<div class="col-md-8 animate-box fadeInLeft animated-fast" data-animate-effect="fadeInLeft">
+				<div>
+					<div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Tin Tức</div>
+				</div>
+				{{!-- News --}}
+				{{#each this.listNewspaper}}
+				<div class="row pb-4 w-100">
+					<div class="col-md-5 cat-img-size">
+						<a href="/news/{{IDPage}}" class="d-block w-100 h-100">
+							<img src="{{ImgAvatar}}" class="fit-img" alt="Image title">
+						</a>
+					</div>
+					<div class="col-md-7 animate-box fadeInUp animated-fast">
+						<a href="/news/{{IDPage}}" class="fh5co_magna py-2"> {{Title}} </a>
+						<div class="fh5co_consectetur">{{TinyContent}}</div>
+						<p class="most_fh5co_treding_font_123 mt-3">
+							{{Day}}
+						</p>
+					</div>
+				</div>
+				{{/each}}
+				{{!-- End News --}}
+			</div>
+
+			<div class="col-md-3 animate-box fadeInRight animated-fast" data-animate-effect="fadeInRight">
+				<div>
+					<div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Thẻ</div>
+				</div>
+				<div class="clearfix"></div>
+				{{!-- Tags --}}
+				{{#each this.listTags}}
+				<div class="fh5co_tags_all d-inline-block">
+					<a href="/tags/{{IDTags}}" class="fh5co_tagg">{{TagName}}</a>
+				</div>
+				{{/each}}
+				{{!-- End Tags --}}
+				<div>
+					<div class="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4">Phỏ Biến</div>
+				</div>
+				{{!-- Popular --}}
+				{{!-- Popular --}}
+				{{#each this.listPopular}}
+				<div class="row pb-3">
+					<div class="col-5 align-self-center">
+						<a href="/news/{{IDPage}}"><img src="{{ImgAvatar}}" alt="img" class="fh5co_most_trading"></a>
+					</div>
+					<div class="col-7 paddding">
+						<a href="/news/{{IDPage}}">
+							<div class="most_fh5co_treding_font">{{Title}}</div>
+						</a>
+						<div class="most_fh5co_treding_font_123"> April 18, 2016</div>
+					</div>
+				</div>
+				{{/each}}
+				{{!-- End Popular --}}
+			</div>
+		</div>
+		<div class="row mx-0">
+			<div class="col-12 text-center pb-4 pt-4">
+				{{!-- Prev --}}
+				{{#if prev}}
+				<a href="?page={{prev_value}}" class="btn_mange_pagging"><i class="fa fa-long-arrow-left"></i>&nbsp;&nbsp;
+					Previous</a>
+				{{else}}
+				<a href="?page={{prev_value}}" class="btn_mange_pagging disabled"><i
+						class="fa fa-long-arrow-left"></i>&nbsp;&nbsp; Previous</a>
+				{{/if}}
+
+				{{!-- Next --}}
+				{{#if next}}
+				<a href="?page={{next_value}}" class="btn_mange_pagging">Next <i class="fa fa-long-arrow-right"></i>&nbsp;&nbsp;
+				</a>
+				{{else}}
+				<a href="?page={{next_value}}" class="btn_mange_pagging disabled">Next <i
+						class="fa fa-long-arrow-right"></i>&nbsp;&nbsp; </a>
+				{{/if}}
+			</div>
+		</div>
+	</div>
+</div>

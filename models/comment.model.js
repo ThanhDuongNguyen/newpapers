@@ -32,9 +32,9 @@ module.exports = {
     delete entity.IDComment;
     return db.patch(TBL_COMMENT, entity, condition);
   },
-  del: function (id) {
+  del: function (IDUser) {
     const condition = {
-      IDComment: id,
+      IDUser: IDUser,
     };
     return db.del(TBL_COMMENT, condition);
   },

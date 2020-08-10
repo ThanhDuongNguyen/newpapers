@@ -12,8 +12,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
   {{!-- Bootstrap CSS --}}
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  {{!-- Animate --}}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css">
   {{!-- Image --}}
   <link rel="stylesheet" href="/public/assets/img/lunar.png" type="image/png" sizes="16x16">
 
@@ -22,13 +20,7 @@
   <link rel="stylesheet" href="/public/css/style_1.css">
   <link rel="stylesheet" href="/public/assets/css/lunar.css">
   <link rel="stylesheet" href="/public/assets/css/demo.css">
-  <script>
-    function saveTagId(id) {
-      return function () {
-        localStorage.setItem('tagIdToDel', id);
-      } 
-    }
-  </script>
+
 </head>
 
 <body>
@@ -36,9 +28,9 @@
     <div class="main">
       <div class="row h-100">
         {{!-- Sidebar --}}
-        <section class="col-sm-12 col-lg-2 pl-0 pr-0">
+        <div class="col-sm-12 col-lg-2 pl-0 pr-0">
           {{!-- Sidebar PC --}}
-          <section class="sidebar-pc">
+          <div class="sidebar-pc">
             {{!-- Logo --}}
             <div class="logo">
               <a href="/" class="d-block">
@@ -56,13 +48,13 @@
                   </a>
                 </li>
                 <li class="list-item">
-                  <a href="/admin/category" class="list-link">
+                  <a href="/admin/category" class="list-link active">
                     <i class="fa fa-list" aria-hidden="true"></i>
                     Danh mục
                   </a>
                 </li>
                 <li class="list-item">
-                  <a href="/admin/tags" class="list-link active">
+                  <a href="/admin/tags" class="list-link">
                     <i class="fa fa-tags" aria-hidden="true"></i>
                     Thẻ
                   </a>
@@ -79,17 +71,14 @@
                     Người dùng
                   </a>
                 </li>
-                <li class="list-item">
-                  {{!-- Sign out --}}
-                  <form action="/Account/Logout" id="frmLogout" method="POST"></form>
-                  <a class="nav-link" href="javascript: $('#frmLogout').submit()">
-                    <i class="fa fa-sign-in" aria-hidden="true"></i>
-                    Đăng xuất
-                  </a>
-                </li>
               </ul>
             </nav>
-
+            {{!-- Sign out --}}
+            <form action="/Account/Logout" id="frmLogout" method="POST"></form>
+            <a class="nav-link" href="javascript: $('#frmLogout').submit()">
+              <i class="fa fa-sign-in" aria-hidden="true"></i>
+              Đăng xuất
+            </a>
 
             {{!-- Ads --}}
             <div class="position-relative d-flex justify-content-center">
@@ -99,11 +88,11 @@
                 <a href="#" class="btn btn-success mt-2 mb-2">Upgrade</a>
               </div>
             </div>
-          </section>
+          </div>
 
 
           {{!-- Sidebar Mobile --}}
-          <section class="sidebar-mobile">
+          <div class="sidebar-mobile">
             {{!-- Logo --}}
             <div class="logo">
               <a href="/" class="d-block">
@@ -133,13 +122,13 @@
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a href="/admin/category" class="nav-link">
+                      <a href="/admin/category" class="nav-link active">
                         <i class="fa fa-list" aria-hidden="true"></i>
                         Danh mục
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a href="/admin/tags" class="nav-link active">
+                      <a href="/admin/tags" class="nav-link">
                         <i class="fa fa-tags" aria-hidden="true"></i>
                         Thẻ
                       </a>
@@ -169,15 +158,15 @@
                 </div>
               </div>
             </nav>
-          </section>
-        </section>
+          </div>
+        </div>
 
         {{!-- Main content --}}
-        <section class="col-sm-12 col-lg-10 main-content">
+        <div class="col-sm-12 col-lg-10 main-content">
           <div class="container">
             {{!-- Top bar --}}
             <div class="top-bar-admin mb-4">
-              <h4>Thẻ</h4>
+              <h4>Danh Mục</h4>
               <form class="search-form my-2 my-lg-0" method="GET" action="/Category/search">
                 <input class="form-control mr-sm-2" type="text" name="Search" placeholder="Search">
                 <button class="btn-search" type="submit">
@@ -186,85 +175,72 @@
               </form>
             </div>
 
-            <a href="/admin/tags/add" type="button" class="btn btn-outline-success mb-3">
-              <i class="fa fa-plus" aria-hidden="true"></i>
-              Thêm mới
-            </a>
-
             {{!-- Card --}}
             <div class="card">
               <div class="card-header">
-                <h5>Bảng Thẻ</h5>
+                <h5>Thêm danh mục</h5>
               </div>
               <div class="card-body">
-
-                <div class="table-responsive-vertical shadow-z-1">
-                  <!-- Table starts here -->
-                  <table id="table" class="table table-hover table-mc-light-blue">
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Tên Thẻ</th>
-                        <th>&nbsp;</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {{#each this.listTags}}
-                      <tr>
-                        <th>{{IDTags}}</th>
-                        <td>{{TagName}}</td>
-                        <td class="text-right action">
-                          <form action="/admin/tags/delete/{{IDTags}}" id="frmDelTag-{{IDTags}}" method="POST"></form>
-                          <a href="/admin/tags/detail/{{IDTags}}" class="btn btn-success">
-                            <i class="fa fa-eye" aria-hidden="true"></i>
-                          </a>
-                          <a href="/admin/tags/edit/{{IDTags}}" class="btn btn-primary">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                          </a>
-                          <button onclick="saveTagId({{IDTags}})" type="button" class="btn btn-danger"
-                            data-toggle="modal" data-target="#warningModal">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      {{/each}}
-                    </tbody>
-                  </table>
+                <div class="container">
+                  {{!-- Show Error --}}
+                  {{#if err}}
+                  <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                    <button type="button" class="closeAlert" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    {{err}}
+                  </div>
+                  {{/if}}
+                  {{!-- End Show Error --}}
+                  {{!-- Form edit --}}
+                  <form method="POST" action="" id="frmAddCat" onsubmit="return validationAddCat">
+                    <div class="form-group">
+                      <label>Tên Danh mục</label>
+                      <input type="text" class="form-control" name="CatName">
+                    </div>
+                    <div class="form-group">
+                      <label>Thuộc Chuyên mục</label>
+                      <select class="form-control" name="ParentCatID">
+                        {{#each this.allCat}}
+                        <option value="{{CatID}}">{{CatName}}</option>
+                        {{/each}}
+                        <option value="0">&nbsp;</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Người quản lý</label>
+                      <div class="d-flex flex-wrap">
+                        {{#each this.allUser}}
+                        <div class="form-check">
+                          <input class="form-check-input" name="IDUser[]" type="checkbox" value="{{IDUser}}">
+                          <label class="form-check-label ml-2">{{Name}}</label>
+                        </div>
+                        {{/each}}
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                      Thêm
+                    </button>
+                    <a href="/admin/category" type="submit" class="btn btn-danger mt-3">
+                      <i class="fa fa-times" aria-hidden="true"></i>
+                      Hủy
+                    </a>
+                  </form>
+                  {{!-- End form --}}
                 </div>
               </div>
               <div class="card-footer">
-                <nav aria-label="Page navigation example">
-                  <ul class="pagination justify-content-end mb-0">
-                    {{#if prev}}
-                    <li class="page-item">
-                      <a class="page-link" href="/admin/tags?page={{prev_value}}">Previous</a>
-                    </li>
-                    {{else}}
-                    <li class="page-item disabled">
-                      <a class="page-link" href="/admin/tags?page={{prev_value}}">Previous</a>
-                    </li>
-                    {{/if}}
-                    <li class="page-item m-2">
-                      <span>{{this.page}} / {{this.nPages}}</span>
-                    </li>
-                    {{#if next}}
-                    <li class="page-item">
-                      <a class="page-link" href="/admin/tags?page={{next_value}}">Next</a>
-                    </li>
-                    {{else}}
-                    <li class="page-item disabled">
-                      <a class="page-link" href="/admin/tags?page={{next_value}}">Next</a>
-                    </li>
-                    {{/if}}
-                  </ul>
-                </nav>
+                <a href="/admin/category" class="btn btn-outline-success btn-backwards">
+                  <i class="fa fa-backward" aria-hidden="true"></i>
+                  Quay lại trang danh sách
+                </a>
               </div>
             </div>
           </div>
-        </section>
+        </div>
       </div>
     </div>
-
 
 
     <!-- Modal -->
@@ -292,8 +268,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <a href="javascript: $(`#frmDelTag-${localStorage.getItem('tagIdToDel')}`).submit()"
-              class="btn btn-cstm-danger">Tiếp tục</a>
+            <form action="/admin/category/delete/{{CatID}}" id="frmDelCat" method="POST"></form>
+            <a href="javascript: $('#frmDelCat').submit()" class="btn btn-cstm-danger">Tiếp tục</a>
             <a href="/" class="btn btn-cstm-secondary" data-dismiss="modal" aria-label="Close">Hủy</a>
           </div>
         </div>
@@ -309,6 +285,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
   <script src="/public/assets/js/table.js"></script>
+  {{!-- Validation --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+  <script src="/public/assets/js/validation.js"></script>
+
 </body>
 
 </html>

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th8 07, 2020 lúc 02:13 PM
--- Phiên bản máy phục vụ: 10.4.13-MariaDB
--- Phiên bản PHP: 7.4.8
+-- Thời gian đã tạo: Th8 10, 2020 lúc 04:50 PM
+-- Phiên bản máy phục vụ: 10.4.11-MariaDB
+-- Phiên bản PHP: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -46,26 +46,28 @@ INSERT INTO `assignedbtv` (`IDUser`, `CatID`) VALUES
 --
 
 CREATE TABLE `categories` (
-  `ParentCatID` int(11) DEFAULT NULL,
+  `ParentCatID` int(11) DEFAULT 0,
   `CatID` int(50) NOT NULL,
-  `CatName` text COLLATE utf8mb4_unicode_ci NOT NULL
+  `CatName` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `IDUser` int(11) NOT NULL DEFAULT 16,
+  `Time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `categories`
 --
 
-INSERT INTO `categories` (`ParentCatID`, `CatID`, `CatName`) VALUES
-(NULL, 1, 'Kinh Doanh'),
-(NULL, 2, 'Nông sản'),
-(NULL, 3, 'Hải Sản'),
-(NULL, 4, 'Khoáng Sản'),
-(2, 5, 'Gạo'),
-(3, 6, 'Cá'),
-(4, 7, 'Than'),
-(4, 8, 'Dầu'),
-(1, 9, 'Thủy Sản'),
-(1, 10, 'Chăn Nuôi');
+INSERT INTO `categories` (`ParentCatID`, `CatID`, `CatName`, `IDUser`, `Time`) VALUES
+(0, 1, 'Kinh Doanh', 16, '2020-08-10 14:44:08'),
+(0, 2, 'Nông sản', 16, '2020-08-10 14:44:08'),
+(0, 3, 'Hải Sản', 16, '2020-08-10 14:44:08'),
+(0, 4, 'Khoáng Sản', 16, '2020-08-10 14:44:08'),
+(2, 5, 'Gạo', 16, '2020-08-10 14:44:08'),
+(3, 6, 'Cá', 16, '2020-08-10 14:44:08'),
+(4, 7, 'Than', 16, '2020-08-10 14:44:08'),
+(4, 8, 'Dầu', 16, '2020-08-10 14:44:08'),
+(1, 9, 'Thủy Sản', 16, '2020-08-10 14:44:08'),
+(1, 10, 'Chăn Nuôi', 16, '2020-08-10 14:44:08');
 
 -- --------------------------------------------------------
 
@@ -739,105 +741,107 @@ INSERT INTO `subscriptions` (`IDUser`, `PackageID`, `Start_timestamp`, `End_time
 
 CREATE TABLE `tags` (
   `TagName` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `IDTags` int(11) NOT NULL
+  `IDTags` int(11) NOT NULL,
+  `IDUser` int(11) NOT NULL DEFAULT 16,
+  `Time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `tags`
 --
 
-INSERT INTO `tags` (`TagName`, `IDTags`) VALUES
-('Nông Sản', 1),
-('Hải sản', 2),
-('Gạo', 3),
-('Tôm', 4),
-('Dưa hấu', 5),
-('Cua', 6),
-('Đất', 7),
-('NongSan', 38),
-('CayTrong', 39),
-('XuatKhau', 42),
-('XangDau', 43),
-('Tom', 44),
-('Buoi', 45),
-('CaTra', 46),
-('Bo', 47),
-('KhoangSanCat', 48),
-('KhaiThac', 49),
-('KhaiThacDa', 50),
-('HaiSan', 51),
-('ChanNuoi', 53),
-('CayTrong', 55),
-('KinhDoanh', 56),
-('BatDongSan', 57),
-('DoanhNghiep', 59),
-('EBank', 60),
-('NganHang', 61),
-('Startup', 62),
-('nCov', 63),
-('Ca', 64),
-('DiUng', 65),
-('Oc', 66),
-('nongsan', 67),
-('khoangsan', 69),
-('than', 70),
-('dau', 71),
-('thuysan', 72),
-('Heo', 74),
-('Vang', 75),
-('ChungKhoan', 76),
-('ThuongMai', 79),
-('ThiTruong', 80),
-('USD', 81),
-('NongNghiep', 82),
-('ChuoiTieuHong', 83),
-('HTX', 84),
-('Nongthon', 85),
-('EVFTA', 86),
-('Vungtau', 87),
-('Covid', 88),
-('TomCua', 89),
-('Anuong', 90),
-('Trungquoc', 91),
-('Khoansan', 92),
-('Tainguyen', 93),
-('TNMT', 94),
-('Daugia', 95),
-('Thamdo', 96),
-('Khaithactraiphep', 97),
-('Giagao', 98),
-('Gialua', 99),
-('Baclieu', 100),
-('Congnghe', 101),
-('Dulich', 102),
-('Cauca', 103),
-('Hanche', 104),
-('Tauca', 105),
-('TomCa', 106),
-('Khaithacthan', 107),
-('Vipham', 108),
-('Thegioi', 109),
-('Thanda', 110),
-('Nhapkhauthanda', 111),
-('Thancui', 112),
-('Philippines', 113),
-('Giaxang', 114),
-('Matdien', 115),
-('Giatom', 116),
-('Cantho', 117),
-('Tau', 118),
-('Ruoubia', 119),
-('Congty', 120),
-('Thuonglai', 121),
-('Baoso2', 122),
-('Sohuyet', 123),
-('Tauthuyen', 124),
-('Hochannuoi', 125),
-('Ga', 126),
-('Quangngai', 127),
-('Milk', 128),
-('Hagiang', 129),
-('Thuoc', 130);
+INSERT INTO `tags` (`TagName`, `IDTags`, `IDUser`, `Time`) VALUES
+('Nông Sản', 1, 16, '2020-08-10 14:45:11'),
+('Hải sản', 2, 16, '2020-08-10 14:45:11'),
+('Gạo', 3, 16, '2020-08-10 14:45:11'),
+('Tôm', 4, 16, '2020-08-10 14:45:11'),
+('Dưa hấu', 5, 16, '2020-08-10 14:45:11'),
+('Cua', 6, 16, '2020-08-10 14:45:11'),
+('Đất', 7, 16, '2020-08-10 14:45:11'),
+('NongSan', 38, 16, '2020-08-10 14:45:11'),
+('CayTrong', 39, 16, '2020-08-10 14:45:11'),
+('XuatKhau', 42, 16, '2020-08-10 14:45:11'),
+('XangDau', 43, 16, '2020-08-10 14:45:11'),
+('Tom', 44, 16, '2020-08-10 14:45:11'),
+('Buoi', 45, 16, '2020-08-10 14:45:11'),
+('CaTra', 46, 16, '2020-08-10 14:45:11'),
+('Bo', 47, 16, '2020-08-10 14:45:11'),
+('KhoangSanCat', 48, 16, '2020-08-10 14:45:11'),
+('KhaiThac', 49, 16, '2020-08-10 14:45:11'),
+('KhaiThacDa', 50, 16, '2020-08-10 14:45:11'),
+('HaiSan', 51, 16, '2020-08-10 14:45:11'),
+('ChanNuoi', 53, 16, '2020-08-10 14:45:11'),
+('CayTrong', 55, 16, '2020-08-10 14:45:11'),
+('KinhDoanh', 56, 16, '2020-08-10 14:45:11'),
+('BatDongSan', 57, 16, '2020-08-10 14:45:11'),
+('DoanhNghiep', 59, 16, '2020-08-10 14:45:11'),
+('EBank', 60, 16, '2020-08-10 14:45:11'),
+('NganHang', 61, 16, '2020-08-10 14:45:11'),
+('Startup', 62, 16, '2020-08-10 14:45:11'),
+('nCov', 63, 16, '2020-08-10 14:45:11'),
+('Ca', 64, 16, '2020-08-10 14:45:11'),
+('DiUng', 65, 16, '2020-08-10 14:45:11'),
+('Oc', 66, 16, '2020-08-10 14:45:11'),
+('nongsan', 67, 16, '2020-08-10 14:45:11'),
+('khoangsan', 69, 16, '2020-08-10 14:45:11'),
+('than', 70, 16, '2020-08-10 14:45:11'),
+('dau', 71, 16, '2020-08-10 14:45:11'),
+('thuysan', 72, 16, '2020-08-10 14:45:11'),
+('Heo', 74, 16, '2020-08-10 14:45:11'),
+('Vang', 75, 16, '2020-08-10 14:45:11'),
+('ChungKhoan', 76, 16, '2020-08-10 14:45:11'),
+('ThuongMai', 79, 16, '2020-08-10 14:45:11'),
+('ThiTruong', 80, 16, '2020-08-10 14:45:11'),
+('USD', 81, 16, '2020-08-10 14:45:11'),
+('NongNghiep', 82, 16, '2020-08-10 14:45:11'),
+('ChuoiTieuHong', 83, 16, '2020-08-10 14:45:11'),
+('HTX', 84, 16, '2020-08-10 14:45:11'),
+('Nongthon', 85, 16, '2020-08-10 14:45:11'),
+('EVFTA', 86, 16, '2020-08-10 14:45:11'),
+('Vungtau', 87, 16, '2020-08-10 14:45:11'),
+('Covid', 88, 16, '2020-08-10 14:45:11'),
+('TomCua', 89, 16, '2020-08-10 14:45:11'),
+('Anuong', 90, 16, '2020-08-10 14:45:11'),
+('Trungquoc', 91, 16, '2020-08-10 14:45:11'),
+('Khoansan', 92, 16, '2020-08-10 14:45:11'),
+('Tainguyen', 93, 16, '2020-08-10 14:45:11'),
+('TNMT', 94, 16, '2020-08-10 14:45:11'),
+('Daugia', 95, 16, '2020-08-10 14:45:11'),
+('Thamdo', 96, 16, '2020-08-10 14:45:11'),
+('Khaithactraiphep', 97, 16, '2020-08-10 14:45:11'),
+('Giagao', 98, 16, '2020-08-10 14:45:11'),
+('Gialua', 99, 16, '2020-08-10 14:45:11'),
+('Baclieu', 100, 16, '2020-08-10 14:45:11'),
+('Congnghe', 101, 16, '2020-08-10 14:45:11'),
+('Dulich', 102, 16, '2020-08-10 14:45:11'),
+('Cauca', 103, 16, '2020-08-10 14:45:11'),
+('Hanche', 104, 16, '2020-08-10 14:45:11'),
+('Tauca', 105, 16, '2020-08-10 14:45:11'),
+('TomCa', 106, 16, '2020-08-10 14:45:11'),
+('Khaithacthan', 107, 16, '2020-08-10 14:45:11'),
+('Vipham', 108, 16, '2020-08-10 14:45:11'),
+('Thegioi', 109, 16, '2020-08-10 14:45:11'),
+('Thanda', 110, 16, '2020-08-10 14:45:11'),
+('Nhapkhauthanda', 111, 16, '2020-08-10 14:45:11'),
+('Thancui', 112, 16, '2020-08-10 14:45:11'),
+('Philippines', 113, 16, '2020-08-10 14:45:11'),
+('Giaxang', 114, 16, '2020-08-10 14:45:11'),
+('Matdien', 115, 16, '2020-08-10 14:45:11'),
+('Giatom', 116, 16, '2020-08-10 14:45:11'),
+('Cantho', 117, 16, '2020-08-10 14:45:11'),
+('Tau', 118, 16, '2020-08-10 14:45:11'),
+('Ruoubia', 119, 16, '2020-08-10 14:45:11'),
+('Congty', 120, 16, '2020-08-10 14:45:11'),
+('Thuonglai', 121, 16, '2020-08-10 14:45:11'),
+('Baoso2', 122, 16, '2020-08-10 14:45:11'),
+('Sohuyet', 123, 16, '2020-08-10 14:45:11'),
+('Tauthuyen', 124, 16, '2020-08-10 14:45:11'),
+('Hochannuoi', 125, 16, '2020-08-10 14:45:11'),
+('Ga', 126, 16, '2020-08-10 14:45:11'),
+('Quangngai', 127, 16, '2020-08-10 14:45:11'),
+('Milk', 128, 16, '2020-08-10 14:45:11'),
+('Hagiang', 129, 16, '2020-08-10 14:45:11'),
+('Thuoc', 130, 16, '2020-08-10 14:45:11');
 
 -- --------------------------------------------------------
 
@@ -865,8 +869,9 @@ INSERT INTO `users` (`IDUser`, `Name`, `Email`, `DOB`, `Password`, `PermissionID
 (12, 'Quang Trung', 'trungdeptrai@gmail.com', '1999-10-08 00:00:00', '$2a$08$RK0aLJRuv51SB6EtERyBfujUaJQnkdui1s5fLc7z4M8GaBV.xX8Mi', 3, '2020-08-02 12:01:39', '../../public/images/download.jpg', ''),
 (13, 'huuduc', 'ducnguyen.27111999@gmail.com', '2020-07-06 00:00:00', '$2a$08$KTQHecOLX.sOkuhspx2Pku5rER/zDr9bK0u5NmulM0tnL6VORP7u6', 3, '2020-07-22 14:16:11', 'Gearvn_lâu đài P.2_ (18).jpg', 'alias'),
 (14, 'aBC', 'asc@gmail.com', '2020-07-15 00:00:00', '$2a$08$63U7nVwpBLhXwAik0klWdeWbb05DLbQQiCj/Av2fDi4Vk8jVBiHjK', 4, '2020-07-07 03:16:55', '../../public/images/download.jpg', ''),
-(16, 'test', 'test@123.com', '2020-07-14 00:00:00', '$2a$08$dhm3knPUfHHpyh/NxE3rs.ulojT7TO4jlaRdSnsNolDYQTSVci1Ae', 4, '2020-07-14 14:58:57', '../../public/images/download.jpg', ''),
-(17, 'Nguyễn Thanh Dương', 'nguyenthanhduonglklklk@gmail.com', '2018-02-05 00:00:00', '$2a$08$3WEcTMPGp4cdpaqXJIbzG.uhbEXoGFOFQe4lXqo9L/kE/j0z4de96', 4, '2020-08-05 10:32:31', '../../public/images/download.jpg', '');
+(16, 'test', 'test@123.com', '2020-07-14 00:00:00', '$2a$08$EPEmpWuercaNOAP.A/KnH.sPVmhIdd9q8e4bL1q98AipCji1LZtNe', 1, '2020-08-10 14:48:11', '../../public/images/download.jpg', ''),
+(17, 'Nguyễn Thanh Dương', 'nguyenthanhduonglklklk@gmail.com', '2018-02-05 00:00:00', '$2a$08$3WEcTMPGp4cdpaqXJIbzG.uhbEXoGFOFQe4lXqo9L/kE/j0z4de96', 4, '2020-08-05 10:32:31', '../../public/images/download.jpg', ''),
+(18, 'subscriber', 'subscriber@123.com', '2020-08-10 00:00:00', '$2a$08$S8HBvnc0DTqs9LRhIOyuVe20yxwW4t8xbZEeK940o/tHSdoO3uGIq', 4, '2020-08-10 14:46:51', '../../public/images/download.jpg', '');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -982,7 +987,7 @@ ALTER TABLE `tags`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `IDUser` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `IDUser` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

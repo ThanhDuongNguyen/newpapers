@@ -45,7 +45,8 @@ router.post("/new", async function (req, res) {
       var TagID = null;
       if (checkTagName.length === 0) {
         const Tag = {
-          TagName: tagList[index]
+          TagName: tagList[index],
+          IDUser: req.session.authUser.IDUser,
         };
         const tagResult = await tagModel.add(Tag);
         console.log(tagResult);

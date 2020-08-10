@@ -22,16 +22,6 @@ router.post("/success", function(req, res){
   res.redirect(url);
 })
 
-// Warning
-router.get("/warning", function(req, res){
-  res.render("viewMessage/Warning", {layout: false});
-})
-
-router.post("/warning", function(req, res){
-  const url = req.query.retUrl || "/";
-  res.redirect(url);
-})
-
 // Error
 router.get("/error", function(req, res){
   res.render("viewMessage/Error", {layout: false});

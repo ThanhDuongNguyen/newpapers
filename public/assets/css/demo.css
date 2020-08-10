@@ -4,10 +4,6 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: Overpass;
-}
-
 h1,
 h2,
 h3,
@@ -20,11 +16,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "Work Sans";
   font-weight: 600;
-}
-.btn {
-  font-family: "Work Sans";
 }
 .demo-panel {
   display: flex;
@@ -88,7 +80,6 @@ h6,
   background: rgba(255, 255, 255, 0.09);
 }
 .font-worksans {
-  font-family: "Work Sans";
   font-weight: 600;
 }
 .underline {
