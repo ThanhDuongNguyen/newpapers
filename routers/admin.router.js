@@ -181,14 +181,16 @@ router.get("/category/edit/:id", classifyMdw.checkAdminClass, async function (
 ) {
   const id = +req.params.id || -1;
 
+  console.log("id", id);
+
   const [list, total] = await Promise.all([
     (allCat = await categoryModel.all()),
     (allUser = await userModel.allEditor()),
     (category = await categoryModel.single(id)),
     (censors = await categoryModel.censorOfCat(id)),
   ]);
-
-  const userAdd = await userModel.single(category[0].IDUser);
+  
+  console.log("censors", censors);
 
   // format time
   category[0].Time = moment(category[0].Time, "YYYY-MM-DD,h:mm:ss a").format(

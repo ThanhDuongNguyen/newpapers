@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th8 10, 2020 lúc 04:50 PM
+-- Thời gian đã tạo: Th8 10, 2020 lúc 07:23 PM
 -- Phiên bản máy phục vụ: 10.4.11-MariaDB
 -- Phiên bản PHP: 7.4.4
 
@@ -20,24 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `newspaper`
 --
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `assignedbtv`
---
-
-CREATE TABLE `assignedbtv` (
-  `IDUser` int(11) NOT NULL,
-  `CatID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `assignedbtv`
---
-
-INSERT INTO `assignedbtv` (`IDUser`, `CatID`) VALUES
-(1, 1);
 
 -- --------------------------------------------------------
 
@@ -99,6 +81,7 @@ INSERT INTO `comments` (`IDPage`, `IDUser`, `Comment`, `Time`, `IDComment`) VALU
 --
 
 CREATE TABLE `editor_cat` (
+  `ID` int(11) NOT NULL,
   `IDUser` int(11) NOT NULL,
   `CatID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -107,9 +90,20 @@ CREATE TABLE `editor_cat` (
 -- Đang đổ dữ liệu cho bảng `editor_cat`
 --
 
-INSERT INTO `editor_cat` (`IDUser`, `CatID`) VALUES
-(12, 3),
-(12, 4);
+INSERT INTO `editor_cat` (`ID`, `IDUser`, `CatID`) VALUES
+(1, 16, 1),
+(2, 16, 2),
+(3, 16, 3),
+(4, 16, 4),
+(5, 16, 5),
+(6, 16, 6),
+(7, 16, 7),
+(8, 16, 8),
+(9, 16, 9),
+(10, 16, 10),
+(11, 19, 4),
+(12, 19, 9),
+(13, 19, 10);
 
 -- --------------------------------------------------------
 
@@ -871,7 +865,8 @@ INSERT INTO `users` (`IDUser`, `Name`, `Email`, `DOB`, `Password`, `PermissionID
 (14, 'aBC', 'asc@gmail.com', '2020-07-15 00:00:00', '$2a$08$63U7nVwpBLhXwAik0klWdeWbb05DLbQQiCj/Av2fDi4Vk8jVBiHjK', 4, '2020-07-07 03:16:55', '../../public/images/download.jpg', ''),
 (16, 'test', 'test@123.com', '2020-07-14 00:00:00', '$2a$08$EPEmpWuercaNOAP.A/KnH.sPVmhIdd9q8e4bL1q98AipCji1LZtNe', 1, '2020-08-10 14:48:11', '../../public/images/download.jpg', ''),
 (17, 'Nguyễn Thanh Dương', 'nguyenthanhduonglklklk@gmail.com', '2018-02-05 00:00:00', '$2a$08$3WEcTMPGp4cdpaqXJIbzG.uhbEXoGFOFQe4lXqo9L/kE/j0z4de96', 4, '2020-08-05 10:32:31', '../../public/images/download.jpg', ''),
-(18, 'subscriber', 'subscriber@123.com', '2020-08-10 00:00:00', '$2a$08$S8HBvnc0DTqs9LRhIOyuVe20yxwW4t8xbZEeK940o/tHSdoO3uGIq', 4, '2020-08-10 14:46:51', '../../public/images/download.jpg', '');
+(18, 'subscriber', 'subscriber@123.com', '2020-08-10 00:00:00', '$2a$08$S8HBvnc0DTqs9LRhIOyuVe20yxwW4t8xbZEeK940o/tHSdoO3uGIq', 4, '2020-08-10 14:46:51', '../../public/images/download.jpg', ''),
+(19, 'editor', 'editor@123.com', '2020-08-11 00:00:00', '$2a$08$1aksqO9YSResjaHGoFbc.uJaeY4ibnujjN8HfB./scIyE.9aQsDnO', 2, '2020-08-10 17:22:21', '../../public/images/download.jpg', '');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -895,7 +890,9 @@ ALTER TABLE `comments`
 -- Chỉ mục cho bảng `editor_cat`
 --
 ALTER TABLE `editor_cat`
-  ADD PRIMARY KEY (`IDUser`,`CatID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `fk_category` (`CatID`),
+  ADD KEY `fk_user` (`IDUser`);
 
 --
 -- Chỉ mục cho bảng `newspapers`
@@ -954,6 +951,12 @@ ALTER TABLE `comments`
   MODIFY `IDComment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT cho bảng `editor_cat`
+--
+ALTER TABLE `editor_cat`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT cho bảng `newspapers`
 --
 ALTER TABLE `newspapers`
@@ -987,7 +990,7 @@ ALTER TABLE `tags`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `IDUser` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `IDUser` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -999,6 +1002,13 @@ ALTER TABLE `users`
 ALTER TABLE `comments`
   ADD CONSTRAINT `fk_comment_news` FOREIGN KEY (`IDPage`) REFERENCES `newspapers` (`IDPage`),
   ADD CONSTRAINT `fk_comment_user` FOREIGN KEY (`IDUser`) REFERENCES `users` (`IDUser`);
+
+--
+-- Các ràng buộc cho bảng `editor_cat`
+--
+ALTER TABLE `editor_cat`
+  ADD CONSTRAINT `fk_category` FOREIGN KEY (`CatID`) REFERENCES `categories` (`CatID`),
+  ADD CONSTRAINT `fk_user` FOREIGN KEY (`IDUser`) REFERENCES `users` (`IDUser`);
 
 --
 -- Các ràng buộc cho bảng `referencetagsnews`

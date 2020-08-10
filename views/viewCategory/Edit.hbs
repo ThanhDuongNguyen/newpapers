@@ -213,7 +213,6 @@
                         {{#each this.allCat}}
                         <option {{#if isCurrent}} selected {{/if}} value="{{CatID}}">{{CatName}}</option>
                         {{/each}}
-                        <option value="0">&nbsp;</option>
                       </select>
                     </div>
                     <div class="form-group">
@@ -221,8 +220,7 @@
                       <div class="d-flex flex-wrap">
                         {{#each this.censor}}
                         <div class="form-check">
-                          <input class="form-check-input" {{#if is_Admin}} readonly {{/if}} name="IDUser[]" checked
-                            type="checkbox" value="{{IDUser}}">
+                          <input class="form-check-input" name="IDUser[]" checked type="checkbox" value="{{IDUser}}">
                           <label class="form-check-label ml-2">{{Name}}</label>
                         </div>
                         {{/each}}
