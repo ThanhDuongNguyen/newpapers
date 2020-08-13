@@ -2,18 +2,36 @@ const db = require("../utils/db");
 
 const TBL_CATEGORIES = "categories";
 const TBL_NEWSPAPER = "newspapers";
+const TBL_EDITOR_CAT = "editor_cat";
+const TBL_USER = "users";
 const TOP_NEWS_NUM = 5;
 //
 module.exports = {
   all: function () {
     return db.load(`select * from ${TBL_CATEGORIES}`);
   },
+
   single: function (id) {
     return db.load(`select * from ${TBL_CATEGORIES} where CatID = ${id}`);
   },
 
+  singleByIDPage:async function (id) {
+    const row = await db.load(`select ${TBL_CATEGORIES}.CatName from ${TBL_CATEGORIES} join ${TBL_NEWSPAPER} on ${TBL_CATEGORIES}.CatID = ${TBL_NEWSPAPER}.CatID where ${TBL_NEWSPAPER}.IDPage = ${id}`);
+
+    return row[0];
+  },
+
+  singleByCatName: function(CatName)
+  {
+    return db.load (`select * from ${TBL_CATEGORIES} where CatName like N'${CatName}'`);
+  },
+
   childCategory: function(id){
     return db.load(`SELECT * FROM ${TBL_CATEGORIES} WHERE ${TBL_CATEGORIES}.ParentCatID = ${id}`);
+  },
+
+  censorOfCat: function(id){
+    return db.load(`select ${TBL_USER}.Name, ${TBL_USER}.IDUser, ${TBL_USER}.PermissionID from ${TBL_EDITOR_CAT} join ${TBL_USER} on ${TBL_EDITOR_CAT}.IDUser = ${TBL_USER}.IDUser where CatID = ${id} and ${TBL_USER}.PermissionID <> 1`);
   },
 
   pageByCat: function (id, limit, offset) {

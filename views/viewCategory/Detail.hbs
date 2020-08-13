@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+
+  {{!-- Font Awesome --}}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  {{!-- Fonts --}}
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  {{!-- Bootstrap CSS --}}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  {{!-- Fonts --}}
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/public/assets/css/admin.css">
+  <link rel="stylesheet" href="/public/assets/css/table.css">
+  <link rel="stylesheet" href="/public/css/style_1.css">
+
+</head>
+
+<body>
+  <div class="container-fluid d-flex justify-content-center mt-3 mb-3">
+    <div class="main">
+      <div class="row h-100">
+        {{!-- Sidebar --}}
+        <div class="col-sm-12 col-lg-2 pl-0 pr-0">
+          {{!-- Sidebar PC --}}
+          <div class="sidebar-pc">
+            {{!-- Logo --}}
+            <div class="logo">
+              <a href="/" class="d-block">
+                <img src="/public/images/logo.png" alt="Image Logo">
+              </a>
+            </div>
+
+            {{!-- Navbar --}}
+            <nav class="w-100">
+              <ul class="list">
+                <li class="list-item">
+                  <a href="/admin" class="list-link">
+                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                    Bảng điều khiển
+                  </a>
+                </li>
+                <li class="list-item">
+                  <a href="/admin/category" class="list-link active">
+                    <i class="fa fa-list" aria-hidden="true"></i>
+                    Danh mục
+                  </a>
+                </li>
+                <li class="list-item">
+                  <a href="/admin/tags" class="list-link">
+                    <i class="fa fa-tags" aria-hidden="true"></i>
+                    Thẻ
+                  </a>
+                </li>
+                <li class="list-item">
+                  <a href="/admin/news" class="list-link">
+                    <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                    Bài viết
+                  </a>
+                </li>
+                <li class="list-item">
+                  <a href="/admin/users" class="list-link">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    Người dùng
+                  </a>
+                </li>
+              </ul>
+            </nav>
+            {{!-- Sign out --}}
+            <form action="/Account/Logout" id="frmLogout" method="POST"></form>
+            <a class="nav-link" href="javascript: $('#frmLogout').submit()">
+              <i class="fa fa-sign-in" aria-hidden="true"></i>
+              Đăng xuất
+            </a>
+
+            {{!-- Ads --}}
+            <div class="position-relative d-flex justify-content-center">
+              <div class="ads">
+                <img src="/public/images/flamenco-lets-get-out-of-here.png" alt="Image Ads">
+                <p>Upgrade to <span style="font-weight: bold;">Pro</span> now</p>
+                <a href="#" class="btn btn-success mt-2 mb-2">Upgrade</a>
+              </div>
+            </div>
+          </div>
+
+
+          {{!-- Sidebar Mobile --}}
+          <div class="sidebar-mobile">
+            {{!-- Logo --}}
+            <div class="logo">
+              <a href="/" class="d-block">
+                <img src="/public/images/logo.png" alt="Image Logo">
+              </a>
+            </div>
+
+            {{!-- Navbar --}}
+            <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+              <div class="container">
+                <a class="navbar-brand" href="/">
+                  <h3>Trang chủ</h3>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                  data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                  aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse position-relative" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                      <a href="/admin" class="nav-link">
+                        <i class="fa fa-tachometer" aria-hidden="true"></i>
+                        Bảng điều khiển
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/admin/category" class="nav-link active">
+                        <i class="fa fa-list" aria-hidden="true"></i>
+                        Danh mục
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/admin/tags" class="nav-link">
+                        <i class="fa fa-tags" aria-hidden="true"></i>
+                        Thẻ
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/admin/news" class="nav-link">
+                        <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                        Bài viết
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/admin/users" class="nav-link">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        Người dùng
+                      </a>
+                    </li>
+
+                    <li class="nav-item">
+                      {{!-- Sign out --}}
+                      <form action="/Account/Logout" id="frmLogout" method="POST"></form>
+                      <a class="nav-link" href="javascript: $('#frmLogout').submit()">
+                        <i class="fa fa-sign-in" aria-hidden="true"></i>
+                        Đăng xuất
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+
+        {{!-- Main content --}}
+        <div class="col-sm-12 col-lg-10 main-content">
+          <div class="container">
+            {{!-- Top bar --}}
+            <div class="top-bar-admin mb-4">
+              <h4>Danh Mục</h4>
+              <form class="search-form my-2 my-lg-0" method="GET" action="/Category/search">
+                <input class="form-control mr-sm-2" type="text" name="Search" placeholder="Search">
+                <button class="btn-search" type="submit">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+              </form>
+            </div>
+            
+            <a href="/admin/category/add" type="button" class="btn btn-outline-success mb-3">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+              Thêm mới
+            </a>
+
+            {{!-- Card --}}
+            <div class="card">
+              <div class="card-header">
+                <h5>{{CatName}}</h5>
+              </div>
+              <div class="card-body">
+                <p class="detail-text">
+                  <span>ID :</span> {{CatID}}
+                </p>
+                <p class="detail-text">
+                  <span>Tên danh mục :</span> {{CatName}}
+                </p>
+                <p class="detail-text">
+                  <span>Thuộc danh mục:</span> {{Parent}}
+                </p>
+                <p class="detail-text">
+                  <span>Thời gian cập nhật:</span> {{Time}}
+                </p>
+                <p class="detail-text">
+                  <span>Người cập nhật:</span> {{UserAdd}}
+                </p>
+                <p class="detail-text">
+                  <span>Người quản lý:</span> {{censorName}}
+                </p>
+              </div>
+              <div class="card-footer">
+                <a href="/admin/category" class="btn btn-outline-success btn-backwards">
+                  <i class="fa fa-backward" aria-hidden="true"></i>
+                  Quay lại sang danh sách
+                </a>
+                <a href="/admin/category/edit/{{this.CatID}}" class="btn btn-outline-primary btn-edit">
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                  Chỉnh sửa
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  {{!-- Bootstrap JS --}}
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <script src="/public/assets/js/table.js"></script>
+</body>
+
+</html>

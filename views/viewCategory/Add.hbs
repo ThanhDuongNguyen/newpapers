@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+
+  {{!-- Font Awesome --}}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  {{!-- Fonts --}}
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  {{!-- Bootstrap CSS --}}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  {{!-- Image --}}
+  <link rel="stylesheet" href="/public/assets/img/lunar.png" type="image/png" sizes="16x16">
+
+  <link rel="stylesheet" href="/public/assets/css/admin.css">
+  <link rel="stylesheet" href="/public/assets/css/table.css">
+  <link rel="stylesheet" href="/public/css/style_1.css">
+  <link rel="stylesheet" href="/public/assets/css/lunar.css">
+  <link rel="stylesheet" href="/public/assets/css/demo.css">
+
+</head>
+
+<body>
+  <div class="container-fluid d-flex justify-content-center mt-3 mb-3">
+    <div class="main">
+      <div class="row h-100">
+        {{!-- Sidebar --}}
+        <div class="col-sm-12 col-lg-2 pl-0 pr-0">
+          {{!-- Sidebar PC --}}
+          <div class="sidebar-pc">
+            {{!-- Logo --}}
+            <div class="logo">
+              <a href="/" class="d-block">
+                <img src="/public/images/logo.png" alt="Image Logo">
+              </a>
+            </div>
+
+            {{!-- Navbar --}}
+            <nav class="w-100">
+              <ul class="list">
+                <li class="list-item">
+                  <a href="/admin" class="list-link">
+                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                    Bảng điều khiển
+                  </a>
+                </li>
+                <li class="list-item">
+                  <a href="/admin/category" class="list-link active">
+                    <i class="fa fa-list" aria-hidden="true"></i>
+                    Danh mục
+                  </a>
+                </li>
+                <li class="list-item">
+                  <a href="/admin/tags" class="list-link">
+                    <i class="fa fa-tags" aria-hidden="true"></i>
+                    Thẻ
+                  </a>
+                </li>
+                <li class="list-item">
+                  <a href="/admin/news" class="list-link">
+                    <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                    Bài viết
+                  </a>
+                </li>
+                <li class="list-item">
+                  <a href="/admin/users" class="list-link">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    Người dùng
+                  </a>
+                </li>
+              </ul>
+            </nav>
+            {{!-- Sign out --}}
+            <form action="/Account/Logout" id="frmLogout" method="POST"></form>
+            <a class="nav-link" href="javascript: $('#frmLogout').submit()">
+              <i class="fa fa-sign-in" aria-hidden="true"></i>
+              Đăng xuất
+            </a>
+
+            {{!-- Ads --}}
+            <div class="position-relative d-flex justify-content-center">
+              <div class="ads">
+                <img src="/public/images/flamenco-lets-get-out-of-here.png" alt="Image Ads">
+                <p>Upgrade to <span style="font-weight: bold;">Pro</span> now</p>
+                <a href="#" class="btn btn-success mt-2 mb-2">Upgrade</a>
+              </div>
+            </div>
+          </div>
+
+
+          {{!-- Sidebar Mobile --}}
+          <div class="sidebar-mobile">
+            {{!-- Logo --}}
+            <div class="logo">
+              <a href="/" class="d-block">
+                <img src="/public/images/logo.png" alt="Image Logo">
+              </a>
+            </div>
+
+            {{!-- Navbar --}}
+            <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+              <div class="container">
+                <a class="navbar-brand" href="/">
+                  <h3>Trang chủ</h3>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                  data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                  aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse position-relative" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                      <a href="/admin" class="nav-link">
+                        <i class="fa fa-tachometer" aria-hidden="true"></i>
+                        Bảng điều khiển
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/admin/category" class="nav-link active">
+                        <i class="fa fa-list" aria-hidden="true"></i>
+                        Danh mục
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/admin/tags" class="nav-link">
+                        <i class="fa fa-tags" aria-hidden="true"></i>
+                        Thẻ
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/admin/news" class="nav-link">
+                        <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                        Bài viết
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/admin/users" class="nav-link">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        Người dùng
+                      </a>
+                    </li>
+
+                    <li class="nav-item">
+                      {{!-- Sign out --}}
+                      <form action="/Account/Logout" id="frmLogout" method="POST"></form>
+                      <a class="nav-link" href="javascript: $('#frmLogout').submit()">
+                        <i class="fa fa-sign-in" aria-hidden="true"></i>
+                        Đăng xuất
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+
+        {{!-- Main content --}}
+        <div class="col-sm-12 col-lg-10 main-content">
+          <div class="container">
+            {{!-- Top bar --}}
+            <div class="top-bar-admin mb-4">
+              <h4>Danh Mục</h4>
+              <form class="search-form my-2 my-lg-0" method="GET" action="/Category/search">
+                <input class="form-control mr-sm-2" type="text" name="Search" placeholder="Search">
+                <button class="btn-search" type="submit">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+              </form>
+            </div>
+
+            {{!-- Card --}}
+            <div class="card">
+              <div class="card-header">
+                <h5>Thêm danh mục</h5>
+              </div>
+              <div class="card-body">
+                <div class="container">
+                  {{!-- Show Error --}}
+                  {{#if err}}
+                  <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                    <button type="button" class="closeAlert" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    {{err}}
+                  </div>
+                  {{/if}}
+                  {{!-- End Show Error --}}
+                  {{!-- Form edit --}}
+                  <form method="POST" action="" id="frmAddCat" onsubmit="return validationAddCat">
+                    <div class="form-group">
+                      <label>Tên Danh mục</label>
+                      <input type="text" class="form-control" name="CatName">
+                    </div>
+                    <div class="form-group">
+                      <label>Thuộc Chuyên mục</label>
+                      <select class="form-control" name="ParentCatID">
+                        {{#each this.allCat}}
+                        <option value="{{CatID}}">{{CatName}}</option>
+                        {{/each}}
+                        <option value="0">&nbsp;</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Người quản lý</label>
+                      <div class="d-flex flex-wrap">
+                        {{#each this.allUser}}
+                        <div class="form-check">
+                          <input class="form-check-input" name="IDUser[]" type="checkbox" value="{{IDUser}}">
+                          <label class="form-check-label ml-2">{{Name}}</label>
+                        </div>
+                        {{/each}}
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                      Thêm
+                    </button>
+                    <a href="/admin/category" type="submit" class="btn btn-danger mt-3">
+                      <i class="fa fa-times" aria-hidden="true"></i>
+                      Hủy
+                    </a>
+                  </form>
+                  {{!-- End form --}}
+                </div>
+              </div>
+              <div class="card-footer">
+                <a href="/admin/category" class="btn btn-outline-success btn-backwards">
+                  <i class="fa fa-backward" aria-hidden="true"></i>
+                  Quay lại trang danh sách
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade " id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModal"
+      aria-hidden="true">
+      <div class="modal-dialog  modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div class="modal-body">
+            <div class="px-3 pt-3 text-center">
+              <div class="event-type warning">
+                <div class="event-indicator ">
+                  <svg style="width:60px;height:60px" viewBox="0 0 24 24">
+                    <path fill="#000000" d="M11,4.5H13V15.5H11V4.5M13,17.5V19.5H11V17.5H13Z" />
+                  </svg>
+                </div>
+              </div>
+              <h3 class="pt-3">Bạn chắc chứ?</h3>
+              <p class="text-muted">
+                Bạn sẽ phải chịu trách nhiệm cho hành động này!
+              </p>
+
+            </div>
+          </div>
+          <div class="modal-footer">
+            <form action="/admin/category/delete/{{CatID}}" id="frmDelCat" method="POST"></form>
+            <a href="javascript: $('#frmDelCat').submit()" class="btn btn-cstm-danger">Tiếp tục</a>
+            <a href="/" class="btn btn-cstm-secondary" data-dismiss="modal" aria-label="Close">Hủy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Ends -->
+  </div>
+
+
+  {{!-- Bootstrap JS --}}
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <script src="/public/assets/js/table.js"></script>
+  {{!-- Validation --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+  <script src="/public/assets/js/validation.js"></script>
+
+</body>
+
+</html>

@@ -10,9 +10,9 @@
   {{!-- Font --}}
   <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
   {{!-- Default CSS --}}
-  <link href="../../public/css/style_1.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="../../public/css/tags.css">
-  <link rel="stylesheet" href="../../public/assets/css/demo.css">
+  <link href="/public/css/style_1.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="/public/css/tags.css">
+  <link rel="stylesheet" href="/public/assets/css/demo.css">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <script type="text/javascript"
@@ -40,7 +40,7 @@
         <div class="dropdown pl-2">
           <button class="btn btn-account dropdown-toggle text-dark" style="background: none; color: #ccc" type="button"
             id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="../../public/images-upload/{{lcAuthUser.Avatar}}" class="avatar" alt="">
+            <img src="/public/images-upload/{{lcAuthUser.Avatar}}" class="avatar" alt="">
             {{lcAuthUser.Name}}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -67,6 +67,9 @@
   <div class="container-fluid">
     <div class="container">
       <div class="row">
+        <div class="col-12 col-md-3 fh5co_padding_menu">
+          <img src="/public/images/logo.png" alt="img" class="fh5co_logo_width">
+        </div>
       </div>
     </div>
   </div>

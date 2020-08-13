@@ -32,6 +32,11 @@ module.exports = {
     );
   },
 
+  allNewsByCat: function(id)
+  {
+    return db.load(`select * from ${TBL_NEWSPAPER} where CatID = ${id}`);
+  },
+
   newsBySearch: function (input) {
     return db.load(
       `SELECT * FROM ${TBL_NEWSPAPER} WHERE MATCH(Title, TinyContent, Content) AGAINST('${input}')`
@@ -118,6 +123,20 @@ module.exports = {
   del: function (id) {
     const condition = {
       IDPage: id,
+    };
+    return db.del(TBL_NEWSPAPER, condition);
+  },
+
+  delByAuthor: function (IDUser) {
+    const condition = {
+      Author: IDUser,
+    };
+    return db.del(TBL_NEWSPAPER, condition);
+  },
+
+  delByCat: function (CatID) {
+    const condition = {
+      CatID: CatID,
     };
     return db.del(TBL_NEWSPAPER, condition);
   },

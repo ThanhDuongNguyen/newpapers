@@ -3,14 +3,24 @@ const db = require("../utils/db");
 const TBL_TAGS = "tags";
 const TBL_REFERENCETAGSNEWS = "referencetagsnews";
 const TBL_NEWSPAPER = "newspapers";
+const TBL_USERS = "users";
+
 
 module.exports = {
   all: function () {
+    return db.load(`select * from ${TBL_TAGS}`);
+  },
+
+  tagsByTagName: function (TagName) {
+    return db.load(`select * from ${TBL_TAGS} where TagName like N'${TagName}'`);
+  },
+
+  allLimit: function () {
     return db.load(`select * from ${TBL_TAGS} ORDER BY RAND() limit 10`);
   },
 
   single: function (id) {
-    return db.load(`select * from ${TBL_TAGS} where IDTags = ${id}`);
+    return db.load(`select * from ${TBL_TAGS} join ${TBL_USERS} on ${TBL_TAGS}.IDUser = ${TBL_USERS}.IDUser where IDTags = ${id}`);
   },
 
   singleByTagName: function (TagName) {
@@ -68,15 +78,15 @@ module.exports = {
   },
   patch: function (entity) {
     const condition = {
-      IDComment: entity.IDComment,
+      IDTags: entity.IDTags,
     };
     delete entity.IDComment;
-    return db.patch(TBL_COMMENT, entity, condition);
+    return db.patch(TBL_TAGS, entity, condition);
   },
   del: function (id) {
     const condition = {
-      IDComment: id,
+      IDTags: id,
     };
-    return db.del(TBL_COMMENT, condition);
+    return db.del(TBL_TAGS, condition);
   },
 };

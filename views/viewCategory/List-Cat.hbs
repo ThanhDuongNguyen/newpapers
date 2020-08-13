@@ -1,3 +1,8 @@
+{{#section 'css'}}
+{{!-- Owl Carousel --}}
+<link rel="stylesheet" href="../../public/css/list_cat_tag.css">
+{{/section}}
+
 <div class="container-fluid pb-4 pt-4 paddding">
 	<div class="container paddding">
 		<div class="row mx-0">
@@ -15,7 +20,7 @@
 					</div>
 					<div class="col-md-7 animate-box fadeInUp animated-fast">
 						<a href="/news/{{IDPage}}" class="fh5co_magna py-2"> {{Title}} </a>
-						<div class="fh5co_consectetur">{{TinyContent}}</div>
+						<div class="fh5co_consectetur newspaper-content-size">{{TinyContent}}</div>
 						<p class="most_fh5co_treding_font_123 mt-3">
 							{{Day}}
 						</p>
@@ -43,13 +48,15 @@
 				{{!-- Popular --}}
 				{{!-- Popular --}}
 				{{#each this.listPopular}}
-				<div class="row pb-3 popular">
-					<div class="col-5 align-self-center h-100">
-						<a href="/news/{{IDPage}}" class="d-block"><img src="{{ImgAvatar}}" alt="Image Popular" class="fh5co_most_trading"></a>
+				<div class="row pb-3">
+					<div class="col popular-img-size">
+						<a href="/news/{{IDPage}}" class="d-block w-100 h-100">
+							<img src="{{ImgAvatar}}" class="fit-img" alt="Image title">
+						</a>
 					</div>
 					<div class="col-7 paddding">
 						<a href="/news/{{IDPage}}">
-							<div class="most_fh5co_treding_font">{{Title}}</div>
+							<div class="most_fh5co_treding_font popular-title-size">{{Title}}</div>
 						</a>
 						<div class="most_fh5co_treding_font_123">{{Day}}</div>
 					</div>

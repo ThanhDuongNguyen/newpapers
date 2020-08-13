@@ -19,6 +19,8 @@ app.use('/public', express.static('public'));
 
 // require routers
 app.use("/", require("./routers/home.router"));
+app.use("/pricing", require("./routers/pricing.router"));
+app.use("/checkout", require("./routers/checkout.router"));
 app.use("/news", require("./routers/newspaper.router"));
 app.use("/Account", require("./routers/account.router"));
 app.use('/Category', require("./routers/category.router"));

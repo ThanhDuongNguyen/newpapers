@@ -12,11 +12,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
   {{!-- Bootstrap CSS --}}
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  {{!-- Animate --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css">
+  {{!-- Image --}}
+  <link rel="stylesheet" href="/public/assets/img/lunar.png" type="image/png" sizes="16x16">
 
-  <link rel="stylesheet" href="../../public/assets/css/admin.css">
-  <link rel="stylesheet" href="../../public/assets/css/table.css">
-  <link rel="stylesheet" href="../../public/css/style_1.css">
-
+  <link rel="stylesheet" href="/public/assets/css/admin.css">
+  <link rel="stylesheet" href="/public/assets/css/table.css">
+  <link rel="stylesheet" href="/public/css/style_1.css">
+  <link rel="stylesheet" href="/public/assets/css/lunar.css">
+  <link rel="stylesheet" href="/public/assets/css/demo.css">
 </head>
 
 <body>
@@ -24,13 +29,13 @@
     <div class="main">
       <div class="row h-100">
         {{!-- Sidebar --}}
-        <div class="col-sm-12 col-lg-2 pl-0 pr-0">
+        <section class="col-sm-12 col-lg-2 pl-0 pr-0">
           {{!-- Sidebar PC --}}
-          <div class="sidebar-pc">
+          <section class="sidebar-pc">
             {{!-- Logo --}}
             <div class="logo">
               <a href="/" class="d-block">
-                <img src="../../public/images/logo.png" alt="Image Logo">
+                <img src="/public/images/logo.png" alt="Image Logo">
               </a>
             </div>
 
@@ -67,32 +72,35 @@
                     Người dùng
                   </a>
                 </li>
+                <li class="list-item">
+                  {{!-- Sign out --}}
+                  <form action="/Account/Logout" id="frmLogout" method="POST"></form>
+                  <a class="nav-link" href="javascript: $('#frmLogout').submit()">
+                    <i class="fa fa-sign-in" aria-hidden="true"></i>
+                    Đăng xuất
+                  </a>
+                </li>
               </ul>
             </nav>
-            {{!-- Sign out --}}
-            <form action="/Account/Logout" id="frmLogout" method="POST"></form>
-            <a class="nav-link" href="javascript: $('#frmLogout').submit()">
-              <i class="fa fa-sign-in" aria-hidden="true"></i>
-              Đăng xuất
-            </a>
+
 
             {{!-- Ads --}}
             <div class="position-relative d-flex justify-content-center">
               <div class="ads">
-                <img src="../../public/images/flamenco-lets-get-out-of-here.png" alt="Image Ads">
+                <img src="/public/images/flamenco-lets-get-out-of-here.png" alt="Image Ads">
                 <p>Upgrade to <span style="font-weight: bold;">Pro</span> now</p>
                 <a href="#" class="btn btn-success mt-2 mb-2">Upgrade</a>
               </div>
             </div>
-          </div>
+          </section>
 
 
           {{!-- Sidebar Mobile --}}
-          <div class="sidebar-mobile">
+          <section class="sidebar-mobile">
             {{!-- Logo --}}
             <div class="logo">
               <a href="/" class="d-block">
-                <img src="../../public/images/logo.png" alt="Image Logo">
+                <img src="/public/images/logo.png" alt="Image Logo">
               </a>
             </div>
 
@@ -154,11 +162,11 @@
                 </div>
               </div>
             </nav>
-          </div>
-        </div>
+          </section>
+        </section>
 
         {{!-- Main content --}}
-        <div class="col-sm-12 col-lg-10 main-content">
+        <section class="col-sm-12 col-lg-10 main-content">
           <div class="container">
             {{!-- Top bar --}}
             <div class="top-bar-admin mb-4">
@@ -171,7 +179,7 @@
               </form>
             </div>
 
-            <a href="#" type="button" class="btn btn-outline-success mb-3">
+            <a href="/admin/category/add" type="button" class="btn btn-outline-success mb-3">
               <i class="fa fa-plus" aria-hidden="true"></i>
               Thêm mới
             </a>
@@ -182,36 +190,6 @@
                 <h5>Bảng danh mục</h5>
               </div>
               <div class="card-body">
-                {{!-- <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col" class="text-center w-25">Tên Danh Mục</th>
-                      <th scope="col" class="text-center">Thuộc Danh Mục</th>
-                      <th scope="col" class="text-center">&nbsp;</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {{#each this.listCat}}
-                    <tr>
-                      <th scope="row">{{CatID}}</th>
-                      <td class="text-center">{{CatName}}</td>
-                      <td class="text-center">{{ParentCatID}}</td>
-                      <td class="text-right">
-                        <a href="/admin/category/detail" class="btn btn-success">
-                          <i class="fa fa-eye" aria-hidden="true"></i>
-                        </a>
-                        <a href="/admin/category/edit" class="btn btn-primary">
-                          <i class="fa fa-pencil" aria-hidden="true"></i>
-                        </a>
-                        <a href="" class="btn btn-danger">
-                          <i class="fa fa-trash" aria-hidden="true"></i>
-                        </a>
-                      </td>
-                    </tr>
-                    {{/each}}
-                  </tbody>
-                </table> --}}
 
                 <div class="table-responsive-vertical shadow-z-1">
                   <!-- Table starts here -->
@@ -231,20 +209,21 @@
                         <td>{{CatName}}</td>
                         <td>{{ParentCatID}}</td>
                         <td class="text-right action">
-                          <form action="/admin/category/delete?id={{CatID}}" id="frmDelete" method="POST"></form>
-                          <a href="/admin/category/detail" class="btn btn-success">
+                          <form action="/admin/category/delete/{{CatID}}" id="frmDelCat-{{CatID}}" method="POST"></form>
+                          <a href="/admin/category/detail/{{CatID}}" class="btn btn-success">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                           </a>
-                          <a href="/admin/category/edit" class="btn btn-primary">
+                          <a href="/admin/category/edit/{{CatID}}" class="btn btn-primary">
                             <i class="fa fa-pencil" aria-hidden="true"></i>
                           </a>
-                          <a class="btn btn-danger" href="javascript: $('#frmDelete').submit()">
+                          <button onclick="saveCatId({{CatID}})" type="button" class="btn btn-danger"
+                            data-toggle="modal" data-target="#warningModal">
                             <i class="fa fa-trash" aria-hidden="true"></i>
-                          </a>
+                          </button>
                         </td>
                       </tr>
                       {{/each}}
-                    </tbody> 
+                    </tbody>
                   </table>
                 </div>
               </div>
@@ -277,9 +256,45 @@
               </div>
             </div>
           </div>
+        </section>
+      </div>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade " id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModal"
+      aria-hidden="true">
+      <div class="modal-dialog  modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div class="modal-body">
+            <div class="px-3 pt-3 text-center">
+              <div class="event-type warning">
+                <div class="event-indicator ">
+                  <svg style="width:60px;height:60px" viewBox="0 0 24 24">
+                    <path fill="#000000" d="M11,4.5H13V15.5H11V4.5M13,17.5V19.5H11V17.5H13Z" />
+                  </svg>
+                </div>
+              </div>
+              <h3 class="pt-3">Bạn chắc chứ?</h3>
+              <p class="text-muted">
+                Bạn sẽ phải chịu trách nhiệm cho hành động này!
+              </p>
+
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a href="javascript: $(`#frmDelCat-${localStorage.getItem('catIdToDel')}`).submit()"
+              class="btn btn-cstm-danger">Tiếp tục</a>
+            <a href="/" class="btn btn-cstm-secondary" data-dismiss="modal" aria-label="Close">Hủy</a>
+          </div>
         </div>
       </div>
     </div>
+    <!-- Modal Ends -->
   </div>
 
 
@@ -288,7 +303,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-  <script src="../../public/assets/js/table.js"></script>
+  <script src="/public/assets/js/table.js"></script>
+
+  <script>
+    function saveCatId(id) {
+      return function () {
+        localStorage.setItem('catIdToDel', id);
+      }
+    }
+  </script>
 </body>
 
 </html>

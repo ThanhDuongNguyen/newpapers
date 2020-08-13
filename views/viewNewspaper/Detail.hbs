@@ -1,3 +1,7 @@
+{{#section 'css'}}
+{{!-- Owl Carousel --}}
+<link rel="stylesheet" href="../../public/css/detail.css">
+{{/section}}
 <div class="container mt-2">
   <div class="row justify-content-center">
     <div class="col-md-10 col-lg-8 text-justify">
@@ -31,9 +35,9 @@
           <img src="{{ImgAvatar}}" alt="IMG" class="w-100 h-100">
         </div>
 
-        <p class="text-justify">
+        <div id="content" class="text-justify">
           {{{Content}}}
-        </p>
+        </div>
         {{/each}}
 
         <!-- Tag -->
@@ -141,10 +145,10 @@
         <ul class="p-t-35">
           {{#each this.listNewsByCat}}
           <li class="row pb-3">
-            <div class="col-sm-4">
-              <a href="/news/{{IDPage}}" class="d-block">
-                <img src="{{ImgAvatar}}" alt="IMG" class="w-100 h-100">
-              </a>
+            <div class="col-sm-4 newsbycat-img-size">
+              <a href="/news/{{IDPage}}" class="d-block w-100 h-100">
+							<img src="{{ImgAvatar}}" class="fit-img" alt="Image title">
+						</a>
             </div>
 
             <div class="col-sm-8">
