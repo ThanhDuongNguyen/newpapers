@@ -130,13 +130,6 @@ font-weight: bold;
         height: 400px !important;
     }
 
-    .cat-img-size{
-        height: 110px;
-    }
-    .popular-img-size{
-        width: 30px;
-        height: 90px;
-    }
 
     .big-box{
         height: 265px;
@@ -201,15 +194,7 @@ font-weight: bold;
         width:100%;
         height: 400px !important;
     }
-    .menu-img-size{
-        height: 160px;
-    }
-    .cat-img-size{
-        height: 160px;
-    }
-    .popular-img-size{
-        height: 110px;
-    }
+    
 
     .big-box{
         height: 340px;
@@ -274,12 +259,7 @@ font-weight: bold;
         width:100%;
         height: 600px !important;
     }
-    .cat-img-size{
-        height: 180px;
-    }
-    .popular-img-size{
-        height: 110px;
-    }
+    
 
     .big-box{
     height: 480px;

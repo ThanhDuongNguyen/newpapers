@@ -318,40 +318,173 @@
       {{#if Editor}}
       <div class="col-sm-9">
         <div class="main-content">
-          <div class="card-title">
-            <h3>Danh mục</h3>
+          {{!-- Nav tabs --}}
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#published">
+                <i class="fa fa-list" aria-hidden="true"></i>
+                List Published
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#confirmed">
+                <i class="fa fa-list" aria-hidden="true"></i>
+                List Confirmed
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#not-confirmed">
+                <i class="fa fa-list" aria-hidden="true"></i>
+                List Not Confirmed Yet
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#not-accepted">
+                <i class="fa fa-list" aria-hidden="true"></i>
+                List Not Accepted
+              </a>
+            </li>
+
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div class="tab-pane container active" id="published">
+              <a href="/writer/new" class="btn btn-outline-info text-right mt-3">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                Add
+              </a>
+              <table class="table table-striped mt-3">
+                <thead>
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col" class="hidden-item-1">Category</th>
+                    <th scope="col" class="hidden-item-2">Views</th>
+                    <th scope="col" class="hidden-item-3">Day</th>
+                    <th scope="col">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each this.listPublished}}
+                  <tr>
+                    <th scope="row">{{Title}}</th>
+                    <td class="hidden-item-1">{{CatName}}</td>
+                    <td class="hidden-item-2">{{View}}</td>
+                    <td class="hidden-item-3">{{Day}}</td>
+                    <td>
+                      <a href="/news/{{IDPage}}" class="btn btn-success">
+                        <i class="fa fa-eye" aria-hidden="true"></i></a>
+                    </td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+
+            <div class="tab-pane container fade" id="confirmed">
+              <a href="/writer/new" class="btn btn-outline-info text-right mt-3">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                Add
+              </a>
+              <table class="table table-striped mt-3">
+                <thead>
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col" class="hidden-item-1">Category</th>
+                    <th scope="col" class="hidden-item-2">Views</th>
+                    <th scope="col" class="hidden-item-3">Day</th>
+                    <th scope="col">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each this.listConfirmed}}
+                  <tr>
+                    <th scope="row">{{Title}}</th>
+                    <td class="hidden-item-1">{{CatName}}</td>
+                    <td class="hidden-item-2">{{View}}</td>
+                    <td class="hidden-item-3">{{Day}}</td>
+                    <td>
+                      <a href="/news/{{IDPage}}" class="btn btn-success">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+
+            <div class="tab-pane container fade" id="not-confirmed">
+              <a href="/writer/new" class="btn btn-outline-info text-right mt-3">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                Add
+              </a>
+              <table class="table table-striped mt-3">
+                <thead>
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col" class="hidden-item-1">Category</th>
+                    <th scope="col" class="hidden-item-2">Views</th>
+                    <th scope="col" class="hidden-item-3">Day</th>
+                    <th scope="col">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each this.listNotConfirmedYet}}
+                  <tr>
+                    <th scope="row">{{Title}}</th>
+                    <td class="hidden-item-1">{{CatName}}</td>
+                    <td class="hidden-item-2">{{View}}</td>
+                    <td class="hidden-item-3">{{Day}}</td>
+                    <td class="action">
+                      <a href="/news/{{IDPage}}" class="btn btn-success">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                      </a>
+                      <a href="/news/edit/{{IDPage}}" class="btn btn-primary btn-action">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+
+            <div class="tab-pane container fade" id="not-accepted">
+              <a href="/writer/new" class="btn btn-outline-info text-right mt-3">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                Add
+              </a>
+              <table class="table table-striped mt-3">
+                <thead>
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col" class="hidden-item-1">Category</th>
+                    <th scope="col" class="hidden-item-2">Views</th>
+                    <th scope="col" class="hidden-item-3">Day</th>
+                    <th scope="col">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each this.listNotAccepted}}
+                  <tr>
+                    <th scope="row">{{Title}}</th>
+                    <td class="hidden-item-1">{{CatName}}</td>
+                    <td class="hidden-item-2">{{View}}</td>
+                    <td class="hidden-item-3">{{Day}}</td>
+                    <td class="action">
+                      <a href="/news/{{IDPage}}" class="btn btn-success">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                      </a>
+                      <a href="/news/edit/{{IDPage}}" class="btn btn-primary btn-action">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
           </div>
-          <table class="table table-striped mt-3">
-            <thead>
-              <tr>
-                <th scope="col">Tiêu đề</th>
-                <th scope="col" class="hidden-item-1">Danh mục</th>
-                <th scope="col" class="hidden-item-2">Lượt xem</th>
-                <th scope="col" class="hidden-item-3">Thời gian</th>
-                <th scope="col">&nbsp;</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each this.listPublished}}
-              <tr>
-                <th scope="row">{{Title}}</th>
-                <td class="hidden-item-1">{{CatName}}</td>
-                <td class="hidden-item-2">{{View}}</td>
-                <td class="hidden-item-3">{{Day}}</td>
-                <td>
-                  <a href="/news/{{IDPage}}" class="btn btn-success">
-                    <i class="fa fa-eye" aria-hidden="true"></i></a>
-                </td>
-                <td>
-                  <a href="" class="btn btn-primary"> fa <i class="fa fa-pencil" aria-hidden="true"></i></a>
-                </td>
-                <td>
-                  <a href="" class="btn btn-primary"> fa <i class="fa fa-pencil" aria-hidden="true"></i></a>
-                </td>
-              </tr>
-              {{/each}}
-            </tbody>
-          </table>
         </div>
       </div>
       {{/if}}
