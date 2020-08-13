@@ -72,7 +72,7 @@
   <form method="POST" class="was-validated">
     <div class="mb-4">
       <h3>Lí do từ chối bài viết</h3>
-      <textarea class="form-control is-invalid" name="Note" id="validationTextarea" placeholder="Nhập lí do từ chối bài viết"
+      <textarea class="form-control is-invalid" name="Note" id="validationTextarea" oninvalid="this.setCustomValidity('Vui lòng nhập lí do từ chối!')" placeholder="Nhập lí do từ chối bài viết"
         required></textarea>
       <div class="invalid-feedback">
         *Vui lòng nhập lí do từ chối bài viết
@@ -82,15 +82,7 @@
   </form>
 
 
-  {{!-- Footer --}}
-  <div class="container-fluid fh5co_footer_right_reserved">
-    <div class="container">
-      <div class="row  ">
-        <div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2020, All rights reserved. Design by <a
-            href="/About">Team 6 Web2</a>. </div>
-      </div>
-    </div>
-  </div>
+  
 
 
   <script src="../../public/js/main.js"></script>
