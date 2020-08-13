@@ -1,3 +1,122 @@
-<div class="container">
-  <h1>Refuse Page</h1>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>24 NEWS</title>
+  {{!-- Font awesome --}}
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  {{!-- Font --}}
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+  {{!-- Default CSS --}}
+  <link href="../../public/css/style_1.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="../../public/css/tags.css">
+  <link rel="stylesheet" href="../../public/assets/css/demo.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body>
+  {{!-- Header --}}
+  {{!-- Topbar --}}
+  <div class="container-fluid border-bottom top-bar-desktop">
+    <div class="container h-100 d-flex justify-content-between pt-3 pb-3">
+      <div class="left-topbar">
+        <div class="d-inline-block fh5co_trading_posotion_relative">
+          <a href="/" class="d-block">
+            <img src="../../public/images/logo.png" alt="img" class="top-bar-logo">
+          </a>
+        </div>
+      </div>
+
+      <div class="right-top-bar">
+        <form action="/Account/Logout" id="frmLogout" method="POST"></form>
+        {{#if lcIsAuthenticated}}
+        <div class="dropdown pl-2">
+          <button class="btn btn-account dropdown-toggle text-dark" style="background: none; color: #ccc" type="button"
+            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="../../public/images-upload/{{lcAuthUser.Avatar}}" class="avatar" alt="">
+            {{lcAuthUser.Name}}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/Account/Profile">Hồ sơ</a>
+            <a class="dropdown-item" href="/writer/new">Thêm bài viết mới</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Đăng xuấy</a>
+          </div>
+        </div>
+        {{else}}
+
+        <a href="/Account/SignUp" class="topbar-item">
+          Đăng kí
+        </a>
+
+        <a href="/Account/SignIn" class="topbar-item">
+          Đăng nhập
+        </a>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  {{!-- Logo --}}
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row">
+      </div>
+    </div>
+  </div>
+
+  {{!-- Body --}}
+
+  <form method="POST" class="was-validated">
+    <div class="mb-4">
+      <h3>Lí do từ chối bài viết</h3>
+      <textarea class="form-control is-invalid" name="Note" id="validationTextarea" placeholder="Nhập lí do từ chối bài viết"
+        required></textarea>
+      <div class="invalid-feedback">
+        *Vui lòng nhập lí do từ chối bài viết
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Ghi chú</button>
+  </form>
+
+
+  {{!-- Footer --}}
+  <div class="container-fluid fh5co_footer_right_reserved">
+    <div class="container">
+      <div class="row  ">
+        <div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2020, All rights reserved. Design by <a
+            href="/About">Team 6 Web2</a>. </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="../../public/js/main.js"></script>
+  {{!-- Script Bootstrap --}}
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script src="../../public/js/tags.js"></script>
+  {{!-- Validation --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+
+  <script src="../../public/assets/js/validation.js"></script>
+
+  <script>
+    tinymce.init({
+      selector: '#txtFullDes',
+      height: 450,
+      plugins: 'paste image link autolink lists table media code',
+      menubar: false,
+      toolbar: [
+        'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | forecolor backcolor | table link image media | code',
+      ],
+    });
+  </script>
+
+</body>
+
+</html>

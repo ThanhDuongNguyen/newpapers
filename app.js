@@ -7,6 +7,8 @@ const app = express();
 require("./middleware/session.middleware")(app);
 require("./middleware/view.middleware")(app);
 require("./middleware/locals.middleware")(app);
+const scheduling = require("./middleware/scheduling.middleware");
+scheduling();
 
 app.use(express.urlencoded({
   extended: true

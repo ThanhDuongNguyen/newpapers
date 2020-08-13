@@ -26,14 +26,6 @@
         </a>
       </div>
 
-      <div class="search">
-        <form class="search-form my-2 my-lg-0" method="GET" action="/Category/search">
-          <input class="form-control mr-sm-2 rounded-0" type="text" name="Search" placeholder="Search">
-          <button class="btn my-2 my-sm-0 bg-secondary rounded-0" type="submit">
-            <i class="fa fa-search" aria-hidden="true"></i>
-          </button>
-        </form>
-      </div>
 
       <div class="right-top-bar">
         <form action="/Account/Logout" id="frmLogout" method="POST"></form>
@@ -89,14 +81,12 @@
         <tbody>
           {{#each this.listEditor}}
           <tr>
-            <th scope="row">{{CatID}}</th>
+            <th scope="row">{{inc}}</th>
             <td>{{Title}}</td>
             <td>{{Status}}</td>
             <td>{{CatName}}</td>
-            <td class="text-right">
-              <a href="#" class="btn btn-primary " title="Duyệt"><i class="fa fa-pencil " aria-hidden="true"></i></a>
-              <a href="#" class="btn btn-danger " title="Từ chối"><i class="fa fa-ban" aria-hidden="true"></i></a>
-              <a href="#" class="btn btn-info " title="Xem chi tiết"><i class="fa fa-eye " aria-hidden="true"></i></a>
+            <td class="text-left">
+              <a href="/editor/{{IDPage}}" class="btn btn-info " title="Xem chi tiết"><i class="fa fa-eye " aria-hidden="true"></i></a>
             </td>
           </tr>
           {{/each}}
@@ -104,9 +94,16 @@
       </table>
     </div>
   </div>
-
-  {{!-- </div>
-  </div> --}}
+ 
+ {{!-- Footer --}}
+  <div class="container-fluid fh5co_footer_right_reserved">
+    <div class="container">
+      <div class="row  ">
+        <div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2020, All rights reserved. Design by <a
+            href="/About">Team 6 Web2</a>. </div>
+      </div>
+    </div>
+  </div>
   {{!-- Script --}}
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   {{!-- Bootstrap --}}

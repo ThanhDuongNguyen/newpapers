@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>24 NEWS</title>
+
+  {{!-- Home css --}}
+  <link href="../../public/css/home.css" rel="stylesheet" type="text/css" />
+  {{!-- Media query --}}
+  <link href="../../public/css/media_query.css" rel="stylesheet" type="text/css" />
+  {{!-- Font awesome --}}
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  {{!-- Animate CSS --}}
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.css" rel="stylesheet" type="text/css" />
+  {{!-- Font --}}
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+  {{!-- Default CSS --}}
+  <link rel="stylesheet" href="../../public/css/detail.css">
+  <link rel="stylesheet" href="../../public/css/style_1.css" type="text/css" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <!-- Modernizr JS -->
+
+</head>
+
+<body>
+  {{!-- Header --}}
+  {{!-- Topbar --}}
+  <div class="container-fluid border-bottom top-bar-desktop">
+    <div class="container h-100 d-flex justify-content-around align-items-center pt-3 pb-3 flex-wrap">
+      <div class="left-top-bar">
+        <a href="/" class="d-block">
+          <img src="../../public/images/logo.png" class="top-bar-logo" alt="">
+        </a>
+      </div>
+      <div class="right-top-bar">
+        <form action="/Account/Logout" id="frmLogout" method="POST"></form>
+        {{#if lcIsAuthenticated}}
+        <div class="dropdown pl-2">
+          <button class="btn btn-account dropdown-toggle text-dark" style="background: none; color: #ccc" type="button"
+            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="../../public/images-upload/{{lcAuthUser.Avatar}}" class="avatar" alt="">
+            {{lcAuthUser.Name}}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/Account/Profile">Hồ sơ</a>
+            <a class="dropdown-item" href="/writer/new">Thêm bài viết mới</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Đăng Xuất</a>
+          </div>
+        </div>
+        {{else}}
+
+        <a href="/Account/Sign-Up" class="top-bar-item">
+          Đăng Kí
+        </a>
+
+        <a href="/Account/Sign-In" class="top-bar-item">
+          Đăng Nhập
+        </a>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+
+  {{!-- Body --}}
+  <div class="container mt-2">
+    <div class="row justify-content-center">
+      <div class="col-md-10 col-lg-8 text-justify">
+        <!-- Blog Detail -->
+        <div class="blog-detail">
+
+          <h3 class="mt-2">
+            {{this.News.Title}}
+          </h3>
+
+          <span class="most_fh5co_treding_font_123">Tác giả: </span>
+          <a href="#" class="most_fh5co_treding_font_123 d-inline-block">
+            {{this.Author.Name}}
+          </a>
+
+          <span class="">
+            <span class="most_fh5co_treding_font_123">-</span>
+
+            <span class="most_fh5co_treding_font_123">
+              <i class="fa fa-clock-o m-1" aria-hidden="true"></i>
+              {{this.News.Day}}
+            </span>
+          </span>
+
+          <span class="most_fh5co_treding_font_123">
+            <i class="fa fa-eye m-1" aria-hidden="true"></i>
+            {{this.News.View}}
+          </span>
+
+          <div class="mb-2">
+            <img src="{{this.News.ImgAvatar}}" alt="IMG" class="w-100 h-100">
+          </div>
+
+          <p class="text-justify">
+            {{{this.News.Content}}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{!-- Footer --}}
+  <div class="card-footer text-center">
+    <a href="/editor/ratify/{{this.News.IDPage}}" class="btn btn-primary "><i class="fa fa-check "
+        aria-hidden="true"></i>  Duyệt </a>
+    <a href="/editor/refuse/{{this.News.IDPage}}" class="btn btn-danger" ><i class="fa fa-ban" aria-hidden="true"></i> Từ Chối </a>
+  </div>
+  {{!-- Bottom Footer --}}
+  <div class="container-fluid fh5co_footer_right_reserved">
+    <div class="container">
+      <div class="row  ">
+        <div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2020, All rights reserved. Design by <a
+            href="/About">Team 6 Web2</a>. </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  {{!-- Script --}}
+  <script src="js/modernizr-3.5.0.min.js"></script>
+  {{!-- Jquery --}}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  {{!-- Owl carousel JS --}}
+  <script src="../../public/js/owl.carousel.min.js"></script>
+  <!-- Waypoints -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+  <!-- Main -->
+  <script src="../../public/js/main.js"></script>
+  {{!-- Script Bootstrap --}}
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  {{{_sections.js}}}
+</body>
+
+</html>

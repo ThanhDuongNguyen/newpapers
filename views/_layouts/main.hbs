@@ -99,14 +99,6 @@
               <div class="fh5co_verticle_middle"><i class="fa fa-facebook"></i></div>
             </a>
           </div>
-          <div class="d-inline-block text-center dd_position_relative ">
-            <select class="form-control fh5co_text_select_option">
-              <option>English </option>
-              <option>French </option>
-              <option>German </option>
-              <option>Spanish </option>
-            </select>
-          </div>
           <div class="clearfix"></div>
         </div>
       </div>
@@ -260,15 +252,18 @@
             class="footer_logo" /></div>
         <div class="clearfix"></div>
         <div class="col-12 col-md-4 col-lg-4">
-          <div class="footer_main_title py-3"> About</div>
+          <div class="footer_main_title py-3"> Giới Thiệu</div>
           <div class="footer_sub_about pb-3"> Nhóm số 6 môn Lập trình web 2.
-            <ul class="footer-menu">
-
+            <ul class="footer_menu">
+              <li>1760220 - Phạm Quang Trung</li>
+              <li>1760271 - Phan Thế Công</li>
+              <li>1760287 - Nguyễn Hữu Đức</li>
+              <li>1760290 - Nguyễn Thanh Dương</li>
             </ul>
           </div>
         </div>
         <div class="col-12 col-md-4 col-lg-4">
-          <div class="footer_main_title py-3"> Category</div>
+          <div class="footer_main_title py-3"> Danh mục</div>
           <ul class="footer_menu">
             {{#each this.lcFooterCat}}
             <li><a href="/category/{{CatID}}" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; {{CatName}}</a>
@@ -276,16 +271,16 @@
             {{/each}}
           </ul>
         </div>
+
         <div class="col-12 col-md-4 col-lg-4 position_footer_relative">
-          <div class="footer_main_title py-3"> Most Viewed Posts</div>
-          <div class="footer_makes_sub_font"> Dec 31, 2016</div>
-          <a href="#" class="footer_post pb-4"> Success is not a good teacher failure makes you humble </a>
-          <div class="footer_makes_sub_font"> Dec 31, 2016</div>
-          <a href="#" class="footer_post pb-4"> Success is not a good teacher failure makes you humble </a>
-          <div class="footer_makes_sub_font"> Dec 31, 2016</div>
-          <a href="#" class="footer_post pb-4"> Success is not a good teacher failure makes you humble </a>
-          <div class="footer_position_absolute"><img src="../../public/images/footer_sub_tipik.png" alt="img"
-              class="width_footer_sub_img" /></div>
+          <div class="footer_main_title py-3"> Bài viết được xem nhiều nhất</div>
+          {{#each this.listMostViewFooter}}
+          <div class="footer_makes_sub_font">
+            <div class="color_fff"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{Day}}
+            </div>
+            <div class=""><a href="/news/{{IDPage}}" class="footer_post pb-4">{{Title}}</a></div>
+          </div>
+          {{/each}}
         </div>
       </div>
       <div class="row justify-content-center pt-2 pb-4">
@@ -293,7 +288,7 @@
           <form method="POST" class="form-subscribe d-flex">
             <input type="text" class="form-control subscribe-input" placeholder="Enter your email..."
               aria-describedby="basic-addon1">
-            <button type="submit"> <i class="fa fa-paper-plane-o"></i>&nbsp;&nbsp;Subscribe</button>
+            <button type="submit"> <i class="fa fa-paper-plane-o"></i>&nbsp;&nbsp;Đăng kí</button>
           </form>
         </div>
       </div>
@@ -305,7 +300,7 @@
       <div class="row  ">
         <div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2020, All rights reserved. Design by <a
             href="/About">Team 6 Web2</a>. </div>
-        
+
       </div>
     </div>
   </div>

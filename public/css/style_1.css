@@ -720,6 +720,7 @@ a.disabled {
   -webkit-transition: all 0.5s ease;
   -ms-transition: all 0.5s ease;
   transition: all 0.5s ease;
+
 }
 .footer_menu li > a:hover,
 .footer_menu li > a:focus {
@@ -1147,6 +1148,6 @@ a.disabled {
   font-size: 1.05rem;
 }
 
-.btnEd{
-  font-size: 15px;
+.was-validated {
+  padding: 15px;
 } 

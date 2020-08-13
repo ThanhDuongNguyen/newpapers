@@ -15,25 +15,30 @@
   <link rel="stylesheet" href="../../public/assets/css/demo.css">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
 </head>
 
 <body>
   {{!-- Header --}}
   {{!-- Topbar --}}
-  <div class="container-fluid fh5co_header_bg">
+  <div class="container-fluid border-bottom top-bar-desktop">
     <div class="container h-100 d-flex justify-content-between pt-3 pb-3">
       <div class="left-topbar">
-        <div class="d-inline-block fh5co_trading_posotion_relative"><a href="#" class="treding_btn">Trending</a>
+        <div class="d-inline-block fh5co_trading_posotion_relative">
+          <a href="/" class="d-block">
+            <img src="../../public/images/logo.png" alt="img" class="top-bar-logo">
+          </a>
         </div>
-        <a href="#" class="color_fff fh5co_mediya_setting">Instagram’s big redesign goes live with black-and-white
-          app</a>
       </div>
 
-      <div class="right-topbar">
+      <div class="right-top-bar">
         <form action="/Account/Logout" id="frmLogout" method="POST"></form>
         {{#if lcIsAuthenticated}}
         <div class="dropdown pl-2">
-          <button class="btn btn-account dropdown-toggle" style="background: none; color: #ccc" type="button"
+          <button class="btn btn-account dropdown-toggle text-dark" style="background: none; color: #ccc" type="button"
             id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img src="../../public/images-upload/{{lcAuthUser.Avatar}}" class="avatar" alt="">
             {{lcAuthUser.Name}}
@@ -42,7 +47,7 @@
             <a class="dropdown-item" href="/Account/Profile">Hồ sơ</a>
             <a class="dropdown-item" href="/writer/new">Thêm bài viết mới</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Đăng xuấy</a>
+            <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Đăng xuất</a>
           </div>
         </div>
         {{else}}
@@ -62,146 +67,9 @@
   <div class="container-fluid">
     <div class="container">
       <div class="row">
-        <div class="col-12 col-md-3 fh5co_padding_menu">
-          <img src="../../public/images/logo.png" alt="img" class="fh5co_logo_width">
-        </div>
       </div>
     </div>
   </div>
-  {{!-- Menu --}}
-  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-    <div class="container">
-      <a class="navbar-brand" href="/">
-        Trang chủ
-      </a>
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse position-relative" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Tin Tức Nóng</a>
-            <div class="sub-menu">
-              <div class="row">
-                {{#each lcHotNews}}
-                <div class="col-sm-3">
-                  <div class="h-100">
-                    <a href="/news/{{IDPage}}" class="d-block sub-menu-img">
-                      <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
-                    </a>
-                    <div class="sub-menu-item-content">
-                      <a href="/news/{{IDPage}}">
-                        {{Title}}
-                      </a>
-                      <p class="content-option">
-                        <a href="/category/{{CatID}}">{{CatID}}</a>
-                        <span>-</span>
-                        <span>{{Day}}</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                {{/each}}
-              </div>
-            </div>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="/Category/3">Hải Sản</a>
-            <div class="sub-menu">
-              <div class="row">
-                {{#each lcSeafood}}
-                <div class="col-sm-3">
-                  <div class="h-100">
-                    <a href="/news/{{IDPage}}" class="d-block sub-menu-img">
-                      <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
-                    </a>
-                    <div class="sub-menu-item-content">
-                      <a href="/news/{{IDPage}}">
-                        {{Title}}
-                      </a>
-                      <p class="content-option">
-                        <a href="/category/{{CatID}}">{{CatID}}</a>
-                        <span>-</span>
-                        <span>{{Day}}</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                {{/each}}
-              </div>
-            </div>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="/Category/2">Nông Sản</a>
-            <div class="sub-menu">
-              <div class="row">
-                {{#each lcAgricultural}}
-                <div class="col-sm-3">
-                  <div class="h-100">
-                    <a href="/news/{{IDPage}}" class="d-block sub-menu-img">
-                      <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
-                    </a>
-                    <div class="sub-menu-item-content">
-                      <a href="/news/{{IDPage}}">
-                        {{Title}}
-                      </a>
-                      <p class="content-option">
-                        <a href="/category/{{CatID}}">{{CatID}}</a>
-                        <span>-</span>
-                        <span>{{Day}}</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                {{/each}}
-              </div>
-            </div>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Kinh Doanh
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              {{#each lcChildBusiness}}
-              <a class="dropdown-item" href="/category/{{CatID}}">{{CatName}}</a>
-              {{/each}}
-            </div>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Khoáng Sản
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              {{#each lcChildMineral}}
-              <a class="dropdown-item" href="/category/{{CatID}}">{{CatName}}</a>
-              {{/each}}
-            </div>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Liên Hệ
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/About">Giới Thiệu</a>
-              <a class="dropdown-item" href="/Contact">Liên Hệ</a>
-            </div>
-          </li>
-        </ul>
-
-      </div>
-    </div>
-  </nav>
   {{!-- Body --}}
 
   <div class="container">
@@ -216,22 +84,12 @@
     {{/if}}
     {{!-- End Show Error --}}
 
-    <form method="post" action="/news/edit/{{this.IDPage}}" id="frmEditNews" onsubmit="return validationEditNews">
+    <form method="post" action="/editor/ratify/{{this.IDPage}}" id="frmEditNews" onsubmit="return validationEditNews">
       <div class="card">
         <div class="card-header">
           <h3>Chỉnh bài viết</h3>
         </div>
         <div class="card-body">
-          <div class="form-group">
-            <label for="txtTitle">Tiêu đề bài viết</label>
-            <input type="text" class="form-control" id="txtTitle" name="Title" autofocus value="{{this.Title}}">
-          </div>
-          <div class="form-group">
-            <label for="txtTinyContent">Tóm tắt bài viết</label>
-            <textarea class="form-control" rows="3" id="txtTinyContent" name="TinyContent">
-              {{this.TinyContent}}
-            </textarea>
-          </div>
           <div class="form-group">
             <label for="txtCat">Chuyên mục</label>
             <select class="form-control" id="txtCatID" name="CatID">
@@ -244,87 +102,66 @@
             <label>Thẻ cho bài viết</label>
             <input type="text" value="{{this.strTags}}" name="TagsList" class="form-control">
           </div>
-          <div class="form-group">
-            <label for="linkAvatarImage">Link ảnh đại diện bài viết</label>
-            <input type="text" class="form-control" id="linkAvatarImage" name="ImgAvatar" value="{{this.ImgAvatar}}">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <div class="form-group row">
+                    <label for="example-datetime-local-input">Hẹn giờ đăng bài</label>
+                    <div class="col-10">
+                      <input class="form-control" name="DateTime" min="{{this.minDate}}" value="{{this.minDate}}" type="datetime-local"
+                        id="example-datetime-local-input">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
           </div>
-          <label for="">Bài viết dành cho đọc giả</label>
-          {{#if Premium}}
-          <div class="form-check">
-            <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="Premium" value="0">Đọc giả bình thường
-            </label>
-          </div>
-          <div class="form-check">
-            <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="Premium" value="1" checked>Đọc giả Premium
-            </label>
-          </div>
-          {{else}}
-          <div class="form-check">
-            <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="Premium" value="0">Đọc giả bình thường
-            </label>
-          </div>
-          <div class="form-check">
-            <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="Premium" value="1" checked>Đọc giả Premium
-            </label>
-          </div>
-          {{/if}}
-
-          <div class="form-group">
-            <label for=""></label>
-            <textarea name="Content" id="txtFullDes" class="form-control" cols="30" rows="10">
-              {{Content}}
-            </textarea>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-lg btn-success btn-block">
+              <i class="fa fa-check" aria-hidden="true"></i>
+              Duyệt
+            </button>
           </div>
         </div>
-        <div class="card-footer">
-          <button type="submit" class="btn btn-lg btn-success btn-block">
-            <i class="fa fa-check" aria-hidden="true"></i>
-            Submit
-          </button>
-        </div>
-      </div>
     </form>
   </div>
 
 
-  {{!-- Footer --}}
-  <div class="container-fluid fh5co_footer_right_reserved">
-    <div class="container">
-      <div class="row  ">
-        <div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2020, All rights reserved. Design by <a
-            href="/About">Team 6 Web2</a>. </div>
-      </div>
-    </div>
 
 
-    <script src="../../public/js/main.js"></script>
-    {{!-- Script Bootstrap --}}
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script src="../../public/js/tags.js"></script>
-    {{!-- Validation --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
 
-    <script src="../../public/assets/js/validation.js"></script>
+  <script src="../../public/js/main.js"></script>
+  {{!-- Script Bootstrap --}}
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script src="../../public/js/tags.js"></script>
+  {{!-- Validation --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
 
-    <script>
-      tinymce.init({
-        selector: '#txtFullDes',
-        height: 450,
-        plugins: 'paste image link autolink lists table media code',
-        menubar: false,
-        toolbar: [
-          'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | forecolor backcolor | table link image media | code',
-        ],
-      });
-    </script>
+  <script src="../../public/assets/js/validation.js"></script>
 
+  <script>
+    tinymce.init({
+      selector: '#txtFullDes',
+      height: 450,
+      plugins: 'paste image link autolink lists table media code',
+      menubar: false,
+      toolbar: [
+        'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | forecolor backcolor | table link image media | code',
+      ],
+    });
+  </script>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+  
 </body>
 
 </html>

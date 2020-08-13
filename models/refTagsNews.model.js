@@ -49,4 +49,10 @@ module.exports = {
     };
     return db.del(TBL_REFERENCETAGSNEWS, condition);
   },
+  deleteByIDPage: function (IDPage) {
+    const condition = {
+      IDPage: IDPage
+    };
+    return db.del(TBL_REFERENCETAGSNEWS, condition);
+  }
 };
