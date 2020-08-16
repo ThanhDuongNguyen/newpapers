@@ -28,10 +28,14 @@ module.exports = {
 
   newspaperByCat: function (id) {
     return db.load(
+      `select *, DateDiff(NOW(), ${TBL_NEWSPAPER}.Day) as time from ${TBL_NEWSPAPER} where CatID = ${id} ORDER BY time ASC limit 5`
+    );
+  },
+  newspaperCatID: function (id) {
+    return db.load(
       `select *, DateDiff(NOW(), ${TBL_NEWSPAPER}.Day) as time from ${TBL_NEWSPAPER} where CatID = ${id} ORDER BY time ASC limit 4`
     );
   },
-
   allNewsByCat: function(id)
   {
     return db.load(`select * from ${TBL_NEWSPAPER} where CatID = ${id}`);
@@ -43,12 +47,16 @@ module.exports = {
     );
   },
 
+  newByEditorAccepted: function (id){
+    return db.load(
+      `SELECT * FROM ${TBL_NEWSPAPER} nb join ${TBL_EDITOR_CAT} ed join ${TBL_CATEGORIES} cat WHERE cat.CatID=ed.CatID AND nb.CatID=ed.CatID AND ed.IDUser= ${id} and nb.Status = 'Đã được duyệt'`
+    );
+  },
   newByEditor: function (id){
     return db.load(
       `SELECT * FROM ${TBL_NEWSPAPER} nb join ${TBL_EDITOR_CAT} ed join ${TBL_CATEGORIES} cat WHERE cat.CatID=ed.CatID AND nb.CatID=ed.CatID AND ed.IDUser= ${id}`
     );
   },
-
   pageBySearch: function (input, limit, offset) {
     return db.load(
       `SELECT * FROM ${TBL_NEWSPAPER} WHERE MATCH(Title, TinyContent, Content) AGAINST('${input}') limit ${limit} offset  ${offset}`

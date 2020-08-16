@@ -209,7 +209,7 @@ router.post("/profile/edit", async function (req, res) {
     IDUser: req.session.authUser.IDUser,
     Name: req.body.Name,
     Alias: alias,
-    Email: req.body.Email,
+    // Email: req.body.Email,
     DOB: req.body.DOB,
   };
   // update profile
@@ -218,7 +218,7 @@ router.post("/profile/edit", async function (req, res) {
   // update session
   req.session.authUser.Name = req.body.Name;
   req.session.authUser.Alias = req.body.Alias;
-  req.session.authUser.Email = req.body.Email;
+  // req.session.authUser.Email = req.body.Email;
   req.session.authUser.DOB = req.body.DOB;
 
   res.redirect("/account/profile");

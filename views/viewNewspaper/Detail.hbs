@@ -1,6 +1,7 @@
 {{#section 'css'}}
 {{!-- Owl Carousel --}}
-<link rel="stylesheet" href="../../public/css/detail.css">
+<link rel="stylesheet" href="/public/css/detail.css">
+<link rel="stylesheet" href="/public/css/style_1.css">
 {{/section}}
 <div class="container mt-2">
   <div class="row justify-content-center">
@@ -30,10 +31,6 @@
           <i class="fa fa-eye m-1" aria-hidden="true"></i>
           {{View}}
         </span>
-
-        <div class="mb-2">
-          <img src="{{ImgAvatar}}" alt="IMG" class="w-100 h-100">
-        </div>
 
         <div id="content" class="text-justify">
           {{{Content}}}
@@ -85,8 +82,8 @@
           Bình luận bài viết
         </h4>
 
-        <form method="POST" class="form-comment mt-3">
-          <textarea name="Comment" placeholder="Comment..." name="txtContent"></textarea>
+        <form method="POST" class="form-comment mt-3 d-flex flex-column" id="frmComment" onsubmit="return validationComment">
+          <textarea name="Comment" placeholder="Comment..."></textarea>
           <button class="btn btn-success mt-2 mb-2" type="submit">
             Đăng
           </button>
@@ -147,17 +144,22 @@
           <li class="row pb-3">
             <div class="col-sm-4 newsbycat-img-size">
               <a href="/news/{{IDPage}}" class="d-block w-100 h-100">
-							<img src="{{ImgAvatar}}" class="fit-img" alt="Image title">
-						</a>
+                <img src="{{ImgAvatar}}" class="fit-img" alt="Image title">
+              </a>
             </div>
 
             <div class="col-sm-8">
               <div class="paddding">
+<<<<<<< HEAD
                 
                 <a href="/news/{{IDPage}}" class="most_fh5co_treding_font text-dark">
                   <h6>
                     {{Title}}
                   </h6>
+=======
+                <a href="/news/{{IDPage}}">
+                  <div class="most_fh5co_treding_font popular-title-detail-size">{{Title}}</div>
+>>>>>>> 6c671be23d79016dff25c43bd5e2894052ccd2cc
                 </a>
 
                 <span class="cl8 txt-center p-b-24">
@@ -189,3 +191,10 @@
     </div>
   </div>
 </div>
+
+{{#section 'js'}}
+{{!-- Validation --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+
+<script src="/public/assets/js/validation.js"></script>
+{{/section}}

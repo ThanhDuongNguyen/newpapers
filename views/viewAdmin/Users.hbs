@@ -74,6 +74,12 @@
                   </a>
                 </li>
                 <li class="list-item">
+                  <a href="/admin/assign-category" class="list-link">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    Phân công chuyên mục
+                  </a>
+                </li>
+                <li class="list-item">
                   {{!-- Sign out --}}
                   <form action="/Account/Logout" id="frmLogout" method="POST"></form>
                   <a class="nav-link" href="javascript: $('#frmLogout').submit()">
@@ -149,7 +155,12 @@
                         Người dùng
                       </a>
                     </li>
-
+                    <li class="nav-item">
+                      <a href="/admin/assign-category" class="nav-link">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        Phân công chuyên mục
+                      </a>
+                    </li>
                     <li class="nav-item">
                       {{!-- Sign out --}}
                       <form action="/Account/Logout" id="frmLogout" method="POST"></form>
@@ -170,7 +181,7 @@
           <div class="container">
             {{!-- Top bar --}}
             <section class="top-bar-admin mb-4">
-              <h4>Danh Mục</h4>
+              <h4>Người dùng</h4>
               <form class="search-form my-2 my-lg-0" method="GET" action="/Category/search">
                 <input class="form-control mr-sm-2" type="text" name="Search" placeholder="Search">
                 <button class="btn-search" type="submit">

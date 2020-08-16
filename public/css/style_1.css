@@ -11,6 +11,29 @@
   background-color: black;
   padding: 7px;
 }
+
+.show .event-type.error {
+  border-color: #f2545b !important;
+  background-color: #f2545b !important;
+}
+
+label.error {
+  color: #dc3545;
+  border-color: #ebccd1;
+  padding: 1px 6px 1px 6px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  font-size: 14px;
+
+  position: relative;
+  top: 100%;
+}
+
+#frmComment button{
+  width: 80px;
+  height: 40px;
+}
+
 a:hover {
   color: #f5bc04 !important;
 
@@ -231,7 +254,7 @@ a:hover {
   display: block;
 }
 
-.nav-item img:hover{
+.nav-item img:hover {
   transform: scale(1.1);
   transition: all 0.3s ease-in-out;
 }
@@ -725,7 +748,6 @@ a.disabled {
   -webkit-transition: all 0.5s ease;
   -ms-transition: all 0.5s ease;
   transition: all 0.5s ease;
-
 }
 .footer_menu li > a:hover,
 .footer_menu li > a:focus {
@@ -1155,4 +1177,4 @@ a.disabled {
 
 .was-validated {
   padding: 15px;
-} 
+}

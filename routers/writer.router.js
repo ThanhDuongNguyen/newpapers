@@ -25,7 +25,7 @@ router.post("/new", async function (req, res) {
   if (titleNews.length > 0) {
     return res.render("viewWriter/new", {
       layout: false,
-      err: "The article already exists.",
+      err: "Bài viết đã tồn tại",
       listCat: await categoryModel.all()
     });
   } else {
@@ -64,6 +64,21 @@ router.post("/new", async function (req, res) {
 
     res.redirect(`/message/upload-completed?retUrl=${req.originalUrl}`);
   }
+});
+router.get("/list", classifyMdw.checkWriterClass, async function (req, res) {
+  const listNew = await newspaperModel.newsByAuthor(req.session.authUser.IDUser);
+
+  for (var index = 0; index < listNew.length; ++index) {
+    if(listNew[index].Status == "Chưa được duyệt" || listNew[index].Status == "Bị từ chối")
+    {
+      listNew[index].isEdit = true;
+    }
+  }
+
+  res.render("viewWriter/list", {
+    layout: false,
+    listNew: listNew
+  });
 });
 
 module.exports = router;

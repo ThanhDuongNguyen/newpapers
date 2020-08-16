@@ -72,6 +72,12 @@
                   </a>
                 </li>
                 <li class="list-item">
+                  <a href="/admin/assign-category" class="list-link">
+                    <i class="fa fa-eyedropper" aria-hidden="true"></i>
+                    Phân công chuyên mục
+                  </a>
+                </li>
+                <li class="list-item">
                   {{!-- Sign out --}}
                   <form action="/Account/Logout" id="frmLogout" method="POST"></form>
                   <a class="nav-link" href="javascript: $('#frmLogout').submit()">
@@ -148,7 +154,12 @@
                         Người dùng
                       </a>
                     </li>
-
+                    <li class="nav-item">
+                      <a href="/admin/assign-category" class="list-link">
+                        <i class="fa fa-eyedropper" aria-hidden="true"></i>
+                        Phân công chuyên mục
+                      </a>
+                    </li>
                     <li class="nav-item">
                       {{!-- Sign out --}}
                       <form action="/Account/Logout" id="frmLogout" method="POST"></form>
@@ -197,7 +208,7 @@
                     <div class="col-sm-12 col-lg-6">
                       <div class="detail-content">
                         <p class="detail-text">
-                          <span>Thuộc danh mục: </span>{{IDPage}}.
+                          <span>ID: </span>{{IDPage}}.
                         </p>
                         <p class="detail-text">
                           <span>Thuộc danh mục: </span>{{CatName}}.
@@ -218,16 +229,14 @@
                       <div class="detail-action">
                         {{#if draft}}
                         {{#each this.detailNews}}
-                        <form method="POST">
-                          <button style="submit" class="btn btn-primary" formaction="/admin/news/approval/{{IDPage}}">
-                            <i class="fa fa-check" aria-hidden="true"></i>
-                            Duyệt
-                          </button>
-                          <button style="submit" class="btn btn-warning text-light" formaction="/admin/news/refuse/{{IDPage}}">
-                            <i class="fa fa-times" aria-hidden="true"></i>
-                            Từ chối
-                          </button>
-                        </form>
+                        <a href="/admin/news/ratify/{{IDPage}}" class="btn btn-primary">
+                          <i class="fa fa-check" aria-hidden="true"></i>
+                          Duyệt
+                        </a>
+                        <a href="/admin/news/refuse/{{IDPage}}" class="btn btn-warning text-light">
+                          <i class="fa fa-times" aria-hidden="true"></i>
+                          Từ chối
+                        </a>
                         {{/each}}
 
                         {{/if}}

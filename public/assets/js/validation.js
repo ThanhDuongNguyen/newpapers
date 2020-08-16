@@ -162,6 +162,18 @@ $(document).ready(function () {
     });
   });
 
+  $(function validationComment() {
+    $("#frmComment").validate({
+      onfocusout: false,
+      onkeyup: false,
+      rules: { 
+        Comment: {
+          required: true,
+        }
+      },
+    });
+  });
+
   $(function validationEditProfile() {
     $("#frmEditProfile").validate({
       onfocusout: false,
@@ -251,6 +263,25 @@ $(document).ready(function () {
         "IDUser[]": {
           required: "Bắt buộc nhập Tên danh mục",
           minlength: "Bắt buộc phải chọn 1 Người dùng",
+        },
+      },
+    });
+  });
+
+  $(function validationEditAssignCat() {
+    $("#frmEditAssignCat").validate({
+      onfocusout: false,
+      onkeyup: false,
+      rules: {        
+        "CatID[]": {
+          required: true,
+          minlength: 1,
+        },
+      },
+      messages: {
+        "CatID[]": {
+          required: "Bắt buộc chọn 1 chuyên mục",
+          minlength: "Bắt buộc phải chọn 1 chuyên mục",
         },
       },
     });

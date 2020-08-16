@@ -7,9 +7,12 @@ const userModel = require("../models/user.model");
 const tagModel = require("../models/tag.model");
 const editor_catModel = require("../models/edit_cat.model");
 const refTagNewsModel = require("../models/refTagsNews.model");
+const acceptModel = require("../models/accept.model");
+const denyModel = require("../models/deny.model");
 const defaults = require("../config/default.json");
 const moment = require("moment");
 const bcryptjs = require("bcryptjs");
+var schedule = require("node-schedule");
 
 var router = express.Router();
 
@@ -189,7 +192,7 @@ router.get("/category/edit/:id", classifyMdw.checkAdminClass, async function (
     (category = await categoryModel.single(id)),
     (censors = await categoryModel.censorOfCat(id)),
   ]);
-  
+
   console.log("censors", censors);
 
   // format time
@@ -696,6 +699,116 @@ router.post("/news/delete/:id", async function (req, res) {
   res.redirect("/admin/news");
 });
 
+router.get("/news/ratify/:id", classifyMdw.checkAdminClass, async function (req, res) {
+  const id = +req.params.id || -1;
+
+  const [list, total] = await Promise.all([
+    (allCat = await categoryModel.all()),
+    (detailNews = await newspaperModel.single(id)),
+    (listTagByNews = await tagModel.tagsByNews(id)),
+  ]);
+
+  console.log("listTags", listTagByNews);
+
+  var strTag = "";
+  const listTagByNews_length = listTagByNews.length;
+  for (let i = 0; i < listTagByNews_length; i++) {
+    if (i === listTagByNews_length - 1) {
+      strTag += listTagByNews[i].TagName;
+    } else {
+      strTag += listTagByNews[i].TagName + ",";
+    }
+  }
+
+  res.render("viewNewspaper/Admin-Ratify", {
+    layout: false,
+    allCat: allCat.map((cat) => ({
+      ...cat,
+      isCurrent: cat.CatID === detailNews[0].CatID,
+    })),
+    strTag,
+    minDate: moment().format("YYYY-MM-DDTHH:mm"),
+  });
+});
+
+router.post("/news/ratify/:id", async function (req, res) {
+  const id = +req.params.id || -1;
+
+  const ob = {
+    CatID: req.body.CatID,
+    Status: "xuất bản",
+    IDPage: id,
+  };
+  const accept = {
+    IDPage: id,
+    Day: req.body.DateTime,
+  };
+  acceptModel.add(accept);
+  newspaperModel.patch(ob);
+
+  //them tag vo
+  refTagNewsModel.deleteByIDPage(id);
+  const tagList = req.body.TagsList.split(",");
+  for (var index = 0; index < tagList.length; ++index) {
+    //if tag exist get ID, else create and get ID
+    const checkTagName = await tagModel.singleByTagName(tagList[index]);
+    var TagID = null;
+    if (checkTagName.length === 0) {
+      const Tag = {
+        TagName: tagList[index],
+      };
+      const tagResult = await tagModel.add(Tag);
+      //console.log(tagResult);
+      TagID = tagResult.insertId;
+    } else {
+      TagID = checkTagName[0].IDTags;
+    }
+    const refTagsNews = {
+      IDPage: id,
+      IDTags: TagID,
+    };
+    await refTagNewsModel.add(refTagsNews);
+  }
+  //duyet dang bai
+  var date = new Date(accept.Day);
+  var j = schedule.scheduleJob(date, function () {
+    const ob = {
+      IDPage: accept.IDPage,
+      Status: "Xuất bản",
+    };
+    newspaperModel.patch(ob);
+    acceptModel.delete(accept.IDPage);
+  });
+  //thanh cong
+
+  res.redirect("/admin/news");
+});
+
+router.get("/news/refuse/:id", classifyMdw.checkAdminClass, async function (
+  req,
+  res
+) {
+  res.render("viewNewspaper/Admin-Refuse", {
+    layout: false,
+  });
+});
+
+router.post("/news/refuse/:id", async function (req, res) {
+  const id = +req.params.id || -1;
+  const fall = {
+    IDPage: id,
+    Note: req.body.Note,
+  };
+  denyModel.add(fall);
+
+  const entity = {
+    IDPage: id,
+    Status: "Từ chối",
+  }
+  await newspaperModel.patch(entity);
+
+  res.redirect("/admin/news");
+});
 // User
 router.get("/users", classifyMdw.checkAdminClass, async function (req, res) {
   // query page
@@ -820,5 +933,131 @@ router.post("/users/delete/:id", async function (req, res) {
   await userModel.del(id);
 
   res.redirect("/admin/users");
+});
+
+// Assign Category
+router.get("/assign-category", classifyMdw.checkAdminClass, async function (
+  req,
+  res
+) {
+  // query page
+  var page = +req.query.page;
+  if (!page || page < 0) {
+    page = 1;
+  }
+  const offset = (page - 1) * defaults.pagination.limit;
+
+  const [list, total] = await Promise.all([
+    (listEditor = await userModel.pageAllEditor(
+      defaults.pagination.limit,
+      offset
+    )),
+    (Total = await userModel.countAllEditor()),
+  ]);
+
+  for (const editor of listEditor) {
+    var strCat = "";
+
+    const listCatByEditor = await categoryModel.catByEditor(editor.IDUser);
+    var listCatByEditor_length = listCatByEditor.length;
+
+    for (let i = 0; i < listCatByEditor_length; i++) {
+      if (i === listCatByEditor_length - 1) {
+        strCat += listCatByEditor[i].CatName;
+      } else {
+        strCat += listCatByEditor[i].CatName + ", ";
+      }
+    }
+
+    editor.cat = strCat;
+  }
+
+  const nPages = Math.ceil(Total / defaults.pagination.limit);
+
+  res.render("viewAdmin/Assign-Cat", {
+    layout: false,
+    listEditor,
+    prev_value: page - 1,
+    next_value: page + 1,
+    prev: page > 1,
+    next: page < nPages,
+    nPages,
+    page,
+    strCat,
+  });
+});
+
+router.get("/assign-category/:id", classifyMdw.checkAdminClass, async function (
+  req,
+  res
+) {
+  const id = +req.params.id || -1;
+
+  const [list, total] = await Promise.all([
+    (allCat = await categoryModel.all()),
+    (listCatByIDUser = await categoryModel.catByEditor(id)),
+    (detailEditor = await userModel.single(id)),
+  ]);
+
+  for (const cat of listCatByIDUser) {
+    var index = allCat
+      .map(function (cat) {
+        return cat.CatID;
+      })
+      .indexOf(cat.CatID);
+
+    if (index > -1) {
+      allCat.splice(index, 1);
+    }
+  }
+
+  res.render("viewAdmin/Edit-Assign-Cat", {
+    layout: false,
+    allCat,
+    listCatByIDUser,
+    IDUser: detailEditor[0].IDUser,
+    Name: detailEditor[0].Name,
+  });
+});
+
+router.post("/assign-category/update", async function (req, res) {
+  const listOldCat = await categoryModel.catByEditor(req.body.IDUser);
+
+  const old_cats = [];
+  const new_cats = [];
+
+  for (const CatID of req.body.CatID) {
+    let new_cat = await categoryModel.single(CatID);
+    new_cats.push(new_cat[0].CatID);
+  }
+
+  for (const old_cat of listOldCat) {
+    old_cats.push(old_cat.CatID);
+  }
+
+  console.log("new cats", new_cats);
+  console.log("old cats", old_cats);
+
+  for (const new_cat of new_cats) {
+    if (!old_cats.includes(new_cat)) {
+      console.log("new_cat", new_cat);
+
+      var entity = {
+        IDUser: req.body.IDUser,
+        CatID: new_cat,
+      };
+      await editor_catModel.add(entity);
+    }
+  }
+
+  for (const old_cat of old_cats) {
+    if (!new_cats.includes(old_cat)) {
+      console.log("old cat", old_cat);
+
+      await editor_catModel.del(old_cat);
+    }
+  }
+
+  res.redirect("/admin/assign-category");
 });
 module.exports = router;

@@ -12,6 +12,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
   {{!-- Bootstrap CSS --}}
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  {{!-- Animate --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css">
   {{!-- Image --}}
   <link rel="stylesheet" href="/public/assets/img/lunar.png" type="image/png" sizes="16x16">
 
@@ -20,7 +22,6 @@
   <link rel="stylesheet" href="/public/css/style_1.css">
   <link rel="stylesheet" href="/public/assets/css/lunar.css">
   <link rel="stylesheet" href="/public/assets/css/demo.css">
-
 </head>
 
 <body>
@@ -28,9 +29,9 @@
     <div class="main">
       <div class="row h-100">
         {{!-- Sidebar --}}
-        <div class="col-sm-12 col-lg-2 pl-0 pr-0">
+        <section class="col-sm-12 col-lg-2 pl-0 pr-0">
           {{!-- Sidebar PC --}}
-          <div class="sidebar-pc">
+          <section class="sidebar-pc">
             {{!-- Logo --}}
             <div class="logo">
               <a href="/" class="d-block">
@@ -54,7 +55,7 @@
                   </a>
                 </li>
                 <li class="list-item">
-                  <a href="/admin/tags" class="list-link active">
+                  <a href="/admin/tags" class="list-link">
                     <i class="fa fa-tags" aria-hidden="true"></i>
                     Thẻ
                   </a>
@@ -72,19 +73,22 @@
                   </a>
                 </li>
                 <li class="list-item">
-                  <a href="/admin/assign-category" class="list-link">
+                  <a href="/admin/assign-category" class="list-link active">
                     <i class="fa fa-eyedropper" aria-hidden="true"></i>
                     Phân công chuyên mục
                   </a>
                 </li>
+                <li class="list-item">
+                  {{!-- Sign out --}}
+                  <form action="/Account/Logout" id="frmLogout" method="POST"></form>
+                  <a class="nav-link" href="javascript: $('#frmLogout').submit()">
+                    <i class="fa fa-sign-in" aria-hidden="true"></i>
+                    Đăng xuất
+                  </a>
+                </li>
               </ul>
             </nav>
-            {{!-- Sign out --}}
-            <form action="/Account/Logout" id="frmLogout" method="POST"></form>
-            <a class="nav-link" href="javascript: $('#frmLogout').submit()">
-              <i class="fa fa-sign-in" aria-hidden="true"></i>
-              Đăng xuất
-            </a>
+
 
             {{!-- Ads --}}
             <div class="position-relative d-flex justify-content-center">
@@ -94,11 +98,11 @@
                 <a href="#" class="btn btn-success mt-2 mb-2">Upgrade</a>
               </div>
             </div>
-          </div>
+          </section>
 
 
           {{!-- Sidebar Mobile --}}
-          <div class="sidebar-mobile">
+          <section class="sidebar-mobile">
             {{!-- Logo --}}
             <div class="logo">
               <a href="/" class="d-block">
@@ -134,7 +138,7 @@
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a href="/admin/tags" class="nav-link active">
+                      <a href="/admin/tags" class="nav-link">
                         <i class="fa fa-tags" aria-hidden="true"></i>
                         Thẻ
                       </a>
@@ -152,7 +156,7 @@
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a href="/admin/assign-category" class="list-link">
+                      <a href="/admin/assign-category" class="list-link active">
                         <i class="fa fa-eyedropper" aria-hidden="true"></i>
                         Phân công chuyên mục
                       </a>
@@ -169,15 +173,15 @@
                 </div>
               </div>
             </nav>
-          </div>
-        </div>
+          </section>
+        </section>
 
         {{!-- Main content --}}
-        <div class="col-sm-12 col-lg-10 main-content">
+        <section class="col-sm-12 col-lg-10 main-content">
           <div class="container">
             {{!-- Top bar --}}
             <div class="top-bar-admin mb-4">
-              <h4>Thẻ</h4>
+              <h4>Phân công chuyên mục</h4>
               <form class="search-form my-2 my-lg-0" method="GET" action="/Category/search">
                 <input class="form-control mr-sm-2" type="text" name="Search" placeholder="Search">
                 <button class="btn-search" type="submit">
@@ -186,100 +190,58 @@
               </form>
             </div>
 
-            <a href="/admin/category/add" type="button" class="btn btn-outline-success mb-3">
-              <i class="fa fa-plus" aria-hidden="true"></i>
-              Thêm mới
-            </a>
-
             {{!-- Card --}}
             <div class="card">
               <div class="card-header">
-                <h5>{{CatName}}</h5>
+                <h5>Bảng Editor</h5>
               </div>
               <div class="card-body">
-                <div class="container">
-                  {{!-- Show Error --}}
-                  {{#if err}}
-                  <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-                    <button type="button" class="closeAlert" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">×</span>
-                    </button>
-                    {{err}}
+                <form action="/admin/assign-category/update" id="frmEditAssignCat" onsubmit="return validationEditAssignCat"
+                  method="POST">
+                  <div class="form-row">
+                    <div class="col-lg-6">
+                      <label>ID</label>
+                      <input type="text" class="form-control" name="IDUser" value="{{IDUser}}" readonly>
+                    </div>
+                    <div class="col-lg-6">
+                      <label>Tên</label>
+                      <input type="text" class="form-control" name="Name" value="{{Name}}" readonly>
+                    </div>
                   </div>
-                  {{/if}}
-                  {{!-- End Show Error --}}
-                  {{#each this.detailTag}}
-                  {{!-- Form edit --}}
-                  <form method="POST" id="frmEditTag" onsubmit="return validationEditTag">
-                    <div class="form-group">
-                      <label>ID Thẻ</label>
-                      <input type="text" class="form-control" name="IDTags" value="{{IDTags}}" readonly>
+                  <div class="form-group mt-4">
+                    <label>Các chuyên mục</label>
+                    <div class="d-flex flex-wrap">
+                      {{#each this.listCatByIDUser}}
+                      <div class="form-check">
+                        <input class="form-check-input" name="CatID[]" checked type="checkbox" value="{{CatID}}">
+                        <label class="form-check-label ml-2">{{CatName}}</label>
+                      </div>
+                      {{/each}}
+                      {{#each this.allCat}}
+                      <div class="form-check">
+                        <input class="form-check-input" name="CatID[]" type="checkbox" value="{{CatID}}">
+                        <label class="form-check-label ml-2">{{CatName}}</label>
+                      </div>
+                      {{/each}}
                     </div>
-                    <div class="form-group">
-                      <label>Tên Thẻ</label>
-                      <input type="text" class="form-control" name="TagName" value="{{TagName}}">
-                    </div>
-                    <button type="submit" class="btn btn-primary mt-3" formaction="/admin/tags/update">
-                      <i class="fa fa-check" aria-hidden="true"></i>
-                      Lưu
-                    </button>
-                    <button type="button" class="btn btn-danger mt-3" data-toggle="modal" data-target="#warningModal">
-                      <i class="fa fa-trash" aria-hidden="true"></i>
-                      Xóa
-                    </button>
-                  </form>
-                  {{!-- End form --}}
-                  {{/each}}
-                </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary mt-3">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    Lưu
+                  </button>
+                </form>
               </div>
               <div class="card-footer">
-                <a href="/admin/tags" class="btn btn-outline-success btn-backwards">
+                <a href="/admin/assign-category" class="btn btn-outline-success">
                   <i class="fa fa-backward" aria-hidden="true"></i>
                   Quay lại trang danh sách
                 </a>
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </div>
     </div>
-
-
-    <!-- Modal -->
-    <div class="modal fade " id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModal"
-      aria-hidden="true">
-      <div class="modal-dialog  modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <div class="modal-body">
-            <div class="px-3 pt-3 text-center">
-              <div class="event-type warning">
-                <div class="event-indicator ">
-                  <svg style="width:60px;height:60px" viewBox="0 0 24 24">
-                    <path fill="#000000" d="M11,4.5H13V15.5H11V4.5M13,17.5V19.5H11V17.5H13Z" />
-                  </svg>
-                </div>
-              </div>
-              <h3 class="pt-3">Bạn chắc chứ?</h3>
-              <p class="text-muted">
-                Bạn sẽ phải chịu trách nhiệm cho hành động này!
-              </p>
-
-            </div>
-          </div>
-          <div class="modal-footer">
-            {{#each this.detailTag}}
-            <form action="/admin/tags/delete/{{IDTags}}" id="frmDelTag" method="POST"></form>
-            {{/each}}
-            <a href="javascript: $('#frmDelTag').submit()" class="btn btn-cstm-danger">Tiếp tục</a>
-            <a href="/" class="btn btn-cstm-secondary" data-dismiss="modal" aria-label="Close">Hủy</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Modal Ends -->
   </div>
 
 
