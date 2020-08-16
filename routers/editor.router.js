@@ -12,6 +12,7 @@ var schedule = require('node-schedule');
 const { childCategory } = require("../models/category.model");
 var router = express.Router();
 
+//list xử lí bài viết chưa được duyệt
 router.get("/", restrict, async function (req, res) {
   const listEditor = await newspaperModel.newByEditor(
     req.session.authUser.IDUser
@@ -28,7 +29,17 @@ router.get("/", restrict, async function (req, res) {
     listEditor: list,
   });
 });
-
+ //list bài viết đã được duyệt
+router.get("/accept", restrict, async function (req, res) {
+  const listEditor = await newspaperModel.newByEditorAccepted(
+    req.session.authUser.IDUser
+  );
+  
+  res.render("viewEditer/listAccept", {
+    layout: false,
+    listEditor: listEditor,
+  });
+});
 router.get("/ratify/:id", restrict, async function (req, res) {
   const id = +req.params.id || -1;
 
@@ -42,16 +53,22 @@ router.get("/ratify/:id", restrict, async function (req, res) {
     strTags += tag.TagName + ",";
   }
 
+  const lists = await categoryModel.editorByCat(req.session.authUser.IDUser);
+  console.log(lists);
+  for(var i =0; i<lists.length; i++){
+      if(News[0].CatID == lists[i].CatID){
+          lists[i].selected = 1;
+      }
+      else{
+        lists[i].selected = 0;
+      }
+  }
+  console.log(lists);
   res.render("viewEditer/ratify", {
     layout: false,
     IDPage: id,
-    Title: News[0].Title,
-    TinyContent: News[0].TinyContent,
-    Content: News[0].Content,
-    ImgAvatar: News[0].ImgAvatar,
     strTags,
-    listCat: await categoryModel.all(),
-    Premium: News[0].Premium === 1,
+    listCat: lists,
     minDate: moment().format("YYYY-MM-DDTHH:mm")
   });
 });
@@ -106,7 +123,7 @@ router.post("/ratify/:id", restrict, async function (req, res) {
     acceptModel.delete(accept.IDPage);
   });
   //thanh cong
-  res.redirect(`/message/upload-completed?retUrl=${req.originalUrl}`);
+  res.redirect(`/editor`);
 
 });
 
@@ -125,7 +142,7 @@ router.post("/refuse/:id", restrict, async function (req, res) {
     Note: req.body.Note
   }
   denyModel.add(fall);
-  res.redirect(`/message/upload-completed?retUrl=${req.originalUrl}`);
+  res.redirect(`/editor`);
 });
 
 router.get("/:id", async function (req, res) {
@@ -134,12 +151,13 @@ router.get("/:id", async function (req, res) {
 
   const News = await newspaperModel.single(id);
   const tagsName = await tagModel.tagsByNews(id);
-  const Author = await userModel.single(News[0].Author);
+  author = await userModel.single(News[0].Author)
 
   res.render("viewEditer/listCatEdit", {
     layout: false,
     News: News[0],
-    Author: Author[0]
+    author : author[0]
   });
 });
+
 module.exports = router;

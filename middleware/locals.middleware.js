@@ -1,25 +1,40 @@
 const newspaperModel = require("../models/newspapers.model");
 const categoryModel = require("../models/category.model");
 const moment = require("moment");
+const userModel = require("../models/user.model");
 const { footerByCat } = require("../models/category.model");
 
-module.exports = function (app) {
-  app.use(function (req, res, next) {
+module.exports =  function (app) {
+  app.use( async function (req, res, next) {
     if (!req.session.isAuthenticated === null) {
       req.session.isAuthenticated = false;
     }
 
     res.locals.lcIsAuthenticated = req.session.isAuthenticated;
     res.locals.lcAuthUser = req.session.authUser;
-
+    if (req.session.isAuthenticated === true) {
+      const singleUser = await userModel.single(req.session.authUser.IDUser); 
+      if (singleUser[0].PermissionID === 1) {
+        res.locals.Admin = true;
+      }
+      if (singleUser[0].PermissionID === 2) {
+        res.locals.Editor = true;
+      }
+      if (singleUser[0].PermissionID === 3) {
+        res.locals.Writer = true;
+      }
+      if (singleUser[0].PermissionID === 4) {
+        res.locals.Subscriber = true;
+      }
+    }
     next();
   });
 
   app.use(async function (req, res, next) {
     const [list, total] = await Promise.all([
       (listHotNews = await newspaperModel.hotNewsMenu()),
-      (listSeafood = await newspaperModel.newspaperByCat(3)),
-      (listAgricultural = await newspaperModel.newspaperByCat(2)),
+      (listSeafood = await newspaperModel.newspaperCatID(3)),
+      (listAgricultural = await newspaperModel.newspaperCatID(2)),
       (listChildBusiness = await categoryModel.childCategory(1)),
       (listChildMineral = await categoryModel.childCategory(4)),
       (listMostViewFooter = await newspaperModel.topMostViewFooter()),

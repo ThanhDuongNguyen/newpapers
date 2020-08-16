@@ -50,8 +50,23 @@
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="/Account/Profile">Hồ sơ</a>
+            {{!--Writer--}}
+            {{#if Writer}}
             <a class="dropdown-item" href="/writer/new">Thêm tin mới</a>
-            <a class="dropdown-item" href="/admin">Quản lý</a>
+            {{/if}}
+            {{!--Edior--}}
+            {{#if Editor}}
+            <a class="dropdown-item" href="/editor">Quản lý bài viết</a>
+            <a class="dropdown-item" href="/accpet">Bài viết đã xử lí</a>
+            {{/if}}
+            {{!--Admin--}}
+            {{#if Admin}}
+            <a class="dropdown-item" href="/admin">Quản lí</a>
+            {{/if}}
+            {{!-- Subscriber--}}
+            {{#if Subscriber}}
+              <a class="dropdown-item" href="/pricing">Tài khoản</a>
+            {{/if}}
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Đăng xuất</a>
           </div>
@@ -93,12 +108,12 @@
             </a>
           </div>
           <div class="text-center d-inline-block">
-            <a href="https://twitter.com/fh5co" target="_blank" class="fh5co_display_table">
+            <a class="fh5co_display_table">
               <div class="fh5co_verticle_middle"><i class="fa fa-twitter"></i></div>
             </a>
           </div>
           <div class="text-center d-inline-block">
-            <a href="https://fb.com/fh5co" target="_blank" class="fh5co_display_table">
+            <a  class="fh5co_display_table">
               <div class="fh5co_verticle_middle"><i class="fa fa-facebook"></i></div>
             </a>
           </div>
@@ -295,7 +310,7 @@
           <form method="POST" class="form-subscribe d-flex">
             <input type="text" class="form-control subscribe-input" placeholder="Enter your email..."
               aria-describedby="basic-addon1">
-            <button type="submit"> <i class="fa fa-paper-plane-o"></i>&nbsp;&nbsp;Đăng kí</button>
+            <button type="submit"> <i class="fa fa-paper-plane-o"></i>&nbsp;&nbsp;Đăng ký</button>
           </form>
         </div>
       </div>
@@ -303,12 +318,9 @@
   </div>
   {{!-- Bottom Footer --}}
   <div class="container-fluid fh5co_footer_right_reserved">
-    <div class="container">
-      <div class="row  ">
-        <div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2020, All rights reserved. Design by <a
+    <div class="container ">
+        <div class="col-12 text-center py-4 Reserved "> © Copyright 2020, All rights reserved. Design by <a
             href="/About">Team 6 Web2</a>. </div>
-
-      </div>
     </div>
   </div>
 

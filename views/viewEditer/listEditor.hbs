@@ -38,7 +38,8 @@
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="/Account/Profile">Hồ sơ</a>
-            <a class="dropdown-item" href="/writer/new">Thêm bài viết mới</a>
+            <a class="dropdown-item" href="/editor">Quản lý bài viết</a>
+            <a class="dropdown-item" href="/editor/accept">Bài viết đã xử lý</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Đăng Xuất</a>
           </div>
@@ -57,9 +58,7 @@
     </div>
   </div>
 
-  {{!-- Body content--}}
-  {{!-- <div class="container-fluid mt-2 h-100">
-    <div class="row mt-5"> --}}
+
 
   <div class="col-sm-12">
     <div class="main-content">
@@ -81,12 +80,13 @@
         <tbody>
           {{#each this.listEditor}}
           <tr>
-            <th scope="row">{{inc}}</th>
+            <th scope="row">{{CatID}}</th>
             <td>{{Title}}</td>
             <td>{{Status}}</td>
             <td>{{CatName}}</td>
             <td class="text-left">
-              <a href="/editor/{{IDPage}}" class="btn btn-info " title="Xem chi tiết"><i class="fa fa-eye " aria-hidden="true"></i></a>
+              <a href="/editor/{{IDPage}}" class="btn btn-info " title="Xem chi tiết"><i class="fa fa-eye "
+                  aria-hidden="true"></i></a>
             </td>
           </tr>
           {{/each}}
@@ -94,16 +94,7 @@
       </table>
     </div>
   </div>
- 
- {{!-- Footer --}}
-  <div class="container-fluid fh5co_footer_right_reserved">
-    <div class="container">
-      <div class="row  ">
-        <div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2020, All rights reserved. Design by <a
-            href="/About">Team 6 Web2</a>. </div>
-      </div>
-    </div>
-  </div>
+
   {{!-- Script --}}
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   {{!-- Bootstrap --}}

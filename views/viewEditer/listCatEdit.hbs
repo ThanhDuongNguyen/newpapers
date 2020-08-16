@@ -46,7 +46,8 @@
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="/Account/Profile">Hồ sơ</a>
-            <a class="dropdown-item" href="/writer/new">Thêm bài viết mới</a>
+            <a class="dropdown-item" href="/editor">Quản lý bài viết</a>
+            <a class="dropdown-item" href="/editor/accept">Bài viết đã xử lý</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Đăng Xuất</a>
           </div>
@@ -79,7 +80,7 @@
 
           <span class="most_fh5co_treding_font_123">Tác giả: </span>
           <a href="#" class="most_fh5co_treding_font_123 d-inline-block">
-            {{this.Author.Name}}
+            {{this.author.Name}}
           </a>
 
           <span class="">
@@ -96,9 +97,6 @@
             {{this.News.View}}
           </span>
 
-          <div class="mb-2">
-            <img src="{{this.News.ImgAvatar}}" alt="IMG" class="w-100 h-100">
-          </div>
 
           <p class="text-justify">
             {{{this.News.Content}}}
@@ -113,17 +111,9 @@
     <a href="/editor/ratify/{{this.News.IDPage}}" class="btn btn-primary "><i class="fa fa-check "
         aria-hidden="true"></i>  Duyệt </a>
     <a href="/editor/refuse/{{this.News.IDPage}}" class="btn btn-danger" ><i class="fa fa-ban" aria-hidden="true"></i> Từ Chối </a>
+    <a href="/editor" class="btn btn-success" ><i class="fa fa-arrow-left" aria-hidden="true"></i>  Quay lại </a>
   </div>
-  {{!-- Bottom Footer --}}
-  <div class="container-fluid fh5co_footer_right_reserved">
-    <div class="container">
-      <div class="row  ">
-        <div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2020, All rights reserved. Design by <a
-            href="/About">Team 6 Web2</a>. </div>
-
-      </div>
-    </div>
-  </div>
+  
 
 
   {{!-- Script --}}
