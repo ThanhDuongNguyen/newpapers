@@ -208,7 +208,7 @@
                     <div class="col-sm-12 col-lg-6">
                       <div class="detail-content">
                         <p class="detail-text">
-                          <span>Thuộc danh mục: </span>{{IDPage}}.
+                          <span>ID: </span>{{IDPage}}.
                         </p>
                         <p class="detail-text">
                           <span>Thuộc danh mục: </span>{{CatName}}.
@@ -229,15 +229,14 @@
                       <div class="detail-action">
                         {{#if draft}}
                         {{#each this.detailNews}}
-                        <button style="submit" class="btn btn-primary" formaction="/admin/news/approval/{{IDPage}}">
+                        <a href="/admin/news/ratify/{{IDPage}}" class="btn btn-primary">
                           <i class="fa fa-check" aria-hidden="true"></i>
                           Duyệt
-                        </button>
-                        <button style="submit" class="btn btn-warning text-light"
-                          formaction="/admin/news/refuse/{{IDPage}}">
+                        </a>
+                        <a href="/admin/news/refuse/{{IDPage}}" class="btn btn-warning text-light">
                           <i class="fa fa-times" aria-hidden="true"></i>
                           Từ chối
-                        </button>
+                        </a>
                         {{/each}}
 
                         {{/if}}
