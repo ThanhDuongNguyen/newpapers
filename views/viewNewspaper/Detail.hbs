@@ -1,6 +1,7 @@
 {{#section 'css'}}
 {{!-- Owl Carousel --}}
-<link rel="stylesheet" href="../../public/css/detail.css">
+<link rel="stylesheet" href="/public/css/detail.css">
+<link rel="stylesheet" href="/public/css/style_1.css">
 {{/section}}
 <div class="container mt-2">
   <div class="row justify-content-center">
@@ -31,7 +32,10 @@
           {{View}}
         </span>
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 01a8a08931dad7f4634892d369cc0c7b795f1888
         <div id="content" class="text-justify">
           {{{Content}}}
         </div>
@@ -82,8 +86,8 @@
           Bình luận bài viết
         </h4>
 
-        <form method="POST" class="form-comment mt-3">
-          <textarea name="Comment" placeholder="Comment..." name="txtContent"></textarea>
+        <form method="POST" class="form-comment mt-3 d-flex flex-column" id="frmComment" onsubmit="return validationComment">
+          <textarea name="Comment" placeholder="Comment..."></textarea>
           <button class="btn btn-success mt-2 mb-2" type="submit">
             Đăng
           </button>
@@ -144,8 +148,8 @@
           <li class="row pb-3">
             <div class="col-sm-4 newsbycat-img-size">
               <a href="/news/{{IDPage}}" class="d-block w-100 h-100">
-							<img src="{{ImgAvatar}}" class="fit-img" alt="Image title">
-						</a>
+                <img src="{{ImgAvatar}}" class="fit-img" alt="Image title">
+              </a>
             </div>
 
             <div class="col-sm-8">
@@ -185,3 +189,10 @@
     </div>
   </div>
 </div>
+
+{{#section 'js'}}
+{{!-- Validation --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+
+<script src="/public/assets/js/validation.js"></script>
+{{/section}}

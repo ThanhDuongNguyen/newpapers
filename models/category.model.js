@@ -32,6 +32,11 @@ module.exports = {
   censorOfCat: function (id) {
     return db.load(`select ${TBL_USER}.Name, ${TBL_USER}.IDUser, ${TBL_USER}.PermissionID from ${TBL_EDITOR_CAT} join ${TBL_USER} on ${TBL_EDITOR_CAT}.IDUser = ${TBL_USER}.IDUser where CatID = ${id} and ${TBL_USER}.PermissionID <> 1`);
   },
+
+  catByEditor: function(id){
+    return db.load(`select * from ${TBL_EDITOR_CAT} join ${TBL_CATEGORIES} on ${TBL_EDITOR_CAT}.CatID = ${TBL_CATEGORIES}.CatID where ${TBL_EDITOR_CAT}.IDUser = ${id}`)
+  },
+
   editorByCat: function (id) {
     return db.load(`SELECT * FROM ${TBL_CATEGORIES} cat JOIN ${TBL_EDITOR_CAT} ec WHERE cat.CatID=ec.CatID and ec.IDUser = ${id} `);
   },

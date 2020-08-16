@@ -1,7 +1,7 @@
 const express = require("express");
 const tagModel = require("../models/tag.model");
 const newspaperModel = require("../models/newspapers.model");
-const restrict = require("../middleware/auth.middleware");
+const classifyMdw = require("../middleware/classify.middleware");
 const categoryModel = require("../models/category.model");
 const userModel = require("../models/user.model");
 const refTagNewsModel = require("../models/refTagsNews.model");
@@ -9,11 +9,10 @@ const denyModel = require("../models/deny.model");
 const acceptModel = require("../models/accept.model");
 const moment = require("moment");
 var schedule = require('node-schedule');
-const { childCategory } = require("../models/category.model");
 var router = express.Router();
 
 //list xử lí bài viết chưa được duyệt
-router.get("/", restrict, async function (req, res) {
+router.get("/", classifyMdw.checkEditorClass, async function (req, res) {
   const listEditor = await newspaperModel.newByEditor(
     req.session.authUser.IDUser
   );
@@ -30,7 +29,7 @@ router.get("/", restrict, async function (req, res) {
   });
 });
  //list bài viết đã được duyệt
-router.get("/accept", restrict, async function (req, res) {
+router.get("/accept", classifyMdw.checkEditorClass, async function (req, res) {
   const listEditor = await newspaperModel.newByEditorAccepted(
     req.session.authUser.IDUser
   );
@@ -40,7 +39,7 @@ router.get("/accept", restrict, async function (req, res) {
     listEditor: listEditor,
   });
 });
-router.get("/ratify/:id", restrict, async function (req, res) {
+router.get("/ratify/:id", classifyMdw.checkEditorClass, async function (req, res) {
   const id = +req.params.id || -1;
 
   const [list, total] = await Promise.all([
@@ -73,7 +72,7 @@ router.get("/ratify/:id", restrict, async function (req, res) {
   });
 });
 
-router.post("/ratify/:id", restrict, async function (req, res) {
+router.post("/ratify/:id", classifyMdw.checkEditorClass, async function (req, res) {
   const id = +req.params.id || -1;
 
   const ob = {
@@ -109,7 +108,7 @@ router.post("/ratify/:id", restrict, async function (req, res) {
     const refTagsNews = {
       IDPage: id,
       IDTags: TagID
-    }
+    } 
     await refTagNewsModel.add(refTagsNews);
   }
   //duyet dang bai
@@ -127,7 +126,7 @@ router.post("/ratify/:id", restrict, async function (req, res) {
 
 });
 
-router.get("/refuse/:id", restrict, async function (req, res) {
+router.get("/refuse/:id", classifyMdw.checkEditorClass, async function (req, res) {
   const id = +req.params.id || -1;
   res.render("viewEditer/refuse", {
     layout: false,
@@ -135,7 +134,7 @@ router.get("/refuse/:id", restrict, async function (req, res) {
   });
 });
 
-router.post("/refuse/:id", restrict, async function (req, res) {
+router.post("/refuse/:id", classifyMdw.checkEditorClass, async function (req, res) {
   const id = +req.params.id || -1;
   const fall = {
     IDPage: id,

@@ -3,6 +3,7 @@ const categoryModel = require("../models/category.model");
 const moment = require("moment");
 const userModel = require("../models/user.model");
 const { footerByCat } = require("../models/category.model");
+const { single } = require("../models/newspapers.model");
 
 module.exports =  function (app) {
   app.use( async function (req, res, next) {
@@ -39,7 +40,7 @@ module.exports =  function (app) {
       (listChildMineral = await categoryModel.childCategory(4)),
       (listMostViewFooter = await newspaperModel.topMostViewFooter()),
       (allCat = await categoryModel.all()),
-      footerbyCat = await categoryModel.footerByCat(),
+      (listFooterByCat = await categoryModel.footerByCat()),
     ]);
 
     for (const seafood of listSeafood) {
@@ -57,6 +58,10 @@ module.exports =  function (app) {
       hotNews.Day = moment(hotNews.Day, "YYYY-MM-DD,h:mm:ss a").format("LLL");
     }
 
+    for (const news of listMostViewFooter) {
+      news.Day = moment(news.Day, "YYYY-MM-DD,h:mm:ss a").format("LLL");
+    }
+
     res.locals.lcSeafood = listSeafood;
     res.locals.lcAgricultural = listAgricultural;
     res.locals.lcHotNews = listHotNews;
@@ -64,7 +69,7 @@ module.exports =  function (app) {
     res.locals.lcChildMineral = listChildMineral;
     res.locals.lcAllCat = allCat;
     res.locals.listMostViewFooter = listMostViewFooter;
-    res.locals.lcFooterCat = footerbyCat;
+    res.locals.lcFooterCat = listFooterByCat;
     next();
   });
 };
