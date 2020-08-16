@@ -355,3 +355,21 @@ font-weight: bold;
     font-weight: bold;
 }
 
+.color_fff{
+    text-decoration: none;
+    color: white;
+}
+
+.color_fff:hover h6{
+    text-decoration: none;
+    color: white;
+}
+
+.carousel-caption:hover a,
+.big-box-title:hover,
+.small-box-title:hover{
+    color: var(--red-color);
+    text-decoration: none;
+
+}
+

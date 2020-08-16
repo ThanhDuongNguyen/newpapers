@@ -1,6 +1,7 @@
 {{#section 'css'}}
 {{!-- Owl Carousel --}}
 <link rel="stylesheet" href="../../public/css/list_cat_tag.css">
+<link rel="stylesheet" href="../../public/css/detail.css">
 {{/section}}
 
 <div class="container-fluid pb-4 pt-4 paddding">
@@ -8,7 +9,7 @@
 		<div class="row mx-0">
 			<div class="col-md-8 animate-box fadeInLeft animated-fast" data-animate-effect="fadeInLeft">
 				<div>
-					<div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Tin Tức</div>
+					<h3 class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Tin Tức</h3>
 				</div>
 				{{!-- News --}}
 				{{#each this.listNewspaper}}
@@ -19,6 +20,11 @@
 						</a>
 					</div>
 					<div class="col-md-7 animate-box fadeInUp animated-fast">
+						{{#if Premium}}
+								<a href="/news/{{IDPage}}" class="premium"></a>
+									<i class="fa fa-star" aria-hidden="true"></i>
+								</a>
+								{{/if}}
 						<a href="/news/{{IDPage}}" class="fh5co_magna py-2"> {{Title}} </a>
 						<div class="fh5co_consectetur newspaper-content-size">{{TinyContent}}</div>
 						<p class="most_fh5co_treding_font_123 mt-3">
@@ -32,7 +38,7 @@
 
 			<div class="col-md-3 animate-box fadeInRight animated-fast" data-animate-effect="fadeInRight">
 				<div>
-					<div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Thẻ</div>
+					<h3 class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Thẻ</h3>
 				</div>
 				<div class="clearfix"></div>
 				{{!-- Tags --}}
@@ -43,7 +49,7 @@
 				{{/each}}
 				{{!-- End Tags --}}
 				<div>
-					<div class="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4">Phổ Biến</div>
+					<h3 class="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4">Phổ Biến</h3>
 				</div>
 				{{!-- Popular --}}
 				{{!-- Popular --}}
@@ -55,8 +61,9 @@
 						</a>
 					</div>
 					<div class="col-7 paddding">
-						<a href="/news/{{IDPage}}">
-							<div class="most_fh5co_treding_font popular-title-size">{{Title}}</div>
+						
+						<a class="most_fh5co_treding_font" href="/news/{{IDPage}}">
+							<div class=" popular-title-size">{{Title}}</div>
 						</a>
 						<div class="most_fh5co_treding_font_123">{{Day}}</div>
 					</div>

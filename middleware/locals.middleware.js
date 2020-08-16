@@ -2,6 +2,7 @@ const newspaperModel = require("../models/newspapers.model");
 const categoryModel = require("../models/category.model");
 const moment = require("moment");
 const { footerByCat } = require("../models/category.model");
+const { all } = require("../models/newspapers.model");
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -42,12 +43,39 @@ module.exports = function (app) {
       hotNews.Day = moment(hotNews.Day, "YYYY-MM-DD,h:mm:ss a").format("LLL");
     }
 
+    for (var i = 0; i < listMostViewFooter.length; i++) {
+      var day = moment(listMostViewFooter[i].Day).format('ll');
+      listMostViewFooter[i].Day = day;
+    }
+    var listCat = [];
+    var listCatParent = [];
+    for (var i = 0; i < allCat.length; i++) {
+      if (allCat[i].ParentCatID == 0) {
+        listCatParent.push(allCat[i]);
+      }else{
+        listCat.push(allCat[i]);
+      }
+    }
+    for (var i = 0; i < listCatParent.length; i++) {
+      listchil = [];
+      for (var j = 0; j < listCat.length; j++) {
+        
+        if(listCat[j].ParentCatID == listCatParent[i].CatID){
+          listchil.push(listCat[j]);
+        }
+        
+      }
+      listCatParent[i].chil = listchil;
+    }
+    
+
+
     res.locals.lcSeafood = listSeafood;
     res.locals.lcAgricultural = listAgricultural;
     res.locals.lcHotNews = listHotNews;
     res.locals.lcChildBusiness = listChildBusiness;
     res.locals.lcChildMineral = listChildMineral;
-    res.locals.lcAllCat = allCat;
+    res.locals.lcAllCat = listCatParent;
     res.locals.listMostViewFooter = listMostViewFooter;
     res.locals.lcFooterCat = footerbyCat;
     next();

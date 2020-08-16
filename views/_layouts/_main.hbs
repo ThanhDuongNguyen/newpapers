@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News</title>
+    {{{_sections.css}}}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../public/css/main.css">
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <header>
+            <div class="top-header"></div>
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a href="/" class="navbar-brand" href="">
+                        <img src="../../public/images/logo copy.png" alt="LOGO">
+                    </a>
+                    {{#if lcIsAuthenticated}}
+                    <div class="dropdown-small dropdown pl-2">
+                        <button class="btn btn-account" style="background: none;" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="avartar-small">
+                                <img src="../../public/images-upload/{{lcAuthUser.Avatar}}" class="avatar" alt="">
+                                <h6>{{lcAuthUser.Name}}</h6>
+                            </div>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/Account/Profile">Hồ sơ</a>
+                            <a class="dropdown-item" href="/writer/new">Thêm tin mới</a>
+                            <a class="dropdown-item" href="/admin">Quản lý</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Đăng xuất</a>
+                        </div>
+                    </div>
+
+                    {{/if}}
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <!-- Tìm kiếm small -->
+
+                        <ul class="navbar-nav mr-auto">
+                            <li>
+                                <form method="GET" action="/Category/search" class="searchForm-small">
+                                    <input name="Search" class="input-search-small" type="search">
+                                    <i class="search-icon-small fa fa-search" aria-hidden="true"></i>
+                                </form>
+                            </li>
+                            {{#if lcIsAuthenticated}}
+                            {{else}}
+                            <li class="nav-item login-reg">
+                                <a class="nav-link" href="/Account/Sign-In">ĐĂNG NHẬP/ĐĂNG KÝ</a>
+                            </li>
+                            {{/if}}
+
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">TRANG CHỦ</a>
+                            </li>
+                            <li class="nav-item nav-item-category">
+                                <a class="nav-link" onclick="showSubCate(this)" href="#">DANH MỤC <i
+                                        class="fa fa-angle-up" aria-hidden="true"></i></a>
+                                <div class="triangle">
+                                </div>
+                                <div class="category">
+                                    <div class="container">
+                                        <div class="row">
+                                            {{#each lcAllCat}}
+                                            <div class="col-sm-3 category-box">
+                                                <a href="/Category/{{CatID}}">{{CatName}}</a>
+                                                <ul class="sub-cate">
+                                                    {{#each chil}}
+                                                    <a href="/Category/{{CatID}}">
+                                                        <li>{{CatName}}</li>
+                                                    </a>
+                                                    {{/each}}
+                                                </ul>
+                                            </div>
+                                            {{/each}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row category-small">
+                                    {{#each lcAllCat}}
+                                    <div class="col-12">
+                                        <a href="/Category/{{CatID}}" onmouseenter="showCate(this)">{{CatName}}<i
+                                                class="fa fa-angle-up" aria-hidden="true"></i></a>
+                                        <ul class="sub-cate">
+                                            {{#each chil}}
+                                            <a href="/Category/{{CatID}}">
+                                                <li>{{CatName}}</li>
+                                            </a>
+                                            {{/each}}
+                                        </ul>
+                                    </div>
+                                    {{/each}}
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/About">GIỚI THIỆU</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Contact">LIÊN HỆ</a>
+                            </li>
+                        </ul>
+                        <!-- Tìm kiếm -->
+                        <form class="searchForm" method="GET" action="/Category/search">
+                            <input name="Search" class="input-search" type="search">
+                            <i class="search-icon fa fa-search" aria-hidden="true"></i>
+                        </form>
+                        <!-- Nút đăng nhập -->
+                        {{#if lcIsAuthenticated}}
+                        {{else}}
+                        <a style="text-decoration: none;" href="/Account/Sign-In">
+                            <button class="login-btn">ĐĂNG NHẬP</button>
+                        </a>
+                        <a style="text-decoration: none;" href="/Account/Sign-Up">
+                            <button class="reg-btn">ĐĂNG KÝ</button>
+                        </a>
+                        {{/if}}
+
+                        <form action="/Account/Logout" id="frmLogout" method="POST"></form>
+                        {{#if lcIsAuthenticated}}
+                        <div class="dropdown-big dropdown pl-2">
+                            <button class="btn btn-account" style="background: none;" type="button"
+                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <div class="avartar-pc">
+                                    <img src="../../public/images-upload/{{lcAuthUser.Avatar}}" class="avatar" alt="">
+                                    <h6> {{lcAuthUser.Name}}</h6>
+                                </div>
+
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="/Account/Profile">Hồ sơ</a>
+                                <a class="dropdown-item" href="/writer/new">Thêm tin mới</a>
+                                <a class="dropdown-item" href="/admin">Quản lý</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Đăng xuất</a>
+                            </div>
+                        </div>
+
+
+                        {{/if}}
+
+
+                    </div>
+                </nav>
+            </div>
+
+        </header>
+
+        {{{body}}}
+
+        <div class="container-fluid footer_bg pb-3">
+            <div class="container animate-box">
+                <div class="row">
+                    <div class="col-12 py-5 logo-footer"><img src="../../public/images/logo copy.png" alt="img"
+                            class="footer_logo" /></div>
+                    <div class="clearfix"></div>
+                    <div class="col-12 col-md-4 col-lg-4">
+                        <div class="footer_main_title py-3"> Giới Thiệu</div>
+                        <div class="footer_sub_about pb-3"> Nhóm số 6 môn Lập trình web 2.
+                            <ul class="footer_menu">
+                                <li>1760220 - Phạm Quang Trung</li>
+                                <li>1760271 - Phan Thế Công</li>
+                                <li>1760287 - Nguyễn Hữu Đức</li>
+                                <li>1760290 - Nguyễn Thanh Dương</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-4">
+                        <div class="footer_main_title py-3"> Danh mục</div>
+                        <ul class="footer_menu">
+                            {{#each this.lcFooterCat}}
+                            <li><a href="/category/{{CatID}}" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+                                    {{CatName}}</a>
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+
+                    <div class="col-12 col-md-4 col-lg-4 position_footer_relative">
+                        <div class="footer_main_title py-3"> Bài viết được xem nhiều nhất</div>
+                        {{#each this.listMostViewFooter}}
+                        <div class="footer_makes_sub_font">
+                            <div class="color_fff"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{Day}}
+                            </div>
+                            <div class=""><a href="/news/{{IDPage}}" class="footer_post pb-4">{{Title}}</a></div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bottom Footer -->
+        <div class="container-fluid footer-footer">
+            <div class="container">
+                <div class="row ">
+                    <div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2020, All rights reserved. Design by <a
+                            href="/About">Team 6 Web2</a>. </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
+</body>
+
+<script>
+    function loadRec() {
+        var danhmuc = $(".nav-item-category").position();
+        var widthCate = $(".nav-item-category").width();
+        var heightCate = $(".nav-item-category").height();
+        var triangle = document.querySelector(".triangle");
+        triangle.style.display = "block";
+        var height = triangle.offsetHeight;
+        var width = triangle.offsetWidth;
+        triangle.style.display = "none";
+        var newLeft = (danhmuc.left + (widthCate / 2));
+        newLeft = newLeft - (0.5 * width);
+        var newTop = (danhmuc.top + (heightCate / 4));
+        $(".triangle").css({ top: newTop, left: newLeft });
+    }
+    $(document).ready(function () {
+        loadRec();
+    });
+    window.addEventListener("resize", function () {
+
+        loadRec();
+    });
+
+    function showCate(a) {
+        var x = a.parentNode.getElementsByClassName("sub-cate");
+        x[0].classList.toggle("show-sub-cate");
+        var i = a.getElementsByClassName("fa-angle-up");
+        i[0].classList.toggle("fa-angle-down");
+    }
+
+    function showSubCate(a) {
+        var x = a.parentNode.getElementsByClassName("category-small");
+        x[0].classList.toggle("show-sub-cate");
+        var i = a.getElementsByClassName("fa-angle-up");
+        i[0].classList.toggle("fa-angle-down");
+    }
+</script>
+{{{_sections.js}}}
+
+</html>

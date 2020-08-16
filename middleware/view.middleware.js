@@ -7,7 +7,7 @@ module.exports = function (app) {
     "hbs",
     exphbs({
       layoutsDir: "views/_layouts",
-      defaultLayout: "main",
+      defaultLayout: "_main",
       extname: ".hbs",
       helpers: {
         section: hbs_sections(),

@@ -1,4 +1,54 @@
 
+.newspaper-content-size{
+    display: -webkit-box;
+    -webkit-line-clamp:3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+}
+
+.fh5co_magna{
+    color: black;
+    font-weight: bolder;
+    text-decoration: none;
+}
+.most_fh5co_treding_font{
+    color: black;
+    font-weight: bolder;
+    text-decoration: none !important;
+}
+
+.fh5co_magna:hover{
+    color: var(--red-color);
+    text-decoration: none;
+}
+
+.most_fh5co_treding_font:hover{
+    color: var(--red-color);
+    text-decoration: none !important;
+}
+
+.btn_mange_pagging {
+    background: #f1f1f1;
+    padding: 12px 20px;
+    color: #222 !important;
+    font-weight: 800;
+    margin: 0 10px;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.btn_mange_pagging:hover,
+.btn_mange_pagging:focus {
+  background: var(--red-color);
+  color: #fff !important;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+
 .fit-img{
     object-fit: cover;
     width: 100%;
@@ -24,14 +74,7 @@
     .popular-img-size{
         height: 30px;
     }
-    .newspaper-content-size{
-        height: 40px;
-        display: -webkit-box;
-        -webkit-line-clamp:2;
-        -webkit-box-orient: vertical;  
-        overflow: hidden;
-
-    }
+    
 }
 /* // Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {

@@ -1,6 +1,7 @@
 {{#section 'css'}}
 {{!-- Owl Carousel --}}
 <link rel="stylesheet" href="../../public/css/list_cat_tag.css">
+<link rel="stylesheet" href="../../public/css/detail.css">
 {{/section}}
 
 <div class="container-fluid pb-4 pt-4 paddding">
@@ -19,6 +20,11 @@
 						</a>
 					</div>
 					<div class="col-md-7 animate-box fadeInUp animated-fast">
+						{{#if Premium}}
+								<a href="/news/{{IDPage}}" class="premium"></a>
+									<i class="fa fa-star" aria-hidden="true"></i>
+								</a>
+								{{/if}}
 						<a href="/news/{{IDPage}}" class="fh5co_magna py-2"> {{Title}} </a>
 						<div class="fh5co_consectetur newspaper-content-size">{{TinyContent}}</div>
 						<p class="most_fh5co_treding_font_123 mt-3">
@@ -55,8 +61,9 @@
 						</a>
 					</div>
 					<div class="col-7 paddding">
-						<a href="/news/{{IDPage}}">
-							<div class="most_fh5co_treding_font popular-title-size">{{Title}}</div>
+						
+						<a class="most_fh5co_treding_font" href="/news/{{IDPage}}">
+							<div class=" popular-title-size">{{Title}}</div>
 						</a>
 						<div class="most_fh5co_treding_font_123">{{Day}}</div>
 					</div>
