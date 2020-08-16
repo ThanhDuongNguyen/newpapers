@@ -20,7 +20,7 @@ router.get("/:id", async function (req, res) {
     View: News[0].View + 1,
   };
 
-  console.log(viewNews);
+
 
   const [list, total] = await Promise.all([
     await newspaperModel.patch(viewNews),

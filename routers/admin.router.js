@@ -189,7 +189,7 @@ router.get("/category/edit/:id", classifyMdw.checkAdminClass, async function (
     (category = await categoryModel.single(id)),
     (censors = await categoryModel.censorOfCat(id)),
   ]);
-  
+
   console.log("censors", censors);
 
   // format time
@@ -820,5 +820,133 @@ router.post("/users/delete/:id", async function (req, res) {
   await userModel.del(id);
 
   res.redirect("/admin/users");
+});
+
+// Assign Category
+router.get("/assign-category", classifyMdw.checkAdminClass, async function (
+  req,
+  res
+) {
+  // query page
+  var page = +req.query.page;
+  if (!page || page < 0) {
+    page = 1;
+  }
+  const offset = (page - 1) * defaults.pagination.limit;
+
+  const [list, total] = await Promise.all([
+    (listEditor = await userModel.pageAllEditor(
+      defaults.pagination.limit,
+      offset
+    )),
+    (Total = await userModel.countAllEditor()),
+  ]);
+
+  for (const editor of listEditor) {
+    var strCat = "";
+
+    const listCatByEditor = await categoryModel.catByEditor(editor.IDUser);
+    var listCatByEditor_length = listCatByEditor.length;
+
+    for (let i = 0; i < listCatByEditor_length; i++) {
+      if (i === listCatByEditor_length - 1) {
+        strCat += listCatByEditor[i].CatName;
+      } else {
+        strCat += listCatByEditor[i].CatName + ", ";
+      }
+    }
+
+    editor.cat = strCat;
+  }
+
+  const nPages = Math.ceil(Total / defaults.pagination.limit);
+
+  res.render("viewAdmin/Assign-Cat", {
+    layout: false,
+    listEditor,
+    prev_value: page - 1,
+    next_value: page + 1,
+    prev: page > 1,
+    next: page < nPages,
+    nPages,
+    page,
+    strCat,
+  });
+});
+
+router.get("/assign-category/:id", classifyMdw.checkAdminClass, async function (
+  req,
+  res
+) {
+  const id = +req.params.id || -1;
+
+  const [list, total] = await Promise.all([
+    (allCat = await categoryModel.all()),
+    (listCatByIDUser = await categoryModel.catByEditor(id)),
+    (detailEditor = await userModel.single(id)),
+  ]);
+
+  for (const cat of listCatByIDUser) {
+    var index = allCat
+      .map(function (cat) {
+        return cat.CatID;
+      })
+      .indexOf(cat.CatID);
+
+    if (index > -1) {
+      allCat.splice(index, 1);
+    }
+  }
+
+  res.render("viewAdmin/Edit-Assign-Cat", {
+    layout: false,
+    allCat,
+    listCatByIDUser,
+    IDUser: detailEditor[0].IDUser,
+    Name: detailEditor[0].Name,
+  });
+});
+
+router.post("/assign-category/update", async function (req, res) {
+  const listOldCat = await categoryModel.catByEditor(req.body.IDUser);
+
+  const old_cats = [];
+  const new_cats = [];
+
+  for (const CatID of req.body.CatID) {
+    let new_cat = await categoryModel.single(CatID);
+    new_cats.push(new_cat[0].CatID);
+  }
+
+  for (const old_cat of listOldCat) {
+    old_cats.push(old_cat.CatID);
+  }
+
+  console.log("new cats", new_cats);
+  console.log("old cats", old_cats);
+
+  for (const new_cat of new_cats) {
+    if(!old_cats.includes(new_cat))
+    {
+      console.log("new_cat", new_cat);
+
+      var entity = {
+        IDUser: req.body.IDUser,
+        CatID: new_cat,
+      }
+      await editor_catModel.add(entity);
+    }
+  }
+
+  for (const old_cat of old_cats) {
+    if(!new_cats.includes(old_cat))
+    {
+      console.log("old cat", old_cat);
+
+      await editor_catModel.del(old_cat);
+    }
+  }
+
+  res.redirect("/admin/assign-category");
 });
 module.exports = router;

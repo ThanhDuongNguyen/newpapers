@@ -26,15 +26,6 @@
         </a>
       </div>
 
-      <div class="search">
-        <form class="search-form my-2 my-lg-0" method="GET" action="/Category/search">
-          <input class="form-control mr-sm-2 rounded-0" type="text" name="Search" placeholder="Search">
-          <button class="btn my-2 my-sm-0 bg-secondary rounded-0" type="submit">
-            <i class="fa fa-search" aria-hidden="true"></i>
-          </button>
-        </form>
-      </div>
-
       <div class="right-top-bar">
         <form action="/Account/Logout" id="frmLogout" method="POST"></form>
         {{#if lcIsAuthenticated}}
@@ -46,8 +37,23 @@
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="/Account/Profile">Hồ sơ</a>
-            <a class="dropdown-item" href="/writer/new">Thêm tin tức</a>
-            <a class="dropdown-item" href="/admin">Quản lý</a>
+            {{!--Writer--}}
+            {{#if Writer}}
+            <a class="dropdown-item" href="/writer/new">Thêm tin mới</a>
+            {{/if}}
+            {{!--Edior--}}
+            {{#if Editor}}
+            <a class="dropdown-item" href="/editor">Quản lý bài viết</a>
+            <a class="dropdown-item" href="/accpet">Bài viết đã xử lí</a>
+            {{/if}}
+            {{!--Admin--}}
+            {{#if Admin}}
+            <a class="dropdown-item" href="/admin">Quản lí</a>
+            {{/if}}
+            {{!-- Subscriber--}}
+            {{#if Subscriber}}
+            <a class="dropdown-item" href="/pricing">Tài khoản</a>
+            {{/if}}
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Đăng xuất</a>
           </div>
@@ -67,22 +73,21 @@
   </div>
 
   {{!-- Body content--}}
-  <div class="container-fluid mt-2 h-100">
-    <div class="row mt-5">
-      {{!-- About --}}
-      <div class="col-sm-3">
-        <div class="avatar-user-square w-100 position-relative ">
-          <a href="/account/change-avatar" class="d-block h-100">
-            <div class="overlay">
-              <div class="overlay-content">
-                <i class="fa fa-camera" aria-hidden="true"></i>
-              </div>
+  <div class="container mt-4 d-flex justify-content-center">
+    <div class="top-body-content h-100">
+      <div class="avatar-user-circle d-flex m-auto position-relative">
+        <a href="/account/change-avatar" class="d-block">
+          <div class="overlay">
+            <div class="overlay-content">
+              <i class="fa fa-camera" aria-hidden="true"></i>
             </div>
-            <div class="avatar-square">
-              <img src="../public/images-upload/{{lcAuthUser.Avatar}}" width="100%" height="100%" alt="">
-            </div>
-          </a>
-        </div>
+          </div>
+          <div class="avatar-circle">
+            <img src="/public/images-upload/{{lcAuthUser.Avatar}}" width="100%" height="100%" alt="">
+          </div>
+        </a>
+      </div>
+      <form method="POST" class="mt-3" id="frmEditProfile" onsubmit="return validationEditProfile">
         <p class="content-title">Hồ Sơ</p>
         <div class="mb-3">
           <p class="content-text-about">
@@ -105,391 +110,13 @@
           </p>
         </div>
         <div class="d-flex justify-content-around align-items-center mt-5 flex-row flex-wrap">
-          <a href="/account/profile/change-password" class="rounded border-0 btn-change-pass">Change Password</a>
-          <a href="/account/profile/edit" class="rounded border-0 btn-edit">Edit</a>
+          <a href="/account/profile/change-password" class="rounded border-0 btn-change-pass">Thay đổi mật khẩu</a>
+          <a href="/account/profile/edit" class="rounded border-0 btn-edit">Chỉnh sửa</a>
         </div>
-      </div>
-      {{!-- Main content --}}
-      {{!-- Subscriber --}}
-      {{#if Subscriber}}
-      <div class="col-sm-9">
-        <div class="main-content">
-          <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#list">
-                <i class="fa fa-list" aria-hidden="true"></i>
-                List News
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#add">
-                <i class="fa fa-plus" aria-hidden="true"></i>
-                Add
-              </a>
-            </li>
-          </ul>
-          <!-- Tab panes -->
-          <div class="tab-content">
-            <div class="tab-pane container active" id="list">
-              ...
-            </div>
-            <div class="tab-pane container fade" id="add">
-              ...
-            </div>
-          </div>
-        </div>
-      </div>
-      {{/if}}
-      {{!-- Writer --}}
-      {{#if Writer}}
-      <div class="col-sm-9">
-        <div class="main-content">
-          {{!-- Nav tabs --}}
-          <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#published">
-                <i class="fa fa-list" aria-hidden="true"></i>
-                List Published
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#confirmed">
-                <i class="fa fa-list" aria-hidden="true"></i>
-                List Confirmed
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#not-confirmed">
-                <i class="fa fa-list" aria-hidden="true"></i>
-                List Not Confirmed Yet
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#not-accepted">
-                <i class="fa fa-list" aria-hidden="true"></i>
-                List Not Accepted
-              </a>
-            </li>
-
-          </ul>
-          <!-- Tab panes -->
-          <div class="tab-content">
-            <div class="tab-pane container active" id="published">
-              <a href="/writer/new" class="btn btn-outline-info text-right mt-3">
-                <i class="fa fa-plus" aria-hidden="true"></i>
-                Add
-              </a>
-              <table class="table table-striped mt-3">
-                <thead>
-                  <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col" class="hidden-item-1">Category</th>
-                    <th scope="col" class="hidden-item-2">Views</th>
-                    <th scope="col" class="hidden-item-3">Day</th>
-                    <th scope="col">&nbsp;</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {{#each this.listPublished}}
-                  <tr>
-                    <th scope="row">{{Title}}</th>
-                    <td class="hidden-item-1">{{CatName}}</td>
-                    <td class="hidden-item-2">{{View}}</td>
-                    <td class="hidden-item-3">{{Day}}</td>
-                    <td>
-                      <a href="/news/{{IDPage}}" class="btn btn-success">
-                        <i class="fa fa-eye" aria-hidden="true"></i></a>
-                    </td>
-                  </tr>
-                  {{/each}}
-                </tbody>
-              </table>
-            </div>
-
-            <div class="tab-pane container fade" id="confirmed">
-              <a href="/writer/new" class="btn btn-outline-info text-right mt-3">
-                <i class="fa fa-plus" aria-hidden="true"></i>
-                Add
-              </a>
-              <table class="table table-striped mt-3">
-                <thead>
-                  <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col" class="hidden-item-1">Category</th>
-                    <th scope="col" class="hidden-item-2">Views</th>
-                    <th scope="col" class="hidden-item-3">Day</th>
-                    <th scope="col">&nbsp;</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {{#each this.listConfirmed}}
-                  <tr>
-                    <th scope="row">{{Title}}</th>
-                    <td class="hidden-item-1">{{CatName}}</td>
-                    <td class="hidden-item-2">{{View}}</td>
-                    <td class="hidden-item-3">{{Day}}</td>
-                    <td>
-                      <a href="/news/{{IDPage}}" class="btn btn-success">
-                        <i class="fa fa-eye" aria-hidden="true"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  {{/each}}
-                </tbody>
-              </table>
-            </div>
-
-            <div class="tab-pane container fade" id="not-confirmed">
-              <a href="/writer/new" class="btn btn-outline-info text-right mt-3">
-                <i class="fa fa-plus" aria-hidden="true"></i>
-                Add
-              </a>
-              <table class="table table-striped mt-3">
-                <thead>
-                  <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col" class="hidden-item-1">Category</th>
-                    <th scope="col" class="hidden-item-2">Views</th>
-                    <th scope="col" class="hidden-item-3">Day</th>
-                    <th scope="col">&nbsp;</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {{#each this.listNotConfirmedYet}}
-                  <tr>
-                    <th scope="row">{{Title}}</th>
-                    <td class="hidden-item-1">{{CatName}}</td>
-                    <td class="hidden-item-2">{{View}}</td>
-                    <td class="hidden-item-3">{{Day}}</td>
-                    <td class="action">
-                      <a href="/news/{{IDPage}}" class="btn btn-success">
-                        <i class="fa fa-eye" aria-hidden="true"></i>
-                      </a>
-                      <a href="/news/edit/{{IDPage}}" class="btn btn-primary btn-action">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  {{/each}}
-                </tbody>
-              </table>
-            </div>
-
-            <div class="tab-pane container fade" id="not-accepted">
-              <a href="/writer/new" class="btn btn-outline-info text-right mt-3">
-                <i class="fa fa-plus" aria-hidden="true"></i>
-                Add
-              </a>
-              <table class="table table-striped mt-3">
-                <thead>
-                  <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col" class="hidden-item-1">Category</th>
-                    <th scope="col" class="hidden-item-2">Views</th>
-                    <th scope="col" class="hidden-item-3">Day</th>
-                    <th scope="col">&nbsp;</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {{#each this.listNotAccepted}}
-                  <tr>
-                    <th scope="row">{{Title}}</th>
-                    <td class="hidden-item-1">{{CatName}}</td>
-                    <td class="hidden-item-2">{{View}}</td>
-                    <td class="hidden-item-3">{{Day}}</td>
-                    <td class="action">
-                      <a href="/news/{{IDPage}}" class="btn btn-success">
-                        <i class="fa fa-eye" aria-hidden="true"></i>
-                      </a>
-                      <a href="/news/edit/{{IDPage}}" class="btn btn-primary btn-action">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  {{/each}}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      {{/if}}
-      {{!-- Editor --}}
-      {{#if Editor}}
-      <div class="col-sm-9">
-        <div class="main-content">
-          {{!-- Nav tabs --}}
-          <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#published">
-                <i class="fa fa-list" aria-hidden="true"></i>
-                List Published
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#confirmed">
-                <i class="fa fa-list" aria-hidden="true"></i>
-                List Confirmed
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#not-confirmed">
-                <i class="fa fa-list" aria-hidden="true"></i>
-                List Not Confirmed Yet
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#not-accepted">
-                <i class="fa fa-list" aria-hidden="true"></i>
-                List Not Accepted
-              </a>
-            </li>
-
-          </ul>
-          <!-- Tab panes -->
-          <div class="tab-content">
-            <div class="tab-pane container active" id="published">
-              <a href="/writer/new" class="btn btn-outline-info text-right mt-3">
-                <i class="fa fa-plus" aria-hidden="true"></i>
-                Add
-              </a>
-              <table class="table table-striped mt-3">
-                <thead>
-                  <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col" class="hidden-item-1">Category</th>
-                    <th scope="col" class="hidden-item-2">Views</th>
-                    <th scope="col" class="hidden-item-3">Day</th>
-                    <th scope="col">&nbsp;</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {{#each this.listPublished}}
-                  <tr>
-                    <th scope="row">{{Title}}</th>
-                    <td class="hidden-item-1">{{CatName}}</td>
-                    <td class="hidden-item-2">{{View}}</td>
-                    <td class="hidden-item-3">{{Day}}</td>
-                    <td>
-                      <a href="/news/{{IDPage}}" class="btn btn-success">
-                        <i class="fa fa-eye" aria-hidden="true"></i></a>
-                    </td>
-                  </tr>
-                  {{/each}}
-                </tbody>
-              </table>
-            </div>
-
-            <div class="tab-pane container fade" id="confirmed">
-              <a href="/writer/new" class="btn btn-outline-info text-right mt-3">
-                <i class="fa fa-plus" aria-hidden="true"></i>
-                Add
-              </a>
-              <table class="table table-striped mt-3">
-                <thead>
-                  <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col" class="hidden-item-1">Category</th>
-                    <th scope="col" class="hidden-item-2">Views</th>
-                    <th scope="col" class="hidden-item-3">Day</th>
-                    <th scope="col">&nbsp;</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {{#each this.listConfirmed}}
-                  <tr>
-                    <th scope="row">{{Title}}</th>
-                    <td class="hidden-item-1">{{CatName}}</td>
-                    <td class="hidden-item-2">{{View}}</td>
-                    <td class="hidden-item-3">{{Day}}</td>
-                    <td>
-                      <a href="/news/{{IDPage}}" class="btn btn-success">
-                        <i class="fa fa-eye" aria-hidden="true"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  {{/each}}
-                </tbody>
-              </table>
-            </div>
-
-            <div class="tab-pane container fade" id="not-confirmed">
-              <a href="/writer/new" class="btn btn-outline-info text-right mt-3">
-                <i class="fa fa-plus" aria-hidden="true"></i>
-                Add
-              </a>
-              <table class="table table-striped mt-3">
-                <thead>
-                  <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col" class="hidden-item-1">Category</th>
-                    <th scope="col" class="hidden-item-2">Views</th>
-                    <th scope="col" class="hidden-item-3">Day</th>
-                    <th scope="col">&nbsp;</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {{#each this.listNotConfirmedYet}}
-                  <tr>
-                    <th scope="row">{{Title}}</th>
-                    <td class="hidden-item-1">{{CatName}}</td>
-                    <td class="hidden-item-2">{{View}}</td>
-                    <td class="hidden-item-3">{{Day}}</td>
-                    <td class="action">
-                      <a href="/news/{{IDPage}}" class="btn btn-success">
-                        <i class="fa fa-eye" aria-hidden="true"></i>
-                      </a>
-                      <a href="/news/edit/{{IDPage}}" class="btn btn-primary btn-action">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  {{/each}}
-                </tbody>
-              </table>
-            </div>
-
-            <div class="tab-pane container fade" id="not-accepted">
-              <a href="/writer/new" class="btn btn-outline-info text-right mt-3">
-                <i class="fa fa-plus" aria-hidden="true"></i>
-                Add
-              </a>
-              <table class="table table-striped mt-3">
-                <thead>
-                  <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col" class="hidden-item-1">Category</th>
-                    <th scope="col" class="hidden-item-2">Views</th>
-                    <th scope="col" class="hidden-item-3">Day</th>
-                    <th scope="col">&nbsp;</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {{#each this.listNotAccepted}}
-                  <tr>
-                    <th scope="row">{{Title}}</th>
-                    <td class="hidden-item-1">{{CatName}}</td>
-                    <td class="hidden-item-2">{{View}}</td>
-                    <td class="hidden-item-3">{{Day}}</td>
-                    <td class="action">
-                      <a href="/news/{{IDPage}}" class="btn btn-success">
-                        <i class="fa fa-eye" aria-hidden="true"></i>
-                      </a>
-                      <a href="/news/edit/{{IDPage}}" class="btn btn-primary btn-action">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  {{/each}}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      {{/if}}
+      </form>
     </div>
   </div>
+
 
   {{!-- Script --}}
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>

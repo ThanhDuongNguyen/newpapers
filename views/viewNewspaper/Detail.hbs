@@ -1,6 +1,7 @@
 {{#section 'css'}}
 {{!-- Owl Carousel --}}
-<link rel="stylesheet" href="../../public/css/detail.css">
+<link rel="stylesheet" href="/public/css/detail.css">
+<link rel="stylesheet" href="/public/css/style_1.css">
 {{/section}}
 <div class="container mt-2">
   <div class="row justify-content-center">
@@ -82,8 +83,8 @@
           Bình luận bài viết
         </h4>
 
-        <form method="POST" class="form-comment mt-3">
-          <textarea name="Comment" placeholder="Comment..." name="txtContent"></textarea>
+        <form method="POST" class="form-comment mt-3 d-flex flex-column" id="frmComment" onsubmit="return validationComment">
+          <textarea name="Comment" placeholder="Comment..."></textarea>
           <button class="btn btn-success mt-2 mb-2" type="submit">
             Đăng
           </button>
@@ -183,3 +184,10 @@
     </div>
   </div>
 </div>
+
+{{#section 'js'}}
+{{!-- Validation --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+
+<script src="/public/assets/js/validation.js"></script>
+{{/section}}

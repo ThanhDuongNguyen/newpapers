@@ -2,17 +2,18 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Change Avatar</title>
-  <link rel="stylesheet" href="/public/assets/css/account.css">
-  <link rel="stylesheet" href="/public/css/style_1.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/public/assets/css/profile.css">
+  <link rel="stylesheet" href="/public/css/style_1.css">
   {{!-- Bootstrap --}}
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  {{!-- Font --}}
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Poppins|Roboto+Slab|Work+Sans&display=swap"
+    rel="stylesheet">
   {{!-- Font awesome --}}
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+  <title>Profile</title>
 </head>
 
 <body>
@@ -25,6 +26,7 @@
         </a>
       </div>
 
+
       <div class="right-top-bar">
         <form action="/Account/Logout" id="frmLogout" method="POST"></form>
         {{#if lcIsAuthenticated}}
@@ -35,8 +37,9 @@
             {{lcAuthUser.Name}}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="/Account/Profile">Hồ Sơ</a>
-            <a class="dropdown-item" href="/writer/new">Thêm Tin Tức</a>
+            <a class="dropdown-item" href="/Account/Profile">Hồ sơ</a>
+             <a class="dropdown-item" href="/editor">Quản lý bài viết</a>
+            <a class="dropdown-item" href="/editor/accept">Bài viết đã xử lý</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Đăng Xuất</a>
           </div>
@@ -44,7 +47,7 @@
         {{else}}
 
         <a href="/Account/Sign-Up" class="top-bar-item">
-          Đăng Ký
+          Đăng Kí
         </a>
 
         <a href="/Account/Sign-In" class="top-bar-item">
@@ -54,52 +57,46 @@
       </div>
     </div>
   </div>
-  {{!-- Form upload --}}
-  <div class="container d-flex justify-content-center mt-4 container-form-change-pass">
-    <form action="" method="POST" id="frmChangePassword" class="form-change-pass" onsubmit="return validationChangePassword">
-      <div class="card">
-        <h5 class="card-header">Change Password</h5>
-        <div class="card-body">
-          <p class="card-text text-sm-center">Password must contain one lowercase letter, one number, and be at least 8
-            characters long.</p>
-          {{!-- Show Error --}}
-          {{#if err}}
-          <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-            <button type="button" class="closeAlert" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-            {{err}}
-          </div>
-          {{/if}}
-          {{!-- End Show Error --}}
-          <div class="form-group">
-            <label class="form-title">Password</label>
-            <input type="password" class="form-control" name="Password" placeholder="Password*">
-          </div>
-          <div class="form-group">
-            <label class="form-title">New Password</label>
-            <input type="password" id="New_Password" class="form-control" name="New_Password" placeholder="New Password*">
-          </div>
-          <div class="form-group">
-            <label class="form-title">Confirm Password</label>
-            <input type="password" class="form-control" name="Confirm_Password" placeholder="Confirm Password*">
-          </div>
-        </div>
-        <div class="card-footer text-muted">
-          <button type="submit" class="btn btn-success w-100">Submit</button>
-        </div>
-      </div>
-    </form>
-  </div>
 
+
+
+  <div class="col-sm-12">
+    <div class="main-content">
+      <div class="card-title">
+        <h3>Danh sách đã được duyệt</h3>
+      </div>
+
+      <div class="table-responsive "></div>
+      <table class="table table-hover table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tiêu đề</th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col">Chuyên mục</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each this.listEditor}}
+          <tr>
+            <th scope="row">{{inc}}</th>
+            <td>{{Title}}</td>
+            <td>{{Status}}</td>
+            <td>{{CatName}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+ 
   {{!-- Script --}}
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  {{!-- Bootstrap JS --}}
+  {{!-- Bootstrap --}}
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-  {{!-- Validation --}}
+  <!-- {{!-- Validation --}} -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
   <script src="/public/assets/js/validation.js"></script>
 </body>

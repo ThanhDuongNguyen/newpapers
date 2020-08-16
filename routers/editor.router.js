@@ -1,7 +1,7 @@
 const express = require("express");
 const tagModel = require("../models/tag.model");
 const newspaperModel = require("../models/newspapers.model");
-const restrict = require("../middleware/auth.middleware");
+const classifyMdw = require("../middleware/classify.middleware");
 const categoryModel = require("../models/category.model");
 const userModel = require("../models/user.model");
 const refTagNewsModel = require("../models/refTagsNews.model");
@@ -9,10 +9,10 @@ const denyModel = require("../models/deny.model");
 const acceptModel = require("../models/accept.model");
 const moment = require("moment");
 var schedule = require('node-schedule');
-const { childCategory } = require("../models/category.model");
 var router = express.Router();
 
-router.get("/", restrict, async function (req, res) {
+//list xử lí bài viết chưa được duyệt
+router.get("/", classifyMdw.checkEditorClass, async function (req, res) {
   const listEditor = await newspaperModel.newByEditor(
     req.session.authUser.IDUser
   );
@@ -28,8 +28,18 @@ router.get("/", restrict, async function (req, res) {
     listEditor: list,
   });
 });
-
-router.get("/ratify/:id", restrict, async function (req, res) {
+ //list bài viết đã được duyệt
+router.get("/accept", classifyMdw.checkEditorClass, async function (req, res) {
+  const listEditor = await newspaperModel.newByEditorAccepted(
+    req.session.authUser.IDUser
+  );
+  
+  res.render("viewEditer/listAccept", {
+    layout: false,
+    listEditor: listEditor,
+  });
+});
+router.get("/ratify/:id", classifyMdw.checkEditorClass, async function (req, res) {
   const id = +req.params.id || -1;
 
   const [list, total] = await Promise.all([
@@ -42,16 +52,27 @@ router.get("/ratify/:id", restrict, async function (req, res) {
     strTags += tag.TagName + ",";
   }
 
+  const lists = await categoryModel.editorByCat(req.session.authUser.IDUser);
+  console.log(lists);
+  for(var i =0; i<lists.length; i++){
+      if(News[0].CatID == lists[i].CatID){
+          lists[i].selected = 1;
+      }
+      else{
+        lists[i].selected = 0;
+      }
+  }
+  console.log(lists);
   res.render("viewEditer/ratify", {
     layout: false,
     IDPage: id,
     strTags,
-    listCat: await categoryModel.all(),
+    listCat: lists,
     minDate: moment().format("YYYY-MM-DDTHH:mm")
   });
 });
 
-router.post("/ratify/:id", restrict, async function (req, res) {
+router.post("/ratify/:id", classifyMdw.checkEditorClass, async function (req, res) {
   const id = +req.params.id || -1;
 
   const ob = {
@@ -87,7 +108,7 @@ router.post("/ratify/:id", restrict, async function (req, res) {
     const refTagsNews = {
       IDPage: id,
       IDTags: TagID
-    }
+    } 
     await refTagNewsModel.add(refTagsNews);
   }
   //duyet dang bai
@@ -105,7 +126,7 @@ router.post("/ratify/:id", restrict, async function (req, res) {
 
 });
 
-router.get("/refuse/:id", restrict, async function (req, res) {
+router.get("/refuse/:id", classifyMdw.checkEditorClass, async function (req, res) {
   const id = +req.params.id || -1;
   res.render("viewEditer/refuse", {
     layout: false,
@@ -113,7 +134,7 @@ router.get("/refuse/:id", restrict, async function (req, res) {
   });
 });
 
-router.post("/refuse/:id", restrict, async function (req, res) {
+router.post("/refuse/:id", classifyMdw.checkEditorClass, async function (req, res) {
   const id = +req.params.id || -1;
   const fall = {
     IDPage: id,
@@ -129,12 +150,13 @@ router.get("/:id", async function (req, res) {
 
   const News = await newspaperModel.single(id);
   const tagsName = await tagModel.tagsByNews(id);
-   author = await userModel.single(News[0].Author);
+  author = await userModel.single(News[0].Author)
 
   res.render("viewEditer/listCatEdit", {
     layout: false,
     News: News[0],
-    author: author[0]
+    author : author[0]
   });
 });
+
 module.exports = router;

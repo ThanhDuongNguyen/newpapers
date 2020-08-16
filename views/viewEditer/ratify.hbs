@@ -46,7 +46,8 @@
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="/Account/Profile">Hồ sơ</a>
-            <a class="dropdown-item" href="/writer/new">Thêm bài viết mới</a>
+            <a class="dropdown-item" href="/editor">Quản lý bài viết</a>
+            <a class="dropdown-item" href="/editor/accept">Bài viết đã xử lý</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Đăng xuất</a>
           </div>
@@ -64,7 +65,12 @@
       </div>
     </div>
   </div>
-  {{!-- Body --}}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+ 
+
 
   <div class="container">
     {{!-- Show Error --}}
@@ -88,10 +94,10 @@
             <label for="txtCat">Chuyên mục</label>
             <select class="form-control" id="txtCatID" name="CatID">
               {{#each this.listCat}}
-              <option value="{{CatID}}">{{CatName}}</option>
+              <option value="{{CatID}}" {{#if selected}}selected{{/if}}  >{{CatName}}</option>
               {{/each}}
             </select>
-          </div>
+          </div>  
           <div class="form-group">
             <label>Thẻ cho bài viết</label>
             <input type="text" value="{{this.strTags}}" name="TagsList" class="form-control">

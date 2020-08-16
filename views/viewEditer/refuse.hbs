@@ -13,7 +13,7 @@
   <link href="../../public/css/style_1.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="../../public/css/tags.css">
   <link rel="stylesheet" href="../../public/assets/css/demo.css">
-   <link rel="stylesheet" href="/public/assets/css/lunar.css">
+  <link rel="stylesheet" href="/public/assets/css/lunar.css">  
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
@@ -42,7 +42,8 @@
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="/Account/Profile">Hồ sơ</a>
-            <a class="dropdown-item" href="/writer/new">Thêm bài viết mới</a>
+             <a class="dropdown-item" href="/editor">Quản lý bài viết</a>
+            <a class="dropdown-item" href="/editor/accept">Bài viết đã xử lý</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Đăng xuấy</a>
           </div>
@@ -80,6 +81,7 @@
       </div>
     </div>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadSuccessModal">Ghi chú</button>
+    <a href="/editor" class="btn btn-success" ><i class="fa fa-arrow-left" aria-hidden="true"></i>  Quay lại </a>
   </form>
  <!-- Modal -->
     <div class="modal fade " id="uploadSuccessModal" tabindex="-1" role="dialog" aria-labelledby="demoModal" aria-hidden="true">

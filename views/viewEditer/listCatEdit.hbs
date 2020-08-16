@@ -46,7 +46,8 @@
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="/Account/Profile">Hồ sơ</a>
-            <a class="dropdown-item" href="/writer/new">Thêm bài viết mới</a>
+            <a class="dropdown-item" href="/editor">Quản lý bài viết</a>
+            <a class="dropdown-item" href="/editor/accept">Bài viết đã xử lý</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Đăng Xuất</a>
           </div>
@@ -96,9 +97,6 @@
             {{this.News.View}}
           </span>
 
-          <div class="mb-2">
-            <img src="{{this.News.ImgAvatar}}" alt="IMG" class="w-100 h-100">
-          </div>
 
           <p class="text-justify">
             {{{this.News.Content}}}
@@ -110,21 +108,37 @@
 
   {{!-- Footer --}}
   <div class="card-footer text-center">
+<<<<<<< HEAD
     <a  href="/editor/ratify/{{this.News.IDPage}}" class="btn btn-primary "><i class="fa fa-check "
         aria-hidden="true"></i>  Duyệt </a>
     <a href="/editor/refuse/{{this.News.IDPage}}" class="btn btn-danger" ><i class="fa fa-ban" aria-hidden="true"></i> Từ Chối </a>
     <a href="/editor" class="btn btn-info"><i class="fa fa-backward" aria-hidden="true">   Quay lại</i></a>
+=======
+    <a href="/editor/ratify/{{this.News.IDPage}}" class="btn btn-primary "><i class="fa fa-check "
+<<<<<<< HEAD
+        aria-hidden="true"></i> Duyệt </a>
+    <a href="/editor/refuse/{{this.News.IDPage}}" class="btn btn-danger"><i class="fa fa-ban" aria-hidden="true"></i> Từ
+      Chối </a>
+>>>>>>> 7aa3c65cc635509e63b2529a4d1956a3928bf1ad
   </div>
   {{!-- Bottom Footer --}}
   <div class="container-fluid fh5co_footer_right_reserved ">
     <div class="container">
-      <div class="row  ">
-        <div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2020, All rights reserved. Design by <a
-            href="/About">Team 6 Web2</a>. </div>
-
+      <div class="pt-3 pb-3 text-center w-100">
+        <div>
+          © Copyright 2020, All rights reserved. Design by
+          <a href="/About">Team 6 Web2</a>.
+        </div>
       </div>
     </div>
   </div>
+=======
+        aria-hidden="true"></i>  Duyệt </a>
+    <a href="/editor/refuse/{{this.News.IDPage}}" class="btn btn-danger" ><i class="fa fa-ban" aria-hidden="true"></i> Từ Chối </a>
+    <a href="/editor" class="btn btn-success" ><i class="fa fa-arrow-left" aria-hidden="true"></i>  Quay lại </a>
+  </div>
+  
+>>>>>>> 01a8a08931dad7f4634892d369cc0c7b795f1888
 
 
   {{!-- Script --}}

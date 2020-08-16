@@ -16,7 +16,7 @@ app.use(express.urlencoded({
 
 // public folder
 app.use('/public', express.static('public'));
-
+  
 // require routers
 app.use("/", require("./routers/home.router"));
 app.use("/pricing", require("./routers/pricing.router"));
