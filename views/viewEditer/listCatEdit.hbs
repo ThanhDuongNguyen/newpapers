@@ -79,7 +79,7 @@
 
           <span class="most_fh5co_treding_font_123">Tác giả: </span>
           <a href="#" class="most_fh5co_treding_font_123 d-inline-block">
-            {{this.Author.Name}}
+            {{this.author.Name}}
           </a>
 
           <span class="">
@@ -110,12 +110,13 @@
 
   {{!-- Footer --}}
   <div class="card-footer text-center">
-    <a href="/editor/ratify/{{this.News.IDPage}}" class="btn btn-primary "><i class="fa fa-check "
+    <a  href="/editor/ratify/{{this.News.IDPage}}" class="btn btn-primary "><i class="fa fa-check "
         aria-hidden="true"></i>  Duyệt </a>
     <a href="/editor/refuse/{{this.News.IDPage}}" class="btn btn-danger" ><i class="fa fa-ban" aria-hidden="true"></i> Từ Chối </a>
+    <a href="/editor" class="btn btn-info"><i class="fa fa-backward" aria-hidden="true">   Quay lại</i></a>
   </div>
   {{!-- Bottom Footer --}}
-  <div class="container-fluid fh5co_footer_right_reserved">
+  <div class="container-fluid fh5co_footer_right_reserved ">
     <div class="container">
       <div class="row  ">
         <div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2020, All rights reserved. Design by <a

@@ -140,10 +140,25 @@
   .newsbycat-img-size{
     height: 48px;
   }
+  .popular-title-detail-size{ 
+    height: 45px;
+    display: -webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }
 }
 /* // Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {
    .newsbycat-img-size{
      height: 55px;
    }
+   .popular-title-detail-size{
+        
+    height: 53px;
+    display: -webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }
 }

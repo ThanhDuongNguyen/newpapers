@@ -45,13 +45,8 @@ router.get("/ratify/:id", restrict, async function (req, res) {
   res.render("viewEditer/ratify", {
     layout: false,
     IDPage: id,
-    Title: News[0].Title,
-    TinyContent: News[0].TinyContent,
-    Content: News[0].Content,
-    ImgAvatar: News[0].ImgAvatar,
     strTags,
     listCat: await categoryModel.all(),
-    Premium: News[0].Premium === 1,
     minDate: moment().format("YYYY-MM-DDTHH:mm")
   });
 });
@@ -106,7 +101,7 @@ router.post("/ratify/:id", restrict, async function (req, res) {
     acceptModel.delete(accept.IDPage);
   });
   //thanh cong
-  res.redirect(`/message/upload-completed?retUrl=${req.originalUrl}`);
+  res.redirect(`/editor`);
 
 });
 
@@ -125,7 +120,7 @@ router.post("/refuse/:id", restrict, async function (req, res) {
     Note: req.body.Note
   }
   denyModel.add(fall);
-  res.redirect(`/message/upload-completed?retUrl=${req.originalUrl}`);
+  res.redirect(`/editor`);
 });
 
 router.get("/:id", async function (req, res) {
@@ -134,12 +129,12 @@ router.get("/:id", async function (req, res) {
 
   const News = await newspaperModel.single(id);
   const tagsName = await tagModel.tagsByNews(id);
-  const Author = await userModel.single(News[0].Author);
+   author = await userModel.single(News[0].Author);
 
   res.render("viewEditer/listCatEdit", {
     layout: false,
     News: News[0],
-    Author: Author[0]
+    author: author[0]
   });
 });
 module.exports = router;

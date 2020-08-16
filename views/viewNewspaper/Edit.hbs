@@ -2,306 +2,168 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>24 NEWS</title>
-  {{!-- Font awesome --}}
-  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  {{!-- Font --}}
-  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-  {{!-- Default CSS --}}
-  <link href="/public/css/style_1.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="/public/css/tags.css">
-  <link rel="stylesheet" href="/public/assets/css/demo.css">
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>24 NEWS</title>
+    {{!-- Font awesome --}}
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    {{!-- Font --}}
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    {{!-- Default CSS --}}
+    <link href="../../public/css/style_1.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../../public/css/tags.css">
+    <link rel="stylesheet" href="../../public/assets/css/demo.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 
 <body>
-  {{!-- Header --}}
-  {{!-- Topbar --}}
-  <div class="container-fluid fh5co_header_bg">
-    <div class="container h-100 d-flex justify-content-between pt-3 pb-3">
-      <div class="left-topbar">
-        <div class="d-inline-block fh5co_trading_posotion_relative"><a href="#" class="treding_btn">Trending</a>
-        </div>
-        <a href="#" class="color_fff fh5co_mediya_setting">Instagram’s big redesign goes live with black-and-white
-          app</a>
-      </div>
-
-      <div class="right-topbar">
-        <form action="/Account/Logout" id="frmLogout" method="POST"></form>
-        {{#if lcIsAuthenticated}}
-        <div class="dropdown pl-2">
-          <button class="btn btn-account dropdown-toggle" style="background: none; color: #ccc" type="button"
-            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="../../public/images-upload/{{lcAuthUser.Avatar}}" class="avatar" alt="">
-            {{lcAuthUser.Name}}
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="/Account/Profile">Hồ sơ</a>
-            <a class="dropdown-item" href="/writer/new">Thêm mới bài viết</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Đăng xuất</a>
-          </div>
-        </div>
-        {{else}}
-
-        <a href="/Account/SignUp" class="topbar-item">
-          Đăng kí
-        </a>
-
-        <a href="/Account/SignIn" class="topbar-item">
-          Đăng nhập
-        </a>
-        {{/if}}
-      </div>
-    </div>
-  </div>
-  {{!-- Logo --}}
-  <div class="container-fluid">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-md-3 fh5co_padding_menu">
-          <img src="../../public/images/logo.png" alt="img" class="fh5co_logo_width">
-        </div>
-      </div>
-    </div>
-  </div>
-  {{!-- Menu --}}
-  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-    <div class="container">
-      <a class="navbar-brand" href="/">
-        Home
-      </a>
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse position-relative" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Hot News</a>
-            <div class="sub-menu ">
-              <div class="sub-menu-content">
-                {{#each lcHotNews}}
-                <div class="sub-menu-item">
-                  <a href="/news/{{IDPage}}" class="d-block h-50">
-                    <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
-                  </a>
-                  <div class="sub-menu-item-content h-50">
-                    <a href="/news/{{IDPage}}">
-                      {{Title}}
-                    </a>
-                    <p class="content-option">
-                      <a href="/category/{{CatID}}">{{CatID}}</a>
-                      <span>-</span>
-                      <span>{{Day}}</span>
-                    </p>
-                  </div>
+    {{!-- Header --}}
+    {{!-- Topbar --}}
+    <div class="container-fluid fh5co_header_bg">
+        <div class="container h-100 d-flex justify-content-between pt-3 pb-3">
+            <div class="left-topbar">
+                <div class="d-inline-block fh5co_trading_posotion_relative"><a href="#" class="treding_btn">Trending</a>
                 </div>
-                {{/each}}
-              </div>
+                <a href="#" class="color_fff fh5co_mediya_setting">Instagram’s big redesign goes live with
+                    black-and-white
+                    app</a>
             </div>
-          </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="/Category/3">Seafood News</a>
-            <div class="sub-menu">
-              <div class="sub-menu-content">
-                {{#each lcSeafood}}
-                <div class="sub-menu-item h-100">
-                  <a href="/news/{{IDPage}}" class="d-block h-50">
-                    <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
-                  </a>
-                  <div class="sub-menu-item-content h-50">
-                    <a href="/news/{{IDPage}}">
-                      {{{Title}}}
-                    </a>
-                    <p class="content-option">
-                      <span>{{Day}}</span>
-                    </p>
-                  </div>
+            <div class="right-topbar">
+                <form action="/Account/Logout" id="frmLogout" method="POST"></form>
+                {{#if lcIsAuthenticated}}
+                <div class="dropdown pl-2">
+                    <button class="btn btn-account dropdown-toggle" style="background: none; color: #ccc" type="button"
+                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="{{lcAuthUser.Avatar}}" class="avatar" alt="">
+                        {{lcAuthUser.Name}}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="/Account/Profile">Profile</a>
+                        <a class="dropdown-item" href="/writer/new">Add new News</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="javascript: $('#frmLogout').submit()">Sign Out</a>
+                    </div>
                 </div>
-                {{/each}}
-              </div>
-            </div>
-          </li>
+                {{else}}
 
-          <li class="nav-item">
-            <a class="nav-link" href="/Category/2">Agricultural News</a>
-            <div class="sub-menu">
-              <div class="sub-menu-content">
-                {{#each lcAgricultural}}
-                <div class="sub-menu-item h-100">
-                  <a href="/news/{{IDPage}}" class="d-block h-50">
-                    <img src="{{ImgAvatar}}" alt="Image" class="w-100 h-100">
-                  </a>
-                  <div class="sub-menu-item-content h-50">
-                    <a href="#">
-                      {{Title}}
-                    </a>
-                    <p class="content-option">
-                      <span>{{Day}}</span>
-                    </p>
-                  </div>
+                <a href="/Account/SignUp" class="topbar-item">
+                    Subscribe
+                </a>
+
+                <a href="/Account/SignIn" class="topbar-item">
+                    Login
+                </a>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    {{!-- Logo --}}
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-3 fh5co_padding_menu">
+                    <img src="../../public/images/logo.png" alt="img" class="fh5co_logo_width">
                 </div>
-                {{/each}}
-              </div>
             </div>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/About_us">About Us</a>
-              <a class="dropdown-item" href="/Contact_us">Contact Us</a>
-            </div>
-          </li>
-        </ul>
-        <form class="search-form my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn my-2 my-sm-0" type="submit">
-            <i class="fa fa-search" aria-hidden="true"></i>
-          </button>
-        </form>
-      </div>
+        </div>
     </div>
-  </nav>
-  {{!-- Body --}}
 
-  <div class="container">
-    {{!-- Show Error --}}
-    {{#if err}}
-    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-      <button type="button" class="closeAlert" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">×</span>
-      </button>
-      {{err}}
-    </div>
-    {{/if}}
-    {{!-- End Show Error --}}
-
-    <form method="post" action="/news/edit/{{this.IDPage}}" id="frmEditNews" onsubmit="return validationEditNews">
-      <div class="card">
-        <div class="card-header">
-          <h3>Chỉnh bài viết</h3>
-        </div>
-        <div class="card-body">
-          <div class="form-group">
-            <label for="txtTitle">Tiêu đề bài viết</label>
-            <input type="text" class="form-control" id="txtTitle" name="Title" autofocus value="{{this.Title}}">
-          </div>
-          <div class="form-group">
-            <label for="txtTinyContent">Tóm tắt bài viết</label>
-            <textarea class="form-control" rows="3" id="txtTinyContent" name="TinyContent">
-              {{this.TinyContent}}
-            </textarea>
-          </div>
-          <div class="form-group">
-            <label for="txtCat">Chuyên mục</label>
-            <select class="form-control" id="txtCatID" name="CatID">
-              {{#each this.listCat}}
-              <option value="{{CatID}}">{{CatName}}</option>
-              {{/each}}
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Thẻ cho bài viết</label>
-            <input type="text" value="{{this.strTags}}" name="TagsList" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="linkAvatarImage">Link ảnh đại diện bài viết</label>
-            <input type="text" class="form-control" id="linkAvatarImage" name="ImgAvatar" value="{{this.ImgAvatar}}">
-          </div>
-          <label for="">Bài viết dành cho đọc giả</label>
-          {{#if Premium}}
-          <div class="form-check">
-            <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="Premium" value="0">Đọc giả bình thường
-            </label>
-          </div>
-          <div class="form-check">
-            <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="Premium" value="1" checked>Đọc giả Premium
-            </label>
-          </div>
-          {{else}}
-          <div class="form-check">
-            <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="Premium" value="0">Đọc giả bình thường
-            </label>
-          </div>
-          <div class="form-check">
-            <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="Premium" value="1" checked>Đọc giả Premium
-            </label>
-          </div>
-          {{/if}}
-
-          <div class="form-group">
-            <label for=""></label>
-            <textarea name="Content" id="txtFullDes" class="form-control" cols="30" rows="10">
-              {{Content}}
-            </textarea>
-          </div>
-        </div>
-        <div class="card-footer">
-          <button type="submit" class="btn btn-lg btn-success btn-block">
-            <i class="fa fa-check" aria-hidden="true"></i>
-            Submit
-          </button>
-        </div>
-      </div>
-    </form>
-  </div>
-
-
-  {{!-- Footer --}}
-  <div class="container-fluid fh5co_footer_right_reserved">
     <div class="container">
-      <div class="row  ">
-        <div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2020, All rights reserved. Design by <a
-            href="/About">Team 6 Web2</a>. </div>
-        <div class="col-12 col-md-6 spdp_right py-4">
-          <a href="#" class="footer_last_part_menu">Home</a>
-          <a href="Contact_us.html" class="footer_last_part_menu">About</a>
-          <a href="Contact_us.html" class="footer_last_part_menu">Contact</a>
-          <a href="blog.html" class="footer_last_part_menu">Latest News</a></div>
-      </div>
+        <div class="col-sm-12">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link" id="home-tab" href="/writer/new" role="tab" aria-controls="home"
+                        aria-selected="true">Tạo bài viết mới</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                        aria-controls="profile" aria-selected="false">Danh sách bài viết </a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col-sm-1">#</th>
+                                    <th scope="col-sm-4">Tiêu đề</th>
+                                    <th scope="col-sm-2">Chuyên mục</th>
+                                    <th scope="col-sm-3">Trạng thái</th>
+                                    <th scope="col-sm-2">Thao tác</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each this.listNew}}
+                                <tr>
+                                    <th scope="row">{{inc @index}}</th>
+                                    <td>{{Title}}</td>
+                                    <td>{{CatName}}</td>
+                                    <td>{{Status}}</td>
+                                    <td>
+                                        {{#if isEdit}}
+                                        <a href="/news/edit/{{IDPage}}" type="button" class="btn btn-secondary">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        </a>
+                                        {{/if}}
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
 
-  <script src="/public/js/main.js"></script>
-  {{!-- Script Bootstrap --}}
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-  <script src="/public/js/tags.js"></script>
-  {{!-- Validation --}}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
 
-  <script src="/public/assets/js/validation.js"></script>
 
-  <script>
-    tinymce.init({
-      selector: '#txtFullDes',
-      height: 450,
-      plugins: 'paste image link autolink lists table media code',
-      menubar: false,
-      toolbar: [
-        'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | forecolor backcolor | table link image media | code',
-      ],
-    });
-  </script>
+
+    {{!-- Footer --}}
+    <div class="container-fluid fh5co_footer_right_reserved">
+        <div class="container">
+            <div class="row  ">
+                <div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2020, All rights reserved. Design by <a
+                        href="/About">Team 6 Web2</a>. </div>
+                <div class="col-12 col-md-6 spdp_right py-4">
+                    <a href="#" class="footer_last_part_menu">Home</a>
+                    <a href="Contact_us.html" class="footer_last_part_menu">About</a>
+                    <a href="Contact_us.html" class="footer_last_part_menu">Contact</a>
+                    <a href="blog.html" class="footer_last_part_menu">Latest News</a></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../../public/js/main.js"></script>
+    {{!-- Script Bootstrap --}}
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="../../public/js/tags.js"></script>
+    {{!-- Validation --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+
+    <script src="../public/assets/js/validation.js"></script>
+
+    <script>
+        tinymce.init({
+            selector: '#txtFullDes',
+            height: 450,
+            plugins: 'paste image link autolink lists table media code',
+            menubar: false,
+            toolbar: [
+                'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | forecolor backcolor | table link image media | code',
+            ],
+        });
+    </script>
 
 </body>
 
-</html>
+</html> 

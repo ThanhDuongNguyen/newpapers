@@ -13,6 +13,7 @@
   <link href="/public/css/style_1.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="/public/css/tags.css">
   <link rel="stylesheet" href="/public/assets/css/demo.css">
+  <link rel="stylesheet" href="/public/assets/css/lunar.css">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <script type="text/javascript"
@@ -63,16 +64,6 @@
       </div>
     </div>
   </div>
-  {{!-- Logo --}}
-  <div class="container-fluid">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-md-3 fh5co_padding_menu">
-          <img src="/public/images/logo.png" alt="img" class="fh5co_logo_width">
-        </div>
-      </div>
-    </div>
-  </div>
   {{!-- Body --}}
 
   <div class="container">
@@ -87,7 +78,7 @@
     {{/if}}
     {{!-- End Show Error --}}
 
-    <form method="post" action="/editor/ratify/{{this.IDPage}}" id="frmEditNews" onsubmit="return validationEditNews">
+    <form method="post" action="/editor/ratify/{{this.IDPage}}" id="frmEditNews">
       <div class="card">
         <div class="card-header">
           <h3>Chỉnh bài viết</h3>
@@ -112,23 +103,56 @@
                   <div class="form-group row">
                     <label for="example-datetime-local-input">Hẹn giờ đăng bài</label>
                     <div class="col-10">
-                      <input class="form-control" name="DateTime" min="{{this.minDate}}" value="{{this.minDate}}" type="datetime-local"
-                        id="example-datetime-local-input">
+                      <input class="form-control" name="DateTime" min="{{this.minDate}}" value="{{this.minDate}}"
+                        type="datetime-local" id="example-datetime-local-input">
                     </div>
                   </div>
                 </div>
               </div>
-              
+
             </div>
           </div>
           <div class="card-footer">
-            <button type="submit" class="btn btn-lg btn-success btn-block">
+            <button type="button" class="btn btn-lg btn-success btn-block" data-toggle="modal" data-target="#uploadSuccessModal">
               <i class="fa fa-check" aria-hidden="true"></i>
               Duyệt
             </button>
           </div>
         </div>
     </form>
+
+
+    <!-- Modal -->
+    <div class="modal fade " id="uploadSuccessModal" tabindex="-1" role="dialog" aria-labelledby="demoModal" aria-hidden="true">
+      <div class="modal-dialog  modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div class="modal-body">
+            <div class="px-3 pt-3 text-center">
+              <div class="event-type info">
+                <div class="event-indicator ">
+                  <svg style="width:60px;height:60px" viewBox="0 0 24 24">
+                    <path fill="#fff"
+                      d="M10,17L6.5,13.5L7.91,12.08L10,14.17L15.18,9L16.59,10.41M19.35,10.03C18.67,6.59 15.64,4 12,4C9.11,4 6.6,5.64 5.35,8.03C2.34,8.36 0,10.9 0,14A6,6 0 0,0 6,20H19A5,5 0 0,0 24,15C24,12.36 21.95,10.22 19.35,10.03Z" />
+                  </svg>
+                </div>
+              </div>
+              <h3 class="pt-3">Duyệt thành công!</h3>
+              <p class="text-muted">
+                Bài duyệt đã được xác nhận và chờ ngày xuất bản.
+              </p>
+
+            </div>
+          </div>
+          <div class="modal-footer text-md-right">
+            <a href="javascript: $('#frmEditNews').submit()" class="btn btn-cstm-secondary" aria-label="Close">Okay</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Ends -->
   </div>
 
 
@@ -145,7 +169,7 @@
   {{!-- Validation --}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
 
-  <script src="../../public/assets/js/validation.js"></script>
+  <script src="/public/assets/js/validation.js"></script>
 
   <script>
     tinymce.init({
@@ -164,7 +188,7 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
-  
+
 </body>
 
 </html>

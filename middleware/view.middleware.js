@@ -1,5 +1,5 @@
 const exphbs = require("express-handlebars");
-const hbs_sections = require ("express-handlebars-sections");
+const hbs_sections = require("express-handlebars-sections");
 
 
 module.exports = function (app) {
@@ -11,6 +11,9 @@ module.exports = function (app) {
       extname: ".hbs",
       helpers: {
         section: hbs_sections(),
+        inc: function (value) {
+          return parseInt(value) + 1;
+        }
       }
     })
   );
