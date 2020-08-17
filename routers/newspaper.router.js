@@ -7,11 +7,11 @@ const restrict = require("../middleware/auth.middleware");
 const commentModel = require("../models/comment.model");
 const userModel = require("../models/user.model");
 const moment = require("moment");
-
+const check = require("../middleware/classify.middleware");
 var router = express.Router();
 
 // Detail
-router.get("/:id", async function (req, res) {
+router.get("/:id",check.checkPremium, async function (req, res) {
   const id = +req.params.id || -1;
 
   console.log("id:", id);

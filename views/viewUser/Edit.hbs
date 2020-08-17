@@ -201,7 +201,8 @@
                       <div class="col-sm-12 col-lg-6 pl-0">
                         <div class="form-group">
                           <label>Thời gian tài khoản hết hạn</label>
-                          <input type="datetime" class="form-control" name="Time" disabled>
+                          <input class="form-control" name="DateTime" min="{{this.minDate}}" value="{{this.minDate}}"
+                            type="datetime-local" id="example-datetime-local-input">
                         </div>
                       </div>
                       <div class="col-sm-12 col-lg-6 pr-0">
@@ -267,8 +268,7 @@
           </div>
           <div class="modal-footer">
             <form action="/admin/users/delete/{{IDUser}}" method="POST" id="frmDelUser"></form>
-            <a href="javascript: $('#frmDelUser').submit()"
-              class="btn btn-cstm-danger">Tiếp tục</a>
+            <a href="javascript: $('#frmDelUser').submit()" class="btn btn-cstm-danger">Tiếp tục</a>
             <a href="/" class="btn btn-cstm-secondary" data-dismiss="modal" aria-label="Close">Hủy</a>
           </div>
         </div>

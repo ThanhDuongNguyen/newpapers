@@ -7,6 +7,7 @@ const commentModel = require("../models/comment.model");
 const userModel = require("../models/user.model");
 const moment = require("moment");
 
+
 var router = express.Router();
 
 router.get("/:id", async function (req, res) {
@@ -51,7 +52,7 @@ router.get("/:id", async function (req, res) {
   });
 });
 
-router.post("/:id", restrict, async function (req, res) {
+router.post("/:id", async function (req, res) {
   const id = +req.params.id || -1;
 
   const comment = {

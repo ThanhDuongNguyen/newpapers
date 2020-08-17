@@ -11,6 +11,7 @@ const acceptModel = require("../models/accept.model");
 const denyModel = require("../models/deny.model");
 const defaults = require("../config/default.json");
 const moment = require("moment");
+const subscriptionsModel = require("../models/subscriptions.model");
 const bcryptjs = require("bcryptjs");
 var schedule = require("node-schedule");
 
@@ -916,10 +917,39 @@ router.get("/users/edit/:id", classifyMdw.checkAdminClass, async function (
       ...user,
       isCurrent: user.PermissionID === detailUser[0].PermissionID,
     })),
+    minDate: moment().format("YYYY-MM-DDTHH:mm"),
   });
 });
 
 router.post("/users/update", async function (req, res) {
+
+  console.log("req.body", req.body);
+
+  var end_time = moment().add(req.body.DateTime, 'minutes').format();
+  console.log("end time", end_time);
+  const sub = {
+      IDUser: req.body.IDUser,
+      End_timestamp: end_time,
+      Status: "Còn hạn"
+  }
+  await subscriptionsModel.add(sub);
+
+  var date = new Date(req.body.DateTime);
+  var j = schedule.scheduleJob(date,async function () {
+
+    const listUserExpired = await subscriptionsModel.singleExpired(req.body.IDUser);
+
+    for (const UserExpired of listUserExpired) {
+      
+    }
+    const ob = {
+      IDUser: req.body.IDUser,
+      Status: "Hết hạn"
+    };
+    await subscriptionsModel.del(ob.IDUser);
+    console.log("Đã xóa");
+  });
+  delete req.body.DateTime;
   await userModel.patch(req.body);
 
   res.redirect("/admin/users");

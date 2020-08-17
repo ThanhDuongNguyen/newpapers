@@ -5,6 +5,8 @@ const paymentModel = require("../models/payment.model");
 const subscriptionsModel = require("../models/subscriptions.model");
 const moment = require('moment');
 
+var schedule = require("node-schedule");
+
 var router = express.Router();
 
 router.get("/:packID", restrict, async function (req, res) {
@@ -58,9 +60,22 @@ router.post("/:packID", async function (req, res) {
         IDUser: req.session.authUser.IDUser,
         PackageID: packID,
         Start_timestamp: start_time,
-        End_timestamp: end_time
+        End_timestamp: end_time,
+        Status: "Còn hạn"
     }
     await subscriptionsModel.add(sub);
+
+    var date = new Date(end_time);
+    var j = schedule.scheduleJob(date, function () {
+    const ob = {
+        IDUser: req.session.authUser.IDUser,
+      Status: "Hết hạn"
+    };
+    subscriptionsModel.patch(ob);
+    subscriptionsModel.del(ob.IDUser);
+  });
+
+
     res.render("viewMessage/Success", { layout: false });
 });
 
