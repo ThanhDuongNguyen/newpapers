@@ -409,7 +409,7 @@ router.get("/tags/edit/:id", classifyMdw.checkAdminClass, async function (
   const detailTag = await tagModel.single(id);
 
   // console.log(detailTag);
-
+ 
   res.render("viewTags/Edit", {
     layout: false,
     detailTag,
