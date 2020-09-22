@@ -1,6 +1,7 @@
 {
   "mysql": {
     "host": "us-cdbr-east-02.cleardb.com",
+    "port": 3306,
     "user": "b11a8ebd61a9c8",
     "password": "4e9e8599",
     "database": "heroku_e38b25d90ae30f7",
